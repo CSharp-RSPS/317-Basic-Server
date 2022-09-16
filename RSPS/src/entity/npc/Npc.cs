@@ -22,15 +22,8 @@ namespace RSPS.src.entity.npc
 
         public Npc(int id)
         {
-            this.Id = id;
+            Id = id;
             Visible = true;
-            World.npcs.Add(this);
-            Index = World.npcs.IndexOf(this);
-        }
-
-        public static Npc AddNPC(int id)
-        {
-            return new Npc(id);
         }
 
 

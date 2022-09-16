@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.task.impl
 {
+    //This task doesn't run. It's way to slow!
     public class MovementTask : Task
     {
         public MovementTask(string name, TimeSpan sleepTime) : base(name, sleepTime)
@@ -15,14 +16,14 @@ namespace RSPS.src.task.impl
 
         protected override void Execute()
         {
-            for (int i = 0; i < World.players.Count; i++)
+            /*for (int i = 0; i < World.players.Count; i++)
             {
                 Player player = World.players[i];
                 if (player != null)
                 {
                     player.MovementHandler.ProcessMovements();
                 }
-            }
+            }*/
         }
     }
 }

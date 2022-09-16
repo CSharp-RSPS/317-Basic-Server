@@ -12,16 +12,17 @@ namespace RSPS.src.net
     public class LoginProtocolDecoder
     {
 
-        private static Random Random = new Random();
 
-
-        public static void DecodeLogin(Connection connection)
+        public static void DecodeLogin(Connection connection, out string? username, out string? password)
         {
+            username = null;
+            password = null;
+
             //Console.WriteLine("Buffer Size: {0}", connection.buffer.Length);
             PacketReader readPacket;
             switch (connection.connectionState)
             {
-                case 0://connection state
+                case ConnectionState.Handshake://connection state
                     readPacket = Packet.CreatePacketReader(connection.buffer);
                     int opcode = readPacket.ReadByte() & 0xff;
                     int nameHash = readPacket.ReadByte() & 0xff;
@@ -29,7 +30,7 @@ namespace RSPS.src.net
                     {
                         //Console.WriteLine("opcode = game");
                         //Console.WriteLine("NameHash: {0}", nameHash);
-                        connection.connectionState = 1;
+                        connection.connectionState = ConnectionState.Authenticate;
                         MemoryStream stream = new MemoryStream(17);
                         long dummyData = 0;
                         stream.Write(BitConverter.GetBytes(dummyData));
@@ -43,7 +44,7 @@ namespace RSPS.src.net
                     }
                 break;
 
-                case 1://login state
+                case ConnectionState.Authenticate://login state
                     readPacket = Packet.CreatePacketReader(connection.buffer);
 
                     //Console.WriteLine("We are inside the login state");
@@ -115,15 +116,12 @@ namespace RSPS.src.net
                     int uid = readPacket.ReadInt();
                     //Console.WriteLine("UID: {0}", uid);
 
-                    string username = readPacket.ReadString();
-                    string password = readPacket.ReadString();
-                    //Console.WriteLine("Username: {0}", username);
-                    //Console.WriteLine("Password: {0}", password);
-                    connection.connectionState = 2;
+                    username = readPacket.ReadString();
+                    password = readPacket.ReadString();
+                    Console.WriteLine("Username: {0}", username);
+                    Console.WriteLine("Password: {0}", password);
+                    connection.connectionState = ConnectionState.Authenticated;
                     // send the login response to see if we can login
-                    Player player = new Player(username, password, connection);
-                    //Player player = new Player(username, password, connection);
-                    player.LoginPlayer();
                 break;
             }
         }

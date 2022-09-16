@@ -1,4 +1,5 @@
 ﻿using RSPS.src.entity.player.skill;
+using RSPS.src.net;
 using RSPS.src.net.packet;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace RSPS.src.entity.player
          */
         private static readonly int REGION_PLAYERS_LIMIT = 255;
 
-        public static void Update(Player player)
+        public static void Update(World world, Player player)
         {
             try
             {
@@ -43,7 +44,7 @@ namespace RSPS.src.entity.player
                 for (int i = 0; i < player.LocalPlayers.Count; i++)
                 {
                     Player other = player.LocalPlayers[i];
-                    if (other.Position.isViewableFrom(player.Position) && other.PlayerConnection.connectionState == 2 && !other.NeedsPlacement)
+                    if (other.Position.isViewableFrom(player.Position) && other.PlayerConnection.connectionState == ConnectionState.Authenticated && !other.NeedsPlacement)
                     {
                         UpdateOtherPlayerMovement(other, outPacket);
 
@@ -78,21 +79,21 @@ namespace RSPS.src.entity.player
                 //    }
                 //}
 
-                //Update the local player list.
-                for (int i = 0; i < World.players.Count; i++)
+                //Update the local players list.
+                for (int i = 0; i < world.Players.Entities.Count; i++)
                 {
-                    if (player.LocalPlayers.Count >= 255)
+                    if (player.LocalPlayers.Count >= REGION_PLAYERS_LIMIT)
                     {
                         break;
                     }
 
-                    Player other = World.players[i];
-                    if (other == null || other == player || other.PlayerConnection.connectionState < 2)//so we dont add ourself to the list
+                    Player other = world.Players.Entities[i];
+                    if (other == null || other == player || other.PlayerConnection.connectionState < ConnectionState.Authenticated)//so we dont add ourself to the list
                     {
                         continue;
                     }
 
-                    //So we dont hit the client buffer of 5k
+                    //So we dont hit the client buffer of 5k - redo this keep track of players being added per cycle
                     //it's variable player adding to the seen surrounding area
                     if ((outPacket.PayloadPosition + stateBlock.PayloadPosition) + 320 > 5000)
                     {
@@ -124,7 +125,6 @@ namespace RSPS.src.entity.player
 
                 // Finish the packet and send it.
                 outPacket.FinishVariableShortHeader();
-
                 Program.SendGlobalByes(player.PlayerConnection, outPacket.Payload, outPacket.PayloadPosition);
             }
             catch (Exception e)

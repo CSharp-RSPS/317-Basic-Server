@@ -1,7 +1,10 @@
-﻿using RSPS.src.net.packet;
+﻿using RSPS.src.entity.player;
+using RSPS.src.net.packet;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -9,14 +12,80 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net
 {
-    public class NetworkListener
+    /// <summary>
+    /// Handles client connections
+    /// </summary>
+    public class ConnectionListener : INetworkListener
     {
-        public static void AcceptCallback(IAsyncResult result)
+
+        /// <summary>
+        /// The endpoint
+        /// </summary>
+        public string Endpoint { get; }
+
+        /// <summary>
+        /// The port
+        /// </summary>
+        public int Port { get; }
+
+        /// <summary>
+        /// Holds the players pending login
+        /// </summary>
+        public readonly Queue<Player> PendingLogin = new();
+
+        /// <summary>
+        /// Holds the alive connections
+        /// </summary>
+        public readonly List<Connection> Connections = new();
+
+        /// <summary>
+        /// The listener socket
+        /// </summary>
+        private Socket? _socket;
+
+
+        public ConnectionListener(string endpoint, int port) {
+            Endpoint = endpoint;
+            Port = port;
+        }
+
+        public bool Start() {
+            IPEndPoint endPoint = new(IPAddress.Parse(Endpoint), Port);
+
+            try {
+                _socket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                _socket.Bind(endPoint);
+                _socket.Listen(25);
+                _socket.Blocking = false;
+                _socket.DontFragment = true;
+                _socket.NoDelay = true;
+                _socket.BeginAccept(new AsyncCallback(AcceptCallback), _socket);
+
+            } catch (Exception ex) {
+                Debug.WriteLine(ex);
+                return false;
+            }
+            return true;
+        }
+
+        public void Dispose() {
+            GC.SuppressFinalize(this);
+
+            _socket?.Disconnect(false);
+            _socket?.Dispose();
+
+            PendingLogin.Clear();
+        }
+
+        public void AcceptCallback(IAsyncResult result)
         {
-            Connection connection = new Connection();
+            if (_socket == null || result.AsyncState == null) {
+                return;
+            }
+            Connection connection = new();
+
             try
             {
-
                 // Get the socket that handles the client request.  
                 Socket socket = (Socket)result.AsyncState;
 
@@ -28,43 +97,54 @@ namespace RSPS.src.net
                 /**
                  * Start accpeting a new connection. Keep the listeners off the main game loop
                  **/
-                Program.listener.BeginAccept(new AsyncCallback(AcceptCallback), Program.listener);
+                _socket.BeginAccept(new AsyncCallback(AcceptCallback), _socket);
             }
             catch (IOException ex)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex);
                 Console.WriteLine("Accept callback died");
                 System.Environment.Exit(1);
             }
         }
 
-        public static void ReadCallback(IAsyncResult result)
+        public void ReadCallback(IAsyncResult result)
         {
-            Connection connection = new Connection();
+            if (_socket == null || result.AsyncState == null) {
+                return;
+            }
             try
             {
                 // Retrieve the state object and the handler socket  
                 // from the asynchronous state object.  
-                connection = (Connection)result.AsyncState;
+                Connection connection = (Connection)result.AsyncState;
 
                 int bytesRead = connection.clientSocket.EndReceive(result);
 
                 if (bytesRead > 0)
                 {
-                    MemoryStream tempStream = new MemoryStream(bytesRead);
+                    MemoryStream tempStream = new(bytesRead);
                     tempStream.Write(connection.buffer, 0, bytesRead);
                     PacketReader packetReader = Packet.CreatePacketReader(tempStream.ToArray());
 
                     while (packetReader.PayloadPosition < packetReader.Payload.Length)
                     {
-                        if (connection.connectionState <= 1)
-                        {
-                            LoginProtocolDecoder.DecodeLogin(connection);
+                        if (connection.connectionState < ConnectionState.Authenticated)
+                        { // Handle new connection
+                           LoginProtocolDecoder.DecodeLogin(connection, out string? username, out string? password);
+
+                            if (connection.connectionState != ConnectionState.Authenticated) {
+                                break;
+                            }
+                            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password)) {
+                                Console.Error.WriteLine("Failed to decode login");
+                                break;
+                            }
+                            PendingLogin.Enqueue(new(username, password, connection));
                             //RSALoginProtocolDecoder.DecodeLogin(connection); - for new client
                             break;
                         }
                         else
-                        {
+                        { // Handle packets of existing connection
                             int packetOpCode = packetReader.ReadByte() & 0xFF;
                             packetOpCode = (packetOpCode - connection.NetworkDecryptor.getNextValue()) & 0xFF;// -- cryption
                             //Console.WriteLine("packet op code: " + packetOpCode);

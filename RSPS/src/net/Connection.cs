@@ -18,7 +18,7 @@ namespace RSPS.src.net
 
         public Player Player;
 
-        public int connectionState = 0;
+        public ConnectionState connectionState = ConnectionState.Handshake;
         //0 = connected
         //1 = logging in
 

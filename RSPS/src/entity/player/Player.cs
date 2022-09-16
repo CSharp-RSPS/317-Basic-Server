@@ -70,14 +70,11 @@ namespace RSPS.src.entity.player
             loginResponse.WriteByte(0);//not clue. comment out when working with new client
             Program.SendGlobalByes(PlayerConnection, loginResponse.GetBuffer());
             
-            Program.connections.Enqueue(this);
             //InitializePlayerSession();
         }
 
         public void InitializePlayerSession()
         {
-            World.players.Add(this);
-            PlayerIndex = World.players.IndexOf(this);
             //Console.WriteLine("sent interfaces");
 
             for (int i = 1; i < SIDEBAR_INTERFACE_IDS.Length; i++)
@@ -106,8 +103,6 @@ namespace RSPS.src.entity.player
             NeedsPlacement = true;
             AppearanceUpdateRequired = true;
             UpdateRequired = true;
-            
-            //PlayerUpdating.Update(this);
         }
 
         public override void ResetFlags()
@@ -125,31 +120,5 @@ namespace RSPS.src.entity.player
         {
             return Skills[(int)skillType];
         }
-
-        //private int CalculateRunEnergyDepletion(int energy)
-        //{
-        //    Console.WriteLine("Depleting Energy");
-        //    if (energy == 0)
-        //    {
-        //        Console.WriteLine("Energy should be 0. Current energy level: {0}", energy);
-        //        return 0;
-        //    }
-        //    int EnergyUseDamper = 67 + ((67 * Math.Clamp(MovementHandler.Weight, 0, 64)) / 64);
-        //    return Math.Clamp(energy / EnergyUseDamper, 0, 10000);
-        //}
-
-        //private int CalculateRunEnergyRecovery(int energy)
-        //{
-        //    Console.WriteLine("Restoring Energy");
-        //    //get the agility skill
-        //    if (energy == 10000)
-        //    {
-        //        Console.WriteLine("Energy should be 10000. Current energy level: {0}", energy);
-        //        return energy;
-        //    }
-        //    int EnergyRecovery = (0 / 6) + 8;
-        //    return Math.Clamp(energy + EnergyRecovery, 0, 10000);
-        //}
-
     }
 }

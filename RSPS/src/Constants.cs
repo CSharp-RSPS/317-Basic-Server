@@ -10,10 +10,9 @@ namespace RSPS.src
     public static class Constants
     {
 
+        public static readonly int WorldCycleMs = 600;
+
         public static readonly string SERVER_NAME = "Wynn's Framework";
-        public static readonly string ENDPOINT = "0.0.0.0";
-        //public static readonly int PORT = 43595;
-        public static readonly int PORT = 43594;
 
         // Size of receive buffer.
         public static readonly int BufferSize = 256;

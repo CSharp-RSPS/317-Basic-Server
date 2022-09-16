@@ -11,7 +11,7 @@ namespace RSPS.src.entity.npc
     public static class NpcUpdating
     {
 
-        public static void Update(Player player)
+        public static void Update(World world, Player player)
         {
             PacketWriter outPacket = Packet.CreatePacketWriter(5000);//gets 32 players
             PacketWriter stateBlock = Packet.CreatePacketWriter(2048);
@@ -41,9 +41,9 @@ namespace RSPS.src.entity.npc
 			}
 
 			// Update the local NPC list itself.
-			for (int i = 0; i < World.npcs.Count; i++)
+			for (int i = 0; i < world.Npcs.Entities.Count; i++)
 			{
-				Npc npc = (Npc)World.npcs[i];
+				Npc npc = (Npc)world.Npcs.Entities[i];
 				if (npc == null || player.LocalNpcs.Contains(npc) || !npc.Visible)
 				{
 					continue;
