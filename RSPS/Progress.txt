@@ -1,0 +1,5 @@
+﻿Working on why payload is currently smaller when i send a packet to the newer client
+-network listener : readCallback commented out RSAdecoder(so we can use base 317 client)
+-Player : LoginPlayer comment out the writeByte(0) if using newer client
+
+Haven't got close to rewritting base. Lots of empty stuff/comments that i haven't cleaned up
