@@ -55,50 +55,22 @@ namespace RSPS.src.net.Connections
             }
             catch (SocketException ex)
             { // Most likely disconnected
-                Console.Error.WriteLine(ex.ToString());
+                //Console.Error.WriteLine(ex.ToString());
                 Dispose();
             }
             catch (Exception ex)
             {
-                Console.Error.WriteLine(ex);
-            }
-        }
-
-        private void SendCallback(IAsyncResult ar)
-        {
-            if (ar.AsyncState == null)
-            {
-                return;
-            }
-            try
-            {
-                // Retrieve the socket from the state object.  
-                Socket clientSocket = (Socket)ar.AsyncState;
-
-                // Complete sending the data to the remote device.  
-                int bytesSent = clientSocket.EndSend(ar);
-                //Console.WriteLine("Sent {0} bytes to client.", bytesSent);
-
-                //handler.Shutdown(SocketShutdown.Both);
-                //handler.Close();
-
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine(ex);
-                Dispose();
+                //Console.Error.WriteLine(ex);
             }
         }
 
         public void Dispose()
         {
             GC.SuppressFinalize(this);
-            /*
-            if (ClientSocket.Connected) {
-                ClientSocket.Disconnect(false);
-            }
-            ClientSocket.Close();*/
+            
             ClientSocket.Dispose();
+
+            ConnectionState = ConnectionState.None;
         }
 
     }

@@ -114,7 +114,8 @@ namespace RSPS.src.net.Connections
             try
             {
                 // Get the socket that handles the client request.
-                Socket clientSocket = ((Socket)result.AsyncState).EndAccept(result);
+                Socket clientSocket = ((Socket)result.AsyncState);
+                clientSocket = clientSocket.EndAccept(result);
                 // Instantiate the new connection to accept
                 Connection newConnection = new(clientSocket);
                 // Start receiving data from the new connection and handle it's acceptation
@@ -152,6 +153,10 @@ namespace RSPS.src.net.Connections
                 Console.Error.WriteLine("Client disconnected forcefully");
                 //Console.Error.WriteLine(ex);
                 connection.Dispose();
+                return false;
+            }
+            catch (ObjectDisposedException)
+            {
                 return false;
             }
             if (bytesRead <= 0)

@@ -172,8 +172,13 @@ namespace RSPS.src.Worlds
                 try
                 {
                     // Handle disconnected players
-                    Parallel.ForEach(Players.Entities.Where(p => p == null || !p.PlayerConnection.IsConnected), mainParallelOptions, player =>
+                    Parallel.ForEach(Players.Entities.Where(p => p == null || p.PlayerConnection.ConnectionState == ConnectionState.None).ToList().Take(45), 
+                        mainParallelOptions, (Player? player) =>
                     {
+                        if (player == null)
+                        {
+                            return;
+                        }
                         Console.WriteLine("Handling removal of disconnected player {0}", player.Credentials.Username);
                         Players.Logout(player, true);
                         Players.Remove(player);
@@ -181,45 +186,28 @@ namespace RSPS.src.Worlds
                     if (Players.Entities.Count > 0)
                     { // Handle active players
                         // Process the movement of players
-                        Parallel.ForEach(Players.Entities, mainParallelOptions, player => player.MovementHandler.ProcessMovements());
+                        Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) => player?.MovementHandler.ProcessMovements());
                         // Process player updating
-                        Parallel.ForEach(Players.Entities, mainParallelOptions, player =>
+                        Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) =>
                         {
+                            if (player != null)
+                            {
+                                PlayerUpdating.Update(this, player);
+                            }
                             //NpcUpdating.Update(player);
-                            PlayerUpdating.Update(this, player);
+                            
                         });
                         // Reset the player flags
-                        Parallel.ForEach(Players.Entities, mainParallelOptions, player => player.ResetFlags());
+                        Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) => player?.ResetFlags());
 
                         Console.WriteLine("Processed {0} active players", Players.Entities.Count);
                     }
                     if (Npcs.Entities.Count > 0)
                     { // Handle NPC's
                         // Reset the NPC flags
-                        Parallel.ForEach(Npcs.Entities, mainParallelOptions, npc => npc.ResetFlags());
+                        Parallel.ForEach(Npcs.Entities, mainParallelOptions, (Npc? npc) => npc?.ResetFlags());
 
                         Console.WriteLine("Processed {0} npc's", Npcs.Entities.Count);
-                    }
-                    if (ConnectionListener.PendingLogin.Count > 0)
-                    { // Handle any pending player logins
-                        int loginsHandled = 0;
-
-                        while (ConnectionListener.PendingLogin.Count > 0 && loginsHandled < _maxLoginsPerCycle)
-                        {
-                            Player player = ConnectionListener.PendingLogin.Dequeue();
-
-                            if (player == null)
-                            {
-                                continue;
-                            }
-                            Players.InitializeSession(player);
-                            Players.Login(player, Details);
-                            Players.Add(player);
-
-                            //ConnectionListener.Connections.Add(player.PlayerConnection);
-                            loginsHandled++;
-                        }
-                        Console.WriteLine("Handled {0} new player logins", loginsHandled);
                     }
                 }
                 catch (Exception ex)
