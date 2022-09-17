@@ -35,23 +35,18 @@ namespace RSPS.src.net.Authentication
                         //Console.WriteLine("NameHash: {0}", nameHash);
                         connection.ConnectionState = ConnectionState.Authenticate;
 
-                        using (MemoryStream stream = new(17))
-                        {
-                            long dummyData = 0;
+                        long dummyData = 0;
 
-                            stream.Write(BitConverter.GetBytes(dummyData));
-                            stream.WriteByte(0); // Response code
-                            stream.Write(BitConverter.GetBytes(new Random().NextInt64())); // Server session key
-                            connection.SendGlobalByes(stream.GetBuffer());
-                        }
+                        using MemoryStream stream = new(17);
+                        stream.Write(BitConverter.GetBytes(dummyData));
+                        stream.WriteByte(0); // Response code
+                        stream.Write(BitConverter.GetBytes(new Random().NextInt64())); // Server session key
+                        connection.SendGlobalByes(stream.GetBuffer());
                     }
                     if (opcode == 15)
                     {
                         Console.WriteLine("opcode = update");
 
-                        PacketHandler.SendPacket(connection, new SendLoginResponse(LoginResponse.ServerBeingUpdated));
-                        connection.Dispose();
-                        break;
                     }
                     break;
 
@@ -158,10 +153,9 @@ namespace RSPS.src.net.Authentication
                     }
                     player = new(credentials, connection);
                     connection.Player = player;
+                    connection.ConnectionState = ConnectionState.Authenticated;
 
                     PacketHandler.SendPacket(connection, new SendLoginResponse(LoginResponse.Successful, player.Rights, player.Flagged));
-
-                    connection.ConnectionState = ConnectionState.Authenticated;
                     break;
             }
         }

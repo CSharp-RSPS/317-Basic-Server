@@ -1,5 +1,6 @@
 ﻿using RSPS.src.entity.npc;
 using RSPS.src.entity.player;
+using RSPS.src.net.Authentication;
 using RSPS.src.net.Connections;
 using RSPS.src.net.packet;
 using RSPS.src.net.packet.send.impl;
@@ -136,10 +137,11 @@ namespace RSPS.src
                 try
                 {
                     // Handle disconnected players
-                    Parallel.ForEach(Players.Entities.Where(p => !p.PlayerConnection.IsConnected), mainParallelOptions, player => {
+                    Parallel.ForEach(Players.Entities.Where(p => p == null || !p.PlayerConnection.IsConnected), mainParallelOptions, player => {
                         Console.WriteLine("Handling removal of disconnected player {0}", player.Credentials.Username);
                         //TODO if in a fight, continue etc...
                         Players.Logout(player, false);
+                        Players.Remove(player);
                     });
                     if (Players.Entities.Count > 0)
                     { // Handle active players

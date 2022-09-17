@@ -29,7 +29,7 @@ namespace RSPS.src.entity.player
         /// <param name="player"></param>
         public void Logout(Player player, bool gracefully = true) {
             //TODO logout logic
-            Remove(player);
+            
         }
 
         public override void Dispose() {
