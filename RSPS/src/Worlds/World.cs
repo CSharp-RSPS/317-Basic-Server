@@ -14,7 +14,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSPS.src
+namespace RSPS.src.Worlds
 {
     /// <summary>
     /// Represents a world
@@ -25,7 +25,22 @@ namespace RSPS.src
         /// <summary>
         /// The world identifier
         /// </summary>
-        public int Id { get; set; }
+        public int Id { get; private set; }
+
+        /// <summary>
+        /// The name of the world
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Whether deep debugging is enabled for the world
+        /// </summary>
+        public bool Debugging { get; set; }
+
+        /// <summary>
+        /// Whether the world was initialized
+        /// </summary>
+        public bool Initialized { get; private set; }
 
         /// <summary>
         /// Whether the world is online
@@ -57,9 +72,13 @@ namespace RSPS.src
         /// Creates a new world
         /// </summary>
         /// <param name="id">The world identifier</param>
+        /// <param name="maxLoginsPerCycle">The name of the world</param>
         /// <param name="connectionListener">The connection listener to use</param>
-        public World(int id, ConnectionListener connectionListener, int maxLoginsPerCycle = 100) {
+        /// <param name="name">The max. logins accepted per game cycle</param>
+        public World(int id, string name, ConnectionListener connectionListener, int maxLoginsPerCycle = 100)
+        {
             Id = id;
+            Name = name;
             ConnectionListener = connectionListener;
             _maxLoginsPerCycle = maxLoginsPerCycle;
         }
@@ -68,15 +87,19 @@ namespace RSPS.src
         /// Initializes a world to go online
         /// </summary>
         /// <returns></returns>
-        public bool Initialize() {
-            if (Online) {
+        public bool Initialize()
+        {
+            if (Online)
+            {
                 Console.Error.WriteLine("Unable to initialize: World {0} is already online", Id);
                 return false;
             }
-            if (!ConnectionListener.Start()) {
+            if (!ConnectionListener.Start())
+            {
                 return false;
             }
-            Console.WriteLine("{0}: World {1} has been initialized on {2}:{3}", Constants.SERVER_NAME, Id, 
+            Initialized = true;
+            Console.WriteLine("{0}: World {1} has been initialized on {2}:{3}", Name, Id,
                 ConnectionListener.Endpoint, ConnectionListener.Port);
             return true;
         }
@@ -85,7 +108,8 @@ namespace RSPS.src
         /// Sets a new connection listener for the world
         /// </summary>
         /// <param name="connectionListener"></param>
-        public void SetConnectionListener(ConnectionListener connectionListener) {
+        public void SetConnectionListener(ConnectionListener connectionListener)
+        {
             ConnectionListener.Dispose();
             ConnectionListener = connectionListener;
         }
@@ -94,13 +118,19 @@ namespace RSPS.src
         /// Processes the world
         /// </summary>
         /// <returns></returns>
-        public async Task Start() {
-            if (Online) {
-                Console.Error.WriteLine("Unable to process: World {0} is already online", Id);
+        public async Task Start()
+        {
+            if (!Initialized)
+            {
+                Console.Error.WriteLine("Unable to start world {0} as it has not been initialized yet", Id);
                 return;
             }
-            Console.WriteLine("Starting processing world {0}", Id);
-            Online = true;
+            if (Online)
+            {
+                Console.Error.WriteLine("Unable start world {0} as it's already online", Id);
+                return;
+            }
+            Console.WriteLine("Starting world {0}", Id);
 
             //TaskManager.StartTaskManager();
             //ReadItemPrices.ReadPrices();
@@ -130,6 +160,8 @@ namespace RSPS.src
         {
             ParallelOptions mainParallelOptions = new() { MaxDegreeOfParallelism = 25 };
 
+            Online = true;
+
             while (Online)
             {
                 DateTime cycleStart = DateTime.Now;
@@ -137,7 +169,8 @@ namespace RSPS.src
                 try
                 {
                     // Handle disconnected players
-                    Parallel.ForEach(Players.Entities.Where(p => p == null || !p.PlayerConnection.IsConnected), mainParallelOptions, player => {
+                    Parallel.ForEach(Players.Entities.Where(p => p == null || !p.PlayerConnection.IsConnected), mainParallelOptions, player =>
+                    {
                         Console.WriteLine("Handling removal of disconnected player {0}", player.Credentials.Username);
                         //TODO if in a fight, continue etc...
                         Players.Logout(player, false);
@@ -155,7 +188,7 @@ namespace RSPS.src
                         });
                         // Reset the player flags
                         Parallel.ForEach(Players.Entities, mainParallelOptions, player => player.ResetFlags());
-                        
+
                         Console.WriteLine("Processed {0} active players", Players.Entities.Count);
                     }
                     if (Npcs.Entities.Count > 0)
@@ -181,8 +214,16 @@ namespace RSPS.src
 
                             Players.Add(player);
                             ConnectionListener.Connections.Add(player.PlayerConnection);
-
                             loginsHandled++;
+
+                            if (!Debugging)
+                            {
+                                PacketHandler.SendPacket(player.PlayerConnection, new SendMessage(string.Format("Welcome to {0}.", Name)));
+                                continue;
+                            }
+                            PacketHandler.SendPacket(player.PlayerConnection, new SendMessage(
+                                string.Format("Welcome to {0} ({1}) @ {2}:{3}", Name, Id, ConnectionListener.Endpoint, ConnectionListener.Port)));
+                            PacketHandler.SendPacket(player.PlayerConnection, new SendMessage(string.Format("You are at {0}", player.Position.ToString())));
                         }
                         Console.WriteLine("Handled {0} new player logins", loginsHandled);
                     }

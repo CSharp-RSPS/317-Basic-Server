@@ -12,8 +12,6 @@ namespace RSPS.src
 
         public static readonly int WorldCycleMs = 600;
 
-        public static readonly string SERVER_NAME = "Wynn's Framework";
-
         // Size of receive buffer.
         public static readonly int BufferSize = 256;
 
