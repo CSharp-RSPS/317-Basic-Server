@@ -17,7 +17,7 @@ namespace RSPS.src.net.packet.send.impl
         /// <summary>
         /// The login response
         /// </summary>
-        public LoginResponse LoginResponse { get; private set; }
+        public AuthenticationResponse LoginResponse { get; private set; }
 
         /// <summary>
         /// The player rights
@@ -34,7 +34,7 @@ namespace RSPS.src.net.packet.send.impl
         /// Creates a new login response packet
         /// </summary>
         /// <param name="loginResponse">The login response</param>
-        public SendLoginResponse(LoginResponse loginResponse, PlayerRights rights = PlayerRights.Default, bool flagged = false)
+        public SendLoginResponse(AuthenticationResponse loginResponse, PlayerRights rights = PlayerRights.Default, bool flagged = false)
         {
             LoginResponse = loginResponse;
             Rights = rights;
@@ -43,13 +43,13 @@ namespace RSPS.src.net.packet.send.impl
 
         public byte[] SendPacket(ISAACCipher encryptor)
         {
-            MemoryStream pw = new MemoryStream(3);
+            PacketWriter pw = Packet.CreatePacketWriter(3);
 
-            pw.WriteByte((byte)(int)LoginResponse);
-            pw.WriteByte((byte)(int)Rights);
-            pw.WriteByte((byte)(Flagged ? 1 : 0)); //1 = flagged (information about mouse movements etc. are sent to the server. Suspected bot accounts are flagged.)
+            pw.WriteByte((int)LoginResponse);
+            pw.WriteByte((int)Rights);
+            pw.WriteByte(Flagged ? 1 : 0); //1 = flagged (information about mouse movements etc. are sent to the server. Suspected bot accounts are flagged.)
 
-            return pw.ToArray();
+            return pw.Payload;
         }
 
     }

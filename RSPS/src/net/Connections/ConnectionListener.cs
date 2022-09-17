@@ -189,7 +189,7 @@ namespace RSPS.src.net.Connections
 
         private void ReadLoginProtocolCallback(IAsyncResult result)
         {
-            LoginDecoder loginDecoder = new();
+            LoginProtocolDecoder loginDecoder = new();
             loginDecoder.AuthenticationFinished += OnAuthenticationFinished;
 
             if (!ReadProtocolCallback(result, loginDecoder, out Connection? connection))
@@ -206,7 +206,7 @@ namespace RSPS.src.net.Connections
         /// <param name="connection">The connection</param>
         /// <param name="player">The authenticated player if any</param>
         /// <param name="authenticationResponse">The authentication response</param>
-        private void OnAuthenticationFinished(Connection connection, Player? player, LoginResponse authenticationResponse)
+        private void OnAuthenticationFinished(Connection connection, Player? player, AuthenticationResponse authenticationResponse)
         {
             PacketHandler.SendPacket(connection, new SendLoginResponse(authenticationResponse,
                 player == null ? 0 : player.Rights, 

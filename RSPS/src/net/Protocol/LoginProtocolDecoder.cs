@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.Codec
 {
-    public class LoginDecoder : IProtocolDecoder
+    public class LoginProtocolDecoder : IProtocolDecoder
     {
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace RSPS.src.net.Codec
         /// <param name="connection">The connection</param>
         /// <param name="player">The player</param>
         /// <param name="loginResponse">The authentication response</param>
-        public delegate void FinishAuthentication(Connection connection, Player? player, LoginResponse loginResponse);
+        public delegate void FinishAuthentication(Connection connection, Player? player, AuthenticationResponse loginResponse);
 
         /// <summary>
         /// The authentifcation finished event
@@ -87,7 +87,7 @@ namespace RSPS.src.net.Codec
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
-                PacketHandler.SendPacket(connection, new SendLoginResponse(LoginResponse.InvalidCredentials));
+                PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.InvalidCredentials));
                 return false;
             }
             string hashedPassword = Hashing.HashPassword(password);
@@ -99,12 +99,12 @@ namespace RSPS.src.net.Codec
             { // Check if a save game exists for the username
                 if (!SaveGameHandler.LoadSaveGame(player))
                 { // Try to load the save game
-                    PacketHandler.SendPacket(connection, new SendLoginResponse(LoginResponse.CouldNotCompleteLogin));
+                    PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.CouldNotCompleteLogin));
                     return false;
                 }
                 if (!SaveGameHandler.VerifyPassword(player.Credentials.Password, hashedPassword))
                 { // Verify whether the given password matches the one from the save game
-                    PacketHandler.SendPacket(connection, new SendLoginResponse(LoginResponse.InvalidCredentials));
+                    PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.InvalidCredentials));
                     return false;
                 }
                 //TODO:
@@ -120,7 +120,7 @@ namespace RSPS.src.net.Codec
             connection.NetworkDecryptor = decryptor;
             connection.NetworkEncryptor = encryptor;
 
-            AuthenticationFinished(connection, player, LoginResponse.Successful);
+            AuthenticationFinished(connection, player, AuthenticationResponse.Successful);
 
             return true;
         }

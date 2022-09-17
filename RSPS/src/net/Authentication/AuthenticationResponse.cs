@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.Authentication
 {
-    public enum LoginResponse
+    public enum AuthenticationResponse
     {
 
         Failure = -1, // Waits for 2000ms and tries again while counting failures.
