@@ -43,13 +43,13 @@ namespace RSPS.src.net.packet.send.impl
 
         public byte[] SendPacket(ISAACCipher encryptor)
         {
-            PacketWriter pw = Packet.CreatePacketWriter(3);
+            MemoryStream pw = new MemoryStream(3);
 
-            pw.WriteByte((int)LoginResponse);
-            pw.WriteByte((int)Rights);
-            pw.WriteByte(Flagged ? 1 : 0); //1 = flagged (information about mouse movements etc. are sent to the server. Suspected bot accounts are flagged.)
+            pw.WriteByte((byte)(int)LoginResponse);
+            pw.WriteByte((byte)(int)Rights);
+            pw.WriteByte((byte)(Flagged ? 1 : 0)); //1 = flagged (information about mouse movements etc. are sent to the server. Suspected bot accounts are flagged.)
 
-            return pw.Payload;
+            return pw.ToArray();
         }
 
     }

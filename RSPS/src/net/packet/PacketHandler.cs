@@ -3,13 +3,6 @@ using RSPS.src.net.Connections;
 using RSPS.src.net.packet.receive;
 using RSPS.src.net.packet.receive.impl;
 using RSPS.src.net.packet.send;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet
 {

@@ -31,7 +31,10 @@ namespace RSPS.src.entity.player
 
                 outPacket.WriteVariableShortHeader(player.PlayerConnection.NetworkEncryptor, 81);
                 outPacket.SetAccessType(Packet.AccessType.BIT_ACCESS);
-
+                Console.WriteLine("Update Required: {0}", player.UpdateRequired);
+                Console.WriteLine("Appearance Required: {0}", player.AppearanceUpdateRequired);
+                Console.WriteLine("Needs placement: {0}", player.NeedsPlacement);
+                Console.WriteLine(player.Position.ToString());
                 UpdateLocalPlayerMovement(player, outPacket);
                 if (player.UpdateRequired)
                 {
@@ -459,8 +462,6 @@ namespace RSPS.src.entity.player
         private static void UpdateLocalPlayerMovement(Player player, PacketWriter outPacket)
         {
             bool updateRequired = player.UpdateRequired;
-
-            outPacket.WriteBit(updateRequired);
 
             if (player.NeedsPlacement) // Do they need placement?
             {
