@@ -22,6 +22,8 @@ namespace RSPS.src.entity.player
          */
         private static readonly int REGION_PLAYERS_LIMIT = 255;
 
+        private static readonly int NEW_PLAYERS_PER_CYCLE = 45;
+
         public static void Update(World world, Player player)
         {
             try
@@ -31,10 +33,6 @@ namespace RSPS.src.entity.player
 
                 outPacket.WriteVariableShortHeader(player.PlayerConnection.NetworkEncryptor, 81);
                 outPacket.SetAccessType(Packet.AccessType.BIT_ACCESS);
-                Console.WriteLine("Update Required: {0}", player.UpdateRequired);
-                Console.WriteLine("Appearance Required: {0}", player.AppearanceUpdateRequired);
-                Console.WriteLine("Needs placement: {0}", player.NeedsPlacement);
-                Console.WriteLine(player.Position.ToString());
                 UpdateLocalPlayerMovement(player, outPacket);
                 if (player.UpdateRequired)
                 {
@@ -82,11 +80,15 @@ namespace RSPS.src.entity.player
                 //        player.LocalPlayers.Remove(other);
                 //    }
                 //}
+                int addedLocalPlayers = 0;
 
                 //Update the local players list.
                 for (int i = 0; i < world.Players.Entities.Count; i++)
                 {
                     if (player.LocalPlayers.Count >= REGION_PLAYERS_LIMIT)
+                    {
+                        break;
+                    } else if (addedLocalPlayers >= NEW_PLAYERS_PER_CYCLE)
                     {
                         break;
                     }
@@ -99,14 +101,15 @@ namespace RSPS.src.entity.player
 
                     //So we dont hit the client buffer of 5k - redo this keep track of players being added per cycle
                     //it's variable player adding to the seen surrounding area
-                    if ((outPacket.PayloadPosition + stateBlock.PayloadPosition) + 320 > 5000)
+/*                    if ((outPacket.PayloadPosition + stateBlock.PayloadPosition) + 320 > 5000)
                     {
                         break;
-                    }
+                    }*/
 
                     if (!player.LocalPlayers.Contains(other) && other.Position.isViewableFrom(player.Position))
                     {
                         player.LocalPlayers.Add(other);
+                        addedLocalPlayers++;
                         AddPlayer(outPacket, player, other);
                         UpdateState(other, stateBlock, true, false);
                     }

@@ -55,8 +55,8 @@ namespace RSPS.src.net.Connections
             }
             catch (SocketException ex)
             { // Most likely disconnected
-                Console.Error.WriteLine(ex.ToString());
-                Dispose();
+                //Console.Error.WriteLine(ex.ToString());
+                //Dispose();
             }
             catch (Exception ex)
             {
