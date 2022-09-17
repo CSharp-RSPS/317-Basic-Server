@@ -23,9 +23,9 @@ namespace RSPS.src.net
         public int Port { get; }
 
         /// <summary>
-        /// Starts network listener
+        /// Starts the network listener
         /// </summary>
-        /// <returns>Whether initialization was successful</returns>
+        /// <returns>Whether successful</returns>
         public bool Start();
 
         /// <summary>
@@ -33,12 +33,6 @@ namespace RSPS.src.net
         /// </summary>
         /// <param name="result"></param>
         public void AcceptCallback(IAsyncResult result);
-
-        /// <summary>
-        /// Handles a connection data read callback
-        /// </summary>
-        /// <param name="result"></param>
-        public void ReadCallback(IAsyncResult result);
 
     }
 }

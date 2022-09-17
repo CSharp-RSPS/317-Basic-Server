@@ -98,7 +98,7 @@ namespace RSPS.src.net.packet
                 // Convert the memoryStream data to buffer
                 byte[] byteData = sendPacket.SendPacket(connection.NetworkEncryptor);
 
-                connection.SendGlobalByes(byteData);
+                connection.Send(byteData);
 /*                foreach (byte b in byteData)
                 {
                     Console.WriteLine(b);

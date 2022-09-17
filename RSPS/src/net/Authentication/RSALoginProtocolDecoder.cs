@@ -23,7 +23,7 @@ namespace RSPS.src.net.Authentication
             PacketReader readPacket;
             switch (connection.ConnectionState)
             {
-                case ConnectionState.Handshake://connection state
+                case ConnectionState.ConnectionRequest://connection state
                     readPacket = Packet.CreatePacketReader(connection.Buffer);
                     int opcode = readPacket.ReadByte() & 0xff;
                     int nameHash = readPacket.ReadByte() & 0xff;
@@ -35,7 +35,7 @@ namespace RSPS.src.net.Authentication
                         MemoryStream stream = new MemoryStream(9);
                         stream.WriteByte(0);
                         stream.Write(BitConverter.GetBytes(new Random().NextInt64()));
-                        connection.SendGlobalByes(stream.GetBuffer());
+                        connection.Send(stream.GetBuffer());
                     }
                     if (opcode == 15)
                     {

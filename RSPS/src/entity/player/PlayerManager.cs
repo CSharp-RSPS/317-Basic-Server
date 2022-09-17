@@ -39,6 +39,15 @@ namespace RSPS.src.entity.player
             base.Remove(entity);
         }
 
+        public override void Dispose() {
+            GC.SuppressFinalize(this);
+
+            // Logout all players
+            Entities.ForEach(p => Logout(p));
+
+            base.Dispose();
+        }
+
         /// <summary>
         /// Initializes a new player session
         /// </summary>
@@ -70,10 +79,10 @@ namespace RSPS.src.entity.player
 
             player.NeedsPlacement = true;
             player.AppearanceUpdateRequired = true;
-            player.UpdateRequired = true;
+            player.RequestUpdate();
         }
 
-        /// <summary>
+        /// <summary> 
         /// Logs a player on, into the game world
         /// </summary>
         /// <param name="player">The player</param>
@@ -96,19 +105,11 @@ namespace RSPS.src.entity.player
         /// </summary>
         /// <param name="player">The player</param>
         /// <param name="disconnected">Whether the player is disconnected already from their end</param>
-        public bool Logout(Player player, bool disconnected = false) {
+        public bool Logout(Player player, bool disconnected = false)
+        {
             //TODO logout logic
             //don't allow logout when in a fight etc
             return disconnected || true;
-        }
-
-        public override void Dispose() {
-            GC.SuppressFinalize(this);
-
-            // Logout all players
-            Entities.ForEach(p => Logout(p));
-
-            base.Dispose();
         }
 
     }

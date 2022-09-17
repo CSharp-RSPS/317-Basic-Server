@@ -75,6 +75,12 @@ namespace RSPS.src.entity.player
             MovementHandler = new MovementHandler(this);
         }
 
+        public Player RequestUpdate()
+        {
+            UpdateRequired = true;
+            return this;
+        }
+
         public override void ResetFlags()
         {
             UpdateRequired = false;

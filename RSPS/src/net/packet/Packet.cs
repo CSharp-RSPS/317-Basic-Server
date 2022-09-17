@@ -10,9 +10,9 @@ namespace RSPS.src.net.packet
 
         public int PayloadPosition = 0;
 
-        protected Packet(byte[] stream)
+        protected Packet(byte[] payload)
         {
-            Payload = stream;
+            Payload = payload;
         }
 
         public Packet(int length)

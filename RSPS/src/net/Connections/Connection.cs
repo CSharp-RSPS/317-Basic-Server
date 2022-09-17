@@ -32,10 +32,10 @@ namespace RSPS.src.net.Connections
         public Connection(Socket socket)
         {
             ClientSocket = socket;
-            ConnectionState = ConnectionState.Handshake;
+            ConnectionState = ConnectionState.ConnectionRequest;
         }
 
-        public void SendGlobalByes(byte[] data)
+        public void Send(byte[] data)
         {
             SendGlobalByes(data, data.Length);
         }

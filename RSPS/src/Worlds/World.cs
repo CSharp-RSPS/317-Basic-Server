@@ -22,6 +22,8 @@ namespace RSPS.src.Worlds
     public class World : IDisposable
     {
 
+  
+
         /// <summary>
         /// The world details
         /// </summary>
@@ -68,7 +70,19 @@ namespace RSPS.src.Worlds
         {
             Details = details;
             ConnectionListener = connectionListener;
+            ConnectionListener.PlayerAuthenticated += OnPlayerAuthenticated;
             _maxLoginsPerCycle = maxLoginsPerCycle;
+        }
+
+        /// <summary>
+        /// Handles a new authenticated player.
+        /// </summary>
+        /// <param name="player">The player</param>
+        private void OnPlayerAuthenticated(Player player)
+        {
+            Players.InitializeSession(player);
+            Players.Login(player, Details);
+            Players.Add(player);
         }
 
         /// <summary>
@@ -202,7 +216,7 @@ namespace RSPS.src.Worlds
                             Players.Login(player, Details);
                             Players.Add(player);
 
-                            ConnectionListener.Connections.Add(player.PlayerConnection);
+                            //ConnectionListener.Connections.Add(player.PlayerConnection);
                             loginsHandled++;
                         }
                         Console.WriteLine("Handled {0} new player logins", loginsHandled);

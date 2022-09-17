@@ -10,7 +10,7 @@ namespace RSPS.src.net.Connections
     {
 
         None = 0,
-        Handshake = 1,
+        ConnectionRequest = 1,
         Authenticate = 2,
         Cache = 3,//future
         Authenticated = 4
