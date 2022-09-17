@@ -12,6 +12,11 @@ namespace RSPS.src.entity
         public List<T> Entities = new();
 
 
+        public virtual int GetIndex(T entity)
+        {
+            return Entities.IndexOf(entity);
+        }
+
         public virtual T Add(T entity) {
             Entities.Add(entity);
             return entity;

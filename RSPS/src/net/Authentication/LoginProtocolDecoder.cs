@@ -2,6 +2,7 @@
 using RSPS.src.net.Connections;
 using RSPS.src.net.packet;
 using RSPS.src.net.packet.send.impl;
+using RSPS.src.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -141,35 +142,46 @@ namespace RSPS.src.net.Authentication
                     string username = readPacket.ReadString();
                     string password = readPacket.ReadString();
 
-                    Console.WriteLine("Credentials: [{0}][{1}]", username, password);
-
-                    PlayerCredentials credentials = new(uid, username, password);
-
-                    if (!ValidateCredentials(credentials))
+                    if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
                     {
                         PacketHandler.SendPacket(connection, new SendLoginResponse(LoginResponse.InvalidCredentials));
                         connection.Dispose();
                         break;
                     }
-                    player = new(credentials, connection);
+                    string hashedPassword = Hashing.HashPassword(password);
+                    player = new(new(uid, username, hashedPassword), connection);
+
+                    Console.WriteLine("Credentials: [{0}][{1}][{2}]", username, password, hashedPassword);
+
+                    if (SaveGameHandler.SaveGameExists(username))
+                    { // Check if a save game exists for the username
+                        if (!SaveGameHandler.LoadSaveGame(player))
+                        { // Try to load the save game
+                            PacketHandler.SendPacket(connection, new SendLoginResponse(LoginResponse.CouldNotCompleteLogin));
+                            player = null;
+                            connection.Dispose();
+                            break;
+                        }
+                        if (!SaveGameHandler.VerifyPassword(player.Credentials.Password, hashedPassword))
+                        { // Verify whether the given password matches the one from the save game
+                            PacketHandler.SendPacket(connection, new SendLoginResponse(LoginResponse.InvalidCredentials));
+                            player = null;
+                            connection.Dispose();
+                            break;
+                        }
+                        //TODO:
+                        //If banned/strikes/temp bans....
+                    }
+                    else
+                    {
+                        SaveGameHandler.SaveGame(player); // Save the game for the new player
+                    }
                     connection.Player = player;
                     connection.ConnectionState = ConnectionState.Authenticated;
-
+                    // Send a successful response to the client
                     PacketHandler.SendPacket(connection, new SendLoginResponse(LoginResponse.Successful, player.Rights, player.Flagged));
                     break;
             }
-        }
-
-        //Temporary, move to a more approperiate place
-        private static bool ValidateCredentials(PlayerCredentials credentials)
-        {
-            if (string.IsNullOrWhiteSpace(credentials.Username)
-                || string.IsNullOrWhiteSpace(credentials.Password))
-            {
-                return false;
-            }
-            // Check if password is correct
-            return true;
         }
 
     }

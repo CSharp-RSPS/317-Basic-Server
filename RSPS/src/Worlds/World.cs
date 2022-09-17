@@ -23,19 +23,9 @@ namespace RSPS.src.Worlds
     {
 
         /// <summary>
-        /// The world identifier
+        /// The world details
         /// </summary>
-        public int Id { get; private set; }
-
-        /// <summary>
-        /// The name of the world
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Whether deep debugging is enabled for the world
-        /// </summary>
-        public bool Debugging { get; set; }
+        public WorldDetails Details { get; private set; }
 
         /// <summary>
         /// Whether the world was initialized
@@ -71,14 +61,12 @@ namespace RSPS.src.Worlds
         /// <summary>
         /// Creates a new world
         /// </summary>
-        /// <param name="id">The world identifier</param>
+        /// <param name="details">The world details</param>
         /// <param name="maxLoginsPerCycle">The name of the world</param>
         /// <param name="connectionListener">The connection listener to use</param>
-        /// <param name="name">The max. logins accepted per game cycle</param>
-        public World(int id, string name, ConnectionListener connectionListener, int maxLoginsPerCycle = 100)
+        public World(WorldDetails details, ConnectionListener connectionListener, int maxLoginsPerCycle = 100)
         {
-            Id = id;
-            Name = name;
+            Details = details;
             ConnectionListener = connectionListener;
             _maxLoginsPerCycle = maxLoginsPerCycle;
         }
@@ -91,7 +79,7 @@ namespace RSPS.src.Worlds
         {
             if (Online)
             {
-                Console.Error.WriteLine("Unable to initialize: World {0} is already online", Id);
+                Console.Error.WriteLine("Unable to initialize: World {0} is already online", Details.Id);
                 return false;
             }
             if (!ConnectionListener.Start())
@@ -99,7 +87,7 @@ namespace RSPS.src.Worlds
                 return false;
             }
             Initialized = true;
-            Console.WriteLine("{0}: World {1} has been initialized on {2}:{3}", Name, Id,
+            Console.WriteLine("{0}: World {1} has been initialized on {2}:{3}", Details.Name, Details.Id,
                 ConnectionListener.Endpoint, ConnectionListener.Port);
             return true;
         }
@@ -122,15 +110,15 @@ namespace RSPS.src.Worlds
         {
             if (!Initialized)
             {
-                Console.Error.WriteLine("Unable to start world {0} as it has not been initialized yet", Id);
+                Console.Error.WriteLine("Unable to start world {0} as it has not been initialized yet", Details.Id);
                 return;
             }
             if (Online)
             {
-                Console.Error.WriteLine("Unable start world {0} as it's already online", Id);
+                Console.Error.WriteLine("Unable start world {0} as it's already online", Details.Id);
                 return;
             }
-            Console.WriteLine("Starting world {0}", Id);
+            Console.WriteLine("Starting world {0}", Details.Id);
 
             //TaskManager.StartTaskManager();
             //ReadItemPrices.ReadPrices();
@@ -142,6 +130,7 @@ namespace RSPS.src.Worlds
         {
             GC.SuppressFinalize(this);
 
+            Initialized = false;
             Online = false;
 
             ConnectionListener.Dispose();
@@ -149,7 +138,7 @@ namespace RSPS.src.Worlds
             Npcs.Dispose();
             Players.Dispose();
 
-            Console.WriteLine("Disposed world {0}", Id);
+            Console.WriteLine("Disposed world {0}", Details.Id);
         }
 
         /// <summary>
@@ -172,8 +161,7 @@ namespace RSPS.src.Worlds
                     Parallel.ForEach(Players.Entities.Where(p => p == null || !p.PlayerConnection.IsConnected), mainParallelOptions, player =>
                     {
                         Console.WriteLine("Handling removal of disconnected player {0}", player.Credentials.Username);
-                        //TODO if in a fight, continue etc...
-                        Players.Logout(player, false);
+                        Players.Logout(player, true);
                         Players.Remove(player);
                     });
                     if (Players.Entities.Count > 0)
@@ -210,20 +198,12 @@ namespace RSPS.src.Worlds
                             {
                                 continue;
                             }
-                            player.InitializePlayerSession();
-
+                            Players.InitializeSession(player);
+                            Players.Login(player, Details);
                             Players.Add(player);
+
                             ConnectionListener.Connections.Add(player.PlayerConnection);
                             loginsHandled++;
-
-                            if (!Debugging)
-                            {
-                                PacketHandler.SendPacket(player.PlayerConnection, new SendMessage(string.Format("Welcome to {0}.", Name)));
-                                continue;
-                            }
-                            PacketHandler.SendPacket(player.PlayerConnection, new SendMessage(
-                                string.Format("Welcome to {0} ({1}) @ {2}:{3}", Name, Id, ConnectionListener.Endpoint, ConnectionListener.Port)));
-                            PacketHandler.SendPacket(player.PlayerConnection, new SendMessage(string.Format("You are at {0}", player.Position.ToString())));
                         }
                         Console.WriteLine("Handled {0} new player logins", loginsHandled);
                     }
@@ -234,11 +214,11 @@ namespace RSPS.src.Worlds
                     break;
                 }
                 TimeSpan cycleElapsed = DateTime.Now.Subtract(cycleStart);
-                Console.WriteLine("Processing world {0} took {1}ms", Id, cycleElapsed.Milliseconds);
+                Console.WriteLine("Processing world {0} took {1}ms", Details.Id, cycleElapsed.Milliseconds);
                 int sleepTime = Constants.WorldCycleMs - cycleElapsed.Milliseconds;
                 await Task.Delay(sleepTime < 0 ? 0 : sleepTime);
             }
-            Console.Error.WriteLine("Stopped processing world {0}, disposing...", Id);
+            Console.Error.WriteLine("Stopped processing world {0}, disposing...", Details.Id);
             Dispose();
         }
 

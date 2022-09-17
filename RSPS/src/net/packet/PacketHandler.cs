@@ -81,6 +81,16 @@ namespace RSPS.src.net.packet
             packet.ReceivePacket(connection, packetReader);
         }
 
+        public static void SendPacket(Player player, ISendPacket sendPacket)
+        {
+            if (player.PlayerConnection == null || !player.PlayerConnection.IsConnected)
+            {
+                Console.Error.WriteLine("Unable to send packet for player {0} because they are not properly connected", player.Credentials.Username);
+                return;
+            }
+            SendPacket(player.PlayerConnection, sendPacket);
+        }
+
         public static void SendPacket(Connection connection, ISendPacket sendPacket)
         {
             try

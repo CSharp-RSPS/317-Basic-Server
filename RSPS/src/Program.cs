@@ -40,7 +40,7 @@ namespace RSPS.src
                 }
                 if (!debugWorld.Initialize())
                 {
-                    Console.Error.WriteLine("Failed to initialize world {0}:{1}", debugWorld.Id, debugWorld.Name);
+                    Console.Error.WriteLine("Failed to initialize world {0}:{1}", debugWorld.Details.Id, debugWorld.Details.Name);
                     return;
                 }
                 debugWorld.Start().Wait();
@@ -56,7 +56,7 @@ namespace RSPS.src
                 {
                     if (!world.Initialize())
                     {
-                        Console.Error.WriteLine("Failed to initialize world {0}", world.Id);
+                        Console.Error.WriteLine("Failed to initialize world {0}", world.Details.Id);
                         continue;
                     }
                 }

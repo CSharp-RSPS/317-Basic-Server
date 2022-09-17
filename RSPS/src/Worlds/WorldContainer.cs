@@ -28,15 +28,9 @@ namespace RSPS.src.Worlds
 
         static WorldContainer()
         {
-            Register(new(DevevelopmentWorldId, "Development World", new ConnectionListener("0.0.0.0", 43594))
-            { // Dev world
-                Debugging = true
-            });
-            Register(new(TestWorldId, "Test World", new ConnectionListener("0.0.0.0", 5556))
-            { // Test world
-                Debugging = true
-            });
-            Register(new(1, "Wynn's Framework", new ConnectionListener("0.0.0.0", 5555))); // Live world
+            Register(new(new(DevevelopmentWorldId, "Development World", true), new("0.0.0.0", 43594)));
+            Register(new(new(TestWorldId, "Test World", true), new("0.0.0.0", 5556)));
+            Register(new(new(1, "Wynn's Framework"), new("0.0.0.0", 5555))); // Live world
         }
 
         /// <summary>
@@ -49,9 +43,9 @@ namespace RSPS.src.Worlds
             {
                 foreach (World other in Worlds.Where(w => w != world))
                 {
-                    if (world.Id == other.Id)
+                    if (world.Details.Id == other.Details.Id)
                     {
-                        Console.Error.WriteLine("Multiple worlds using the same identifier: {0}", world.Id);
+                        Console.Error.WriteLine("Multiple worlds using the same identifier: {0}", world.Details.Id);
                         return false;
                     }
                     if (world.ConnectionListener.Port == other.ConnectionListener.Port)
@@ -90,7 +84,7 @@ namespace RSPS.src.Worlds
         /// <returns>The world</returns>
         public static World? ById(int id)
         {
-            return Worlds.FirstOrDefault(w => w.Id == id);
+            return Worlds.FirstOrDefault(w => w.Details.Id == id);
         }
 
     }

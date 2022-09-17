@@ -36,7 +36,11 @@ namespace RSPS.src.entity.player
 
         public Stopwatch IdleTimer = new Stopwatch();
 
-        public Position Position = new Position(3222 + new Random().Next(-1, 4), 3222 + new Random().Next(0, 6));
+        /// <summary>
+        /// The current position
+        /// </summary>
+        public Position Position { get; private set; }
+
         //public Position Position = new Position(3222, 3222);
         public Position CurrentRegion = new Position(0, 0);
 
@@ -63,45 +67,12 @@ namespace RSPS.src.entity.player
 
         public int PlayerIndex;
 
-        private static readonly int[] SIDEBAR_INTERFACE_IDS = {
-            3917, 638, 3213, 1644, 5608, 1151, 5065, 5715, 2449, 904, 147, 6299, 2423
-        };
-
         public Player(PlayerCredentials credentials, Connection playerConnection)
         {
-            this.Credentials = credentials;
-            this.PlayerConnection = playerConnection;
+            Credentials = credentials;
+            Position = new Position(3222 + new Random().Next(-1, 4), 3222 + new Random().Next(0, 6));
+            PlayerConnection = playerConnection;
             MovementHandler = new MovementHandler(this);
-        }
-
-        public void InitializePlayerSession()
-        {
-            //NO BANS, and maybe login limit?
-
-            //Console.WriteLine("sent interfaces");
-
-            for (int i = 1; i < SIDEBAR_INTERFACE_IDS.Length; i++)
-            {
-                PacketHandler.SendPacket(PlayerConnection, new SendSidebarInterface(i, SIDEBAR_INTERFACE_IDS[i]));
-            }
-
-            foreach (SkillType skill in Enum.GetValues(typeof(SkillType)))
-            {
-                if (skill != SkillType.HITPOINTS)
-                {
-                    Skills.Add(new Skill(skill));
-                    PacketHandler.SendPacket(PlayerConnection, new SendSkill(GetSkill(skill)));
-                    continue;
-                }
-                Skills.Add(new Skill(skill, 10, 1300));
-                PacketHandler.SendPacket(PlayerConnection, new SendSkill(GetSkill(skill)));
-            }
-            PacketHandler.SendPacket(PlayerConnection, new SendMapRegion(this));
-            PacketHandler.SendPacket(PlayerConnection, new SendRunEnergy(MovementHandler.Energy));
-            
-            NeedsPlacement = true;
-            AppearanceUpdateRequired = true;
-            UpdateRequired = true;
         }
 
         public override void ResetFlags()
