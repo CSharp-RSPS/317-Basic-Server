@@ -1,4 +1,5 @@
 ﻿using RSPS.src.entity.player;
+using RSPS.src.net.Connections;
 using RSPS.src.net.packet;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSPS.src.net
+namespace RSPS.src.net.Authentication
 {
     internal class RSALoginProtocolDecoder
     {
@@ -20,21 +21,21 @@ namespace RSPS.src.net
         {
             //Console.WriteLine("Buffer Size: {0}", connection.buffer.Length);
             PacketReader readPacket;
-            switch (connection.connectionState)
+            switch (connection.ConnectionState)
             {
                 case ConnectionState.Handshake://connection state
-                    readPacket = Packet.CreatePacketReader(connection.buffer);
+                    readPacket = Packet.CreatePacketReader(connection.Buffer);
                     int opcode = readPacket.ReadByte() & 0xff;
                     int nameHash = readPacket.ReadByte() & 0xff;
                     if (opcode == 14)
                     {
                         Console.WriteLine("opcode = game");
                         Console.WriteLine("NameHash: {0}", nameHash);
-                        connection.connectionState = ConnectionState.Authenticated;
+                        connection.ConnectionState = ConnectionState.Authenticated;
                         MemoryStream stream = new MemoryStream(9);
                         stream.WriteByte(0);
                         stream.Write(BitConverter.GetBytes(new Random().NextInt64()));
-                        Program.SendGlobalByes(connection, stream.GetBuffer());
+                        connection.SendGlobalByes(stream.GetBuffer());
                     }
                     if (opcode == 15)
                     {
@@ -43,7 +44,7 @@ namespace RSPS.src.net
                     break;
 
                 case ConnectionState.Authenticate://login state
-                    readPacket = Packet.CreatePacketReader(connection.buffer);
+                    readPacket = Packet.CreatePacketReader(connection.Buffer);
 
                     //Console.WriteLine("We are inside the login state");
                     int loginType = readPacket.ReadByte();
@@ -51,13 +52,13 @@ namespace RSPS.src.net
                     if (loginType != 16 && loginType != 18)
                     {
                         Console.WriteLine("Invalid login Type: {0}", loginType);
-                        connection.clientSocket.Close();
+                        connection.Dispose();
                     }
 
                     int blockLength = readPacket.ReadByte();//loginSize = 76
 
                     Console.WriteLine("Block Length is {0}", blockLength);
-                    if (connection.buffer.Length < blockLength)
+                    if (connection.Buffer.Length < blockLength)
                     {
                         Console.WriteLine("State buffer length is less than block length");
                     }
@@ -79,11 +80,11 @@ namespace RSPS.src.net
                     var rsaBytes = readPacket.readBytes(length);
                     if (BitConverter.IsLittleEndian)
                         Array.Reverse(rsaBytes);
-                    
+
                     var rsaPayload = BigInteger.ModPow(new BigInteger(rsaBytes), RSA_EXPONENT, RSA_MODULUS).ToByteArray();
                     if (BitConverter.IsLittleEndian)
                         Array.Reverse(rsaPayload);
-                    
+
                     PacketReader rsaReader = new PacketReader(rsaPayload);
 
                     //Validate that the RSA block was decoded properly
@@ -93,7 +94,7 @@ namespace RSPS.src.net
                     if (rsaOpcode != 10)
                     {
                         Console.WriteLine("Unable to decode RSA block properly!");
-                        connection.clientSocket.Close();
+                        connection.Dispose();
                         return;
                     }
 
@@ -118,11 +119,8 @@ namespace RSPS.src.net
                     string password = rsaReader.ReadString();
                     Console.WriteLine("Username: {0}", username);
                     Console.WriteLine("Password: {0}", password);
-                    
-                    // send the login response to see if we can login
-                    Player player = new Player(username, password, connection);
-                    //Player player = new Player(username, password, connection);
-                    connection.connectionState = ConnectionState.Authenticated;
+
+                    connection.ConnectionState = ConnectionState.Authenticated;
                     break;
             }
         }

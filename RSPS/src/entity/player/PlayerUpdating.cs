@@ -1,5 +1,5 @@
 ﻿using RSPS.src.entity.player.skill;
-using RSPS.src.net;
+using RSPS.src.net.Connections;
 using RSPS.src.net.packet;
 using System;
 using System.Collections.Generic;
@@ -44,7 +44,7 @@ namespace RSPS.src.entity.player
                 for (int i = 0; i < player.LocalPlayers.Count; i++)
                 {
                     Player other = player.LocalPlayers[i];
-                    if (other.Position.isViewableFrom(player.Position) && other.PlayerConnection.connectionState == ConnectionState.Authenticated && !other.NeedsPlacement)
+                    if (other.Position.isViewableFrom(player.Position) && other.PlayerConnection.ConnectionState == ConnectionState.Authenticated && !other.NeedsPlacement)
                     {
                         UpdateOtherPlayerMovement(other, outPacket);
 
@@ -88,7 +88,7 @@ namespace RSPS.src.entity.player
                     }
 
                     Player other = world.Players.Entities[i];
-                    if (other == null || other == player || other.PlayerConnection.connectionState < ConnectionState.Authenticated)//so we dont add ourself to the list
+                    if (other == null || other == player || other.PlayerConnection.ConnectionState < ConnectionState.Authenticated)//so we dont add ourself to the list
                     {
                         continue;
                     }
@@ -125,7 +125,8 @@ namespace RSPS.src.entity.player
 
                 // Finish the packet and send it.
                 outPacket.FinishVariableShortHeader();
-                Program.SendGlobalByes(player.PlayerConnection, outPacket.Payload, outPacket.PayloadPosition);
+
+                player.PlayerConnection.SendGlobalByes(outPacket.Payload, outPacket.PayloadPosition);
             }
             catch (Exception e)
             {
@@ -428,7 +429,7 @@ namespace RSPS.src.entity.player
             block.WriteShort(0x336); // turn 90 ccw
             block.WriteShort(0x338); // run
 
-            block.WriteLong(Misc.EncodeBase37(player.Username));
+            block.WriteLong(player.Credentials.UsernameAsLong);
             block.WriteByte(SkillHandler.CalculateCombatLevel(player));//combat level
             block.WriteShort(SkillHandler.GetTotalLevel(player));//total level
                                 //45 bytes total?
@@ -457,6 +458,8 @@ namespace RSPS.src.entity.player
         private static void UpdateLocalPlayerMovement(Player player, PacketWriter outPacket)
         {
             bool updateRequired = player.UpdateRequired;
+
+            outPacket.WriteBit(updateRequired);
 
             if (player.NeedsPlacement) // Do they need placement?
             {

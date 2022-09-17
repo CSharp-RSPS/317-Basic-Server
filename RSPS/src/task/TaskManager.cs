@@ -49,7 +49,7 @@ namespace RSPS.src.task
                     }
                 }
 
-                Parallel.ForEach(Tasks, Program.TaskParallelOptions, task =>
+                Parallel.ForEach(Tasks, TaskParallelOptions, task =>
                 {
                     if (task.Priority == TaskPriority.HIGH)
                     {
@@ -57,7 +57,7 @@ namespace RSPS.src.task
                     }
                 });
 
-                Parallel.ForEach(Tasks, Program.TaskParallelOptions, task =>
+                Parallel.ForEach(Tasks, TaskParallelOptions, task =>
                 {
                     if (task.Priority == TaskPriority.NORMAL)
                     {
@@ -65,7 +65,7 @@ namespace RSPS.src.task
                     }
                 });
 
-                Parallel.ForEach(Tasks, Program.TaskParallelOptions, task =>
+                Parallel.ForEach(Tasks, TaskParallelOptions, task =>
                 {
                     if (task.Priority == TaskPriority.LOW)
                     {

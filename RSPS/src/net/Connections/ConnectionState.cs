@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSPS.src.net
+namespace RSPS.src.net.Connections
 {
     public enum ConnectionState
     {

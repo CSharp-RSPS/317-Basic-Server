@@ -11,10 +11,6 @@ namespace RSPS.src.entity.player
     {
 
 
-        public Player AddPlayer(string username, string password, Connection connection) {
-            return Add(new(username, password, connection));
-        }
-
         public override Player Add(Player entity) {
             base.Add(entity);
 
@@ -31,7 +27,7 @@ namespace RSPS.src.entity.player
         /// Logs the player out
         /// </summary>
         /// <param name="player"></param>
-        public void Logout(Player player) {
+        public void Logout(Player player, bool gracefully = true) {
             //TODO logout logic
             Remove(player);
         }
