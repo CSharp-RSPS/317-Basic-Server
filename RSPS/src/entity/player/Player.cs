@@ -8,15 +8,30 @@ using System.Diagnostics;
 
 namespace RSPS.src.entity.player
 {
+    /// <summary>
+    /// Represents a human playable character
+    /// </summary>
     public class Player : Entity
     {
 
+        /// <summary>
+        /// Holds the player credentials
+        /// </summary>
         public PlayerCredentials Credentials { get; private set; }
 
+        /// <summary>
+        /// The administrative rights of the player
+        /// </summary>
         public PlayerRights Rights { get; set; }
 
+        /// <summary>
+        /// Whether the player is flagged
+        /// </summary>
         public bool Flagged { get; set; }
 
+        /// <summary>
+        /// The player's client connection
+        /// </summary>
         public Connection PlayerConnection { get; private set; }
 
         public Stopwatch IdleTimer = new Stopwatch();
@@ -81,11 +96,7 @@ namespace RSPS.src.entity.player
                 Skills.Add(new Skill(skill, 10, 1300));
                 PacketHandler.SendPacket(PlayerConnection, new SendSkill(GetSkill(skill)));
             }
-
-
-
             PacketHandler.SendPacket(PlayerConnection, new SendMapRegion(this));
-            PacketHandler.SendPacket(PlayerConnection, new SendMessage("a"));//was welcome to Constants.SERVER_NAME!
             PacketHandler.SendPacket(PlayerConnection, new SendRunEnergy(MovementHandler.Energy));
             
             NeedsPlacement = true;
