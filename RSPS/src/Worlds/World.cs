@@ -188,7 +188,7 @@ namespace RSPS.src.Worlds
                     if (Players.Entities.Count > 0)
                     { // Handle active players
                         // Process the movement of players
-                        //Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) => player?.MovementHandler.ProcessMovements());
+                        Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) => player?.MovementHandler.ProcessMovements());
                         // Process player updating
                         Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) =>
                         {
