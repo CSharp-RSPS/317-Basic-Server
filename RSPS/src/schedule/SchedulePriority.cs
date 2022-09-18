@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSPS.src.task
+namespace RSPS.src.schedule
 {
-    public enum TaskPriority
+    public enum SchedulePriority
     {
-        HIGH,
-        NORMAL,
-        LOW
+        HIGH = 0,
+        NORMAL = 1,
+        LOW = 2
     }
 }

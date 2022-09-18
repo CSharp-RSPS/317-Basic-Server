@@ -4,6 +4,7 @@ using RSPS.src.net.Authentication;
 using RSPS.src.net.Connections;
 using RSPS.src.net.packet;
 using RSPS.src.net.packet.send.impl;
+using RSPS.src.schedule;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -134,6 +135,7 @@ namespace RSPS.src.Worlds
             }
             Console.WriteLine("Starting world {0}", Details.Id);
 
+            Scheduler.StartTask();
             //TaskManager.StartTaskManager();
             //ReadItemPrices.ReadPrices();
 
@@ -186,7 +188,7 @@ namespace RSPS.src.Worlds
                     if (Players.Entities.Count > 0)
                     { // Handle active players
                         // Process the movement of players
-                        Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) => player?.MovementHandler.ProcessMovements());
+                        //Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) => player?.MovementHandler.ProcessMovements());
                         // Process player updating
                         Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) =>
                         {

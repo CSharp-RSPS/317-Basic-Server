@@ -4,6 +4,8 @@ using RSPS.src.entity.player.skill;
 using RSPS.src.net.Connections;
 using RSPS.src.net.packet;
 using RSPS.src.net.packet.send.impl;
+using RSPS.src.schedule;
+using RSPS.src.schedule.impl;
 using System.Diagnostics;
 
 namespace RSPS.src.entity.player
@@ -73,6 +75,7 @@ namespace RSPS.src.entity.player
             Position = new Position(3222 + new Random().Next(-1, 4), 3222 + new Random().Next(0, 6));
             PlayerConnection = playerConnection;
             MovementHandler = new MovementHandler(this);
+            //Scheduler.AddSchedule(SchedulePriority.HIGH, new PlayerWalkingTask("Player Walking Task", this, TimeSpan.FromMilliseconds(600)));
         }
 
         public Player RequestUpdate()
