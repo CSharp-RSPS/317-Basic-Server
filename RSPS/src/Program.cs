@@ -6,7 +6,6 @@ using RSPS.src.net.Connections;
 using RSPS.src.net.packet;
 using RSPS.src.net.packet.send.impl;
 using RSPS.src.readfiles;
-using RSPS.src.task;
 using RSPS.src.Worlds;
 using System.Data;
 using System.Diagnostics;
@@ -60,13 +59,13 @@ namespace RSPS.src
                         continue;
                     }
                 }
-                List<System.Threading.Tasks.Task> worldTasks = new();
+                List<Task> worldTasks = new();
 
                 foreach (World world in WorldContainer.Worlds.Where(w => w.Initialized))
                 {
                     worldTasks.Add(world.Start());
                 }
-                System.Threading.Tasks.Task.WaitAll(worldTasks.ToArray());
+                Task.WaitAll(worldTasks.ToArray());
             }
             Console.Error.WriteLine("Application exited, no worlds were being handled anymore.");
         }
