@@ -98,17 +98,6 @@ namespace RSPS.src.Worlds
         }
 
         /// <summary>
-        /// Handles a new authenticated player.
-        /// </summary>
-        /// <param name="player">The player</param>
-        private void OnPlayerAuthenticated(Player player)
-        {
-            PlayerManager.InitializeSession(player);
-            PlayerManager.Login(player, Details);
-            Players.PendingLogin.Enqueue(player);
-        }
-
-        /// <summary>
         /// Initializes a world to go online
         /// </summary>
         /// <returns></returns>
@@ -169,6 +158,17 @@ namespace RSPS.src.Worlds
         }
 
         /// <summary>
+        /// Handles a newly authenticated player
+        /// </summary>
+        /// <param name="player">The player</param>
+        private void OnPlayerAuthenticated(Player player)
+        {
+            PlayerManager.InitializeSession(player);
+            PlayerManager.Login(player, Details);
+            Players.PendingLogin.Enqueue(player);
+        }
+
+        /// <summary>
         /// Processes the world
         /// </summary>
         /// <returns></returns>
@@ -182,9 +182,19 @@ namespace RSPS.src.Worlds
 
                 try
                 {
+                    if (Players.Entities.Count > 0)
+                    {
+                        Console.WriteLine();
+                    }
                     // Find any disconnected players that aren't inside the disconnected list yet
-                    Players.Entities.Where(p => !Players.Disconnected.Contains(p) && p.PlayerConnection.ConnectionState == ConnectionState.Disconnected && p.LoggedIn)
+                    Players.Entities.Where(p => !Players.Disconnected.Contains(p) 
+                        && p.PlayerConnection.ConnectionState == ConnectionState.Disconnected && p.LoggedIn)
                         .ToList().ForEach(p => Players.Disconnected.Add(p));
+
+                    // Add any logged-out players who are pending removal
+                    Players.Entities.Where(p => !Players.PendingRemoval.Contains(p)
+                        && p.PlayerConnection.ConnectionState == ConnectionState.Authenticated && !p.LoggedIn)
+                        .ToList().ForEach(p => Players.PendingRemoval.Enqueue(p));
 
                     // Attempt to logout any players that are disconnected
                     for (int i = Players.Disconnected.Count - 1; i >= 0; i--)
@@ -196,10 +206,8 @@ namespace RSPS.src.Worlds
                             continue;
                         }
                         Players.Disconnected.RemoveAt(i);
+                        Players.PendingRemoval.Enqueue(player);
                     }
-                    // Add any logged-out players pending removal
-                    Players.Entities.Where(p => !p.LoggedIn).ToList().ForEach(p => Players.PendingRemoval.Enqueue(p));
-
                     if (Players.PendingLogin.Count > 0 || Players.PendingRemoval.Count > 0)
                     { // Remove logged out players and add new logins from/to the world
                         int removalOps = Players.PendingRemoval.Count;
@@ -234,7 +242,7 @@ namespace RSPS.src.Worlds
                     { // Handle active players in the world
                         if (Players.Entities.Contains(null))
                         {
-                            Console.Error.WriteLine("Nulled player slipped into players list somehow");
+                            Console.Error.WriteLine("Nulled player slipped into players list somehow in world {0}", Details.Id);
                             return;
                         }
                         // Process the movement of players
@@ -257,14 +265,14 @@ namespace RSPS.src.Worlds
                         // Reset the player flags
                         Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) => player?.ResetFlags());
 
-                        Console.WriteLine("Processed {0} active players", Players.Entities.Count);
+                        Console.WriteLine("Processed {0} active players in world {1}", Players.Entities.Count, Details.Id);
                     }
                     if (Npcs.Entities.Count > 0)
                     { // Handle NPC's
                         // Reset the NPC flags
                         Parallel.ForEach(Npcs.Entities, mainParallelOptions, (Npc? npc) => npc?.ResetFlags());
 
-                        Console.WriteLine("Processed {0} npc's", Npcs.Entities.Count);
+                        Console.WriteLine("Processed {0} npc's in world {1}", Npcs.Entities.Count, Details.Id);
                     }
                 }
                 catch (Exception ex)

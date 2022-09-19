@@ -20,8 +20,8 @@ namespace RSPS.src.net.Codec
         /// </summary>
         /// <param name="connection">The connection</param>
         /// <param name="packet">The packet</param>
-        /// <returns>Whether decoding was successful</returns>
-        public bool Decode(Connection connection, PacketReader packet);
+        /// <returns>The next protocol decoder to swap to</returns>
+        public IProtocolDecoder? Decode(Connection connection, PacketReader packet);
 
     }
 }

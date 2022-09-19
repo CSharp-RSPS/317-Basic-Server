@@ -16,26 +16,15 @@ namespace RSPS.src.net.Codec
     public class LoginProtocolDecoder : IProtocolDecoder
     {
 
-        /// <summary>
-        /// Represents a callback event handler for an authentication attempt for a player
-        /// </summary>
-        /// <param name="player">The player</param>
-        public delegate void FinishAuthentication(Player player);
 
-        /// <summary>
-        /// The authentifcation finished event
-        /// </summary>
-        public event FinishAuthentication? AuthenticationFinished;
-
-
-        public bool Decode(Connection connection, PacketReader reader)
+        public IProtocolDecoder? Decode(Connection connection, PacketReader reader)
         {
             int connectionType = reader.ReadByte();
 
             if (connectionType != 16 && connectionType != 18)
             { // 16 = new login, 18 = reconnection
                 PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.Unknown));
-                return false;
+                return null;
             }
             int blockLength = reader.ReadByte();//loginSize = 76
 
@@ -43,17 +32,17 @@ namespace RSPS.src.net.Codec
             {
                 Console.WriteLine("State buffer length is less than block length");
                 PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.Unknown));
-                return false;
+                return null;
             }
             if (reader.ReadByte() != 255)
             { // Magic number
                 PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.Unknown));
-                return false;
+                return null;
             }
             if (reader.ReadShort() != 317)
             { // Client version
                 PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.GameWasUpdated));
-                return false;
+                return null;
             }
             reader.ReadByte();//High/low memory version
 
@@ -67,7 +56,7 @@ namespace RSPS.src.net.Codec
             if (reader.ReadByte() != 10) 
             { // RSA Opcode
                 PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.SessionRejected));
-                return false;
+                return null;
             }
             // Set up the ISAAC ciphers.
             long clientHalf = reader.ReadLong(); // Client session key
@@ -91,24 +80,24 @@ namespace RSPS.src.net.Codec
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
                 PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.InvalidCredentials));
-                return false;
+                return null;
             }
             string hashedPassword = Hashing.HashPassword(password);
             Player player = new(new(uid, username, hashedPassword), connection);
 
-            Console.WriteLine("Credentials: [{0}][{1}][{2}]", username, password, hashedPassword);
+            Console.WriteLine("Credentials: [{0}][{1}]", username, password);
 
             if (SaveGameHandler.SaveGameExists(username))
             { // Check if a save game exists for the username
                 if (!SaveGameHandler.LoadSaveGame(player))
                 { // Try to load the save game
                     PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.CouldNotCompleteLogin));
-                    return false;
+                    return null;
                 }
                 if (!SaveGameHandler.VerifyPassword(player.Credentials.Password, hashedPassword))
                 { // Verify whether the given password matches the one from the save game
                     PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.InvalidCredentials));
-                    return false;
+                    return null;
                 }
                 //TODO:
                 //If banned/strikes/temp bans....
@@ -119,17 +108,14 @@ namespace RSPS.src.net.Codec
             }
             connection.NetworkDecryptor = decryptor;
             connection.NetworkEncryptor = encryptor;
-            connection.ConnectionState = ConnectionState.Authenticated;
-
-           // connection.Player = player;
 
             PacketHandler.SendPacket(connection, new SendLoginResponse(connectionType == 16 
                 ? AuthenticationResponse.Successful 
                 : AuthenticationResponse.SuccessfulReconnect));
 
-            AuthenticationFinished?.Invoke(player);
+            connection.PlayerAuthenticated(player);
 
-            return true;
+            return new ProtocolDecoder(player);
         }
 
     }

@@ -33,11 +33,11 @@ namespace RSPS.src
         {
             if (Debug)
             {
-                World? debugWorld = WorldContainer.ById(WorldContainer.DevevelopmentWorldId);
+                World? debugWorld = WorldHandler.ById(WorldHandler.DevevelopmentWorldId);
 
                 if (debugWorld == null)
                 {
-                    Console.Error.WriteLine("Debug world {0} not registered", WorldContainer.DevevelopmentWorldId);
+                    Console.Error.WriteLine("Debug world {0} not registered", WorldHandler.DevevelopmentWorldId);
                     return;
                 }
                 if (!debugWorld.Initialize())
@@ -49,12 +49,12 @@ namespace RSPS.src
             }
             else
             {
-                if (!WorldContainer.ValidateWorlds())
+                if (!WorldHandler.ValidateWorlds())
                 {
                     Console.Error.WriteLine("Worlds collection invalid");
                     return;
                 }
-                foreach (World world in WorldContainer.Worlds)
+                foreach (World world in WorldHandler.Worlds)
                 {
                     if (!world.Initialize())
                     {
@@ -64,7 +64,7 @@ namespace RSPS.src
                 }
                 List<Task> worldTasks = new();
 
-                foreach (World world in WorldContainer.Worlds.Where(w => w.Initialized))
+                foreach (World world in WorldHandler.Worlds.Where(w => w.Initialized))
                 {
                     worldTasks.Add(world.Start());
                 }

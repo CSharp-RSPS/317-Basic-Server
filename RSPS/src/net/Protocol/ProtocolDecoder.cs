@@ -12,20 +12,27 @@ namespace RSPS.src.net.Codec
     public sealed class ProtocolDecoder : IProtocolDecoder
     {
 
+        /// <summary>
+        /// The player we're decoding packets for
+        /// </summary>
         private readonly Player _player;
 
 
+        /// <summary>
+        /// Creates a new protocol decoder
+        /// </summary>
+        /// <param name="player">The player we're decoding packets for</param>
         public ProtocolDecoder(Player player)
         {
             _player = player;
         }
 
-        public bool Decode(Connection connection, PacketReader reader)
+        public IProtocolDecoder? Decode(Connection connection, PacketReader reader)
         {
             if (connection.NetworkDecryptor == null)
             {
                 Console.Error.WriteLine("Unable to decode packet as no decryptor is present");
-                return false;
+                return null;
             }
             while (reader.PayloadPosition < reader.Payload.Length)
             { // Handle the received packet
@@ -47,7 +54,7 @@ namespace RSPS.src.net.Codec
                     PacketHandler.HandlePacket(_player, packetOpcode, packetLength, reader);
                 }
             }
-            return true;
+            return connection.ProtocolDecoder;
         }
 
         public static readonly int[] PACKET_LENGTHS = {

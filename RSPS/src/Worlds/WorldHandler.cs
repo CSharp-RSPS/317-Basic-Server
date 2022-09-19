@@ -1,13 +1,18 @@
-﻿using RSPS.src.net.Connections;
+﻿using RSPS.src.entity.player;
+using RSPS.src.net.Connections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RSPS.src.Worlds
 {
-    public static class WorldContainer
+    /// <summary>
+    /// Handles world related operations and data
+    /// </summary>
+    public static class WorldHandler
     {
 
         /// <summary>
@@ -26,10 +31,10 @@ namespace RSPS.src.Worlds
         public static readonly List<World> Worlds = new();
 
 
-        static WorldContainer()
+        static WorldHandler()
         {
             Register(new(new("0.0.0.0", 43594), new(DevevelopmentWorldId, "Development World", true)));
-            Register(new(new("0.0.0.0", 5554), new(0, "Test World", true)));
+            Register(new(new("0.0.0.0", 5556), new(TestWorldId, "Test World", true)));
             Register(new(new("0.0.0.0", 5555), new(1, "Wynn's Framework"))); // Live world
         }
 
@@ -51,7 +56,7 @@ namespace RSPS.src.Worlds
                     if (world.Endpoint.Port == other.Endpoint.Port)
                     {
                         Console.Error.WriteLine("Multiple worlds using the same port: {0}", world.Endpoint.Port);
-                        return false;
+                       //return false;
                     }
                 }
             }
@@ -93,6 +98,27 @@ namespace RSPS.src.Worlds
         public static World? ById(int id)
         {
             return Worlds.FirstOrDefault(w => w.Details.Id == id);
+        }
+
+        /// <summary>
+        /// Attempts to make a player swap worlds
+        /// </summary>
+        /// <param name="player">The player</param>
+        /// <param name="world">The world to swap to</param>
+        /// <returns>The result</returns>
+        public static bool SwapWorlds(Player player, World world)
+        {
+            if (!world.Online)
+            {
+                return false;
+            }
+            if (!PlayerManager.Logout(player))
+            {
+                return false;
+            }
+            //world.OnPlayerAuthenticated(player);
+            //world.ConnectionListener.StartListenForPackets(player);
+            return true;
         }
 
     }

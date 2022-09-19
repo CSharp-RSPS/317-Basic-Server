@@ -7,15 +7,21 @@ using System.Threading.Tasks;
 
 namespace RSPS.src
 {
+    /// <summary>
+    /// Holds general application configurations
+    /// </summary>
     public static class Constants
     {
 
+        /// <summary>
+        /// The default world tick time in milliseconds
+        /// </summary>
         public static readonly int WorldCycleMs = 600;
 
-        // Size of receive buffer.
-        public static readonly int BufferSize = 256;
-
-        public static readonly Position STARTING_LOCATION = new Position(3222, 3222);
+        /// <summary>
+        /// The default starting position for a player
+        /// </summary>
+        public static readonly Position PlayerStartingPosition = new(3222, 3222);
 
     }
 }

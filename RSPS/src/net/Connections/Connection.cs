@@ -1,8 +1,10 @@
 ﻿using RSPS.src.entity.player;
+using RSPS.src.net.Codec;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Security;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,8 +46,30 @@ namespace RSPS.src.net.Connections
         /// </summary>
         public ISAACCipher? NetworkDecryptor { get; set; }
 
-        [Obsolete("Connection should not know a player as it's higher level")]
-        public Player? Player { get; set; }
+        /// <summary>
+        /// The currently active protocol decoder
+        /// </summary>
+        public IProtocolDecoder? ProtocolDecoder { get; set; }
+
+        /// <summary>
+        /// Represents a disconnect
+        /// </summary>
+        public delegate void Disconnect(Connection connection);
+
+        /// <summary>
+        /// Indicates the connection disconnected
+        /// </summary>
+        public event Disconnect? Disconnected;
+
+        /// <summary>
+        /// Represents authentication of a player through the connection
+        /// </summary>
+        public delegate void Authentication(Player player);
+
+        /// <summary>
+        /// Indicates a player authenticated through this connection
+        /// </summary>
+        public event Authentication? Authenticated;
 
 
         /// <summary>
@@ -57,6 +81,7 @@ namespace RSPS.src.net.Connections
             Buffer = new byte[MaxBufferSize];
             ConnectionState = ConnectionState.ConnectionRequest;
             ClientSocket = socket;
+            ProtocolDecoder = new ConnectionRequestProtocolDecoder();
         }
 
         /// <summary>
@@ -109,19 +134,32 @@ namespace RSPS.src.net.Connections
         }
 
         /// <summary>
+        /// Indiciates a player authenticated through this connection
+        /// </summary>
+        /// <param name="player">the player</param>
+        /// <returns>The connection</returns>
+        public Connection PlayerAuthenticated(Player player)
+        {
+            ConnectionState = ConnectionState.Authenticated;
+            Authenticated?.Invoke(player);
+            return this;
+        }
+
+        /// <summary>
         /// Marks a connection as disconnected
         /// </summary>
         /// <returns>The connection</returns>
         public Connection MarkDisconnected()
         {
             ConnectionState = ConnectionState.Disconnected;
+            Disconnected?.Invoke(this);
             return this;
         }
 
         public void Dispose()
         {
             GC.SuppressFinalize(this);
-            
+
             if (ConnectionState != ConnectionState.Disconnected)
             {
                 try
@@ -129,9 +167,8 @@ namespace RSPS.src.net.Connections
                     ClientSocket.Dispose();
                 }
                 catch (ObjectDisposedException) { }
-
-                MarkDisconnected();
             }
+            MarkDisconnected();
         }
 
     }

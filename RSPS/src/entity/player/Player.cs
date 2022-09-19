@@ -1,6 +1,7 @@
 ﻿using RSPS.src.entity.movement;
 using RSPS.src.entity.npc;
 using RSPS.src.entity.player.skill;
+using RSPS.src.net.Codec;
 using RSPS.src.net.Connections;
 using RSPS.src.net.packet;
 using RSPS.src.net.packet.send.impl;
@@ -32,7 +33,7 @@ namespace RSPS.src.entity.player
         public bool Flagged { get; set; }
 
         /// <summary>
-        /// Whether the player is logged in into a game world
+        /// The login state of the player
         /// </summary>
         public bool LoggedIn { get; set; }
 

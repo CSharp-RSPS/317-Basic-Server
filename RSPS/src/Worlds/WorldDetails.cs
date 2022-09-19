@@ -40,5 +40,11 @@ namespace RSPS.src.Worlds
             Name = name;
             Debugging = debugging;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
     }
 }

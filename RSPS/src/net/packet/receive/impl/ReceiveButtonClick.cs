@@ -21,7 +21,7 @@ namespace RSPS.src.net.packet.receive.impl
             }
             switch (buttonId)
             {
-                case 2458:
+                case 9154:
                     PlayerManager.Logout(player);
                     break;
 
