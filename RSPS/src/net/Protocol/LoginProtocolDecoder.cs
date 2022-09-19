@@ -19,15 +19,13 @@ namespace RSPS.src.net.Codec
         /// <summary>
         /// Represents a callback event handler for an authentication attempt for a player
         /// </summary>
-        /// <param name="connection">The connection</param>
         /// <param name="player">The player</param>
-        /// <param name="loginResponse">The authentication response</param>
-        public delegate void FinishAuthentication(Connection connection, Player? player, AuthenticationResponse loginResponse);
+        public delegate void FinishAuthentication(Player player);
 
         /// <summary>
         /// The authentifcation finished event
         /// </summary>
-        public event FinishAuthentication AuthenticationFinished;
+        public event FinishAuthentication? AuthenticationFinished;
 
 
         public bool Decode(Connection connection, PacketReader reader)
@@ -36,22 +34,26 @@ namespace RSPS.src.net.Codec
 
             if (connectionType != 16 && connectionType != 18)
             { // 16 = new login, 18 = reconnection
-                return false; //TOOD
+                PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.Unknown));
+                return false;
             }
             int blockLength = reader.ReadByte();//loginSize = 76
 
             if (reader.Payload.Length/*connection.Buffer.Length*/ < blockLength)
             {
                 Console.WriteLine("State buffer length is less than block length");
+                PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.Unknown));
                 return false;
             }
             if (reader.ReadByte() != 255)
             { // Magic number
-
+                PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.Unknown));
+                return false;
             }
             if (reader.ReadShort() != 317)
             { // Client version
-
+                PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.GameWasUpdated));
+                return false;
             }
             reader.ReadByte();//High/low memory version
 
@@ -64,7 +66,8 @@ namespace RSPS.src.net.Codec
 
             if (reader.ReadByte() != 10) 
             { // RSA Opcode
-
+                PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.SessionRejected));
+                return false;
             }
             // Set up the ISAAC ciphers.
             long clientHalf = reader.ReadLong(); // Client session key
@@ -114,13 +117,17 @@ namespace RSPS.src.net.Codec
             {
                 SaveGameHandler.SaveGame(player); // Save the game for the new player
             }
-            connection.Player = player;
-            connection.ConnectionState = ConnectionState.Authenticated;
-
             connection.NetworkDecryptor = decryptor;
             connection.NetworkEncryptor = encryptor;
+            connection.ConnectionState = ConnectionState.Authenticated;
 
-            AuthenticationFinished(connection, player, AuthenticationResponse.Successful);
+           // connection.Player = player;
+
+            PacketHandler.SendPacket(connection, new SendLoginResponse(connectionType == 16 
+                ? AuthenticationResponse.Successful 
+                : AuthenticationResponse.SuccessfulReconnect));
+
+            AuthenticationFinished?.Invoke(player);
 
             return true;
         }

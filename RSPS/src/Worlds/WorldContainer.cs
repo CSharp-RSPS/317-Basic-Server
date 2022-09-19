@@ -18,7 +18,7 @@ namespace RSPS.src.Worlds
         /// <summary>
         /// The identifier for the main test world
         /// </summary>
-        public static readonly int TestWorldId = 1338;
+        public static readonly int TestWorldId = 0;
 
         /// <summary>
         /// Holds the registered worlds
@@ -28,9 +28,9 @@ namespace RSPS.src.Worlds
 
         static WorldContainer()
         {
-            Register(new(new(DevevelopmentWorldId, "Development World", true), new("0.0.0.0", 43594)));
-            Register(new(new(TestWorldId, "Test World", true), new("0.0.0.0", 5556)));
-            Register(new(new(1, "Wynn's Framework"), new("0.0.0.0", 5555))); // Live world
+            Register(new(new("0.0.0.0", 43594), new(DevevelopmentWorldId, "Development World", true)));
+            Register(new(new("0.0.0.0", 5554), new(0, "Test World", true)));
+            Register(new(new("0.0.0.0", 5555), new(1, "Wynn's Framework"))); // Live world
         }
 
         /// <summary>
@@ -48,14 +48,22 @@ namespace RSPS.src.Worlds
                         Console.Error.WriteLine("Multiple worlds using the same identifier: {0}", world.Details.Id);
                         return false;
                     }
-                    if (world.ConnectionListener.Port == other.ConnectionListener.Port)
+                    if (world.Endpoint.Port == other.Endpoint.Port)
                     {
-                        Console.Error.WriteLine("Multiple worlds using the same port: {0}", world.ConnectionListener.Port);
+                        Console.Error.WriteLine("Multiple worlds using the same port: {0}", world.Endpoint.Port);
                         return false;
                     }
                 }
             }
             return true;
+        }
+
+        /// <summary>
+        /// Attempts to dispose all worlds
+        /// </summary>
+        public static void DisposeAllWorlds()
+        {
+            Worlds.ForEach(w => w.Dispose());
         }
 
         /// <summary>

@@ -25,7 +25,7 @@ namespace RSPS.src.net.Authentication
         MembersAccountRequired = 12, // "You need a members account to login to this world. Please subscribe, or use a different world."
         CouldNotCompleteLogin = 13, // "Could not complete login. Please try using a different world."
         ServerBeingUpdated = 14, // "The server is being updated. Please wait 1 minute and try again."
-        SeeNotes = 15, // See the notes below.
+        SuccessfulReconnect = 15, // When a logged in player reconnects
         LoginAttemptsExceeded = 16, // "Login attempts exceeded. Please wait 1 minute and try again."
         StandingInMembersOnly = 17, // "You are standing in a members-only area. To play on this world move to a free area first."
         InvalidLoginServer = 20, // "Invalid loginserver requested. Please try using a different world."

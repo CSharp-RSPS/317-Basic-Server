@@ -9,7 +9,7 @@ namespace RSPS.src.net.Connections
     public enum ConnectionState
     {
 
-        None = 0,
+        Disconnected = 0,
         ConnectionRequest = 1,
         Authenticate = 2,
         Cache = 3,//future

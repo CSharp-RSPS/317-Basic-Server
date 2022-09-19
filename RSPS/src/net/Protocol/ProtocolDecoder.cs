@@ -9,32 +9,42 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.Codec
 {
-    public class ProtocolDecoder : IProtocolDecoder
+    public sealed class ProtocolDecoder : IProtocolDecoder
     {
 
+        private readonly Player _player;
+
+
+        public ProtocolDecoder(Player player)
+        {
+            _player = player;
+        }
 
         public bool Decode(Connection connection, PacketReader reader)
         {
+            if (connection.NetworkDecryptor == null)
+            {
+                Console.Error.WriteLine("Unable to decode packet as no decryptor is present");
+                return false;
+            }
             while (reader.PayloadPosition < reader.Payload.Length)
             { // Handle the received packet
               // Handle a packet for an existing connection
-                int packetOpCode = reader.ReadByte() & 0xFF;
-                packetOpCode = packetOpCode - connection.NetworkDecryptor.getNextValue() & 0xFF;// -- cryption
-                                                                                                //Console.WriteLine("packet op code: " + packetOpCode);
-                int packetLength = PACKET_LENGTHS[packetOpCode];
+                int packetOpcode = reader.ReadByte() & 0xFF;
+                packetOpcode = packetOpcode - connection.NetworkDecryptor.getNextValue() & 0xFF;// -- cryption
+                int packetLength = PACKET_LENGTHS[packetOpcode];
 
-                if (packetLength == -1)//variable length packet
+                if (packetLength == -1) //variable length packet
                 {
                     if (reader.PayloadPosition >= reader.Payload.Length)
                     {
                         break;
                     }
-                    packetLength = reader.ReadByte();
-                    packetLength = packetLength & 0xFF;//new
+                    packetLength = reader.ReadByte() & 0xFF;
                 }
                 if (reader.Payload.Length >= packetLength)
                 {
-                    PacketHandler.HandlePacket(connection, packetOpCode, packetLength, reader);
+                    PacketHandler.HandlePacket(_player, packetOpcode, packetLength, reader);
                 }
             }
             return true;

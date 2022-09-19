@@ -46,9 +46,12 @@ namespace RSPS.src.net.packet.send.impl
             PacketWriter pw = Packet.CreatePacketWriter(3);
 
             pw.WriteByte((int)LoginResponse);
-            pw.WriteByte((int)Rights);
-            pw.WriteByte(Flagged ? 1 : 0); //1 = flagged (information about mouse movements etc. are sent to the server. Suspected bot accounts are flagged.)
 
+            if (LoginResponse == AuthenticationResponse.Successful)
+            { // We only need to send these when it's a new successful login
+                pw.WriteByte((int)Rights);
+                pw.WriteByte(Flagged ? 1 : 0); //1 = flagged (information about mouse movements etc. are sent to the server. Suspected bot accounts are flagged.)
+            }
             return pw.Payload;
         }
 

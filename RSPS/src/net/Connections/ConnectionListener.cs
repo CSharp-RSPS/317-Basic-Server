@@ -20,16 +20,6 @@ namespace RSPS.src.net.Connections
     {
 
         /// <summary>
-        /// The endpoint
-        /// </summary>
-        public string Endpoint { get; }
-
-        /// <summary>
-        /// The port
-        /// </summary>
-        public int Port { get; }
-
-        /// <summary>
         /// Holds the players pending login
         /// </summary>
         public readonly Queue<Player> PendingLogin = new();
@@ -53,28 +43,15 @@ namespace RSPS.src.net.Connections
         /// <summary>
         /// The player authenticated event
         /// </summary>
-        public event NewPlayerAuthenticated PlayerAuthenticated;
+        public event NewPlayerAuthenticated? PlayerAuthenticated;
 
 
-        /// <summary>
-        /// Creates a new connection listener
-        /// </summary>
-        /// <param name="endpoint"></param>
-        /// <param name="port"></param>
-        public ConnectionListener(string endpoint, int port)
+        public bool Start(NetEndpoint endpoint)
         {
-            Endpoint = endpoint;
-            Port = port;
-        }
-
-        public bool Start()
-        {
-            IPEndPoint endPoint = new(IPAddress.Parse(Endpoint), Port);
-
             try
             {
                 _listenerSocket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                _listenerSocket.Bind(endPoint);
+                _listenerSocket.Bind(endpoint.IPEndpoint);
                 _listenerSocket.Listen(25);
                 _listenerSocket.Blocking = false;
                 _listenerSocket.DontFragment = true;
@@ -132,16 +109,14 @@ namespace RSPS.src.net.Connections
             }
         }
 
-        private bool ReadProtocolCallback(IAsyncResult result, IProtocolDecoder decoder, out Connection? connection)
+        private bool ReadProtocolCallback(IAsyncResult result, IProtocolDecoder decoder, Connection connection)
         {
-            if (!IsActive || result.AsyncState == null)
+            if (!IsActive || result == null || result.AsyncState == null)
             {
                 Console.Error.WriteLine("Invalid read protocol callback");
-                connection = null;
+                connection.Dispose();
                 return false;
             }
-            connection = (Connection)result.AsyncState;
-
             int bytesRead = 0;
 
             try
@@ -150,13 +125,14 @@ namespace RSPS.src.net.Connections
             }
             catch (SocketException ex)
             { // Client likely disconnected from the server
-                Console.Error.WriteLine("Client disconnected forcefully");
-                //Console.Error.WriteLine(ex);
+                Debug.WriteLine(ex);
                 connection.Dispose();
                 return false;
             }
-            catch (ObjectDisposedException)
+            catch (ObjectDisposedException ex)
             {
+                Debug.WriteLine(ex);
+                connection.MarkDisconnected();
                 return false;
             }
             if (bytesRead <= 0)
@@ -177,14 +153,19 @@ namespace RSPS.src.net.Connections
                 connection.Dispose();
                 return false;
             }
-            // Reset the connection data buffer
-            connection.Buffer = new byte[Constants.BufferSize];
+            connection.ResetBuffer();
             return true;
         }
 
         private void ReadConnectionRequestProtocolCallback(IAsyncResult result)
         {
-            if (!ReadProtocolCallback(result, new ConnectionRequestProtocolDecoder(), out Connection? connection))
+            if (result.AsyncState == null)
+            {
+                return;
+            }
+            Connection connection = (Connection)result.AsyncState;
+
+            if (!ReadProtocolCallback(result, new ConnectionRequestProtocolDecoder(), connection))
             {
                 return;
             }
@@ -194,15 +175,21 @@ namespace RSPS.src.net.Connections
 
         private void ReadLoginProtocolCallback(IAsyncResult result)
         {
-            LoginProtocolDecoder loginDecoder = new();
-            loginDecoder.AuthenticationFinished += OnAuthenticationFinished;
-
-            if (!ReadProtocolCallback(result, loginDecoder, out Connection? connection))
+            if (result.AsyncState == null)
             {
                 return;
             }
-            connection?.ClientSocket.BeginReceive(connection.Buffer, 0, connection.Buffer.Length, SocketFlags.None,
-                    new AsyncCallback(ReadProtocolCallback), connection);
+            Connection connection = (Connection)result.AsyncState;
+
+            LoginProtocolDecoder loginDecoder = new();
+            loginDecoder.AuthenticationFinished += OnAuthenticationFinished;
+
+            if (!ReadProtocolCallback(result, loginDecoder, connection))
+            {
+                return;
+            }
+            /*connection?.ClientSocket.BeginReceive(connection.Buffer, 0, connection.Buffer.Length, SocketFlags.None,
+                    new AsyncCallback(ReadProtocolCallback), connection);*/
         }
 
         /// <summary>
@@ -210,28 +197,33 @@ namespace RSPS.src.net.Connections
         /// </summary>
         /// <param name="connection">The connection</param>
         /// <param name="player">The authenticated player if any</param>
-        /// <param name="authenticationResponse">The authentication response</param>
-        private void OnAuthenticationFinished(Connection connection, Player? player, AuthenticationResponse authenticationResponse)
+        private void OnAuthenticationFinished(Player player)
         {
-            PacketHandler.SendPacket(connection, new SendLoginResponse(authenticationResponse,
-                player == null ? 0 : player.Rights, 
-                player != null && player.Flagged));
+            PlayerAuthenticated?.Invoke(player);
 
-            if (player == null)
-            {
-                return;
-            }
-            PlayerAuthenticated(player);
+            StartListenForPackets(player);
+        }
+
+        private void StartListenForPackets(Player player)
+        {
+            player.PlayerConnection?.ClientSocket.BeginReceive(player.PlayerConnection.Buffer, 0, player.PlayerConnection.Buffer.Length, SocketFlags.None,
+                    new AsyncCallback(ReadProtocolCallback), player);
         }
 
         private void ReadProtocolCallback(IAsyncResult result)
         {
-            if (!ReadProtocolCallback(result, new ProtocolDecoder(), out Connection? connection))
+            if (result.AsyncState == null)
             {
                 return;
             }
-            connection?.ClientSocket.BeginReceive(connection.Buffer, 0, connection.Buffer.Length, SocketFlags.None,
-                     new AsyncCallback(ReadProtocolCallback), connection);
+            Player player = (Player)result.AsyncState;
+
+            if (!ReadProtocolCallback(result, new ProtocolDecoder(player), player.PlayerConnection))
+            {
+                //StartListenForPackets(player);
+                return;
+            }
+            StartListenForPackets(player);
         }
 
     }

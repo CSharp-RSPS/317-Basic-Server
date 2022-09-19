@@ -11,19 +11,27 @@ namespace RSPS.src.net.packet.receive.impl
 {
     internal class ReceiveButtonClick : IReceivePacket
     {
-        public void ReceivePacket(Connection connection, PacketReader packetReader)
+        public void ReceivePacket(Player player, int packetOpCode, int packetLength, PacketReader packetReader)
         {
             int buttonId = packetReader.HexToInt(packetReader.readBytes(2));
-            Player player = connection.Player;
+
+            if (buttonId < 0)
+            {
+                return;
+            }
             switch (buttonId)
             {
+                case 2458:
+                    PlayerManager.Logout(player);
+                    break;
+
                 case 52053:
                     Console.WriteLine("Head Banging");
                     break;
 
                 case 152:
                     player.MovementHandler.RunToggled = !player.MovementHandler.RunToggled;
-                    PacketHandler.SendPacket(connection, new SendConfiguration(173, player.MovementHandler.RunToggled));
+                    PacketHandler.SendPacket(player, new SendConfiguration(173, player.MovementHandler.RunToggled));
                     Console.WriteLine("Is player run toggled? " + player.MovementHandler.RunToggled);
                     break;
 

@@ -13,20 +13,11 @@ namespace RSPS.src.net
     {
 
         /// <summary>
-        /// The endpoint
-        /// </summary>
-        public string Endpoint { get; }
-
-        /// <summary>
-        /// The port
-        /// </summary>
-        public int Port { get; }
-
-        /// <summary>
         /// Starts the network listener
         /// </summary>
+        /// <param name="endpoint">The endpoint</param>
         /// <returns>Whether successful</returns>
-        public bool Start();
+        public bool Start(NetEndpoint endpoint);
 
         /// <summary>
         /// Handles a connection accept callback

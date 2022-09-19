@@ -3,6 +3,7 @@ using RSPS.src.net.Connections;
 using RSPS.src.net.packet.receive;
 using RSPS.src.net.packet.receive.impl;
 using RSPS.src.net.packet.send;
+using System.Net.Sockets;
 
 namespace RSPS.src.net.packet
 {
@@ -14,48 +15,48 @@ namespace RSPS.src.net.packet
 
         static PacketHandler() {
             ReceivablePackets.Add(0, new ReceiveIdlePacket());
-            ReceivablePackets.Add(3, new ReceiveFocus());
+
+            ReceiveMovement movement = new();
+            ReceivablePackets.Add(98, movement);
+            ReceivablePackets.Add(164, movement);
+            ReceivablePackets.Add(248, movement);
+
+            ReceivablePackets.Add(86, new ReceiveCameraMovement());
+            ReceivablePackets.Add(41, new ReceiveEquipItem());
+            ReceivablePackets.Add(103, new ReceiveCommand());
             ReceivablePackets.Add(185, new ReceiveButtonClick());
+
+            ReceivablePackets.Add(3, new ReceiveFocus());
+            
             ReceivablePackets.Add(241, new ReceiveClientClick());
+            ReceivablePackets.Add(4, new ReceiveChat());
         }
 
         //stream.createFrame(77); - keeps sending packet 77
-        public static void HandlePacket(Connection connection, int packetOpcode, int packetLength, PacketReader packetReader)
+        public static void HandlePacket(Player player, int packetOpcode, int packetLength, PacketReader packetReader)
         {
             //202 - Empty packet sent on main game loop
-            if (packetOpcode > 0) 
-            {//fix this later
-                connection.Player.IdleTimer.Reset();
-            }
+            
             switch (packetOpcode)
             {
-                case 248:
-                case 164:
-                case 98:
-                    new ReceiveMovement(packetOpcode, packetLength).ReceivePacket(connection, packetReader);
-                    return;
-
-                case 4:
-                    new ReceiveChat(packetLength).ReceivePacket(connection, packetReader);
-                    return;
 
                 case 226://Write Background Texture?
-                    packetReader.readBytes(packetLength);
+                    //packetReader.readBytes(packetLength);
                     return;
 
                 case 77://Check for game usages?: lengths 12 or 14
-                    packetReader.readBytes(packetLength);
+                    //packetReader.readBytes(packetLength);
                     return;
 
                 case 86://camera
-                    packetReader.readBytes(packetLength);
+                    //packetReader.readBytes(packetLength);
                     return;
 
                 case 202://client tells us the player is idle! - nothing to read
                     return;
 
                 case 36://validates walking? anti-cheat sends 4 bytes
-                    packetReader.ReadInt();
+                    //packetReader.ReadInt();
                     return;
 
                 case 121://client finished loading - nothing to read
@@ -65,45 +66,42 @@ namespace RSPS.src.net.packet
                     return;
             }
             if (!ReceivablePackets.ContainsKey(packetOpcode)) {
-                packetReader.readBytes(packetLength);
                 Console.Error.WriteLine("Unhandled packet {0} (Length: {1})", packetOpcode, packetLength);
+                packetReader.readBytes(packetLength);
                 return;
             }
-            IReceivePacket packet = ReceivablePackets[packetOpcode];
-
-            packet.ReceivePacket(connection, packetReader);
+            ReceivablePackets[packetOpcode].ReceivePacket(player, packetOpcode, packetLength, packetReader);
         }
 
+        /// <summary>
+        /// Attempts to send a packet to a player
+        /// </summary>
+        /// <param name="player">The player</param>
+        /// <param name="sendPacket">The packet to send</param>
         public static void SendPacket(Player player, ISendPacket sendPacket)
         {
-            if (player.PlayerConnection == null || !player.PlayerConnection.IsConnected)
+            if (player.PlayerConnection == null)
             {
-                Console.Error.WriteLine("Unable to send packet for player {0} because they are not properly connected", player.Credentials.Username);
+                Console.Error.WriteLine("Unable to send packet for player {0} because the player has no connection", player.Credentials.Username);
                 return;
             }
             SendPacket(player.PlayerConnection, sendPacket);
         }
 
+        /// <summary>
+        /// Attempts to send a packet to the client
+        /// </summary>
+        /// <param name="connection">The client connection</param>
+        /// <param name="sendPacket">The packet to send</param>
         public static void SendPacket(Connection connection, ISendPacket sendPacket)
         {
-            try
+            if (connection.NetworkEncryptor == null)
             {
-                // Convert the memoryStream data to buffer
-                byte[] byteData = sendPacket.SendPacket(connection.NetworkEncryptor);
-
-                connection.Send(byteData);
-/*                foreach (byte b in byteData)
-                {
-                    Console.WriteLine(b);
-                }*/
-
-                // Begin sending the data to the remote device.  
-                //connection.clientSocket.BeginSend(byteData, 0, byteData.Length, 0,
-                //    new AsyncCallback(SendCallback), connection.clientSocket);
-            } catch (Exception)
-            {
+                Console.Error.WriteLine("Unable to send packet, no encryptor present");
                 connection.Dispose();
+                return;
             }
+            connection.Send(sendPacket.SendPacket(connection.NetworkEncryptor));
         }
 
     }

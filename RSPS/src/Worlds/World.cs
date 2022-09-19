@@ -1,5 +1,6 @@
 ﻿using RSPS.src.entity.npc;
 using RSPS.src.entity.player;
+using RSPS.src.net;
 using RSPS.src.net.Authentication;
 using RSPS.src.net.Connections;
 using RSPS.src.net.packet;
@@ -23,7 +24,10 @@ namespace RSPS.src.Worlds
     public class World : IDisposable
     {
 
-  
+        /// <summary>
+        /// The network endpoint
+        /// </summary>
+        public NetEndpoint Endpoint { get; }
 
         /// <summary>
         /// The world details
@@ -43,36 +47,54 @@ namespace RSPS.src.Worlds
         /// <summary>
         /// Handles connections networking
         /// </summary>
-        public ConnectionListener ConnectionListener { get; private set; }
+        public readonly ConnectionListener ConnectionListener;
 
         /// <summary>
         /// Manages NPC's
         /// </summary>
-        public readonly NpcManager Npcs = new();
+        public readonly NpcManager Npcs;
 
         /// <summary>
         /// Manages players
         /// </summary>
-        public readonly PlayerManager Players = new();
+        public readonly PlayerManager Players;
 
         /// <summary>
-        /// The max. logins allowed per cycle
+        /// The max. login and/or logout operations allowed per cycle
         /// </summary>
-        private readonly int _maxLoginsPerCycle;
+        private readonly int _maxLoginLogoutOpsPerCycle;
+
+        /// <summary>
+        /// The default parallel options
+        /// </summary>
+        private readonly ParallelOptions mainParallelOptions;
+
+        /// <summary>
+        /// Holds the cycle times
+        /// </summary>
+        private readonly Queue<int> cycleTimes;
 
 
         /// <summary>
         /// Creates a new world
         /// </summary>
+        /// <param name="endpoint">The network endpoint</param>
         /// <param name="details">The world details</param>
-        /// <param name="maxLoginsPerCycle">The name of the world</param>
-        /// <param name="connectionListener">The connection listener to use</param>
-        public World(WorldDetails details, ConnectionListener connectionListener, int maxLoginsPerCycle = 100)
+        /// <param name="maxLoginLogoutOpsPerCycle">The max. login and/or logout operations allowed per cycle</param>
+        public World(NetEndpoint endpoint, WorldDetails details, int maxLoginLogoutOpsPerCycle = 100)
         {
+            Endpoint = endpoint;
             Details = details;
-            ConnectionListener = connectionListener;
+            _maxLoginLogoutOpsPerCycle = maxLoginLogoutOpsPerCycle;
+
+            ConnectionListener = new ConnectionListener();
             ConnectionListener.PlayerAuthenticated += OnPlayerAuthenticated;
-            _maxLoginsPerCycle = maxLoginsPerCycle;
+
+            Npcs = new();
+            Players = new();
+
+            mainParallelOptions = new() { MaxDegreeOfParallelism = 25 };
+            cycleTimes = new();
         }
 
         /// <summary>
@@ -81,9 +103,9 @@ namespace RSPS.src.Worlds
         /// <param name="player">The player</param>
         private void OnPlayerAuthenticated(Player player)
         {
-            Players.InitializeSession(player);
-            Players.Login(player, Details);
-            Players.Add(player);
+            PlayerManager.InitializeSession(player);
+            PlayerManager.Login(player, Details);
+            Players.PendingLogin.Enqueue(player);
         }
 
         /// <summary>
@@ -97,24 +119,13 @@ namespace RSPS.src.Worlds
                 Console.Error.WriteLine("Unable to initialize: World {0} is already online", Details.Id);
                 return false;
             }
-            if (!ConnectionListener.Start())
+            if (!ConnectionListener.Start(Endpoint))
             {
                 return false;
             }
             Initialized = true;
-            Console.WriteLine("{0}: World {1} has been initialized on {2}:{3}", Details.Name, Details.Id,
-                ConnectionListener.Endpoint, ConnectionListener.Port);
+            Console.WriteLine("{0}: World {1} has been initialized on {2}", Details.Name, Details.Id, Endpoint);
             return true;
-        }
-
-        /// <summary>
-        /// Sets a new connection listener for the world
-        /// </summary>
-        /// <param name="connectionListener"></param>
-        public void SetConnectionListener(ConnectionListener connectionListener)
-        {
-            ConnectionListener.Dispose();
-            ConnectionListener = connectionListener;
         }
 
         /// <summary>
@@ -163,8 +174,6 @@ namespace RSPS.src.Worlds
         /// <returns></returns>
         private async Task Process()
         {
-            ParallelOptions mainParallelOptions = new() { MaxDegreeOfParallelism = 25 };
-
             Online = true;
 
             while (Online)
@@ -173,23 +182,69 @@ namespace RSPS.src.Worlds
 
                 try
                 {
-                    // Handle disconnected players
-                    Parallel.ForEach(Players.Entities.Where(p => p == null || p.PlayerConnection.ConnectionState == ConnectionState.None).ToList().Take(45), 
-                        mainParallelOptions, (Player? player) =>
+                    // Find any disconnected players that aren't inside the disconnected list yet
+                    Players.Entities.Where(p => !Players.Disconnected.Contains(p) && p.PlayerConnection.ConnectionState == ConnectionState.Disconnected && p.LoggedIn)
+                        .ToList().ForEach(p => Players.Disconnected.Add(p));
+
+                    // Attempt to logout any players that are disconnected
+                    for (int i = Players.Disconnected.Count - 1; i >= 0; i--)
                     {
-                        if (player == null)
+                        Player? player = Players.Disconnected[i];
+
+                        if (player != null && !PlayerManager.Logout(player))
                         {
+                            continue;
+                        }
+                        Players.Disconnected.RemoveAt(i);
+                    }
+                    // Add any logged-out players pending removal
+                    Players.Entities.Where(p => !p.LoggedIn).ToList().ForEach(p => Players.PendingRemoval.Enqueue(p));
+
+                    if (Players.PendingLogin.Count > 0 || Players.PendingRemoval.Count > 0)
+                    { // Remove logged out players and add new logins from/to the world
+                        int removalOps = Players.PendingRemoval.Count;
+                        int loginOps = Players.PendingLogin.Count;
+
+                        if ((removalOps + loginOps) > _maxLoginLogoutOpsPerCycle)
+                        { // When the total operations exceed the max. allowed, balance out between logins and removals
+                            int balancedOps = (_maxLoginLogoutOpsPerCycle / 2);
+
+                            removalOps = loginOps < balancedOps ? (_maxLoginLogoutOpsPerCycle - loginOps) : balancedOps;
+                            loginOps = removalOps < balancedOps ? (_maxLoginLogoutOpsPerCycle - removalOps) : balancedOps;
+                        }
+                        Parallel.For(0, removalOps, mainParallelOptions, _ =>
+                        {
+                            if (!Players.PendingRemoval.TryDequeue(out Player? player) || player == null)
+                            {
+                                return;
+                            }
+                            player.PlayerConnection.Dispose();
+                            Players.Remove(player);
+                        });
+                        Parallel.For(0, loginOps, mainParallelOptions, _ =>
+                        {
+                            if (!Players.PendingLogin.TryDequeue(out Player? player) || player == null)
+                            {
+                                return;
+                            }
+                            Players.Add(player);
+                        });
+                    }
+                    if (Players.Entities.Count > 0)
+                    { // Handle active players in the world
+                        if (Players.Entities.Contains(null))
+                        {
+                            Console.Error.WriteLine("Nulled player slipped into players list somehow");
                             return;
                         }
-                        Console.WriteLine("Handling removal of disconnected player {0}", player.Credentials.Username);
-                        Players.Logout(player, true);
-                        Players.Remove(player);
-                    });
-                    if (Players.Entities.Count > 0)
-                    { // Handle active players
                         // Process the movement of players
                         Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) => player?.MovementHandler.ProcessMovements());
+
                         // Process player updating
+                        Players.Entities.ForEach(p => {
+                            PlayerUpdating.Update(this, p);
+                            //NpcUpdating.Update(player);
+                        });/*
                         Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) =>
                         {
                             if (player != null)
@@ -198,7 +253,7 @@ namespace RSPS.src.Worlds
                             }
                             //NpcUpdating.Update(player);
                             
-                        });
+                        });*/
                         // Reset the player flags
                         Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) => player?.ResetFlags());
 
@@ -218,12 +273,29 @@ namespace RSPS.src.Worlds
                     break;
                 }
                 TimeSpan cycleElapsed = DateTime.Now.Subtract(cycleStart);
-                Console.WriteLine("Processing world {0} took {1}ms", Details.Id, cycleElapsed.Milliseconds);
+                CycleInfo(cycleElapsed);
                 int sleepTime = Constants.WorldCycleMs - cycleElapsed.Milliseconds;
                 await Task.Delay(sleepTime < 0 ? 0 : sleepTime);
             }
             Console.Error.WriteLine("Stopped processing world {0}, disposing...", Details.Id);
             Dispose();
+        }
+
+        /// <summary>
+        /// Handles cycle information
+        /// </summary>
+        /// <param name="cycleTime">The cycle time</param>
+        private void CycleInfo(TimeSpan cycleTime)
+        {
+            if (cycleTimes.Count > 100)
+            {
+                cycleTimes.Dequeue();
+            }
+            cycleTimes.Enqueue(cycleTime.Milliseconds);
+
+            double average = Math.Round(cycleTimes.Average(), 2);
+
+            Console.WriteLine("Processing world {0} took {1}ms (Average: {2}ms)", Details.Id, cycleTime.Milliseconds, average);
         }
 
     }

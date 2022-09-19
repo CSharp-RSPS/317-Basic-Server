@@ -8,23 +8,21 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.receive.impl
 {
-    public class ReceiveChat : IReceivePacket
+    public sealed class ReceiveChat : IReceivePacket
     {
 
-        private int PacketLength;
 
-        public ReceiveChat(int packetLength)
+        public void ReceivePacket(Player player, int packetOpCode, int packetLength, PacketReader packetReader)
         {
-            PacketLength = packetLength;
-        }
-
-        public void ReceivePacket(Connection connection, PacketReader packetReader)
-        {
-            Player player = connection.Player;
             int effects = packetReader.ReadByte(false, Packet.ValueType.S);
             int color = packetReader.ReadByte(false, Packet.ValueType.S);
-            int chatLength = PacketLength - 2;
+            int chatLength = packetLength - 2;
             byte[] text = packetReader.ReadBytesReverse(chatLength, Packet.ValueType.A);
+
+            if (effects < 0 || color < 0 || chatLength < 0 || text == null || text.Length <= 0)
+            {
+                return;
+            }
             player.ChatEffects = effects;
             player.ChatColor = color;
             player.ChatText = text;

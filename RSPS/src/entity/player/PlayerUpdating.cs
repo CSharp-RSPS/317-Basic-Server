@@ -133,7 +133,7 @@ namespace RSPS.src.entity.player
                 // Finish the packet and send it.
                 outPacket.FinishVariableShortHeader();
 
-                player.PlayerConnection.SendGlobalByes(outPacket.Payload, outPacket.PayloadPosition);
+                player.PlayerConnection.Send(outPacket.Payload, outPacket.PayloadPosition);
             }
             catch (Exception e)
             {

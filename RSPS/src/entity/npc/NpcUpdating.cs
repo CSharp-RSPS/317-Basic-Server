@@ -74,7 +74,7 @@ namespace RSPS.src.entity.npc
 
 			outPacket.FinishVariableShortHeader();
 
-			player.PlayerConnection.SendGlobalByes(outPacket.Payload, outPacket.PayloadPosition);
+			player.PlayerConnection.Send(outPacket.Payload, outPacket.PayloadPosition);
 
 		}
 

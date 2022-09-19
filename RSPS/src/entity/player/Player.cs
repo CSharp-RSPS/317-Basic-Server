@@ -32,6 +32,11 @@ namespace RSPS.src.entity.player
         public bool Flagged { get; set; }
 
         /// <summary>
+        /// Whether the player is logged in into a game world
+        /// </summary>
+        public bool LoggedIn { get; set; }
+
+        /// <summary>
         /// The player's client connection
         /// </summary>
         public Connection PlayerConnection { get; private set; }
@@ -45,7 +50,6 @@ namespace RSPS.src.entity.player
 
         //public Position Position = new Position(3222, 3222);
         public Position CurrentRegion = new Position(0, 0);
-
         public List<Skill> Skills = new List<Skill>();
 
         public List<Player> LocalPlayers = new List<Player>();
@@ -57,9 +61,7 @@ namespace RSPS.src.entity.player
         public int PrimaryDirection = -1;
         public int SecondaryDirection = -1;
 
-        public bool NeedsPlacement { get; set; }
         public bool UpdateRequired { get; set; }
-        public bool ResetMovementQueue { get; set; }
         public bool ChatUpdateRequired { get; set; }
         public bool AppearanceUpdateRequired { get; set; }
 

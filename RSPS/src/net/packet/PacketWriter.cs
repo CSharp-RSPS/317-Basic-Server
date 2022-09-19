@@ -19,7 +19,7 @@ namespace RSPS.src.net.packet
         /**
          * The current AccessType of the buffer.
          */
-        public AccessType AccessType = AccessType.BYTE_ACCESS;
+        public AccessType ByteAccessType = AccessType.BYTE_ACCESS;
 
         /**
          * Bit masks.
@@ -406,7 +406,7 @@ namespace RSPS.src.net.packet
          */
         public void WriteBits(int amount, int value)
         {
-            if (AccessType != AccessType.BIT_ACCESS)
+            if (ByteAccessType != AccessType.BIT_ACCESS)
             {
                 throw new InvalidOperationException("Illegal access type.");
             }
@@ -492,7 +492,7 @@ namespace RSPS.src.net.packet
 
         public void SetAccessType(AccessType accessType)
         {
-            AccessType = accessType;
+            ByteAccessType = accessType;
             SwitchAccessType(accessType);
         }
 
