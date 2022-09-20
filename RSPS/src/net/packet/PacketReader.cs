@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Reflection.PortableExecutable;
+using System.Text;
 
 /**
  * @Author blakeman8192
@@ -10,6 +11,8 @@ namespace RSPS.src.net.packet
 
         public PacketReader(byte[] stream) : base(stream)
         {}
+
+        public int ReadableBytes => Length - PayloadPosition;
 
         public int ReadByte(bool signed, ValueType valueType)
         {

@@ -19,9 +19,9 @@ namespace RSPS.src.net.Codec
         /// Decodes a packet
         /// </summary>
         /// <param name="connection">The connection</param>
-        /// <param name="packet">The packet</param>
+        /// <param name="reader">The packet reader</param>
         /// <returns>The next protocol decoder to swap to</returns>
-        public IProtocolDecoder? Decode(Connection connection, PacketReader packet);
+        public IProtocolDecoder? Decode(Connection connection, PacketReader reader);
 
     }
 }
