@@ -101,6 +101,35 @@ namespace RSPS.src.Worlds
         }
 
         /// <summary>
+        /// Resolve the world a connection is connected to
+        /// </summary>
+        /// <param name="connection">The connection</param>
+        /// <returns>The world</returns>
+        public static World? ResolveWorld(Connection connection)
+        {
+            return ById(connection.WorldDetails.Id);
+        }
+
+        /// <summary>
+        /// Finds a player by their username within all worlds
+        /// </summary>
+        /// <param name="username">The username</param>
+        /// <returns>The result</returns>
+        public static Player? FindPlayerByUsername(string username)
+        {
+            foreach (World w in Worlds)
+            {
+                Player? player = w.Players.ByUsername(username);
+
+                if (player != null)
+                {
+                    return player;
+                }
+            }
+            return default;
+        }
+
+        /// <summary>
         /// Attempts to make a player swap worlds
         /// </summary>
         /// <param name="player">The player</param>

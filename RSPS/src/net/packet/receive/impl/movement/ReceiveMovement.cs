@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.receive.impl
 {
-    public class ReceiveMovement : IReceivePacket
+    public sealed class ReceiveMovement : IReceivePacket
     {
 
 
-        public void ReceivePacket(Player player, int packetOpCode, int packetLength, PacketReader packetReader)
+        public void ReceivePacket(Player player, PacketReader packetReader)
         {
-            int length = packetLength;
+            int length = packetReader.PayloadSize;
 
             if (length < 0)
             {
@@ -25,7 +25,7 @@ namespace RSPS.src.net.packet.receive.impl
             }
             //TODO: if can't move - return
 
-            if (packetOpCode == 248)
+            if (packetReader.Opcode == 248)
             {
                 length -= 14;
             }
@@ -36,17 +36,17 @@ namespace RSPS.src.net.packet.receive.impl
                 return;
             }
             int[,] path = new int[steps, 2];
-            int firstStepX = packetReader.ReadShort(Packet.ValueType.A, Packet.ByteOrder.LITTLE);
+            int firstStepX = packetReader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
 
             for (int i = 0; i < steps; i++)
             {
                 path[i, 0] = (sbyte)packetReader.ReadByte();
                 path[i, 1] = (sbyte)packetReader.ReadByte();
             }
-            int firstStepY = packetReader.ReadShort(Packet.ByteOrder.LITTLE);
+            int firstStepY = packetReader.ReadShort(Packet.ByteOrder.LittleEndian);
 
             player.MovementHandler.Reset();
-            player.MovementHandler.IsRunPath = packetReader.ReadByte(Packet.ValueType.C) == 1;
+            player.MovementHandler.IsRunPath = packetReader.ReadByte(Packet.ValueType.Negated) == 1;
             player.MovementHandler.AddToPath(new Position(firstStepX, firstStepY));
 
             for (int i = 0; i < steps; i++)
@@ -58,9 +58,9 @@ namespace RSPS.src.net.packet.receive.impl
             }
             player.MovementHandler.FinishPath();
 
-            if (packetOpCode == 248)
+            if (packetReader.Opcode == 248)
             {
-                packetReader.readBytes(14);//client sends additional info we need to get rid of
+                packetReader.ReadBytes(14);//client sends additional info we need to get rid of
             }
         }
     }

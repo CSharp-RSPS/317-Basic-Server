@@ -8,12 +8,18 @@ using RSPS.src.net.Connections;
 
 namespace RSPS.src.net.packet.receive.impl
 {
-    internal class ReceiveFocus : IReceivePacket
+    /// <summary>
+    /// Sent when the game client window goes in and out of focus.
+    /// </summary>
+    public sealed class ReceiveFocusChange : IReceivePacket
     {
-        public void ReceivePacket(Player player, int packetOpCode, int packetLength, PacketReader packetReader)
+
+
+        public void ReceivePacket(Player player, PacketReader packetReader)
         {
             bool lostFocus = packetReader.ReadByte() == 0;
             Console.WriteLine("WE lost focus? " + lostFocus);
         }
+
     }
 }

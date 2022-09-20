@@ -57,6 +57,16 @@ namespace RSPS.src.entity.player
             base.Remove(entity);
         }
 
+        /// <summary>
+        /// Attempts to receive a player by their username
+        /// </summary>
+        /// <param name="username">The username</param>
+        /// <returns>The result</returns>
+        public Player? ByUsername(string username)
+        {
+            return Entities.FirstOrDefault(p => p.Credentials.Username.ToLower().Equals(username.ToLower()));
+        }
+
         public override void Dispose() {
             GC.SuppressFinalize(this);
 

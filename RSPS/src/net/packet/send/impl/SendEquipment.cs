@@ -19,7 +19,7 @@ namespace RSPS.src.net.packet.send.impl
 //RING: 12
 //ARROWS: 13
 
-    public class SendEquipment : ISendPacket
+    public sealed class SendEquipment : ISendPacket
     {
 
         private int Slot;
@@ -33,7 +33,7 @@ namespace RSPS.src.net.packet.send.impl
             this.ItemAmount = itemAmount;
         }
 
-        public byte[] SendPacket(ISAACCipher encryptor)
+        public PacketWriter SendPacket(ISAACCipher encryptor)
         {
             PacketWriter writer = Packet.CreatePacketWriter(13);
             writer.WriteVariableShortHeader(encryptor, 34);
@@ -50,7 +50,7 @@ namespace RSPS.src.net.packet.send.impl
                 writer.WriteByte(ItemAmount);
             }
             writer.FinishVariableShortHeader();
-            return writer.Payload;
+            return writer;
         }
     }
 }

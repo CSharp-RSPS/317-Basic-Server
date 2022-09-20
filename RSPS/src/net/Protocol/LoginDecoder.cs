@@ -4,6 +4,7 @@ using RSPS.src.net.Connections;
 using RSPS.src.net.packet;
 using RSPS.src.net.packet.send.impl;
 using RSPS.src.Util;
+using RSPS.src.Worlds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace RSPS.src.net.Codec
 
             if (connectionType != 16 && connectionType != 18)
             { // 16 = new login, 18 = reconnection
-                PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.Unknown));
+                SendLoginResponse(connection, AuthenticationResponse.Unknown);
                 return null;
             }
             int loginBlockSize = reader.ReadByte(); //loginSize = 76
@@ -35,23 +36,23 @@ namespace RSPS.src.net.Codec
             if (encryptedBlockSize < 1)
             {
                 Console.WriteLine("Invalid encrypted login block size");
-                PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.Unknown));
+                SendLoginResponse(connection, AuthenticationResponse.Unknown);
                 return null;
             }
-            if (reader.Payload.Length/*connection.Buffer.Length*/ < loginBlockSize)
+            if (reader.Data.Length/*connection.Buffer.Length*/ < loginBlockSize)
             {
                 Console.WriteLine("State buffer length is less than block length");
-                PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.Unknown));
+                SendLoginResponse(connection, AuthenticationResponse.Unknown);
                 return null;
             }
             if (reader.ReadByte() != 255)
             { // Magic number
-                PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.Unknown));
+                SendLoginResponse(connection, AuthenticationResponse.Unknown);
                 return null;
             }
             if (reader.ReadShort() != 317)
             { // Client version
-                PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.GameWasUpdated));
+                SendLoginResponse(connection, AuthenticationResponse.GameWasUpdated);
                 return null;
             }
             reader.ReadByte();//High/low memory version
@@ -63,9 +64,9 @@ namespace RSPS.src.net.Codec
             }
             int RSABlock = reader.ReadByte(); //Skip RSA block length
 
-            if (reader.ReadByte() != 10) 
+            if (reader.ReadByte() != 10)
             { // RSA Opcode
-                PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.SessionRejected));
+                SendLoginResponse(connection, AuthenticationResponse.SessionRejected);
                 return null;
             }
             // Set up the ISAAC ciphers.
@@ -93,7 +94,7 @@ namespace RSPS.src.net.Codec
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
-                PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.InvalidCredentials));
+                SendLoginResponse(connection, AuthenticationResponse.InvalidCredentials);
                 return null;
             }
             string hashedPassword = Hashing.HashPassword(password);
@@ -105,12 +106,12 @@ namespace RSPS.src.net.Codec
             { // Check if a save game exists for the username
                 if (!SaveGameHandler.LoadSaveGame(player))
                 { // Try to load the save game
-                    PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.CouldNotCompleteLogin));
+                    SendLoginResponse(connection, AuthenticationResponse.CouldNotCompleteLogin);
                     return null;
                 }
                 if (!SaveGameHandler.VerifyPassword(player.Credentials.Password, hashedPassword))
                 { // Verify whether the given password matches the one from the save game
-                    PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.InvalidCredentials));
+                    SendLoginResponse(connection, AuthenticationResponse.InvalidCredentials);
                     return null;
                 }
                 //TODO:
@@ -123,13 +124,85 @@ namespace RSPS.src.net.Codec
             connection.NetworkDecryptor = decryptor;
             connection.NetworkEncryptor = encryptor;
 
-            PacketHandler.SendPacket(connection, new SendLoginResponse(connectionType == 16
-                ? AuthenticationResponse.Successful
-                : AuthenticationResponse.SuccessfulReconnect));
+            World? world = WorldHandler.ResolveWorld(connection);
 
-            connection.PlayerAuthenticated(player);
+            if (world == null)
+            {
+                SendLoginResponse(connection, AuthenticationResponse.InvalidLoginServer);
+                return null;
+            }
+            if (!world.Online)
+            {
+                SendLoginResponse(connection, AuthenticationResponse.LoginServerOffline);
+                return null;
+            }
+            if (world.IsFull)
+            {
+                SendLoginResponse(connection, AuthenticationResponse.WorldFull);
+                return null;
+            }
+            if (WorldHandler.FindPlayerByUsername(username) != null)
+            {
+                SendLoginResponse(connection, AuthenticationResponse.AlreadyLoggedIn);
+                return null;
+            }
+            int loginsFromSameIp = world.ConnectionListener.Connections.Where(c => c.IpAddress == connection.IpAddress).ToList().Count;
+
+            if (world.ConnectionListener.Connections.Where(c => c.IpAddress == connection.IpAddress).ToList().Count > Constants.MaxSimultaneousConnections)
+            {
+                SendLoginResponse(connection, AuthenticationResponse.LoginLimitExceeded);
+                return null;
+            }
+            //TODO: world being updated
+            //TODO: login attempts exceeded
+            //TODO: standing in members only area
+            //TODO: Just left another world, will be transfered in ...
+
+            SendLoginResponse(connection, connectionType == 16
+                ? AuthenticationResponse.Successful
+                : AuthenticationResponse.SuccessfulReconnect,
+                player);
+
+            PlayerManager.InitializeSession(player);
+            PlayerManager.Login(player, connection.WorldDetails);
+            world.Players.PendingLogin.Enqueue(player);
 
             return new PacketDecoder(player);
+        }
+
+        /// <summary>
+        /// Sends a login response to the client
+        /// </summary>
+        /// <param name="loginResponse">The login response</param>
+        /// <param name="player">The player if any was instantiated</param>
+        private static void SendLoginResponse(Connection connection, AuthenticationResponse loginResponse, Player? player = null)
+        {
+            if ((loginResponse == AuthenticationResponse.Successful || loginResponse == AuthenticationResponse.SuccessfulReconnect)
+                && player == null)
+            {
+                throw new ArgumentNullException(nameof(player));
+            }
+           /* using (MemoryStream ms = new MemoryStream(3))
+            {
+                ms.WriteByte(2);//response all is good
+                ms.WriteByte(1);//player rights
+                ms.WriteByte(0);//not clue. comment out when working with new client
+                connection.Send(ms.ToArray());
+
+                //Program.SendGlobalByes(PlayerConnection, loginResponse.GetBuffer());
+            }
+                */
+            
+            PacketWriter pw = Packet.CreatePacketWriter(loginResponse == AuthenticationResponse.SuccessfulReconnect ? 1 : 3);
+
+            pw.WriteByte((int)loginResponse);
+
+            if (loginResponse != AuthenticationResponse.SuccessfulReconnect)
+            { // We only need to send these when it's a new login attempt
+                pw.WriteByte(player == null ? 0 : (int)player.Rights);
+                pw.WriteByte(player == null ? 0 : (player.Flagged ? 1 : 0)); //1 = flagged (information about mouse movements etc. are sent to the server. Suspected bot accounts are flagged.)
+            }
+            connection.Send(pw);
         }
 
     }

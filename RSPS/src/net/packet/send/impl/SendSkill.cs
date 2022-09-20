@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.send.impl
 {
-    public class SendSkill : ISendPacket
+    public sealed class SendSkill : ISendPacket
     {
 
-        private int Level;
-        private int Experience;
-        private int SkillId;
+        public int Level { get; private set; }
+        public int Experience { get; private set; }
+        public int SkillId { get; private set; }
 
         public SendSkill(Skill skill)
         {
@@ -22,14 +22,14 @@ namespace RSPS.src.net.packet.send.impl
             Experience = skill.CurrentExperience;
         }
 
-        public byte[] SendPacket(ISAACCipher encryptor)
+        public PacketWriter SendPacket(ISAACCipher encryptor)
         {
             PacketWriter packetWriter = Packet.CreatePacketWriter(7);
             packetWriter.WriteHeader(encryptor, 134);
             packetWriter.WriteByte(SkillId);
-            packetWriter.WriteInt(Experience, Packet.ByteOrder.MIDDLE);
+            packetWriter.WriteInt(Experience, Packet.ByteOrder.MiddleEndian);
             packetWriter.WriteByte(Level);
-            return packetWriter.Payload;
+            return packetWriter;
         }
     }
 }

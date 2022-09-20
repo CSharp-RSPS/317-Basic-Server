@@ -9,7 +9,7 @@ namespace RSPS.src.net.packet.send
     public interface ISendPacket
     {
 
-        public byte[] SendPacket(ISAACCipher encryptor);
+        public PacketWriter SendPacket(ISAACCipher encryptor);
 
     }
 }

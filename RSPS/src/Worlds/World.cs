@@ -45,6 +45,11 @@ namespace RSPS.src.Worlds
         public bool Online { get; set; }
 
         /// <summary>
+        /// Retrieves whether the world is full
+        /// </summary>
+        public bool IsFull => Players.Entities.Count >= Details.MaxPlayers;
+
+        /// <summary>
         /// Handles connections networking
         /// </summary>
         public readonly ConnectionListener ConnectionListener;
@@ -88,7 +93,6 @@ namespace RSPS.src.Worlds
             _maxLoginLogoutOpsPerCycle = maxLoginLogoutOpsPerCycle;
 
             ConnectionListener = new ConnectionListener();
-            ConnectionListener.PlayerAuthenticated += OnPlayerAuthenticated;
 
             Npcs = new();
             Players = new();
@@ -108,7 +112,7 @@ namespace RSPS.src.Worlds
                 Console.Error.WriteLine("Unable to initialize: World {0} is already online", Details.Id);
                 return false;
             }
-            if (!ConnectionListener.Start(Endpoint))
+            if (!ConnectionListener.Start(Endpoint, Details))
             {
                 return false;
             }
@@ -155,17 +159,6 @@ namespace RSPS.src.Worlds
             Players.Dispose();
 
             Console.WriteLine("Disposed world {0}", Details.Id);
-        }
-
-        /// <summary>
-        /// Handles a newly authenticated player
-        /// </summary>
-        /// <param name="player">The player</param>
-        private void OnPlayerAuthenticated(Player player)
-        {
-            PlayerManager.InitializeSession(player);
-            PlayerManager.Login(player, Details);
-            Players.PendingLogin.Enqueue(player);
         }
 
         /// <summary>

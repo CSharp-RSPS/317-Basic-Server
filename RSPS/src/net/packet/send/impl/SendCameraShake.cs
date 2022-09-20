@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.send.impl
 {
-    public class SendCameraShake : ISendPacket
+    public sealed class SendCameraShake : ISendPacket
     {
-        public byte[] SendPacket(ISAACCipher encryptor)
+        public PacketWriter SendPacket(ISAACCipher encryptor)
         {
             PacketWriter writer = Packet.CreatePacketWriter(5);
             writer.WriteHeader(encryptor, 35);
@@ -16,7 +16,7 @@ namespace RSPS.src.net.packet.send.impl
             writer.WriteByte(0);//Affects All values
             writer.WriteByte(1);//Y Move Camera
             writer.WriteByte(0);
-            return writer.Payload;
+            return writer;
         }
     }
 }

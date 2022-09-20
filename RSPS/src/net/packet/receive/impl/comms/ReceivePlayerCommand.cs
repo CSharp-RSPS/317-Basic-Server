@@ -1,4 +1,5 @@
 ﻿using RSPS.src.entity.player;
+using RSPS.src.net.packet.send.impl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,14 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.receive.impl
 {
-    public sealed class ReceiveCommand : IReceivePacket
+    /// <summary>
+    /// Sent when the player enters a command in the chat box (e.g. "::command")
+    /// </summary>
+    public sealed class ReceivePlayerCommand : IReceivePacket
     {
 
 
-        public void ReceivePacket(Player player, int packetOpCode, int packetLength, PacketReader packetReader)
+        public void ReceivePacket(Player player, PacketReader packetReader)
         {
             string input = packetReader.ReadString().Trim().ToLower();
 
@@ -26,6 +30,9 @@ namespace RSPS.src.net.packet.receive.impl
                 return;
             }
             Console.WriteLine("Command: " + input);
+
+            //resetanim
+            PacketHandler.SendPacket(player.PlayerConnection, new SendAnimationReset());
             //TODO handle command
         }
 

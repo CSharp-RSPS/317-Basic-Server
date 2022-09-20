@@ -39,26 +39,34 @@ namespace RSPS.src.net.Codec
                 Console.Error.WriteLine("Unable to decode packet as no decryptor is present");
                 return null;
             }
-            while (reader.PayloadPosition < reader.Payload.Length)
+            while (reader.Pointer < reader.Length)
             { // Handle the received packet
               // Handle a packet for an existing connection
                 int packetOpCode = reader.ReadByte() & 0xFF;
-                packetOpCode = packetOpCode - connection.NetworkDecryptor.getNextValue() & 0xFF;// -- cryption
-                                                                                                //Console.WriteLine("packet op code: " + packetOpCode);
-                int packetLength = PACKET_LENGTHS[packetOpCode];
+                packetOpCode = packetOpCode - connection.NetworkDecryptor.getNextValue() & 0xFF;
+                int packetSize = PacketSizes[packetOpCode];
 
-                if (packetLength == -1)//variable length packet
+                if (packetSize == -1)//variable length packet
                 {
-                    if (reader.PayloadPosition >= reader.Payload.Length)
+                    if (reader.Pointer >= reader.Length)
                     {
                         break;
                     }
-                    packetLength = reader.ReadByte();
-                    packetLength = packetLength & 0xFF;//new
+                    packetSize = reader.ReadByte() & 0xFF;
                 }
-                if (reader.Payload.Length >= packetLength)
+                if (reader.Length >= packetSize)
                 {
-                    PacketHandler.HandlePacket(_player, packetOpCode, packetLength, reader);
+                    reader.Opcode = packetOpCode;
+                    reader.PayloadSize = packetSize;
+
+                    PacketHandler.HandlePacket(_player, reader);
+
+                   
+                    /*if (reader.ReadableBytes > 0)
+                    {
+                        Debug.WriteLine("Readable bytes left {0} for packet {1} with size {2}", reader.ReadableBytes, packetOpCode, packetSize);
+                       // reader.ReadBytes(reader.ReadableBytes);
+                    }*/
                     /*
                     if (reader.PayloadPosition < reader.Payload.Length)
                     {
@@ -66,10 +74,11 @@ namespace RSPS.src.net.Codec
                     }*/
                 }
             }
+            connection.ResetBuffer();
             return connection.ProtocolDecoder;
         }
 
-        public static readonly int[] PACKET_LENGTHS = {
+        public static readonly int[] PacketSizes = {
             0, 0, 0, 1, -1, 0, 0, 0, 0, 0, // 0
             0, 0, 0, 0, 8, 0, 6, 2, 2, 0, // 10
             0, 2, 0, 6, 0, 12, 0, 0, 0, 0, // 20

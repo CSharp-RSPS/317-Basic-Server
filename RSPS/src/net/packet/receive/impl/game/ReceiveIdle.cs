@@ -8,9 +8,14 @@ using RSPS.src.net.Connections;
 
 namespace RSPS.src.net.packet.receive.impl
 {
-    public class ReceiveIdlePacket : IReceivePacket
+    /// <summary>
+    /// Sent when there are no actions being performed by the player for this cycle.
+    /// </summary>
+    public class ReceiveIdle : IReceivePacket
     {
-        public void ReceivePacket(Player player, int packetOpCode, int packetLength, PacketReader packetReader)
+
+
+        public void ReceivePacket(Player player, PacketReader packetReader)
         {
             if (player.IdleTimer.IsRunning)
             {

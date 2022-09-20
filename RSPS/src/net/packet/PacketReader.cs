@@ -6,23 +6,28 @@ using System.Text;
  **/
 namespace RSPS.src.net.packet
 {
-    public class PacketReader : Packet
+    /// <summary>
+    /// Handles reading packet data
+    /// </summary>
+    public sealed class PacketReader : Packet
     {
 
-        public PacketReader(byte[] stream) : base(stream)
-        {}
 
-        public int ReadableBytes => Length - PayloadPosition;
+        public PacketReader(byte[] stream) : base(stream)
+        {
+            
+        }
+
 
         public int ReadByte(bool signed, ValueType valueType)
         {
-            int value = Payload[PayloadPosition++];
+            int value = Data[Pointer++];
             switch (valueType)
             {
-                case ValueType.A:
-                    value = value - 128;
+                case ValueType.Additional:
+                    value -= 128;
                     break;
-                case ValueType.C:
+                case ValueType.Negated:
                     value = -value;
                     break;
                 case ValueType.S:
@@ -37,12 +42,12 @@ namespace RSPS.src.net.packet
          **/
         public int ReadByte()
         {
-            return ReadByte(true, ValueType.STANDARD);
+            return ReadByte(true, ValueType.Standard);
         }
 
         public int ReadByte(bool signed)
         {
-            return ReadByte(signed, ValueType.STANDARD);
+            return ReadByte(signed, ValueType.Standard);
         }
 
 
@@ -56,20 +61,20 @@ namespace RSPS.src.net.packet
             int value = 0;
             switch (order)
             {
-                case ByteOrder.BIG:
+                case ByteOrder.BigEndian:
                     value |= ReadByte(signed) << 8;
                     value |= ReadByte(signed, type);
                     break;
 
-                case ByteOrder.LITTLE:
+                case ByteOrder.LittleEndian:
                     value |= ReadByte(signed, type);
                     value |= ReadByte(signed) << 8;
                     break;
 
-                case ByteOrder.INVERSE_MIDDLE:
+                case ByteOrder.InverseMiddleEndian:
                     throw new InvalidOperationException("Inverse Middle Endian short is impossible");
 
-                case ByteOrder.MIDDLE:
+                case ByteOrder.MiddleEndian:
                     throw new InvalidOperationException("Middle-endian short is impossible!");
             }
             return value;
@@ -82,7 +87,7 @@ namespace RSPS.src.net.packet
         */
         public int ReadShort()
         {
-            return ReadShort(true, ValueType.STANDARD, ByteOrder.BIG);
+            return ReadShort(true, ValueType.Standard, ByteOrder.BigEndian);
         }
 
         /**
@@ -93,7 +98,7 @@ namespace RSPS.src.net.packet
          */
         public int ReadShort(bool signed)
         {
-            return ReadShort(signed, ValueType.STANDARD, ByteOrder.BIG);
+            return ReadShort(signed, ValueType.Standard, ByteOrder.BigEndian);
         }
 
         /**
@@ -104,7 +109,7 @@ namespace RSPS.src.net.packet
          */
         public int ReadShort(ValueType type)
         {
-            return ReadShort(true, type, ByteOrder.BIG);
+            return ReadShort(true, type, ByteOrder.BigEndian);
         }
 
         /**
@@ -116,7 +121,7 @@ namespace RSPS.src.net.packet
          */
         public int ReadShort(bool signed, ValueType type)
         {
-            return ReadShort(signed, type, ByteOrder.BIG);
+            return ReadShort(signed, type, ByteOrder.BigEndian);
         }
 
         /**
@@ -127,7 +132,7 @@ namespace RSPS.src.net.packet
          */
         public int ReadShort(ByteOrder order)
         {
-            return ReadShort(true, ValueType.STANDARD, order);
+            return ReadShort(true, ValueType.Standard, order);
         }
 
         /**
@@ -139,7 +144,7 @@ namespace RSPS.src.net.packet
          */
         public int ReadShort(bool signed, ByteOrder order)
         {
-            return ReadShort(signed, ValueType.STANDARD, order);
+            return ReadShort(signed, ValueType.Standard, order);
         }
 
         /**
@@ -167,25 +172,25 @@ namespace RSPS.src.net.packet
             int value = 0;
             switch (order)
             {
-                case ByteOrder.BIG:
+                case ByteOrder.BigEndian:
                     value = ReadByte(false) << 24 |
                             ReadByte(false) << 16 |
                             ReadByte(false) << 8  |
                             ReadByte(false, type);
                     break;
-                case ByteOrder.MIDDLE:
+                case ByteOrder.MiddleEndian:
                     value = ReadByte(false) << 8  |
                             ReadByte(false, type) |
                             ReadByte(false) << 24 |
                             ReadByte(false) << 16;
                     break;
-                case ByteOrder.INVERSE_MIDDLE:
+                case ByteOrder.InverseMiddleEndian:
                     value = ReadByte(false) << 16 |
                             ReadByte(false) << 24 |
                             ReadByte(false, type) |
                             ReadByte(false) << 8;
                     break;
-                case ByteOrder.LITTLE:
+                case ByteOrder.LittleEndian:
                     value = ReadByte(false, type) |
                             ReadByte(false) << 8  |
                             ReadByte(false) << 16 |
@@ -202,7 +207,7 @@ namespace RSPS.src.net.packet
          */
         public int ReadInt()
         {
-            return (int)ReadInt(true, ValueType.STANDARD, ByteOrder.BIG);
+            return (int)ReadInt(true, ValueType.Standard, ByteOrder.BigEndian);
         }
 
         /**
@@ -213,7 +218,7 @@ namespace RSPS.src.net.packet
          */
         public long ReadInt(bool signed)
         {
-            return ReadInt(signed, ValueType.STANDARD, ByteOrder.BIG);
+            return ReadInt(signed, ValueType.Standard, ByteOrder.BigEndian);
         }
 
         /**
@@ -224,7 +229,7 @@ namespace RSPS.src.net.packet
          */
         public int ReadInt(ValueType type)
         {
-            return (int)ReadInt(true, type, ByteOrder.BIG);
+            return (int)ReadInt(true, type, ByteOrder.BigEndian);
         }
 
         /**
@@ -236,7 +241,7 @@ namespace RSPS.src.net.packet
          */
         public long ReadInt(bool signed, ValueType type)
         {
-            return ReadInt(signed, type, ByteOrder.BIG);
+            return ReadInt(signed, type, ByteOrder.BigEndian);
         }
 
         /**
@@ -247,7 +252,7 @@ namespace RSPS.src.net.packet
          */
         public int ReadInt(ByteOrder order)
         {
-            return (int)ReadInt(true, ValueType.STANDARD, order);
+            return (int)ReadInt(true, ValueType.Standard, order);
         }
 
         /**
@@ -259,7 +264,7 @@ namespace RSPS.src.net.packet
          */
         public long ReadInt(bool signed, ByteOrder order)
         {
-            return ReadInt(signed, ValueType.STANDARD, order);
+            return ReadInt(signed, ValueType.Standard, order);
         }
 
         /**
@@ -286,7 +291,7 @@ namespace RSPS.src.net.packet
             long value = 0;
             switch (order)
             {
-                case ByteOrder.BIG:
+                case ByteOrder.BigEndian:
                     value = (long)ReadByte(false) << 56 |
                             (long)ReadByte(false) << 48 |
                             (long)ReadByte(false) << 40 |
@@ -296,11 +301,11 @@ namespace RSPS.src.net.packet
                             (long)ReadByte(false) << 8  |
                             (long)ReadByte(false, type);
                     break;
-                case ByteOrder.MIDDLE:
+                case ByteOrder.MiddleEndian:
                     throw new InvalidOperationException("middle-endian long is not implemented!");
-                case ByteOrder.INVERSE_MIDDLE:
+                case ByteOrder.InverseMiddleEndian:
                     throw new InvalidOperationException("inverse-middle-endian long is not implemented!");
-                case ByteOrder.LITTLE:
+                case ByteOrder.LittleEndian:
                     value = (long)ReadByte(false, type) |
                             (long)ReadByte(false) << 8  |
                             (long)ReadByte(false) << 16 |
@@ -321,7 +326,7 @@ namespace RSPS.src.net.packet
          */
         public long ReadLong()
         {
-            return ReadLong(ValueType.STANDARD, ByteOrder.BIG);
+            return ReadLong(ValueType.Standard, ByteOrder.BigEndian);
         }
 
         /**
@@ -332,7 +337,7 @@ namespace RSPS.src.net.packet
          */
         public long ReadLong(ValueType type)
         {
-            return ReadLong(type, ByteOrder.BIG);
+            return ReadLong(type, ByteOrder.BigEndian);
         }
 
         /**
@@ -343,7 +348,7 @@ namespace RSPS.src.net.packet
          */
         public long ReadLong(ByteOrder order)
         {
-            return ReadLong(ValueType.STANDARD, order);
+            return ReadLong(ValueType.Standard, order);
         }
 
         /**
@@ -354,7 +359,7 @@ namespace RSPS.src.net.packet
         public String ReadString()
         {
             byte temp;
-            StringBuilder b = new StringBuilder();
+            StringBuilder b = new();
             while ((temp = (byte)ReadByte()) != 10)
             {
                 b.Append((char)temp);
@@ -362,7 +367,7 @@ namespace RSPS.src.net.packet
             return b.ToString();
         }
 
-        public int HexToInt(byte[] data)
+        public static int HexToInt(byte[] data)
         {
             int value = 0;
             int n = 1000;
@@ -374,7 +379,7 @@ namespace RSPS.src.net.packet
 
                 if (n > 1)
                 {
-                    n = n / 1000;
+                    n /= 1000;
                 }
             }
             return value;
@@ -388,9 +393,9 @@ namespace RSPS.src.net.packet
          *            the amount to read
          * @return a buffer filled with the data
          */
-        public byte[] readBytes(int amount)
+        public byte[] ReadBytes(int amount)
         {
-            return readBytes(amount, ValueType.STANDARD);
+            return ReadBytes(amount, ValueType.Standard);
         }
 
         /**
@@ -403,7 +408,7 @@ namespace RSPS.src.net.packet
 		 *            the value type of each byte
 		 * @return a buffer filled with the data
 		 */
-        public byte[] readBytes(int amount, ValueType type)
+        public byte[] ReadBytes(int amount, ValueType type)
         {
             byte[] data = new byte[amount];
             for (int i = 0; i < amount; i++)
@@ -428,15 +433,15 @@ namespace RSPS.src.net.packet
         {
             byte[] data = new byte[amount];
             int dataPosition = 0;
-            for (int i = PayloadPosition + amount - 1; i >= PayloadPosition; i--)
+            for (int i = Pointer + amount - 1; i >= Pointer; i--)
             {
-                int value = Payload[i];
+                int value = Data[i];
                 switch (type)
                 {
-                    case ValueType.A:
+                    case ValueType.Additional:
                         value -= 128;
                         break;
-                    case ValueType.C:
+                    case ValueType.Negated:
                         value = -value;
                         break;
                     case ValueType.S:
@@ -445,7 +450,7 @@ namespace RSPS.src.net.packet
                 }
                 data[dataPosition++] = (byte)value;
             }
-            PayloadPosition += dataPosition;
+            Pointer += dataPosition;
             return data;
         }
 

@@ -3,6 +3,7 @@ using RSPS.src.net.Authentication;
 using RSPS.src.net.Codec;
 using RSPS.src.net.packet;
 using RSPS.src.net.packet.send.impl;
+using RSPS.src.Worlds;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,6 +22,16 @@ namespace RSPS.src.net.Connections
     {
 
         /// <summary>
+        /// The network endpoint
+        /// </summary>
+        public NetEndpoint? Endpoint { get; private set; }
+
+        /// <summary>
+        /// The details of the world the connection listener is for
+        /// </summary>
+        public WorldDetails? Details { get; private set; }
+
+        /// <summary>
         /// Holds the connections connected to the listener
         /// </summary>
         public readonly List<Connection> Connections = new();
@@ -35,20 +46,12 @@ namespace RSPS.src.net.Connections
         /// </summary>
         private Socket? _listenerSocket;
 
-        /// <summary>
-        /// Represents a player authentication
-        /// </summary>
-        /// <param name="player">The player</param>
-        public delegate void PlayerAuthentication(Player player);
 
-        /// <summary>
-        /// Indiciates a player authenticated
-        /// </summary>
-        public event PlayerAuthentication? PlayerAuthenticated;
-
-
-        public bool Start(NetEndpoint endpoint)
+        public bool Start(NetEndpoint endpoint, WorldDetails details)
         {
+            Details = details;
+            Endpoint = endpoint;
+
             try
             {
                 _listenerSocket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -98,15 +101,19 @@ namespace RSPS.src.net.Connections
                 Console.Error.WriteLine("Invalid connection accept callback");
                 return;
             }
+            if (Details == null)
+            {
+                Console.Error.WriteLine("No world details known in connectionlistener");
+                return;
+            }
             try
             {
                 // Get the socket that handles the client request.
                 Socket clientSocket = ((Socket)result.AsyncState);
                 clientSocket = clientSocket.EndAccept(result);
                 // Instantiate the new connection to accept
-                Connection newConnection = new(clientSocket);
+                Connection newConnection = new(clientSocket, Details);
                 newConnection.Disconnected += OnDisconnected;
-                newConnection.Authenticated += OnAuthenticated;
                 Connections.Add(newConnection);
                 // Start listening for incoming packets on the client socket
                 clientSocket.BeginReceive(newConnection.Buffer, 0, newConnection.Buffer.Length, SocketFlags.None,
@@ -129,15 +136,6 @@ namespace RSPS.src.net.Connections
         private void OnDisconnected(Connection connection)
         {
             Connections.Remove(connection);
-        }
-
-        /// <summary>
-        /// Indiciates a player authenticated through the connection
-        /// </summary>
-        /// <param name="player">The player</param>
-        private void OnAuthenticated(Player player)
-        {
-            PlayerAuthenticated?.Invoke(player);
         }
 
         /// <summary>
@@ -190,7 +188,7 @@ namespace RSPS.src.net.Connections
                 // Assign the new decoder to use
                 connection.ProtocolDecoder = nextDecoder;
                 // Reset the payload buffer
-                connection.ResetBuffer();
+                //connection.ResetBuffer();
                 // Start listening for the next incoming packet
                 connection.ClientSocket.BeginReceive(connection.Buffer, 0, connection.Buffer.Length, SocketFlags.None,
                     new AsyncCallback(ReadProtocolCallback), connection);

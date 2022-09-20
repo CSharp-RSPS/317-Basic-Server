@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.send.impl
 {
-    public class SendConfiguration : ISendPacket
+    public sealed class SendConfiguration : ISendPacket
     {
 
-        public int FrameId;
-        public bool FrameState;
+        public int FrameId { get; private set; }
+        public bool FrameState { get; private set; }
 
         public SendConfiguration(int frameId, bool frameState)
         {
@@ -18,13 +18,13 @@ namespace RSPS.src.net.packet.send.impl
             FrameState = frameState;
         }
 
-        public byte[] SendPacket(ISAACCipher encryptor)
+        public PacketWriter SendPacket(ISAACCipher encryptor)
         {
             PacketWriter writer = new PacketWriter(4);
             writer.WriteHeader(encryptor, 36);
-            writer.WriteShort(FrameId, Packet.ValueType.STANDARD, Packet.ByteOrder.LITTLE);
+            writer.WriteShort(FrameId, Packet.ValueType.Standard, Packet.ByteOrder.LittleEndian);
             writer.WriteByte(FrameState == true ? 1 : 0);
-            return writer.Payload;
+            return writer;
         }
     }
 }

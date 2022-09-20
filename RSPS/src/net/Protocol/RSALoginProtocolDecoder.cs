@@ -77,7 +77,7 @@ namespace RSPS.src.net.Authentication
 
                     int length = readPacket.ReadByte();//rsa length
                     Console.WriteLine("RSA Length: " + length);
-                    var rsaBytes = readPacket.readBytes(length);
+                    var rsaBytes = readPacket.ReadBytes(length);
                     if (BitConverter.IsLittleEndian)
                         Array.Reverse(rsaBytes);
 

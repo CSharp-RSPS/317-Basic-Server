@@ -19,12 +19,12 @@ namespace RSPS.src.net.packet
         /**
          * The current AccessType of the buffer.
          */
-        public AccessType ByteAccessType = AccessType.BYTE_ACCESS;
+        public AccessType ByteAccessType { get; private set; } = AccessType.ByteAccess;
 
         /**
          * Bit masks.
          */
-        public static readonly int[] BIT_MASKS = {
+        public static readonly int[] BitMasks = {
             0, 0x1, 0x3, 0x7, 0xf, 0x1f, 0x3f, 0x7f, 0xff, 0x1ff, 0x3ff, 0x7ff, 0xfff, 0x1fff, 0x3fff, 0x7fff, 0xffff,
             0x1ffff, 0x3ffff, 0x7ffff, 0xfffff, 0x1fffff, 0x3fffff, 0x7fffff, 0xffffff, 0x1ffffff, 0x3ffffff, 0x7ffffff,
             0xfffffff, 0x1fffffff, 0x3fffffff, 0x7fffffff, -1
@@ -56,7 +56,7 @@ namespace RSPS.src.net.packet
         public void WriteVariableHeader(ISAACCipher cipher, int value)
         {
             WriteHeader(cipher, value);
-            lengthPosition = PayloadPosition;
+            lengthPosition = Pointer;
             WriteByte(0);
         }
 
@@ -71,7 +71,7 @@ namespace RSPS.src.net.packet
         public void WriteVariableShortHeader(ISAACCipher cipher, int value)
         {
             WriteHeader(cipher, value);
-            lengthPosition = PayloadPosition;
+            lengthPosition = Pointer;
             WriteShort(0);
         }
 
@@ -82,11 +82,11 @@ namespace RSPS.src.net.packet
          */
         public void FinishVariableHeader()
         {
-            int oldPosition = PayloadPosition;
-            PayloadPosition = lengthPosition;
+            int oldPosition = Pointer;
+            Pointer = lengthPosition;
             //Payload.Seek(lengthPosition, SeekOrigin.Current);
             WriteByte((byte)(oldPosition - lengthPosition - 1));
-            PayloadPosition = oldPosition;
+            Pointer = oldPosition;
             //Payload.W((byte)(Payload.Position - lengthPosition - 1), lengthPosition, 0);
             //buffer[lengthPosition] = (byte)(Payload.Position - lengthPosition - 1);
             //buffer.put(lengthPosition, (byte)(buffer.position() - lengthPosition - 1));
@@ -99,12 +99,12 @@ namespace RSPS.src.net.packet
          */
         public void FinishVariableShortHeader()
         {
-            int oldPosition = PayloadPosition;
-            PayloadPosition = lengthPosition;
+            int oldPosition = Pointer;
+            Pointer = lengthPosition;
             short value = (short)(oldPosition - lengthPosition - 2);
             WriteByte((byte)(value >> 8));
             WriteByte((byte)(value));
-            PayloadPosition = oldPosition;
+            Pointer = oldPosition;
 
             //byte[] buffer = BufferWriter;
             //short value = (short)(BufferPosition - lengthPosition - 2);
@@ -132,17 +132,17 @@ namespace RSPS.src.net.packet
             EnsureCapacity(1);
             switch (type)
             {
-                case ValueType.A:
+                case ValueType.Additional:
                     value += 128;
                     break;
-                case ValueType.C:
+                case ValueType.Negated:
                     value = -value;
                     break;
                 case ValueType.S:
                     value = 128 - value;
                     break;
             }
-            Payload[PayloadPosition++] = ((byte)value);
+            Data[Pointer++] = ((byte)value);
             //Console.WriteLine(Payload.ReadByte());
         }
 
@@ -153,7 +153,7 @@ namespace RSPS.src.net.packet
          */
         public void WriteByte(int value)
         {
-            WriteByte(value, ValueType.STANDARD);
+            WriteByte(value, ValueType.Standard);
         }
 
         /**
@@ -167,15 +167,15 @@ namespace RSPS.src.net.packet
         {
             switch (order)
             {
-                case ByteOrder.BIG:
+                case ByteOrder.BigEndian:
                     WriteByte(value >> 8);
                     WriteByte(value, type);
                     break;
-                case ByteOrder.MIDDLE:
+                case ByteOrder.MiddleEndian:
                     throw new InvalidOperationException("Middle-endian short is impossible!");
-                case ByteOrder.INVERSE_MIDDLE:
+                case ByteOrder.InverseMiddleEndian:
                     throw new InvalidOperationException("Inverse-middle-endian short is impossible!");
-                case ByteOrder.LITTLE:
+                case ByteOrder.LittleEndian:
                     WriteByte(value, type);
                     WriteByte(value >> 8);
                     break;
@@ -189,7 +189,7 @@ namespace RSPS.src.net.packet
         */
         public void WriteShort(int value)
         {
-            WriteShort(value, ValueType.STANDARD, ByteOrder.BIG);
+            WriteShort(value, ValueType.Standard, ByteOrder.BigEndian);
         }
 
         /**
@@ -198,9 +198,9 @@ namespace RSPS.src.net.packet
         * @param value the value
         * @param type  the value type
         */
-        public void writeShort(int value, ValueType type)
+        public void WriteShort(int value, ValueType type)
         {
-            WriteShort(value, type, ByteOrder.BIG);
+            WriteShort(value, type, ByteOrder.BigEndian);
         }
 
         /**
@@ -209,9 +209,9 @@ namespace RSPS.src.net.packet
         * @param value the value
         * @param order the byte order
         */
-        public void writeShort(int value, ByteOrder order)
+        public void WriteShort(int value, ByteOrder order)
         {
-            WriteShort(value, ValueType.STANDARD, order);
+            WriteShort(value, ValueType.Standard, order);
         }
 
         /**
@@ -225,25 +225,25 @@ namespace RSPS.src.net.packet
         {
             switch (order)
             {
-                case ByteOrder.BIG:
+                case ByteOrder.BigEndian:
                     WriteByte(value >> 24);
                     WriteByte(value >> 16);
                     WriteByte(value >> 8);
                     WriteByte(value, type);
                     break;
-                case ByteOrder.MIDDLE:
+                case ByteOrder.MiddleEndian:
                     WriteByte(value >> 8);
                     WriteByte(value, type);
                     WriteByte(value >> 24);
                     WriteByte(value >> 16);
                     break;
-                case ByteOrder.INVERSE_MIDDLE:
+                case ByteOrder.InverseMiddleEndian:
                     WriteByte(value >> 16);
                     WriteByte(value >> 24);
                     WriteByte(value, type);
                     WriteByte(value >> 8);
                     break;
-                case ByteOrder.LITTLE:
+                case ByteOrder.LittleEndian:
                     WriteByte(value, type);
                     WriteByte(value >> 8);
                     WriteByte(value >> 16);
@@ -259,7 +259,7 @@ namespace RSPS.src.net.packet
          */
         public void WriteInt(int value)
         {
-            WriteInt(value, ValueType.STANDARD, ByteOrder.BIG);
+            WriteInt(value, ValueType.Standard, ByteOrder.BigEndian);
         }
 
         /**
@@ -270,7 +270,7 @@ namespace RSPS.src.net.packet
          */
         public void WriteInt(int value, ValueType type)
         {
-            WriteInt(value, type, ByteOrder.BIG);
+            WriteInt(value, type, ByteOrder.BigEndian);
         }
 
         /**
@@ -281,7 +281,7 @@ namespace RSPS.src.net.packet
          */
         public void WriteInt(int value, ByteOrder order)
         {
-            WriteInt(value, ValueType.STANDARD, order);
+            WriteInt(value, ValueType.Standard, order);
         }
 
         /**
@@ -295,7 +295,7 @@ namespace RSPS.src.net.packet
         {
             switch (order)
             {
-                case ByteOrder.BIG:
+                case ByteOrder.BigEndian:
                     WriteByte((int)(value >> 56));
                     WriteByte((int)(value >> 48));
                     WriteByte((int)(value >> 40));
@@ -305,11 +305,11 @@ namespace RSPS.src.net.packet
                     WriteByte((int)(value >> 8));
                     WriteByte((int)value, type);
                     break;
-                case ByteOrder.MIDDLE:
+                case ByteOrder.MiddleEndian:
                     throw new InvalidOperationException("Middle-endian long is not implemented!");
-                case ByteOrder.INVERSE_MIDDLE:
+                case ByteOrder.InverseMiddleEndian:
                     throw new InvalidOperationException("Inverse-middle-endian long is not implemented!");
-                case ByteOrder.LITTLE:
+                case ByteOrder.LittleEndian:
                     WriteByte((int)value, type);
                     WriteByte((int)(value >> 8));
                     WriteByte((int)(value >> 16));
@@ -329,7 +329,7 @@ namespace RSPS.src.net.packet
          */
         public void WriteLong(long value)
         {
-            WriteLong(value, ValueType.STANDARD, ByteOrder.BIG);
+            WriteLong(value, ValueType.Standard, ByteOrder.BigEndian);
         }
 
         /**
@@ -340,7 +340,7 @@ namespace RSPS.src.net.packet
          */
         public void WriteLong(long value, ValueType type)
         {
-            WriteLong(value, type, ByteOrder.BIG);
+            WriteLong(value, type, ByteOrder.BigEndian);
         }
 
         /**
@@ -351,7 +351,7 @@ namespace RSPS.src.net.packet
          */
         public void WriteLong(long value, ByteOrder order)
         {
-            WriteLong(value, ValueType.STANDARD, order);
+            WriteLong(value, ValueType.Standard, order);
         }
 
         /**
@@ -361,7 +361,7 @@ namespace RSPS.src.net.packet
          */
         public void WriteString(string stringToWrite)
         {
-            foreach (sbyte value in Encoding.ASCII.GetBytes(stringToWrite))
+            foreach (sbyte value in Encoding.ASCII.GetBytes(stringToWrite).Select(v => (sbyte)v))
             {
                 WriteByte(value);
             }
@@ -406,7 +406,7 @@ namespace RSPS.src.net.packet
          */
         public void WriteBits(int amount, int value)
         {
-            if (ByteAccessType != AccessType.BIT_ACCESS)
+            if (ByteAccessType != AccessType.BitAccess)
             {
                 throw new InvalidOperationException("Illegal access type.");
             }
@@ -417,48 +417,48 @@ namespace RSPS.src.net.packet
 
             int bytePos = bitPosition >> 3;
             int bitOffset = 8 - (bitPosition & 7);
-            bitPosition = bitPosition + amount;
+            bitPosition += amount;
 
             // Re-size the buffer if need be.
-            int requiredSpace = (int)(bytePos - PayloadPosition + 1);
+            int requiredSpace = (int)(bytePos - Pointer + 1);
             requiredSpace += (amount + 7) / 8;
-            if (Payload.Length < requiredSpace)
+            if (Data.Length < requiredSpace)
             {
                 EnsureCapacity(requiredSpace);
                 //Payload.Length = Payload.Capacity + requiredSpace;
                 //Array.Copy((byte[])Payload, 0, Payload, 0, Payload.Length);
             }
 
-            long OldPayloadPosition = PayloadPosition;
+            long OldPayloadPosition = Pointer;
 
             for (; amount > bitOffset; bitOffset = 8)
             {
-                byte tmp = (byte)Payload[bytePos];
-                tmp &= (byte)~BIT_MASKS[bitOffset];
-                tmp |= (byte)((value >> (amount - bitOffset)) & BIT_MASKS[bitOffset]);
+                byte tmp = (byte)Data[bytePos];
+                tmp &= (byte)~BitMasks[bitOffset];
+                tmp |= (byte)((value >> (amount - bitOffset)) & BitMasks[bitOffset]);
 
                 //TempPayload[bytePos] &= (byte)~BIT_MASKS[bitOffset];	 // mask out the desired area
                 //TempPayload[bytePos++] |= (byte)((value >> (amount - bitOffset)) & BIT_MASKS[bitOffset]);
 
-                Payload[bytePos++] = tmp;
+                Data[bytePos++] = tmp;
                 OldPayloadPosition++;
                 amount -= bitOffset;
             }
             if (amount == bitOffset)
             {
-                byte tmp = (byte)Payload[bytePos];
-                tmp &= (byte)~BIT_MASKS[bitOffset];
-                tmp |= (byte)((value >> (amount - bitOffset)) & BIT_MASKS[bitOffset]);
-                Payload[bytePos] = tmp;
+                byte tmp = (byte)Data[bytePos];
+                tmp &= (byte)~BitMasks[bitOffset];
+                tmp |= (byte)((value >> (amount - bitOffset)) & BitMasks[bitOffset]);
+                Data[bytePos] = tmp;
                 //TempPayload[bytePos] &= (byte)~BIT_MASKS[bitOffset];
                 //TempPayload[bytePos] |= (byte)(value & BIT_MASKS[bitOffset]);
             }
             else
             { 
-                byte tmp = (byte)Payload[bytePos];
-                tmp &= (byte)~(BIT_MASKS[amount] << (bitOffset - amount));
-                tmp |= (byte)((value & BIT_MASKS[amount]) << (bitOffset - amount));
-                Payload[bytePos] = tmp;
+                byte tmp = (byte)Data[bytePos];
+                tmp &= (byte)~(BitMasks[amount] << (bitOffset - amount));
+                tmp |= (byte)((value & BitMasks[amount]) << (bitOffset - amount));
+                Data[bytePos] = tmp;
                 //TempPayload[bytePos] &= (byte)~(BIT_MASKS[amount] << (bitOffset - amount));
                 //TempPayload[bytePos] |= (byte)((value & BIT_MASKS[amount]) << (bitOffset - amount));
             }
@@ -500,11 +500,11 @@ namespace RSPS.src.net.packet
         {
             switch (type)
             {
-                case AccessType.BIT_ACCESS:
-                    bitPosition = (int)(PayloadPosition * 8);
+                case AccessType.BitAccess:
+                    bitPosition = (int)(Pointer * 8);
                     break;
-                case AccessType.BYTE_ACCESS:
-                    PayloadPosition = (bitPosition + 7) / 8;
+                case AccessType.ByteAccess:
+                    Pointer = (bitPosition + 7) / 8;
                     break;
             }
         }

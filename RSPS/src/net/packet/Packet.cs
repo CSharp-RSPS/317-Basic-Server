@@ -6,21 +6,48 @@ namespace RSPS.src.net.packet
     public abstract class Packet
     {
 
-        public byte[] Payload { get; set; }
+        /// <summary>
+        /// The opcode of the packet when present
+        /// </summary>
+        public int Opcode { get; set; }
 
-        public int PayloadPosition = 0;
+        /// <summary>
+        /// The payload size of the packet when known
+        /// </summary>
+        public int PayloadSize { get; set; }
 
-        public int Length => Payload.Length;
+        /// <summary>
+        /// The packet data
+        /// </summary>
+        public byte[] Data { get; set; }
 
-        protected Packet(byte[] payload)
+        /// <summary>
+        /// The payload reader position
+        /// </summary>
+        public int Pointer { get; set; }
+
+        /// <summary>
+        /// Retrieves the data length of the packet
+        /// </summary>
+        public int Length => Data.Length;
+
+
+        /// <summary>
+        /// Creates a new packet wrapper
+        /// </summary>
+        /// <param name="data">The packet data</param>
+        protected Packet(byte[] data)
         {
-            Payload = payload;
+            Data = data;
+            Opcode = -1;
+            PayloadSize = -1;
         }
 
-        public Packet(int length)
-        {
-            Payload = new byte[length];
-        }
+        /// <summary>
+        /// Creates a new packet wrapper
+        /// </summary>
+        /// <param name="length">The data length</param>
+        public Packet(int length) : this(new byte[length]) { }
 
         public static PacketReader CreatePacketReader(byte[] stream)
         {
@@ -34,30 +61,30 @@ namespace RSPS.src.net.packet
 
         public enum ByteOrder
         {
-            LITTLE, BIG, MIDDLE, INVERSE_MIDDLE
+            LittleEndian, BigEndian, MiddleEndian, InverseMiddleEndian
         }
 
         public enum ValueType
         {
-            STANDARD, A, C, S
+            Standard, Additional, Negated, S
         }
 
         public enum AccessType
         {
-            BYTE_ACCESS, BIT_ACCESS
+            ByteAccess, BitAccess
         }
 
         protected void EnsureCapacity(int length)
         {
             //Console.WriteLine("Payload Position: {0}, Payload Length: {1}, Length of new byte{2}", PayloadPosition, Payload.Length, length);
             //Console.WriteLine((PayloadPosition + length) >= Payload.Length);
-            if ((PayloadPosition + length) > Payload.Length)
+            if ((Pointer + length) > Data.Length)
             {
-                byte[] oldBuffer = Payload;
-                int newLength = ((int)(Payload.Length * 1.5));
+                byte[] oldBuffer = Data;
+                int newLength = ((int)(Data.Length * 1.5));
                 //Console.WriteLine("old buffer length: " + Payload.Length);
-                Payload = new byte[newLength];
-                Array.Copy(oldBuffer, 0, Payload, 0, oldBuffer.Length);
+                Data = new byte[newLength];
+                Array.Copy(oldBuffer, 0, Data, 0, oldBuffer.Length);
                 //Console.WriteLine("new buffer length: " + Payload.Length);
             }
         }

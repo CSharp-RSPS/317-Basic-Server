@@ -41,7 +41,7 @@ namespace RSPS.src.net.Codec
             PacketWriter writer = Packet.CreatePacketWriter(17);
             writer.WriteLong(0);
             writer.WriteByte(0);
-            writer.WriteLong(new Random().NextInt64());
+            writer.WriteLong(new Random().NextInt64()); // 8 ignored bytes
             connection.Send(writer);
 
             connection.ConnectionState = ConnectionState.Authenticate;

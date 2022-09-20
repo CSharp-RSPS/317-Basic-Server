@@ -22,7 +22,7 @@ namespace RSPS.src.entity.player
             return inventory.ElementAt(slot);
         }
 
-        public Object GetItem(Object obj)
+        public Object? GetItem(Object obj)
         {
             return inventory.Find(obj);
         }

@@ -8,8 +8,18 @@ using RSPS.src.net.Connections;
 
 namespace RSPS.src.net.packet.receive
 {
+    /// <summary>
+    /// Represents a packet handler
+    /// </summary>
     public interface IReceivePacket
     {
-        public void ReceivePacket(Player player, int packetOpCode, int packetLength, PacketReader packetReader);
+
+        /// <summary>
+        /// Handles a received packet
+        /// </summary>
+        /// <param name="player">The player that sent the packet</param>
+        /// <param name="packetReader">The packet reader</param>
+        public void ReceivePacket(Player player, PacketReader packetReader);
+
     }
 }

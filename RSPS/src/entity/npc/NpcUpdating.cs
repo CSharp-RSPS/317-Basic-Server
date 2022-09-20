@@ -14,11 +14,16 @@ namespace RSPS.src.entity.npc
 
         public static void Update(World world, Player player)
         {
+			if (player.PlayerConnection.NetworkEncryptor == null)
+			{
+				player.PlayerConnection.Dispose();
+				return;
+			}
             PacketWriter outPacket = Packet.CreatePacketWriter(5000);//gets 32 players
             PacketWriter stateBlock = Packet.CreatePacketWriter(2048);
 
             outPacket.WriteVariableShortHeader(player.PlayerConnection.NetworkEncryptor, 65);
-            outPacket.SetAccessType(Packet.AccessType.BIT_ACCESS);
+            outPacket.SetAccessType(Packet.AccessType.BitAccess);
 
             // Update the NPCs in the local list.
 			outPacket.WriteBits(8, player.LocalNpcs.Count);
@@ -61,20 +66,20 @@ namespace RSPS.src.entity.npc
 			}
 
 			// Append the update block to the packet if need be.
-			if (stateBlock.PayloadPosition > 0)
+			if (stateBlock.Pointer > 0)
 			{
 				outPacket.WriteBits(14, 16383);
-				outPacket.SetAccessType(Packet.AccessType.BYTE_ACCESS);
-				outPacket.WriteBytes(stateBlock.Payload, stateBlock.PayloadPosition);
+				outPacket.SetAccessType(Packet.AccessType.ByteAccess);
+				outPacket.WriteBytes(stateBlock.Data, stateBlock.Pointer);
 			}
 			else
 			{
-				outPacket.SetAccessType(Packet.AccessType.BYTE_ACCESS);
+				outPacket.SetAccessType(Packet.AccessType.ByteAccess);
 			}
 
 			outPacket.FinishVariableShortHeader();
 
-			player.PlayerConnection.Send(outPacket.Payload, outPacket.PayloadPosition);
+			player.PlayerConnection.Send(outPacket.Data, outPacket.Pointer);
 
 		}
 
@@ -148,7 +153,7 @@ namespace RSPS.src.entity.npc
 			if (mask >= 0x100)
 			{
 				mask |= 0x40;
-				block.writeShort(mask, Packet.ByteOrder.LITTLE);
+				block.WriteShort(mask, Packet.ByteOrder.LittleEndian);
 			}
 			else
 			{

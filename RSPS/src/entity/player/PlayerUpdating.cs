@@ -26,13 +26,18 @@ namespace RSPS.src.entity.player
 
         public static void Update(World world, Player player)
         {
+            if (player.PlayerConnection.NetworkEncryptor == null)
+            {
+                player.PlayerConnection.Dispose();
+                return;
+            }
             try
             {
                 PacketWriter outPacket = Packet.CreatePacketWriter(2048);//gets 32 players
                 PacketWriter stateBlock = Packet.CreatePacketWriter(1024);
 
                 outPacket.WriteVariableShortHeader(player.PlayerConnection.NetworkEncryptor, 81);
-                outPacket.SetAccessType(Packet.AccessType.BIT_ACCESS);
+                outPacket.SetAccessType(Packet.AccessType.BitAccess);
                 UpdateLocalPlayerMovement(player, outPacket);
                 if (player.UpdateRequired)
                 {
@@ -116,15 +121,15 @@ namespace RSPS.src.entity.player
                 }
 
                 //// Append the attributes block to the main packet.
-                if (stateBlock.PayloadPosition > 0)
+                if (stateBlock.Pointer > 0)
                 {
                     outPacket.WriteBits(11, 2047);
-                    outPacket.SetAccessType(Packet.AccessType.BYTE_ACCESS);
-                    outPacket.WriteBytes(stateBlock.Payload, stateBlock.PayloadPosition);
+                    outPacket.SetAccessType(Packet.AccessType.ByteAccess);
+                    outPacket.WriteBytes(stateBlock.Data, stateBlock.Pointer);
                 }
                 else
                 {
-                    outPacket.SetAccessType(Packet.AccessType.BYTE_ACCESS);
+                    outPacket.SetAccessType(Packet.AccessType.ByteAccess);
                     //outPacket.FinishBitAccess();
                 }
 
@@ -133,7 +138,7 @@ namespace RSPS.src.entity.player
                 // Finish the packet and send it.
                 outPacket.FinishVariableShortHeader();
 
-                player.PlayerConnection.Send(outPacket.Payload, outPacket.PayloadPosition);
+                player.PlayerConnection.Send(outPacket.Data, outPacket.Pointer);
             }
             catch (Exception e)
             {
@@ -204,7 +209,7 @@ namespace RSPS.src.entity.player
             if (mask >= 0x100)
             {
                 mask |= 0x40;
-                block.writeShort(mask, Packet.ByteOrder.LITTLE);
+                block.WriteShort(mask, Packet.ByteOrder.LittleEndian);
             }
             else
             {
@@ -241,9 +246,9 @@ namespace RSPS.src.entity.player
          */
         private static void AppendPublicChat(Player player, PacketWriter writer)
         {
-            writer.writeShort(((player.ChatColor & 0xff) << 8) + (player.ChatEffects & 0xff), Packet.ByteOrder.LITTLE);
+            writer.WriteShort(((player.ChatColor & 0xff) << 8) + (player.ChatEffects & 0xff), Packet.ByteOrder.LittleEndian);
             writer.WriteByte(1);//rights
-            writer.WriteByte(player.ChatText.Length, Packet.ValueType.C);
+            writer.WriteByte(player.ChatText.Length, Packet.ValueType.Negated);
             writer.WriteBytesReverse(player.ChatText);
         }
 
@@ -442,7 +447,7 @@ namespace RSPS.src.entity.player
                                 //45 bytes total?
 
             // Append the block length and the block to the packet.
-            outPacket.WriteByte((int)block.PayloadPosition, Packet.ValueType.C);
+            outPacket.WriteByte((int)block.Pointer, Packet.ValueType.Negated);
             //Console.WriteLine("Block Position: " + block.Payload.Position);
             //Console.WriteLine("Block Length: " + block.Payload.Length);
             //Console.WriteLine("Buffer position before appearance: " + outPacket.Payload.Position);
@@ -451,7 +456,7 @@ namespace RSPS.src.entity.player
             //var arr1 = new byte[block.PayloadPosition];
             //Array.Copy(block.Payload.ToArray(), arr1, block.PayloadPosition);
 
-            outPacket.WriteBytes(block.Payload, block.PayloadPosition);
+            outPacket.WriteBytes(block.Data, block.Pointer);
             //Console.WriteLine("Buffer position after appearance: " + outPacket.Payload.Position);
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.send.impl
 {
-    internal class SendRunEnergy : ISendPacket
+    public sealed class SendRunEnergy : ISendPacket
     {
 
         private int energy;
@@ -16,12 +16,12 @@ namespace RSPS.src.net.packet.send.impl
             this.energy = energy;
         }
 
-        public byte[] SendPacket(ISAACCipher encryptor)
+        public PacketWriter SendPacket(ISAACCipher encryptor)
         {
             PacketWriter packetWriter = Packet.CreatePacketWriter(2);
             packetWriter.WriteHeader(encryptor, 110);//221
             packetWriter.WriteByte((int)Math.Floor(energy * 0.01));//Server stored energy is 100x greater than clients
-            return packetWriter.Payload;
+            return packetWriter;
         }
     }
 }

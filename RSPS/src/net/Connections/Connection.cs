@@ -1,10 +1,13 @@
 ﻿using RSPS.src.entity.player;
+using RSPS.src.net.Authentication;
 using RSPS.src.net.Codec;
 using RSPS.src.net.packet;
+using RSPS.src.Worlds;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Net.Security;
 using System.Net.Sockets;
 using System.Text;
@@ -27,6 +30,11 @@ namespace RSPS.src.net.Connections
         public byte[] Buffer { get; private set; }
 
         /// <summary>
+        /// The details of the world the connection is connected to
+        /// </summary>
+        public WorldDetails WorldDetails { get; private set; }
+
+        /// <summary>
         /// The current state of the connection
         /// </summary>
         public ConnectionState ConnectionState { get; set; }
@@ -36,7 +44,11 @@ namespace RSPS.src.net.Connections
         /// </summary>
         public Socket ClientSocket { get; private set; }
 
-        
+        /// <summary>
+        /// The IP address of the connection
+        /// </summary>
+        public string IpAddress { get; private set; }
+
         /// <summary>
         /// The ISAAC encryptor
         /// </summary>
@@ -62,27 +74,32 @@ namespace RSPS.src.net.Connections
         /// </summary>
         public event Disconnect? Disconnected;
 
-        /// <summary>
-        /// Represents authentication of a player through the connection
-        /// </summary>
-        public delegate void Authentication(Player player);
-
-        /// <summary>
-        /// Indicates a player authenticated through this connection
-        /// </summary>
-        public event Authentication? Authenticated;
-
 
         /// <summary>
         /// Creates a new connection
         /// </summary>
         /// <param name="socket">The socket</param>
-        public Connection(Socket socket)
+        public Connection(Socket socket, WorldDetails worldDetails)
         {
             Buffer = new byte[MaxBufferSize];
             ConnectionState = ConnectionState.ConnectionRequest;
+            WorldDetails = worldDetails;
             ClientSocket = socket;
+            IpAddress = ResolveIpAddress();
             ProtocolDecoder = new ConnectionRequestDecoder();
+        }
+
+        /// <summary>
+        /// Resolves the IP address of the client
+        /// </summary>
+        /// <returns>The IP address</returns>
+        private string ResolveIpAddress()
+        {
+            if (ClientSocket.RemoteEndPoint == null)
+            {
+                return string.Empty;
+            }
+            return ((IPEndPoint)ClientSocket.RemoteEndPoint).Address.ToString();
         }
 
         /// <summary>
@@ -101,7 +118,7 @@ namespace RSPS.src.net.Connections
         /// <param name="writer">The packet</param>
         public Connection Send(PacketWriter writer)
         {
-            return Send(writer.Payload);
+            return Send(writer.Data);
         }
 
         /// <summary>
@@ -140,18 +157,6 @@ namespace RSPS.src.net.Connections
                 Debug.WriteLine(ex);
                 Dispose();
             }
-            return this;
-        }
-
-        /// <summary>
-        /// Indiciates a player authenticated through this connection
-        /// </summary>
-        /// <param name="player">the player</param>
-        /// <returns>The connection</returns>
-        public Connection PlayerAuthenticated(Player player)
-        {
-            ConnectionState = ConnectionState.Authenticated;
-            Authenticated?.Invoke(player);
             return this;
         }
 

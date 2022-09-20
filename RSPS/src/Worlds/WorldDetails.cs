@@ -27,6 +27,11 @@ namespace RSPS.src.Worlds
         /// </summary>
         public bool Debugging { get; set; }
 
+        /// <summary>
+        /// The max. amount of players allowed in the world simultaneously
+        /// </summary>
+        public int MaxPlayers { get; set; }
+
 
         /// <summary>
         /// Creates new world details
@@ -34,11 +39,12 @@ namespace RSPS.src.Worlds
         /// <param name="id">The world identifier</param>
         /// <param name="name">The name of the world</param>
         /// <param name="debugging">Whether deep debugging is enabled for the world</param>
-        public WorldDetails(int id, string name, bool debugging = false)
+        public WorldDetails(int id, string name, bool debugging = false, int maxPlayers = 10000)
         {
             Id = id;
             Name = name;
             Debugging = debugging;
+            MaxPlayers = maxPlayers;
         }
 
         public override string ToString()

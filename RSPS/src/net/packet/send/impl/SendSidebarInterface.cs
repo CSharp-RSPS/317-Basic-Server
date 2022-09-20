@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.send.impl
 {
-    internal class SendSidebarInterface : ISendPacket
+    public sealed class SendSidebarInterface : ISendPacket
     {
 
         private readonly int InterfaceID;
@@ -18,13 +18,13 @@ namespace RSPS.src.net.packet.send.impl
             Slot = slot;
         }
 
-        public byte[] SendPacket(ISAACCipher encryptor)
+        public PacketWriter SendPacket(ISAACCipher encryptor)
         {
             PacketWriter packetWriter = Packet.CreatePacketWriter(4);
             packetWriter.WriteHeader(encryptor, 71);
             packetWriter.WriteShort(InterfaceID);
-            packetWriter.WriteByte(Slot, Packet.ValueType.A);
-            return packetWriter.Payload;
+            packetWriter.WriteByte(Slot, Packet.ValueType.Additional);
+            return packetWriter;
         }
     }
 }

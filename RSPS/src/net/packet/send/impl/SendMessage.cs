@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.send.impl
 {
-    public class SendMessage : ISendPacket
+    public sealed class SendMessage : ISendPacket
     {
 
         private string Message;
@@ -16,7 +16,7 @@ namespace RSPS.src.net.packet.send.impl
             Message = message;
         }
 
-        public byte[] SendPacket(ISAACCipher encryptor)
+        public PacketWriter SendPacket(ISAACCipher encryptor)
         {
             //Console.WriteLine("preparing to send message: {0}", Message.Length + 3);
             PacketWriter packetWriter = Packet.CreatePacketWriter(Message.Length + 3);
@@ -29,7 +29,7 @@ namespace RSPS.src.net.packet.send.impl
             //{
             //    Console.WriteLine(byte1);
             //}
-            return packetWriter.Payload;
+            return packetWriter;
         }
     }
 }

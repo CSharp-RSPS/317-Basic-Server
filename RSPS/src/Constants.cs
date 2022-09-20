@@ -19,6 +19,11 @@ namespace RSPS.src
         public static readonly int WorldCycleMs = 600;
 
         /// <summary>
+        /// The max. amount of simultaneous connection allowed to the game
+        /// </summary>
+        public static readonly int MaxSimultaneousConnections = 99999;
+
+        /// <summary>
         /// The default starting position for a player
         /// </summary>
         public static readonly Position PlayerStartingPosition = new(3222, 3222);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.send.impl
 {
-    public class SendMapRegion : ISendPacket
+    public sealed class SendMapRegion : ISendPacket
     {
 
         private readonly Player Player;
@@ -17,15 +17,15 @@ namespace RSPS.src.net.packet.send.impl
             this.Player = player;
         }
 
-        public byte[] SendPacket(ISAACCipher encryptor)
+        public PacketWriter SendPacket(ISAACCipher encryptor)
         {
             Player.CurrentRegion.SetNewPosition(Player.Position);
             Player.NeedsPlacement = true;
             PacketWriter packetWriter = Packet.CreatePacketWriter(5);
             packetWriter.WriteHeader(encryptor, 73);
-            packetWriter.writeShort(Player.Position.GetRegionX() + 6, Packet.ValueType.A);
+            packetWriter.WriteShort(Player.Position.GetRegionX() + 6, Packet.ValueType.Additional);
             packetWriter.WriteShort(Player.Position.GetRegionY() + 6);
-            return packetWriter.Payload;
+            return packetWriter;
         }
     }
 }
