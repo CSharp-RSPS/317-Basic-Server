@@ -78,7 +78,7 @@ namespace RSPS.src.entity.player
             Position = new Position(3222 + new Random().Next(-1, 4), 3222 + new Random().Next(0, 6));
             PlayerConnection = playerConnection;
             MovementHandler = new MovementHandler(this);
-            Scheduler.AddJob(new PlayerWalkingJob("Player Walking Job", this, TimeSpan.FromMilliseconds(600)));
+            //Scheduler.AddJob(new PlayerWalkingJob("Player Walking Job", this, TimeSpan.FromMilliseconds(600)));
         }
 
         public Player RequestUpdate()
