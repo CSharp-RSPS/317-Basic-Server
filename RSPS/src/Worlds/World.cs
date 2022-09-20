@@ -135,7 +135,7 @@ namespace RSPS.src.Worlds
             }
             Console.WriteLine("Starting world {0}", Details.Id);
 
-            Scheduler.StartTask();
+            Scheduler.Start();
             //TaskManager.StartTaskManager();
             //ReadItemPrices.ReadPrices();
 
