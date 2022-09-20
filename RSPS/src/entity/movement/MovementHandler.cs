@@ -56,7 +56,6 @@ namespace RSPS.src.entity.movement
             {
                 Player.Position.MovePosition(Misc.DIRECTION_DELTA_X[walkPoint.Direction], Misc.DIRECTION_DELTA_Y[walkPoint.Direction]);
                 Player.PrimaryDirection = walkPoint.Direction;
-                //Console.WriteLine("Walking!");
             }
 
             if (runPoint != null && runPoint.Direction != -1)

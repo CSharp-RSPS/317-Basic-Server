@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.schedule.impl
 {
-    public class PlayerWalkingTask : Schedule
+    public class PlayerWalkingJob : Job
     {
 
         private Player player;
 
-        public PlayerWalkingTask(string name, Player player,TimeSpan delay) : base(name, delay)
+        public PlayerWalkingJob(string name, Player player,TimeSpan delay) : base(name, delay)
         {
             this.player = player;
         }
 
-        public override void Execute()
+        protected override void Perform()
         {
             Console.WriteLine("Player is walking!");
             player.MovementHandler.ProcessMovements();

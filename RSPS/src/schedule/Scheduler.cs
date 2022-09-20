@@ -1,44 +1,44 @@
-﻿using RSPS.src.schedule.impl;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace RSPS.src.schedule
+﻿namespace RSPS.src.schedule
 {
-    public class Scheduler
+    public static class Scheduler
     {
 
-        private static readonly ConcurrentDictionary<Schedule, SchedulePriority> dictonary = new ConcurrentDictionary<Schedule, SchedulePriority>();
-        private static readonly ParallelOptions ParallelOptions = new() { MaxDegreeOfParallelism = 4 };
+        private static readonly List<Job> JobList = new List<Job>();
+        private static readonly ParallelOptions ParallelOptions = new() { MaxDegreeOfParallelism = 2 };
 
-        public static void AddSchedule(SchedulePriority priority, Schedule schedule)
+        public static void AddJob(Job job)
         {
-            dictonary.TryAdd(schedule, priority);
+            JobList.Add(job);
         }
 
-        public static void StartTask()
+        public static void Start()
         {
-/*            for (int i = 0; i < 10000000; i++)
-            {
-                AddSchedule(SchedulePriority.HIGH, new SimpleTask("Simple Task " + i, TimeSpan.FromMilliseconds(600)));
-            }*/
-            Task.Run(() => { Pulse(); });
+            //AddSchedule(new SimpleTask("Simple Task", TimeSpan.FromMilliseconds(100)));
+            Task.Run(() => { StartPerforming(); });
         }
 
-        public static void Pulse()
+        private static void StartPerforming()
         {
-            while (true)
+            Task.Run(() =>
             {
-                Parallel.ForEach(dictonary.Keys, ParallelOptions, (Schedule schedule) =>
+                Thread.BeginThreadAffinity();
+                while (true)
                 {
-                    schedule.Pulse();
-                });
+                    Parallel.ForEach(JobList, ParallelOptions, (Job? job) =>
+                    {
+                        if (job == null) {
+                            return; 
+                        }
 
-                Thread.Sleep(25);
-            }
+                        bool success = job.Execute();
+                        if (!success)
+                        {
+                            JobList.Remove(job);
+                        }
+                    });
+                    Thread.Sleep(50);
+                }
+            });
         }
     
     }

@@ -6,22 +6,27 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.schedule.impl
 {
-    public class SimpleTask : Schedule
+    public class SimpleJob : Job
     {
 
         int x = 0;
 
-        public SimpleTask(string name, TimeSpan delay) : base(name, delay)
+        public SimpleJob(string name, TimeSpan delay) : base(name, delay)
         {
         }
 
-        public override void Execute()
+        protected override void Perform()
         {
             for (int i = 100000; i < x; i++)
             {
                 int prime = (i / 2) % 2;
             }
-            x = 0;
+            x ++;
+            if (x >= 10)
+            {
+                Halt();
+                Console.WriteLine("Removing Job: {0}", Name);
+            }
         }
     }
 }
