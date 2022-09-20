@@ -42,33 +42,37 @@ namespace RSPS.src.net.packet
 
                 case 226://Write Background Texture?
                     //packetReader.readBytes(packetLength);
-                    return;
+                    break;
 
                 case 77://Check for game usages?: lengths 12 or 14
                     //packetReader.readBytes(packetLength);
-                    return;
+                    break;
 
                 case 86://camera
                     //packetReader.readBytes(packetLength);
-                    return;
+                    break;
 
                 case 202://client tells us the player is idle! - nothing to read
-                    return;
+                    break;
 
                 case 36://validates walking? anti-cheat sends 4 bytes
                     //packetReader.ReadInt();
-                    return;
+                    break;
 
                 case 121://client finished loading - nothing to read
-                    return;
+                    break;
 
                 case 130://interface was closed
-                    return;
+                    break;
             }
             if (!ReceivablePackets.ContainsKey(packetOpcode)) {
                 Console.Error.WriteLine("Unhandled packet {0} (Length: {1})", packetOpcode, packetLength);
                 packetReader.readBytes(packetLength);
                 return;
+            }
+            if (packetOpcode == 98 || packetOpcode == 164 || packetOpcode == 248)
+            {
+                Console.WriteLine("movement");
             }
             ReceivablePackets[packetOpcode].ReceivePacket(player, packetOpcode, packetLength, packetReader);
         }

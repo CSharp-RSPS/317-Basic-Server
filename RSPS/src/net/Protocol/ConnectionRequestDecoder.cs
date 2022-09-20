@@ -11,7 +11,7 @@ namespace RSPS.src.net.Codec
     /// <summary>
     /// Represents a connection request decoder based on the RS2 protocol
     /// </summary>
-    public sealed class ConnectionRequestProtocolDecoder : IProtocolDecoder
+    public sealed class ConnectionRequestDecoder : IProtocolDecoder
     {
 
 
@@ -36,16 +36,17 @@ namespace RSPS.src.net.Codec
                 default: //Unknown
                     return null;
             }
-            int nameHash = reader.ReadByte() & 0xff; // used for login servers, not sure how it works
+            int nameHash = reader.ReadByte() & 0xff; // nameHash: used for login servers, not sure how it works
 
             PacketWriter writer = Packet.CreatePacketWriter(17);
             writer.WriteLong(0);
             writer.WriteByte(0);
             writer.WriteLong(new Random().NextInt64());
-            connection.Send(writer.Payload);
+            connection.Send(writer);
 
             connection.ConnectionState = ConnectionState.Authenticate;
-            return new LoginProtocolDecoder();
+
+            return new LoginDecoder();
         }
 
 

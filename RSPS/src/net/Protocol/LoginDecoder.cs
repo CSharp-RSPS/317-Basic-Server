@@ -13,7 +13,10 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.Codec
 {
-    public class LoginProtocolDecoder : IProtocolDecoder
+    /// <summary>
+    /// Represents a login request decoder based on the RS2 protocol
+    /// </summary>
+    public sealed class LoginDecoder : IProtocolDecoder
     {
 
 
@@ -26,9 +29,16 @@ namespace RSPS.src.net.Codec
                 PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.Unknown));
                 return null;
             }
-            int blockLength = reader.ReadByte();//loginSize = 76
+            int loginBlockSize = reader.ReadByte(); //loginSize = 76
+            int encryptedBlockSize = loginBlockSize - (0x24 + 0x1 + 0x1 + 0x2);
 
-            if (reader.Payload.Length/*connection.Buffer.Length*/ < blockLength)
+            if (encryptedBlockSize < 1)
+            {
+                Console.WriteLine("Invalid encrypted login block size");
+                PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.Unknown));
+                return null;
+            }
+            if (reader.Payload.Length/*connection.Buffer.Length*/ < loginBlockSize)
             {
                 Console.WriteLine("State buffer length is less than block length");
                 PacketHandler.SendPacket(connection, new SendLoginResponse(AuthenticationResponse.Unknown));
@@ -62,8 +72,12 @@ namespace RSPS.src.net.Codec
             long clientHalf = reader.ReadLong(); // Client session key
             long serverHalf = reader.ReadLong(); // Server session key
 
-            int[] isaacSeed = { (int)(clientHalf >> 32), (int)clientHalf, (int)(serverHalf >> 32), (int)serverHalf };
-
+            int[] isaacSeed = {
+                (int)(clientHalf >> 32),
+                (int)clientHalf,
+                (int)(serverHalf >> 32),
+                (int)serverHalf
+            };
             ISAACCipher decryptor = new(isaacSeed);
 
             for (int i = 0; i < 4; i++)
@@ -109,13 +123,13 @@ namespace RSPS.src.net.Codec
             connection.NetworkDecryptor = decryptor;
             connection.NetworkEncryptor = encryptor;
 
-            PacketHandler.SendPacket(connection, new SendLoginResponse(connectionType == 16 
-                ? AuthenticationResponse.Successful 
+            PacketHandler.SendPacket(connection, new SendLoginResponse(connectionType == 16
+                ? AuthenticationResponse.Successful
                 : AuthenticationResponse.SuccessfulReconnect));
 
             connection.PlayerAuthenticated(player);
 
-            return new ProtocolDecoder(player);
+            return new PacketDecoder(player);
         }
 
     }

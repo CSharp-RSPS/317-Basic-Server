@@ -3,13 +3,18 @@ using RSPS.src.net.Connections;
 using RSPS.src.net.packet;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RSPS.src.net.Codec
 {
-    public sealed class ProtocolDecoder : IProtocolDecoder
+    /// <summary>
+    /// Represents a packet decoder based on the RS2 protocol
+    /// </summary>
+    public sealed class PacketDecoder : IProtocolDecoder
     {
 
         /// <summary>
@@ -22,7 +27,7 @@ namespace RSPS.src.net.Codec
         /// Creates a new protocol decoder
         /// </summary>
         /// <param name="player">The player we're decoding packets for</param>
-        public ProtocolDecoder(Player player)
+        public PacketDecoder(Player player)
         {
             _player = player;
         }
@@ -37,21 +42,28 @@ namespace RSPS.src.net.Codec
             while (reader.PayloadPosition < reader.Payload.Length)
             { // Handle the received packet
               // Handle a packet for an existing connection
-                int packetOpcode = reader.ReadByte() & 0xFF;
-                packetOpcode = packetOpcode - connection.NetworkDecryptor.getNextValue() & 0xFF;// -- cryption
-                int packetLength = PACKET_LENGTHS[packetOpcode];
+                int packetOpCode = reader.ReadByte() & 0xFF;
+                packetOpCode = packetOpCode - connection.NetworkDecryptor.getNextValue() & 0xFF;// -- cryption
+                                                                                                //Console.WriteLine("packet op code: " + packetOpCode);
+                int packetLength = PACKET_LENGTHS[packetOpCode];
 
-                if (packetLength == -1) //variable length packet
+                if (packetLength == -1)//variable length packet
                 {
                     if (reader.PayloadPosition >= reader.Payload.Length)
                     {
                         break;
                     }
-                    packetLength = reader.ReadByte() & 0xFF;
+                    packetLength = reader.ReadByte();
+                    packetLength = packetLength & 0xFF;//new
                 }
                 if (reader.Payload.Length >= packetLength)
                 {
-                    PacketHandler.HandlePacket(_player, packetOpcode, packetLength, reader);
+                    PacketHandler.HandlePacket(_player, packetOpCode, packetLength, reader);
+                    /*
+                    if (reader.PayloadPosition < reader.Payload.Length)
+                    {
+                        reader.readBytes(reader.ReadableBytes);
+                    }*/
                 }
             }
             return connection.ProtocolDecoder;

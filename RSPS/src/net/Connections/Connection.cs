@@ -1,6 +1,5 @@
 ﻿using RSPS.src.entity.player;
 using RSPS.src.net.Codec;
-using RSPS.src.schedule;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -82,7 +81,7 @@ namespace RSPS.src.net.Connections
             Buffer = new byte[MaxBufferSize];
             ConnectionState = ConnectionState.ConnectionRequest;
             ClientSocket = socket;
-            ProtocolDecoder = new ConnectionRequestProtocolDecoder();
+            ProtocolDecoder = new ConnectionRequestDecoder();
         }
 
         /// <summary>
@@ -93,6 +92,15 @@ namespace RSPS.src.net.Connections
         {
             Buffer = new byte[MaxBufferSize];
             return this;
+        }
+
+        /// <summary>
+        /// Sends a packet through the socket
+        /// </summary>
+        /// <param name="writer">The packet</param>
+        public Connection Send(PacketWriter writer)
+        {
+            return Send(writer.Payload);
         }
 
         /// <summary>

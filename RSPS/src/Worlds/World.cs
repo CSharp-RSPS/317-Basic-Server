@@ -201,7 +201,12 @@ namespace RSPS.src.Worlds
                     {
                         Player? player = Players.Disconnected[i];
 
-                        if (player != null && !PlayerManager.Logout(player))
+                        if (player == null)
+                        {
+                            Players.Disconnected.RemoveAt(i);
+                            continue;
+                        }
+                        if (!PlayerManager.Logout(player))
                         {
                             continue;
                         }
