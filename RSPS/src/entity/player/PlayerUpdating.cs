@@ -48,9 +48,8 @@ namespace RSPS.src.entity.player
                 outPacket.WriteBits(8, player.LocalPlayers.Count);
 
                 // ====== Processes all player changes in the region ========
-                for (int i = 0; i < player.LocalPlayers.Count; i++)
+                foreach (Player other in player.LocalPlayers.ToArray())
                 {
-                    Player other = player.LocalPlayers[i];
                     if (other.Position.isViewableFrom(player.Position) && other.PlayerConnection.ConnectionState == ConnectionState.Authenticated && !other.NeedsPlacement)
                     {
                         UpdateOtherPlayerMovement(other, outPacket);
@@ -67,24 +66,6 @@ namespace RSPS.src.entity.player
                         player.LocalPlayers.Remove(other);
                     }
                 }
-                //foreach (Player other in player.LocalPlayers.ToArray())
-                //{
-                //    if (other.Position.isViewableFrom(player.Position) && other.PlayerConnection.connectionState == 2 && !other.NeedsPlacement)
-                //    {
-                //        UpdateOtherPlayerMovement(other, outPacket);
-
-                //        if (other.UpdateRequired)
-                //        {
-                //            UpdateState(other, stateBlock, false, false);
-                //        }
-                //    }
-                //    else
-                //    {
-                //        outPacket.WriteBit(true);
-                //        outPacket.WriteBits(2, 3);
-                //        player.LocalPlayers.Remove(other);
-                //    }
-                //}
                 int addedLocalPlayers = 0;
 
                 //Update the local players list.
