@@ -107,7 +107,7 @@ namespace RSPS.src.entity.player
                 {
                     outPacket.WriteBits(11, 2047);
                     outPacket.SetAccessType(Packet.AccessType.ByteAccess);
-                    outPacket.WriteBytes(stateBlock.Data, stateBlock.Pointer);
+                    outPacket.WriteBytes(stateBlock.Buffer, stateBlock.Pointer);
                 }
                 else
                 {
@@ -120,7 +120,7 @@ namespace RSPS.src.entity.player
                 // Finish the packet and send it.
                 outPacket.FinishVariableShortHeader();
 
-                player.PlayerConnection.Send(outPacket.Data, outPacket.Pointer);
+                player.PlayerConnection.Send(outPacket.Buffer, outPacket.Pointer);
             }
             catch (Exception e)
             {
@@ -438,7 +438,7 @@ namespace RSPS.src.entity.player
             //var arr1 = new byte[block.PayloadPosition];
             //Array.Copy(block.Payload.ToArray(), arr1, block.PayloadPosition);
 
-            outPacket.WriteBytes(block.Data, block.Pointer);
+            outPacket.WriteBytes(block.Buffer, block.Pointer);
             //Console.WriteLine("Buffer position after appearance: " + outPacket.Payload.Position);
         }
 

@@ -22,7 +22,7 @@ namespace RSPS.src.net.packet.receive.impl
 
             HandleWalking(player, packetReader, packetReader.PayloadSize - 14);
 
-            packetReader.ReadBytes(14); //client sends additional info we need to get rid of
+            //packetReader.ReadBytes(14); //client sends additional info we need to get rid of
         }
 
     }

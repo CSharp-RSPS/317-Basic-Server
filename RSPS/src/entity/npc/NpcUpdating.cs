@@ -70,7 +70,7 @@ namespace RSPS.src.entity.npc
 			{
 				outPacket.WriteBits(14, 16383);
 				outPacket.SetAccessType(Packet.AccessType.ByteAccess);
-				outPacket.WriteBytes(stateBlock.Data, stateBlock.Pointer);
+				outPacket.WriteBytes(stateBlock.Buffer, stateBlock.Pointer);
 			}
 			else
 			{
@@ -79,7 +79,7 @@ namespace RSPS.src.entity.npc
 
 			outPacket.FinishVariableShortHeader();
 
-			player.PlayerConnection.Send(outPacket.Data, outPacket.Pointer);
+			player.PlayerConnection.Send(outPacket.Buffer, outPacket.Pointer);
 
 		}
 

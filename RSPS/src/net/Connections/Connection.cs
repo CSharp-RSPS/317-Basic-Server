@@ -118,7 +118,7 @@ namespace RSPS.src.net.Connections
         /// <param name="writer">The packet</param>
         public Connection Send(PacketWriter writer)
         {
-            return Send(writer.Data);
+            return Send(writer.Buffer);
         }
 
         /// <summary>

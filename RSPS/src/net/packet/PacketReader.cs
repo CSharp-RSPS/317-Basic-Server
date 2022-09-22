@@ -13,6 +13,8 @@ namespace RSPS.src.net.packet
     public sealed class PacketReader : Packet
     {
 
+        public int ReadableBytes => Buffer.Length - Pointer;
+
 
         public PacketReader(byte[] stream) : base(stream)
         {
@@ -27,11 +29,11 @@ namespace RSPS.src.net.packet
         /// <returns>The value</returns>
         public int ReadByte(bool signed, ValueType valueType)
         {
-            if (Pointer >= Data.Length)
+            if (Pointer > Buffer.Length)
             {
                 throw new IndexOutOfRangeException(nameof(Pointer));
             }
-            int value = Data[Pointer++];
+            int value = Buffer[Pointer++];
 
             switch (valueType)
             {
@@ -490,7 +492,7 @@ namespace RSPS.src.net.packet
 
             for (int i = Pointer + amount - 1; i >= Pointer; i--)
             {
-                int value = Data[i];
+                int value = Buffer[i];
 
                 switch (type)
                 {

@@ -166,14 +166,42 @@ namespace RSPS.src.net.Connections
                     Console.Error.WriteLine("Read {0} bytes but buffer only supports {1}", bytesRead, connection.Buffer.Length);
                     return;
                 }
-                byte[]? buffer = null;
+                // Write the received bytes to a new buffer
+                byte[] packetBuffer = new byte[bytesRead];
+                Array.Copy(connection.Buffer, 0, packetBuffer, 0, bytesRead);
+                // Resets the connection buffer for the next packet
+                connection.ResetBuffer();
+                // Wrap the buffer into a packet reader and start handling the received data
+                PacketReader reader = new(packetBuffer);
 
-                using (MemoryStream ms = new(bytesRead))
-                { // Write the received data to a byte buffer through a memory stream
-                    ms.Write(connection.Buffer, 0, bytesRead);
-                    buffer = ms.ToArray();
+                while (reader.Pointer < reader.Length)
+                {
+                    if (connection.ConnectionState == ConnectionState.Disconnected)
+                    {
+                        break;
+                    }
+                    if (connection.ConnectionState == ConnectionState.ConnectionRequest)
+                    {
+                        new ConnectionRequestDecoder().Decode(connection, reader);
+                        break;
+                    }
+                    if (connection.ConnectionState == ConnectionState.Authenticate)
+                    {
+                        connection.ProtocolDecoder = new LoginDecoder().Decode(connection, reader);
+                        break;
+                    }
+                    if (connection.ConnectionState == ConnectionState.Authenticated)
+                    {
+                        if (connection.ProtocolDecoder.Decode(connection, reader) == null)
+                        {
+                            Console.Error.WriteLine("Decoding failed using decoder: {0}", connection.ProtocolDecoder.GetType().Name);
+                            connection.Dispose();
+                            return;
+                        }
+                    }
                 }
-                IProtocolDecoder? nextDecoder = connection.ProtocolDecoder.Decode(connection, new(buffer));
+                /*
+                IProtocolDecoder? nextDecoder = connection.ProtocolDecoder.Decode(connection, packetReader);
 
                 if (nextDecoder == null)
                 {
@@ -182,7 +210,7 @@ namespace RSPS.src.net.Connections
                     return;
                 }
                 // Set the next protocol decoder
-                connection.ProtocolDecoder = nextDecoder;
+                connection.ProtocolDecoder = nextDecoder;*/
                 // Reset the data buffer
                 connection.ResetBuffer();
                 // Start listening for the next incoming packet

@@ -9,13 +9,15 @@ namespace RSPS.src.net.packet.send.impl
     public sealed class SendSidebarInterface : ISendPacket
     {
 
-        private readonly int InterfaceID;
-        private readonly int Slot;
+        public int Slot { get; private set; }
+
+        public int InterfaceID { get; private set; }
+
 
         public SendSidebarInterface(int slot, int interfaceID)
         {
-            InterfaceID = interfaceID;
             Slot = slot;
+            InterfaceID = interfaceID;
         }
 
         public PacketWriter SendPacket(ISAACCipher encryptor)

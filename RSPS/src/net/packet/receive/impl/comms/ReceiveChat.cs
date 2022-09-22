@@ -18,8 +18,8 @@ namespace RSPS.src.net.packet.receive.impl
 
         public void ReceivePacket(Player player, PacketReader packetReader)
         {
-            /*int effects = packetReader.ReadByte(false, Packet.ValueType.S);
-            int color = packetReader.ReadByte(false, Packet.ValueType.S);
+            int effects = packetReader.ReadByte(false, Packet.ValueType.Subtrahend);
+            int color = packetReader.ReadByte(false, Packet.ValueType.Subtrahend);
             int chatLength = packetReader.PayloadSize - 2;
             byte[] text = packetReader.ReadBytesReverse(chatLength, Packet.ValueType.Additional);
             
@@ -31,7 +31,7 @@ namespace RSPS.src.net.packet.receive.impl
             player.ChatColor = color;
             player.ChatText = text;
             player.ChatUpdateRequired = true;
-            player.UpdateRequired = true;*/
+            player.UpdateRequired = true;
         }
     }
 }

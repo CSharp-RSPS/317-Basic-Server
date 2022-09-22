@@ -39,7 +39,7 @@ namespace RSPS.src.net.Codec
                 SendLoginResponse(connection, AuthenticationResponse.Unknown);
                 return null;
             }
-            if (reader.Data.Length/*connection.Buffer.Length*/ < loginBlockSize)
+            if (reader.Buffer.Length/*connection.Buffer.Length*/ < loginBlockSize)
             {
                 Console.WriteLine("State buffer length is less than block length");
                 SendLoginResponse(connection, AuthenticationResponse.Unknown);

@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +23,7 @@ namespace RSPS.src.net.Codec
         /// <summary>
         /// The player we're decoding packets for
         /// </summary>
-        public readonly Player _player;
+        private readonly Player _player;
 
 
         /// <summary>
@@ -39,114 +42,52 @@ namespace RSPS.src.net.Codec
                 Console.Error.WriteLine("Unable to decode packet as no decryptor is present");
                 return null;
             }
-            StringBuilder debugSb = new();
-            debugSb.AppendLine(">>> Decode packet [DataSize: " + reader.Data.Length + "][Pointer: " + reader.Pointer + "]");
-
-            int packetOpCode = reader.ReadByte();
-            packetOpCode = packetOpCode - connection.NetworkDecryptor.getNextValue() & 0xFF;
-            int packetSize = PacketSizes[packetOpCode];
-
-            debugSb.Append("Opcode: " + packetOpCode + ", Packetsize: " + packetSize);
-
-            if (packetSize == -1)
-            { // Resolve dynamic packet size
-                if (reader.Pointer >= reader.Length)
-                {
-                    debugSb.AppendLine("Unable to determine dynamic packet size, no more data!");
-                    debugSb.AppendLine("<<< -------------------------------");
-                    Debug.WriteLine(debugSb.ToString());
-                    return connection.ProtocolDecoder;
-                }
-                packetSize = reader.ReadByte();
-
-                if (packetSize < 0)
-                {
-                    debugSb.AppendLine("Received invalid packet size, was dynamic but received " + packetSize);
-                    debugSb.AppendLine("<<< -------------------------------");
-                    Debug.WriteLine(debugSb.ToString());
-                    return connection.ProtocolDecoder;
-                }
-                debugSb.Append(" (" + packetSize + ")");
-            }
-            debugSb.AppendLine();
-
-            if (packetSize > 0 && (reader.Pointer + packetSize) > reader.Length)
-            {
-                debugSb.AppendLine("Invalid packet, expected " + packetSize + " payload but only found " + (reader.Length - reader.Pointer));
-                //debugSb.AppendLine("<<< -------------------------------");
-                //Debug.WriteLine(debugSb.ToString());
-                //return connection.ProtocolDecoder;
-            }
-            if (packetSize <= 0 && reader.Pointer < reader.Length)
-            {
-                debugSb.AppendLine("Invalid packet, found payload (" + (reader.Length - reader.Pointer) + ") but none was expected");
-                //debugSb.AppendLine("<<< -------------------------------");
-                //Debug.WriteLine(debugSb.ToString());
-                //return null;
-            }
             try
             {
-                if (reader.Length > packetSize)
-                {
-                    reader.Opcode = packetOpCode;
-                    reader.PayloadSize = packetSize;
+                // Retrieve the opcode and assumed size of the received packet
+                int packetOpCode = reader.ReadByte();
+                packetOpCode = packetOpCode - connection.NetworkDecryptor.getNextValue() & 0xFF;
+                int packetSize = PacketSizes[packetOpCode];
 
-                    PacketHandler.HandlePacket(_player, reader);
-
-                    while (reader.Length - reader.Pointer > 0)
+                if (packetSize == -1)//variable length packet
+                { // Retrieve the packet size for a dynamic packet
+                    if (reader.Pointer >= reader.Length)
                     {
-                        reader.ReadByte();
+                        return connection.ProtocolDecoder;
                     }
-                }
-                debugSb.AppendLine("Handled packet (pointer: " + reader.Pointer + "), unread payload left: " + (reader.Length - reader.Pointer));
-                debugSb.AppendLine("<<< -------------------------------");
+                    packetSize = reader.ReadByte();
+                    Debug.WriteLine(packetOpCode + " => VARIABLE => " + packetSize);
+                }else
+                    Debug.WriteLine(packetOpCode + " => STATIC => " + packetSize);
 
-                if (packetOpCode != 0)
-                Debug.WriteLine(debugSb.ToString());
+                if (reader.Length - reader.Pointer >= packetSize)
+                { // If there is at least the size of our packet in data present we can handle the packet
+                    /*if (packetOpCode != 98)
+                    {
+                        reader.ReadBytes(packetSize); 
+                        return connection.ProtocolDecoder;
+                    }*/
+                    //reader.Opcode = packetOpCode;
+                    //reader.PayloadSize = packetSize;
+                    // Create a new packet reader for handling our received packet
+                    byte[] payload = new byte[packetSize];
+                    Array.Copy(reader.Buffer, reader.Pointer, payload, 0, payload.Length);
+                    // Handle the packet
+                    PacketHandler.HandlePacket(_player, new(payload) { 
+                        Opcode = packetOpCode,
+                        PayloadSize = packetSize
+                    });
+                    // Consume the packet size of the packet we handled
+                    reader.ReadBytes(packetSize);
+                }
             }
             catch (Exception ex)
             {
-                debugSb.AppendLine("Exception occurred while handling packet: " + ex.Message);
-                debugSb.AppendLine("<<< -------------------------------");
-                Debug.WriteLine(debugSb.ToString());
+                Debug.WriteLine(ex);
                 return null;
             }
-            
-
-
-            /*
-            while (reader.Pointer < reader.Length)
-            { // Handle the received packet
-              // Handle a packet for an existing connection
-                try
-                {
-                    int packetOpCode = reader.ReadByte() & 0xFF;
-                    packetOpCode = packetOpCode - connection.NetworkDecryptor.getNextValue() & 0xFF;
-                    int packetSize = PacketSizes[packetOpCode];
-
-                    if (packetSize == -1)//variable length packet
-                    {
-                        if (reader.Pointer >= reader.Length)
-                        {
-                            break;
-                        }
-                        packetSize = reader.ReadByte() & 0xFF;
-                    }
-                    if (reader.Length >= packetSize)
-                    {
-                        reader.Opcode = packetOpCode;
-                        reader.PayloadSize = packetSize;
-
-                        PacketHandler.HandlePacket(_player, reader);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex);
-                    return null;
-                }
-            }*/
-            return new PacketDecoder(_player);
+        //}
+            return connection.ProtocolDecoder;
         }
 
         public static readonly int[] PacketSizes = {

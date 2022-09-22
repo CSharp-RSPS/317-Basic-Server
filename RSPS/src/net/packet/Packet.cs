@@ -19,7 +19,7 @@ namespace RSPS.src.net.packet
         /// <summary>
         /// The packet data
         /// </summary>
-        public byte[] Data { get; set; }
+        public byte[] Buffer { get; set; }
 
         /// <summary>
         /// The payload reader position
@@ -29,7 +29,7 @@ namespace RSPS.src.net.packet
         /// <summary>
         /// Retrieves the data length of the packet
         /// </summary>
-        public int Length => Data.Length;
+        public int Length => Buffer.Length;
 
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace RSPS.src.net.packet
         /// <param name="data">The packet data</param>
         protected Packet(byte[] data)
         {
-            Data = data;
+            Buffer = data;
             Opcode = -1;
             PayloadSize = -1;
         }
@@ -75,16 +75,17 @@ namespace RSPS.src.net.packet
         }
 
         protected void EnsureCapacity(int length)
-        {
+        { 
             //Console.WriteLine("Payload Position: {0}, Payload Length: {1}, Length of new byte{2}", PayloadPosition, Payload.Length, length);
             //Console.WriteLine((PayloadPosition + length) >= Payload.Length);
-            if ((Pointer + length) > Data.Length)
+            if ((Pointer + length) > Buffer.Length)
             {
-                byte[] oldBuffer = Data;
-                int newLength = ((int)(Data.Length * 1.5));
+                byte[] oldBuffer = Buffer;
+                int newLength = ((int)(Buffer.Length + length));
+                //TODO LLN: testing, was nt newLength = ((int)(Data.Length * 1.5));
                 //Console.WriteLine("old buffer length: " + Payload.Length);
-                Data = new byte[newLength];
-                Array.Copy(oldBuffer, 0, Data, 0, oldBuffer.Length);
+                Buffer = new byte[newLength];
+                Array.Copy(oldBuffer, 0, Buffer, 0, oldBuffer.Length);
                 //Console.WriteLine("new buffer length: " + Payload.Length);
             }
         }

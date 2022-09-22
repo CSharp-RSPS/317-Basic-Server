@@ -96,15 +96,7 @@ namespace RSPS.src.net.packet
         {
             if (!ReceivablePackets.ContainsKey(packetReader.Opcode)) {
                 Console.Error.WriteLine("Unknown packet {0} (Length: {1})", packetReader.Opcode, packetReader.PayloadSize);
-
-                try
-                {
-                    //packetReader.ReadBytes(packetReader.Length - packetReader.Pointer);
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex);
-                }
+                //packetReader.ReadBytes(packetReader.PayloadSize);
                 return;
             }
             ReceivablePackets[packetReader.Opcode].ReceivePacket(player, packetReader);

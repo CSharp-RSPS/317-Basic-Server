@@ -142,7 +142,7 @@ namespace RSPS.src.net.packet
                     value = 128 - value;
                     break;
             }
-            Data[Pointer++] = ((byte)value);
+            Buffer[Pointer++] = ((byte)value);
             //Console.WriteLine(Payload.ReadByte());
         }
 
@@ -422,7 +422,7 @@ namespace RSPS.src.net.packet
             // Re-size the buffer if need be.
             int requiredSpace = (int)(bytePos - Pointer + 1);
             requiredSpace += (amount + 7) / 8;
-            if (Data.Length < requiredSpace)
+            if (Buffer.Length < requiredSpace)
             {
                 EnsureCapacity(requiredSpace);
                 //Payload.Length = Payload.Capacity + requiredSpace;
@@ -433,32 +433,32 @@ namespace RSPS.src.net.packet
 
             for (; amount > bitOffset; bitOffset = 8)
             {
-                byte tmp = (byte)Data[bytePos];
+                byte tmp = (byte)Buffer[bytePos];
                 tmp &= (byte)~BitMasks[bitOffset];
                 tmp |= (byte)((value >> (amount - bitOffset)) & BitMasks[bitOffset]);
 
                 //TempPayload[bytePos] &= (byte)~BIT_MASKS[bitOffset];	 // mask out the desired area
                 //TempPayload[bytePos++] |= (byte)((value >> (amount - bitOffset)) & BIT_MASKS[bitOffset]);
 
-                Data[bytePos++] = tmp;
+                Buffer[bytePos++] = tmp;
                 OldPayloadPosition++;
                 amount -= bitOffset;
             }
             if (amount == bitOffset)
             {
-                byte tmp = (byte)Data[bytePos];
+                byte tmp = (byte)Buffer[bytePos];
                 tmp &= (byte)~BitMasks[bitOffset];
                 tmp |= (byte)((value >> (amount - bitOffset)) & BitMasks[bitOffset]);
-                Data[bytePos] = tmp;
+                Buffer[bytePos] = tmp;
                 //TempPayload[bytePos] &= (byte)~BIT_MASKS[bitOffset];
                 //TempPayload[bytePos] |= (byte)(value & BIT_MASKS[bitOffset]);
             }
             else
             { 
-                byte tmp = (byte)Data[bytePos];
+                byte tmp = (byte)Buffer[bytePos];
                 tmp &= (byte)~(BitMasks[amount] << (bitOffset - amount));
                 tmp |= (byte)((value & BitMasks[amount]) << (bitOffset - amount));
-                Data[bytePos] = tmp;
+                Buffer[bytePos] = tmp;
                 //TempPayload[bytePos] &= (byte)~(BIT_MASKS[amount] << (bitOffset - amount));
                 //TempPayload[bytePos] |= (byte)((value & BIT_MASKS[amount]) << (bitOffset - amount));
             }

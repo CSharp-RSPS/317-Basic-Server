@@ -19,8 +19,9 @@ namespace RSPS.src.entity.player
     public sealed class PlayerManager : EntityManager<Player>
     {
 
-        private static readonly int[] SIDEBAR_INTERFACE_IDS = {
-            3917, 638, 3213, 1644, 5608, 1151, 5065, 5715, 2449, 904, 147, 6299, 2423
+        private static readonly int[] SidebarInterfaceIds = {
+            //3917, 638, 3213, 1644, 5608, 1151, 5065, 5715, 2449, 904, 147, 6299, 2423
+            2423, 3917, 638, 3213, 1644, 5608, 1151, 18128, 5065, 5715, 2449, 904, 147, 962
         };
 
         /// <summary>
@@ -82,23 +83,20 @@ namespace RSPS.src.entity.player
         /// <param name="player">The player</param>
         public static void InitializeSession(Player player)
         {
-            for (int i = 1; i < SIDEBAR_INTERFACE_IDS.Length; i++)
+            // Send the side bars
+            for (int i = 0; i < SidebarInterfaceIds.Length; i++)
             {
-                PacketHandler.SendPacket(player, new SendSidebarInterface(i, SIDEBAR_INTERFACE_IDS[i]));
+                PacketHandler.SendPacket(player, new SendSidebarInterface(i, SidebarInterfaceIds[i]));
             }
-
+            // Send the skills in the skill tab
             foreach (SkillType skill in Enum.GetValues(typeof(SkillType)))
             {
-                if (skill != SkillType.HITPOINTS)
-                {
-                    player.Skills.Add(new Skill(skill));
-                    PacketHandler.SendPacket(player, new SendSkill(player.GetSkill(skill)));
-                    continue;
-                }
-                player.Skills.Add(new Skill(skill, 10, 1300));
+                player.Skills.Add(skill != SkillType.HITPOINTS ? new Skill(skill) : new Skill(skill, 10, 1300));
                 PacketHandler.SendPacket(player, new SendSkill(player.GetSkill(skill)));
             }
+            // Send the initial map region
             PacketHandler.SendPacket(player, new SendMapRegion(player));
+            // Send the run energy
             PacketHandler.SendPacket(player, new SendRunEnergy(player.MovementHandler.Energy));
 
             //player.NeedsPlacement = true; - already sent from MapRegion packet
