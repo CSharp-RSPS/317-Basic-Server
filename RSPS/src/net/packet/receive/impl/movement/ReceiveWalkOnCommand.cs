@@ -16,11 +16,11 @@ namespace RSPS.src.net.packet.receive.impl
     {
 
 
-        public override void ReceivePacket(Player player, PacketReader packetReader)
+        public override void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
         {
             // TODO: Can interact with entity
 
-            HandleWalking(player, packetReader, packetReader.PayloadSize);
+            HandleWalking(player, packetReader, packetSize);
         }
 
     }

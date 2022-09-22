@@ -29,10 +29,6 @@ namespace RSPS.src.net.packet
         /// <returns>The value</returns>
         public int ReadByte(bool signed, ValueType valueType)
         {
-            if (Pointer > Buffer.Length)
-            {
-                throw new IndexOutOfRangeException(nameof(Pointer));
-            }
             int value = Buffer[Pointer++];
 
             switch (valueType)

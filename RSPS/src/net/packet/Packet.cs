@@ -9,12 +9,12 @@ namespace RSPS.src.net.packet
         /// <summary>
         /// The opcode of the packet when present
         /// </summary>
-        public int Opcode { get; set; }
+       // public int Opcode { get; set; }
 
         /// <summary>
         /// The payload size of the packet when known
         /// </summary>
-        public int PayloadSize { get; set; }
+       // public int PayloadSize { get; set; }
 
         /// <summary>
         /// The packet data
@@ -39,8 +39,8 @@ namespace RSPS.src.net.packet
         protected Packet(byte[] data)
         {
             Buffer = data;
-            Opcode = -1;
-            PayloadSize = -1;
+          //  Opcode = -1;
+         //   PayloadSize = -1;
         }
 
         /// <summary>

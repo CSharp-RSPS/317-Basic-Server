@@ -62,11 +62,6 @@ namespace RSPS.src.net.Connections
         public ISAACCipher? NetworkDecryptor { get; set; }
 
         /// <summary>
-        /// The currently active protocol decoder
-        /// </summary>
-        public IProtocolDecoder? ProtocolDecoder { get; set; }
-
-        /// <summary>
         /// Represents a disconnect
         /// </summary>
         public delegate void Disconnect(Connection connection);
@@ -88,7 +83,6 @@ namespace RSPS.src.net.Connections
             WorldDetails = worldDetails;
             ClientSocket = socket;
             IpAddress = ResolveIpAddress();
-            ProtocolDecoder = new ConnectionRequestDecoder();
         }
 
         /// <summary>

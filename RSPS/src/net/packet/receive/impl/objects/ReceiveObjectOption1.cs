@@ -16,9 +16,13 @@ namespace RSPS.src.net.packet.receive.impl
     {
 
 
-        public void ReceivePacket(Player player, PacketReader packetReader)
+        public void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
         {
-
+            int objectX = packetReader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
+            int objectId = packetReader.ReadShort(false);
+            int objectY = packetReader.ReadShort(true, Packet.ValueType.Additional);
+            Console.WriteLine(objectId + " " + objectX + " " + objectY);
+            Console.WriteLine();
         }
 
     }

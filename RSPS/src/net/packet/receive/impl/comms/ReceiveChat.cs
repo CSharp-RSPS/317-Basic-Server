@@ -16,11 +16,11 @@ namespace RSPS.src.net.packet.receive.impl
     {
 
 
-        public void ReceivePacket(Player player, PacketReader packetReader)
+        public void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
         {
             int effects = packetReader.ReadByte(false, Packet.ValueType.Subtrahend);
             int color = packetReader.ReadByte(false, Packet.ValueType.Subtrahend);
-            int chatLength = packetReader.PayloadSize - 2;
+            int chatLength = packetSize - 2;
             byte[] text = packetReader.ReadBytesReverse(chatLength, Packet.ValueType.Additional);
             
             if (effects < 0 || color < 0 || chatLength < 0 || text == null || text.Length <= 0)

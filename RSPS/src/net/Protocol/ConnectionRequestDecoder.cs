@@ -15,7 +15,7 @@ namespace RSPS.src.net.Codec
     {
 
 
-        public IProtocolDecoder? Decode(Connection connection, PacketReader reader)
+        public bool Decode(Connection connection, PacketReader reader)
         {
             int connectionType = reader.ReadByte();
 
@@ -28,13 +28,13 @@ namespace RSPS.src.net.Codec
                     break;
 
                 case 16: //New connection login
-                    return null;
+                    return false;
 
                 case 18: //Reconnecting login
-                    return null;
+                    return false;
 
                 default: //Unknown
-                    return null;
+                    return false;
             }
             int nameHash = reader.ReadByte(); // nameHash: used for login servers, not sure how it works
 
@@ -46,7 +46,7 @@ namespace RSPS.src.net.Codec
 
             connection.ConnectionState = ConnectionState.Authenticate;
 
-            return new LoginDecoder();
+            return true;
         }
 
 

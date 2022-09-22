@@ -15,7 +15,7 @@ namespace RSPS.src.net.packet.receive.impl
     {
 
 
-        public void ReceivePacket(Player player, PacketReader packetReader)
+        public void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
         {
             bool lostFocus = packetReader.ReadByte() == 0;
             Console.WriteLine("WE lost focus? " + lostFocus);

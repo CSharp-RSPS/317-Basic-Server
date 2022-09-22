@@ -14,7 +14,7 @@ namespace RSPS.src.net.packet.receive.impl
     public class ReceiveMouseClick : IReceivePacket
     {
 
-        public void ReceivePacket(Player player, PacketReader packetReader)
+        public void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
         {
             packetReader.ReadInt(Packet.ByteOrder.BigEndian);
         }

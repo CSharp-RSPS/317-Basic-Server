@@ -18,7 +18,7 @@ namespace RSPS.src.net.packet.receive.impl
     {
 
 
-        public abstract void ReceivePacket(Player player, PacketReader packetReader);
+        public abstract void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader);
 
         /// <summary>
         /// Handles player walking

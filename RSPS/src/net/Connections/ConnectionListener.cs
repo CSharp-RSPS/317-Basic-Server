@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection.PortableExecutable;
 using System.Text;
 
 namespace RSPS.src.net.Connections
@@ -105,9 +106,9 @@ namespace RSPS.src.net.Connections
                 Connection connection = new(clientSocket, Details);
                 connection.Disconnected += OnDisconnected;
                 Connections.Add(connection);
-                // Start listening for incoming packets on the client socket
+                // Accept a connection request from a client
                 clientSocket.BeginReceive(connection.Buffer, 0, connection.Buffer.Length, SocketFlags.None,
-                    new AsyncCallback(ReadProtocolCallback), connection);
+                    new AsyncCallback(ReadConnectionRequestCallback), connection);
                 // Reset the listener socket state to listen for new connection attempts
                 _listenerSocket?.BeginAccept(new AsyncCallback(AcceptCallback), _listenerSocket);
             }
@@ -129,28 +130,81 @@ namespace RSPS.src.net.Connections
         }
 
         /// <summary>
-        /// Reads a protocol callback
+        /// Handles a connection request callback
         /// </summary>
-        /// <param name="result">The callback state object</param>
-        private void ReadProtocolCallback(IAsyncResult result)
+        /// <param name="result">The async operation result</param>
+        private void ReadConnectionRequestCallback(IAsyncResult result)
         {
             if (result.AsyncState == null)
             {
-                Console.Error.WriteLine("No state passed with protocol callback");
+                Console.Error.WriteLine("No state passed when handling ReadConnectionRequestCallback");
                 return;
             }
             Connection connection = (Connection)result.AsyncState;
 
+            if (HandleProtocolDecoding(result, new ConnectionRequestDecoder(), connection))
+            {
+                connection.ClientSocket.BeginReceive(connection.Buffer, 0, connection.Buffer.Length, SocketFlags.None,
+                    new AsyncCallback(ReadLoginCallback), connection);
+            }
+        }
+
+        /// <summary>
+        /// Handles a login callback
+        /// </summary>
+        /// <param name="result">The async operation result</param>
+        private void ReadLoginCallback(IAsyncResult result)
+        {
+            if (result.AsyncState == null)
+            {
+                Console.Error.WriteLine("No state passed when handling ReadLoginCallback");
+                return;
+            }
+            Connection connection = (Connection)result.AsyncState;
+
+            LoginDecoder decoder = new();
+            decoder.Authenticated += OnAuthenticated;
+
+            HandleProtocolDecoding(result, decoder, connection);
+        }
+
+        /// <summary>
+        /// Called when a player was authenticated through the login decoder
+        /// </summary>
+        /// <param name="player">The player</param>
+        private void OnAuthenticated(Player player)
+        { 
+            //Start listening for packets
+            player.PlayerConnection.ClientSocket.BeginReceive(player.PlayerConnection.Buffer, 0, player.PlayerConnection.Buffer.Length, SocketFlags.None,
+                    new AsyncCallback(ReadPacketCallback), player);
+        }
+
+        /// <summary>
+        /// Handles a packet callback
+        /// </summary>
+        /// <param name="result">The async operation result</param>
+        private void ReadPacketCallback(IAsyncResult result)
+        {
+            if (result.AsyncState == null)
+            {
+                Console.Error.WriteLine("No state passed when handling ReadPacketCallback");
+                return;
+            }
+            Player player = (Player)result.AsyncState;
+
+            if (HandleProtocolDecoding(result, new PacketDecoder(player), player.PlayerConnection))
+            {
+                player.PlayerConnection.ClientSocket.BeginReceive(player.PlayerConnection.Buffer, 0, player.PlayerConnection.Buffer.Length, SocketFlags.None,
+                    new AsyncCallback(ReadPacketCallback), player);
+            }
+        }
+
+        private bool HandleProtocolDecoding(IAsyncResult result, IProtocolDecoder decoder, Connection connection)
+        {
             if (connection.ConnectionState == ConnectionState.Disconnected)
             {
                 connection.Dispose();
-                return;
-            }
-            if (connection.ProtocolDecoder == null)
-            {
-                Console.Error.WriteLine("Connection has no protocol decoder assigned");
-                connection.Dispose();
-                return;
+                return false;
             }
             try
             {
@@ -159,57 +213,39 @@ namespace RSPS.src.net.Connections
 
                 if (bytesRead <= 0)
                 {
-                    return;
-                }
-                if (bytesRead > connection.Buffer.Length)
-                {
-                    Console.Error.WriteLine("Read {0} bytes but buffer only supports {1}", bytesRead, connection.Buffer.Length);
-                    return;
+                    return true;
                 }
                 // Write the received bytes to a new buffer
                 byte[] packetBuffer = new byte[bytesRead];
                 Array.Copy(connection.Buffer, 0, packetBuffer, 0, bytesRead);
                 // Resets the connection buffer for the next packet
-                connection.ResetBuffer();
-                // Wrap the buffer into a packet reader and start handling the received data
-                PacketReader reader = new(packetBuffer);
-
-                while (reader.Pointer < reader.Length)
+                //connection.ResetBuffer();
+                // Wrap the buffer into a packet reader and decodes the data
+                if (!decoder.Decode(connection, new(packetBuffer)))
                 {
-                    IProtocolDecoder? nextDecoder = connection.ProtocolDecoder.Decode(connection, reader);
-
-                    if (nextDecoder == null)
-                    {
-                        Console.Error.WriteLine("Decoding failed using decoder: {0}", connection.ProtocolDecoder.GetType().Name);
-                        connection.Dispose();
-                        return;
-                    }
-                    // Set the next protocol decoder
-                    connection.ProtocolDecoder = nextDecoder;
+                    Console.Error.WriteLine("Decoding failed using decoder: {0}", decoder.GetType().Name);
+                    connection.Dispose();
+                    return false;
                 }
-                // Reset the data buffer
-                connection.ResetBuffer();
-                // Start listening for the next incoming packet
-                connection.ClientSocket.BeginReceive(connection.Buffer, 0, connection.Buffer.Length, SocketFlags.None,
-                    new AsyncCallback(ReadProtocolCallback), connection);
+                return true;
             }
             catch (SocketException ex)
             { // Client likely disconnected from the server
                 Debug.WriteLine(ex);
                 connection.Dispose();
-                return;
+                return false;
             }
             catch (ObjectDisposedException ex)
             { // Socket is disposed
                 Debug.WriteLine(ex);
                 connection.MarkDisconnected();
-                return;
+                return false;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
                 connection.Dispose();
-                return;
+                return false;
             }
         }
 

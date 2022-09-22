@@ -19,7 +19,7 @@ namespace RSPS.src.net.packet.receive
         /// </summary>
         /// <param name="player">The player that sent the packet</param>
         /// <param name="packetReader">The packet reader</param>
-        public void ReceivePacket(Player player, PacketReader packetReader);
+        public void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader);
 
     }
 }

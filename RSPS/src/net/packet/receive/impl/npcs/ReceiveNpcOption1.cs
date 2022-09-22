@@ -16,7 +16,7 @@ namespace RSPS.src.net.packet.receive
     {
 
 
-        public void ReceivePacket(Player player, PacketReader packetReader)
+        public void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
         {
 
         }

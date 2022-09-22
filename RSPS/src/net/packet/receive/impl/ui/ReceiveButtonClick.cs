@@ -16,7 +16,7 @@ namespace RSPS.src.net.packet.receive.impl
     {
 
 
-        public void ReceivePacket(Player player, PacketReader packetReader)
+        public void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
         {
             //int buttonId = PacketReader.HexToInt(packetReader.ReadBytes(2));
             int buttonId = packetReader.ReadShort();
