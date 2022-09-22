@@ -138,7 +138,7 @@ namespace RSPS.src.net.packet
                 case ValueType.Negated:
                     value = -value;
                     break;
-                case ValueType.S:
+                case ValueType.Subtrahend:
                     value = 128 - value;
                     break;
             }

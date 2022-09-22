@@ -18,7 +18,8 @@ namespace RSPS.src.net.packet.receive.impl
 
         public void ReceivePacket(Player player, PacketReader packetReader)
         {
-            int buttonId = PacketReader.HexToInt(packetReader.ReadBytes(2));
+            //int buttonId = PacketReader.HexToInt(packetReader.ReadBytes(2));
+            int buttonId = packetReader.ReadShort();
 
             if (buttonId < 0)
             {

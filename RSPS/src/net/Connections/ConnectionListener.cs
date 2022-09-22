@@ -22,6 +22,11 @@ namespace RSPS.src.net.Connections
     {
 
         /// <summary>
+        /// The max amount of requests the listener socket can listen to before it gives Server busy response
+        /// </summary>
+        private static readonly int MaxSimultaneousRequests = 25;
+
+        /// <summary>
         /// The network endpoint
         /// </summary>
         public NetEndpoint? Endpoint { get; private set; }
@@ -54,15 +59,18 @@ namespace RSPS.src.net.Connections
 
             try
             {
-                _listenerSocket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                // Setup the listener socket
+                _listenerSocket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp) {
+                    Blocking = false,
+                    DontFragment = true,
+                    NoDelay = true
+                };
+                // Bind the listener socket
                 _listenerSocket.Bind(endpoint.IPEndpoint);
-                _listenerSocket.Listen(25);
-                _listenerSocket.Blocking = false;
-                _listenerSocket.DontFragment = true;
-                _listenerSocket.NoDelay = true;
-
+                // Start listening to requests
+                _listenerSocket.Listen(MaxSimultaneousRequests);
+                // Wait for an incoming connection attempt
                 _listenerSocket.BeginAccept(new AsyncCallback(AcceptCallback), _listenerSocket);
-
             }
             catch (Exception ex)
             {
@@ -72,33 +80,15 @@ namespace RSPS.src.net.Connections
             return true;
         }
 
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
-
-            // Dispose and clear any connections made with the listener
-            Connections.ForEach(c => c.Dispose());
-            Connections.Clear();
-
-            try
-            {
-                _listenerSocket?.Dispose();
-            }
-            catch (ObjectDisposedException)
-            {
-                Debug.WriteLine("Listener socket already disposed");
-            }
-        }
-
         /// <summary>
         /// Attempts to accept a new incoming connection
         /// </summary>
         /// <param name="result"></param>
         public void AcceptCallback(IAsyncResult result)
         {
-            if (!IsActive || result.AsyncState == null)
+            if (result.AsyncState == null)
             {
-                Console.Error.WriteLine("Invalid connection accept callback");
+                Console.Error.WriteLine("No state passed with accept callback");
                 return;
             }
             if (Details == null)
@@ -112,12 +102,12 @@ namespace RSPS.src.net.Connections
                 Socket clientSocket = ((Socket)result.AsyncState);
                 clientSocket = clientSocket.EndAccept(result);
                 // Instantiate the new connection to accept
-                Connection newConnection = new(clientSocket, Details);
-                newConnection.Disconnected += OnDisconnected;
-                Connections.Add(newConnection);
+                Connection connection = new(clientSocket, Details);
+                connection.Disconnected += OnDisconnected;
+                Connections.Add(connection);
                 // Start listening for incoming packets on the client socket
-                clientSocket.BeginReceive(newConnection.Buffer, 0, newConnection.Buffer.Length, SocketFlags.None,
-                    new AsyncCallback(ReadProtocolCallback), newConnection);
+                clientSocket.BeginReceive(connection.Buffer, 0, connection.Buffer.Length, SocketFlags.None,
+                    new AsyncCallback(ReadProtocolCallback), connection);
                 // Reset the listener socket state to listen for new connection attempts
                 _listenerSocket?.BeginAccept(new AsyncCallback(AcceptCallback), _listenerSocket);
             }
@@ -144,9 +134,9 @@ namespace RSPS.src.net.Connections
         /// <param name="result">The callback state object</param>
         private void ReadProtocolCallback(IAsyncResult result)
         {
-            if (!IsActive || result == null || result.AsyncState == null)
+            if (result.AsyncState == null)
             {
-                Console.Error.WriteLine("Invalid read protocol callback");
+                Console.Error.WriteLine("No state passed with protocol callback");
                 return;
             }
             Connection connection = (Connection)result.AsyncState;
@@ -164,20 +154,26 @@ namespace RSPS.src.net.Connections
             }
             try
             {
+                // Retrieve the bytes received from the client
                 int bytesRead = connection.ClientSocket.EndReceive(result);
 
                 if (bytesRead <= 0)
                 {
                     return;
                 }
-                byte[]? payload = null;
+                if (bytesRead > connection.Buffer.Length)
+                {
+                    Console.Error.WriteLine("Read {0} bytes but buffer only supports {1}", bytesRead, connection.Buffer.Length);
+                    return;
+                }
+                byte[]? buffer = null;
 
                 using (MemoryStream ms = new(bytesRead))
-                { // Read the payload
+                { // Write the received data to a byte buffer through a memory stream
                     ms.Write(connection.Buffer, 0, bytesRead);
-                    payload = ms.ToArray();
+                    buffer = ms.ToArray();
                 }
-                IProtocolDecoder? nextDecoder = connection.ProtocolDecoder.Decode(connection, new(payload));
+                IProtocolDecoder? nextDecoder = connection.ProtocolDecoder.Decode(connection, new(buffer));
 
                 if (nextDecoder == null)
                 {
@@ -185,10 +181,10 @@ namespace RSPS.src.net.Connections
                     connection.Dispose();
                     return;
                 }
-                // Assign the new decoder to use
+                // Set the next protocol decoder
                 connection.ProtocolDecoder = nextDecoder;
-                // Reset the payload buffer
-                //connection.ResetBuffer();
+                // Reset the data buffer
+                connection.ResetBuffer();
                 // Start listening for the next incoming packet
                 connection.ClientSocket.BeginReceive(connection.Buffer, 0, connection.Buffer.Length, SocketFlags.None,
                     new AsyncCallback(ReadProtocolCallback), connection);
@@ -204,6 +200,26 @@ namespace RSPS.src.net.Connections
                 Debug.WriteLine(ex);
                 connection.MarkDisconnected();
                 return;
+            }
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+
+            // Dispose and clear any connections made with the listener
+            Connections.ForEach(c => c.Dispose());
+            Connections.Clear();
+
+            try
+            {
+                _listenerSocket?.Shutdown(SocketShutdown.Both);
+                _listenerSocket?.Close();
+                _listenerSocket?.Dispose();
+            }
+            catch (ObjectDisposedException)
+            {
+                Debug.WriteLine("Listener socket already disposed");
             }
         }
 

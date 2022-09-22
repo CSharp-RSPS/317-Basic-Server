@@ -1,4 +1,5 @@
-﻿using System.Reflection.PortableExecutable;
+﻿using System.Diagnostics;
+using System.Reflection.PortableExecutable;
 using System.Text;
 
 /**
@@ -18,10 +19,20 @@ namespace RSPS.src.net.packet
             
         }
 
-
+        /// <summary>
+        /// Reads a byte
+        /// </summary>
+        /// <param name="signed">Whether the byte is signed</param>
+        /// <param name="valueType">The value type</param>
+        /// <returns>The value</returns>
         public int ReadByte(bool signed, ValueType valueType)
         {
+            if (Pointer >= Data.Length)
+            {
+                throw new IndexOutOfRangeException(nameof(Pointer));
+            }
             int value = Data[Pointer++];
+
             switch (valueType)
             {
                 case ValueType.Additional:
@@ -30,35 +41,74 @@ namespace RSPS.src.net.packet
                 case ValueType.Negated:
                     value = -value;
                     break;
-                case ValueType.S:
+                case ValueType.Subtrahend:
                     value = 128 - value;
                     break;
             }
             return signed ? value & 0xff : value;
         }
 
-        /**
-         * Reads a standard signed byte
-         **/
-        public int ReadByte()
-        {
-            return ReadByte(true, ValueType.Standard);
-        }
-
-        public int ReadByte(bool signed)
+        /// <summary>
+        /// Reads a byte
+        /// </summary>
+        /// <param name="signed">Whether the byte is signed</param>
+        /// <returns></returns>
+        public int ReadByte(bool signed = true)
         {
             return ReadByte(signed, ValueType.Standard);
         }
 
+        /// <summary>
+        /// Reads a standard unsigned byte
+        /// </summary>
+        /// <returns>The value</returns>
+        public int ReadUnsignedByte()
+        {
+            return ReadByte(false);
+        }
 
+        /// <summary>
+        /// Reads a signed byte
+        /// </summary>
+        /// <param name="type">The value type</param>
+        /// <returns>The value</returns>
         public int ReadByte(ValueType type)
         {
             return ReadByte(true, type);
         }
 
+        /// <summary>
+        /// Reads an unsigned byte
+        /// </summary>
+        /// <param name="type">The value type</param>
+        /// <returns>The value</returns>
+        public int ReadUnsignedByte(ValueType type)
+        {
+            return ReadByte(false, type);
+        }
+
+        /// <summary>
+        /// Reads an additional signed byte
+        /// </summary>
+        /// <param name="signed">Whether </param>
+        /// <returns></returns>
+        public int ReadAdditionalByte(bool signed = true)
+        {
+            return ReadByte(signed, ValueType.Additional);
+        }
+
+        /// <summary>
+        /// Reads a short
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <param name="type">The type</param>
+        /// <param name="order">The byte order</param>
+        /// <returns>The value</returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public int ReadShort(bool signed, ValueType type, ByteOrder order)
         {
             int value = 0;
+
             switch (order)
             {
                 case ByteOrder.BigEndian:
@@ -170,6 +220,7 @@ namespace RSPS.src.net.packet
         public long ReadInt(bool signed, ValueType type, ByteOrder order)
         {
             int value = 0;
+
             switch (order)
             {
                 case ByteOrder.BigEndian:
@@ -289,6 +340,7 @@ namespace RSPS.src.net.packet
         public long ReadLong(ValueType type, ByteOrder order)
         {
             long value = 0;
+
             switch (order)
             {
                 case ByteOrder.BigEndian:
@@ -303,8 +355,10 @@ namespace RSPS.src.net.packet
                     break;
                 case ByteOrder.MiddleEndian:
                     throw new InvalidOperationException("middle-endian long is not implemented!");
+
                 case ByteOrder.InverseMiddleEndian:
                     throw new InvalidOperationException("inverse-middle-endian long is not implemented!");
+
                 case ByteOrder.LittleEndian:
                     value = (long)ReadByte(false, type) |
                             (long)ReadByte(false) << 8  |
@@ -433,18 +487,22 @@ namespace RSPS.src.net.packet
         {
             byte[] data = new byte[amount];
             int dataPosition = 0;
+
             for (int i = Pointer + amount - 1; i >= Pointer; i--)
             {
                 int value = Data[i];
+
                 switch (type)
                 {
                     case ValueType.Additional:
                         value -= 128;
                         break;
+
                     case ValueType.Negated:
                         value = -value;
                         break;
-                    case ValueType.S:
+
+                    case ValueType.Subtrahend:
                         value = 128 - value;
                         break;
                 }

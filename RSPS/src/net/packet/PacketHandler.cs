@@ -15,8 +15,6 @@ namespace RSPS.src.net.packet
 
 
         static PacketHandler() {
-            ReceiveMovement movement = new();
-
             ReceivablePackets.Add(0, new ReceiveIdle()); //Sent when there are no actions being performed by the player for this cycle.
             ReceivablePackets.Add(3, new ReceiveFocusChange()); //Sent when the game client window goes in and out of focus.
             ReceivablePackets.Add(4, new ReceiveChat()); //Sent when the player enters a chat message.
@@ -46,8 +44,7 @@ namespace RSPS.src.net.packet
             ReceivablePackets.Add(86, new ReceiveCameraMovement()); //Sent when the player moves the camera.
             ReceivablePackets.Add(87, new ReceiveDropItem()); //Sent when a player wants to drop an item onto the ground.
             ReceivablePackets.Add(95, new ReceivePrivacyOptions()); //Sent when a player changes their privacy options (i.e. public chat).
-            //ReceivablePackets.Add(98, new ReceiveWalkOnCommand());
-            ReceivablePackets.Add(98, movement); //Sent when the player should walk somewhere according to a certain action performed, such as clicking an object.
+            ReceivablePackets.Add(98, new ReceiveWalkOnCommand()); //Sent when the player should walk somewhere according to a certain action performed, such as clicking an object.
             ReceivablePackets.Add(101, new ReceiveDesignScreen()); //Sent when a player is choosing their character design options.
             ReceivablePackets.Add(103, new ReceivePlayerCommand()); //Sent when the player enters a command in the chat box (e.g. "::command")
             ReceivablePackets.Add(117, new ReceiveBank5Items()); //Sent when a player banks 5 of a certain item.
@@ -67,8 +64,7 @@ namespace RSPS.src.net.packet
             ReceivablePackets.Add(152, new ReceiveValidateNpcOption3()); //Send to validate npc option 3 (client action 965)
             ReceivablePackets.Add(153, new ReceivePlayerOption2()); //Sent when a moderator or administrator selects the second option of a player.
             ReceivablePackets.Add(155, new ReceiveNpcOption1()); //Sent when a player clicks first option of an NPC, such as "Talk."
-            //ReceivablePackets.Add(164, new ReceiveRegularWalk());
-            ReceivablePackets.Add(164, movement); //Sent when the player walks regularly.
+            ReceivablePackets.Add(164, new ReceiveRegularWalk()); //Sent when the player walks regularly.
             ReceivablePackets.Add(181, new ReceiveMagicOnGroundItem()); //Send when a player uses a spell on a ground item.
             ReceivablePackets.Add(183, new ReceiveValidateObjectOption4()); //Validates clicking object option 4
             ReceivablePackets.Add(185, new ReceiveButtonClick()); //Sent when a player clicks an in-game button.
@@ -89,8 +85,7 @@ namespace RSPS.src.net.packet
             ReceivablePackets.Add(237, new ReceiveMagicOnItems()); //Sent when a player casts magic on the items in their inventory.
             ReceivablePackets.Add(241, new ReceiveMouseClick()); //Sent when the player clicks somewhere on the game screen.
             ReceivablePackets.Add(246, new ReceiveUnknownAntiCheat()); //Not sure
-            //ReceivablePackets.Add(248, new ReceiveMapWalk());
-            ReceivablePackets.Add(248, movement); //Sent when the player walks using the map. Has 14 additional (assumed to be anticheat) bytes added to the end of it that are ignored.
+            ReceivablePackets.Add(248, new ReceiveMapWalk()); //Sent when the player walks using the map. Has 14 additional (assumed to be anticheat) bytes added to the end of it that are ignored.
             ReceivablePackets.Add(249, new ReceiveMagicOnPlayer()); //Sent when a player attempts to cast magic on another player.
             ReceivablePackets.Add(252, new ReceiveObjectOption2()); //Sent when the player clicks the second option available for an object.
             ReceivablePackets.Add(253, new ReceiveGroundItemAction()); //Sent when the player clicks the first option for a ground item

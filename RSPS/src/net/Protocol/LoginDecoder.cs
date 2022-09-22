@@ -23,14 +23,14 @@ namespace RSPS.src.net.Codec
 
         public IProtocolDecoder? Decode(Connection connection, PacketReader reader)
         {
-            int connectionType = reader.ReadByte();
+            int connectionType = reader.ReadByte(false);
 
             if (connectionType != 16 && connectionType != 18)
             { // 16 = new login, 18 = reconnection
                 SendLoginResponse(connection, AuthenticationResponse.Unknown);
                 return null;
             }
-            int loginBlockSize = reader.ReadByte(); //loginSize = 76
+            int loginBlockSize = reader.ReadByte(false); //loginSize = 76
             int encryptedBlockSize = loginBlockSize - (0x24 + 0x1 + 0x1 + 0x2);
 
             if (encryptedBlockSize < 1)
@@ -45,7 +45,7 @@ namespace RSPS.src.net.Codec
                 SendLoginResponse(connection, AuthenticationResponse.Unknown);
                 return null;
             }
-            if (reader.ReadByte() != 255)
+            if (reader.ReadByte(false) != 255)
             { // Magic number
                 SendLoginResponse(connection, AuthenticationResponse.Unknown);
                 return null;
@@ -55,16 +55,16 @@ namespace RSPS.src.net.Codec
                 SendLoginResponse(connection, AuthenticationResponse.GameWasUpdated);
                 return null;
             }
-            reader.ReadByte();//High/low memory version
+            reader.ReadByte(false);//High/low memory version
 
             // Skip the CRC keys.
             for (int i = 0; i < 9; i++)
             {
                 reader.ReadInt();
             }
-            int RSABlock = reader.ReadByte(); //Skip RSA block length
+            int RSABlock = reader.ReadByte(false); //Skip RSA block length
 
-            if (reader.ReadByte() != 10)
+            if (reader.ReadByte(false) != 10)
             { // RSA Opcode
                 SendLoginResponse(connection, AuthenticationResponse.SessionRejected);
                 return null;
@@ -146,8 +146,6 @@ namespace RSPS.src.net.Codec
                 SendLoginResponse(connection, AuthenticationResponse.AlreadyLoggedIn);
                 return null;
             }
-            int loginsFromSameIp = world.ConnectionListener.Connections.Where(c => c.IpAddress == connection.IpAddress).ToList().Count;
-
             if (world.ConnectionListener.Connections.Where(c => c.IpAddress == connection.IpAddress).ToList().Count > Constants.MaxSimultaneousConnections)
             {
                 SendLoginResponse(connection, AuthenticationResponse.LoginLimitExceeded);
@@ -166,6 +164,8 @@ namespace RSPS.src.net.Codec
             PlayerManager.InitializeSession(player);
             PlayerManager.Login(player, connection.WorldDetails);
             world.Players.PendingLogin.Enqueue(player);
+
+            connection.ConnectionState = ConnectionState.Authenticated;
 
             return new PacketDecoder(player);
         }

@@ -17,7 +17,7 @@ namespace RSPS.src.net.Codec
 
         public IProtocolDecoder? Decode(Connection connection, PacketReader reader)
         {
-            int connectionType = reader.ReadByte() & 0xff;
+            int connectionType = reader.ReadByte();
 
             switch (connectionType)
             {
@@ -36,7 +36,7 @@ namespace RSPS.src.net.Codec
                 default: //Unknown
                     return null;
             }
-            int nameHash = reader.ReadByte() & 0xff; // nameHash: used for login servers, not sure how it works
+            int nameHash = reader.ReadByte(); // nameHash: used for login servers, not sure how it works
 
             PacketWriter writer = Packet.CreatePacketWriter(17);
             writer.WriteLong(0);

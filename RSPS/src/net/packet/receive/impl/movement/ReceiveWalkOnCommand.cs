@@ -12,13 +12,15 @@ namespace RSPS.src.net.packet.receive.impl
     /// <summary>
     /// Sent when the player should walk somewhere according to a certain action performed, such as clicking an object.
     /// </summary>
-    public sealed class ReceiveWalkOnCommand : IReceivePacket
+    public sealed class ReceiveWalkOnCommand : ReceiveWalk
     {
 
 
-        public void ReceivePacket(Player player, PacketReader packetReader)
+        public override void ReceivePacket(Player player, PacketReader packetReader)
         {
+            // TODO: Can interact with entity
 
+            HandleWalking(player, packetReader, packetReader.PayloadSize);
         }
 
     }

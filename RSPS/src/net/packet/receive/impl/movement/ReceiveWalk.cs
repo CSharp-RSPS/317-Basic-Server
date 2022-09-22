@@ -11,42 +11,47 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.receive.impl
 {
-    public sealed class ReceiveMovement : IReceivePacket
+    /// <summary>
+    /// A base packet for movement related packets we receive
+    /// </summary>
+    public abstract class ReceiveWalk : IReceivePacket
     {
 
 
-        public void ReceivePacket(Player player, PacketReader packetReader)
-        {
-            int length = packetReader.PayloadSize;
+        public abstract void ReceivePacket(Player player, PacketReader packetReader);
 
-            if (length < 0)
+        /// <summary>
+        /// Handles player walking
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="reader"></param>
+        /// <param name="walkingDataSize"></param>
+        protected static void HandleWalking(Player player, PacketReader reader, int walkingDataSize)
+        {
+            if (walkingDataSize < 0)
             {
                 return;
             }
             //TODO: if can't move - return
 
-            if (packetReader.Opcode == 248)
-            {
-                length -= 14;
-            }
-            int steps = (length - 5) / 2;
+            int steps = (walkingDataSize - 5) / 2;
 
             if (steps < 0)
             {
                 return;
             }
             int[,] path = new int[steps, 2];
-            int firstStepX = packetReader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
+            int firstStepX = reader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
 
             for (int i = 0; i < steps; i++)
             {
-                path[i, 0] = (sbyte)packetReader.ReadByte();
-                path[i, 1] = (sbyte)packetReader.ReadByte();
+                path[i, 0] = (sbyte)reader.ReadByte();
+                path[i, 1] = (sbyte)reader.ReadByte();
             }
-            int firstStepY = packetReader.ReadShort(Packet.ByteOrder.LittleEndian);
+            int firstStepY = reader.ReadShort(Packet.ByteOrder.LittleEndian);
 
             player.MovementHandler.Reset();
-            player.MovementHandler.IsRunPath = packetReader.ReadByte(Packet.ValueType.Negated) == 1;
+            player.MovementHandler.IsRunPath = reader.ReadByte(Packet.ValueType.Negated) == 1;
             player.MovementHandler.AddToPath(new Position(firstStepX, firstStepY));
 
             for (int i = 0; i < steps; i++)
@@ -57,11 +62,7 @@ namespace RSPS.src.net.packet.receive.impl
                 player.MovementHandler.AddToPath(new Position(path[i, 0], path[i, 1]));
             }
             player.MovementHandler.FinishPath();
-
-            if (packetReader.Opcode == 248)
-            {
-                packetReader.ReadBytes(14);//client sends additional info we need to get rid of
-            }
         }
+
     }
 }

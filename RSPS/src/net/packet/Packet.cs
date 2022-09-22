@@ -66,7 +66,7 @@ namespace RSPS.src.net.packet
 
         public enum ValueType
         {
-            Standard, Additional, Negated, S
+            Standard, Additional, Negated, Subtrahend
         }
 
         public enum AccessType
