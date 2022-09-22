@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 namespace RSPS.src.net.packet.send.impl
 {
 
-//HEAD: 0
-//CAPE: 1
-//AMULET: 2
-//WEAPON: 3
-//CHEST: 4
-//SHIELD: 5
-//LEGS: 7
-//HANDS: 9
-//FEET: 10
-//RING: 12
-//ARROWS: 13
+    //HEAD: 0
+    //CAPE: 1
+    //AMULET: 2
+    //WEAPON: 3
+    //CHEST: 4
+    //SHIELD: 5
+    //LEGS: 7
+    //HANDS: 9
+    //FEET: 10
+    //RING: 12
+    //ARROWS: 13
 
     public sealed class SendEquipment : ISendPacket
     {
@@ -28,9 +28,9 @@ namespace RSPS.src.net.packet.send.impl
 
         public SendEquipment(int slot, int itemId, int itemAmount)
         {
-            this.Slot = slot;
-            this.ItemId = itemId;
-            this.ItemAmount = itemAmount;
+            Slot = slot;
+            ItemId = itemId;
+            ItemAmount = itemAmount;
         }
 
         public PacketWriter SendPacket(ISAACCipher encryptor)
@@ -45,7 +45,8 @@ namespace RSPS.src.net.packet.send.impl
             {
                 writer.WriteByte(255);
                 writer.WriteInt(ItemAmount);
-            } else
+            }
+            else
             {
                 writer.WriteByte(ItemAmount);
             }

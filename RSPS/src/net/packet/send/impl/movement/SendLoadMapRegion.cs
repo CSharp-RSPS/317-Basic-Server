@@ -6,13 +6,20 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.send.impl
 {
-    public sealed class SendAnimationReset : ISendPacket
+    /// <summary>
+    /// Loads a new map region.
+    /// </summary>
+    public sealed class SendLoadMapRegion : ISendPacket
     {
+
+
         public PacketWriter SendPacket(ISAACCipher encryptor)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(0);
-            writer.WriteHeader(encryptor, 1);
+            PacketWriter writer = Packet.CreatePacketWriter(5);
+            writer.WriteHeader(encryptor, 73);
             return writer;
         }
+
     }
+
 }

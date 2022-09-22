@@ -82,7 +82,7 @@ namespace RSPS.src.net.packet
             {
                 byte[] oldBuffer = Buffer;
                 int newLength = ((int)(Buffer.Length + length));
-                //TODO LLN: testing, was nt newLength = ((int)(Data.Length * 1.5));
+                //TODO LLN: testing, was => int newLength = ((int)(Data.Length * 1.5));
                 //Console.WriteLine("old buffer length: " + Payload.Length);
                 Buffer = new byte[newLength];
                 Array.Copy(oldBuffer, 0, Buffer, 0, oldBuffer.Length);

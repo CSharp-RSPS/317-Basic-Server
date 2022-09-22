@@ -60,20 +60,15 @@ namespace RSPS.src.net.Codec
                 }else
                     Debug.WriteLine(packetOpCode + " => STATIC => " + packetSize);
 
-                if (reader.Length - reader.Pointer >= packetSize)
+                
+                if (reader.ReadableBytes >= packetSize)
                 { // If there is at least the size of our packet in data present we can handle the packet
-                    /*if (packetOpCode != 98)
-                    {
-                        reader.ReadBytes(packetSize); 
-                        return connection.ProtocolDecoder;
-                    }*/
-                    //reader.Opcode = packetOpCode;
-                    //reader.PayloadSize = packetSize;
-                    // Create a new packet reader for handling our received packet
+                    // Create a buffer for the packet payload
                     byte[] payload = new byte[packetSize];
                     Array.Copy(reader.Buffer, reader.Pointer, payload, 0, payload.Length);
                     // Handle the packet
-                    PacketHandler.HandlePacket(_player, new(payload) { 
+                    PacketHandler.HandlePacket(_player, new(payload)
+                    {
                         Opcode = packetOpCode,
                         PayloadSize = packetSize
                     });

@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.send.impl
 {
+    /// <summary>
+    /// Causes the camera to shake.
+    /// </summary>
     public sealed class SendCameraShake : ISendPacket
     {
+
+
         public PacketWriter SendPacket(ISAACCipher encryptor)
         {
             PacketWriter writer = Packet.CreatePacketWriter(5);
@@ -18,5 +23,6 @@ namespace RSPS.src.net.packet.send.impl
             writer.WriteByte(0);
             return writer;
         }
+
     }
 }

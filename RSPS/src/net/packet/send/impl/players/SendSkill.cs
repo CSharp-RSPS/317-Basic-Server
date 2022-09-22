@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.send.impl
 {
+    /// <summary>
+    /// Sends a skill level to the client.
+    /// </summary>
     public sealed class SendSkill : ISendPacket
     {
 

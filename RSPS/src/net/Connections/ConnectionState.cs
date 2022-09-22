@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.Connections
 {
+    /// <summary>
+    /// Holds the possible connection states
+    /// </summary>
     public enum ConnectionState
     {
 

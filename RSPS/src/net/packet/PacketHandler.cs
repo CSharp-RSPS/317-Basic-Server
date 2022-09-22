@@ -8,9 +8,15 @@ using System.Net.Sockets;
 
 namespace RSPS.src.net.packet
 {
-    public class PacketHandler
+    /// <summary>
+    /// Handles packet related operations
+    /// </summary>
+    public static class PacketHandler
     {
 
+        /// <summary>
+        /// Holds the receivable packets for players
+        /// </summary>
         private static readonly Dictionary<int, IReceivePacket> ReceivablePackets = new();
 
 
@@ -91,7 +97,11 @@ namespace RSPS.src.net.packet
             ReceivablePackets.Add(253, new ReceiveGroundItemAction()); //Sent when the player clicks the first option for a ground item
         }
 
-        //stream.createFrame(77); - keeps sending packet 77
+        /// <summary>
+        /// Handles a received packet for a player
+        /// </summary>
+        /// <param name="player">The player</param>
+        /// <param name="packetReader">The packet reader</param>
         public static void HandlePacket(Player player, PacketReader packetReader)
         {
             if (!ReceivablePackets.ContainsKey(packetReader.Opcode)) {

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.send.impl
 {
+    /// <summary>
+    /// Assigns an interface to one of the tabs in the game sidebar.
+    /// </summary>
     public sealed class SendSidebarInterface : ISendPacket
     {
 

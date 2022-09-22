@@ -26,7 +26,9 @@ namespace RSPS.src.net.Connections
         /// </summary>
         private static readonly int MaxBufferSize = 4096;
 
-        // Receive buffer.  
+        /// <summary>
+        /// The data buffer for reading data from the client
+        /// </summary>
         public byte[] Buffer { get; private set; }
 
         /// <summary>
@@ -160,27 +162,6 @@ namespace RSPS.src.net.Connections
             }
             return this;
         }
-        /*
-        private static void SendCallback(IAsyncResult ar)
-        {
-            try
-            {
-                // Retrieve the socket from the state object.  
-                Connection connection = (Connection)ar.AsyncState;
-
-                // Complete sending the data to the remote device.  
-                int bytesSent = connection.ClientSocket.EndSend(ar);
-                //Console.WriteLine("Sent {0} bytes to client.", bytesSent);
-
-                //handler.Shutdown(SocketShutdown.Both);
-                //handler.Close();
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }*/
 
         /// <summary>
         /// Marks a connection as disconnected
@@ -199,7 +180,6 @@ namespace RSPS.src.net.Connections
 
             if (ConnectionState != ConnectionState.Disconnected)
             {
-
                 try
                 {
                     ClientSocket.Shutdown(SocketShutdown.Both);

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.Authentication
 {
+    /// <summary>
+    /// Holds the possible authentication responses
+    /// </summary>
     public enum AuthenticationResponse
     {
 
