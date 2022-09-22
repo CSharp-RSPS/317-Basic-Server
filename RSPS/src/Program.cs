@@ -1,4 +1,5 @@
 ﻿using RSPS.src.entity;
+using RSPS.src.entity.flag;
 using RSPS.src.entity.npc;
 using RSPS.src.entity.player;
 using RSPS.src.net;

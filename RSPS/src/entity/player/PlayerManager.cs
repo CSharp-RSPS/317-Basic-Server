@@ -101,7 +101,8 @@ namespace RSPS.src.entity.player
             PacketHandler.SendPacket(player, new SendMapRegion(player));
             PacketHandler.SendPacket(player, new SendRunEnergy(player.MovementHandler.Energy));
 
-            player.NeedsPlacement = true;
+            //player.NeedsPlacement = true; - already sent from MapRegion packet
+            //player.Flags.UpdateFlag(flag.FlagType.APPEARANCE, true);
             player.AppearanceUpdateRequired = true;
             player.RequestUpdate();
         }

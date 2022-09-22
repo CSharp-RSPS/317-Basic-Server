@@ -61,11 +61,11 @@ namespace RSPS.src.entity.player
 
         public int PrimaryDirection = -1;
         public int SecondaryDirection = -1;
-
-        public bool UpdateRequired { get; set; }
-        public bool ChatUpdateRequired { get; set; }
-        public bool AppearanceUpdateRequired { get; set; }
-
+        
+        public bool UpdateRequired = false;
+        public bool AppearanceUpdateRequired= false;
+        public bool ChatUpdateRequired= false;
+        
         public int ChatColor;
         public int ChatEffects;
         public byte[] ChatText;
@@ -89,9 +89,10 @@ namespace RSPS.src.entity.player
 
         public override void ResetFlags()
         {
+            //Flags.ResetUpdateFlags();
             UpdateRequired = false;
-            AppearanceUpdateRequired= false;
-            ChatUpdateRequired= false;
+            AppearanceUpdateRequired = false;
+            ChatUpdateRequired = false;
             ResetMovementQueue = false;
             NeedsPlacement = false;
             PrimaryDirection = -1;

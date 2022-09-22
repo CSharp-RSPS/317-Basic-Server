@@ -66,9 +66,9 @@ namespace RSPS.src.entity.player
                         player.LocalPlayers.Remove(other);
                     }
                 }
-                int addedLocalPlayers = 0;
 
                 //Update the local players list.
+                int addedLocalPlayers = 0;
                 for (int i = 0; i < world.Players.Entities.Count; i++)
                 {
                     if (player.LocalPlayers.Count >= REGION_PLAYERS_LIMIT)
@@ -78,20 +78,21 @@ namespace RSPS.src.entity.player
                     {
                         break;
                     }
-
+                    Console.WriteLine("Trying to update?!");
                     Player other = world.Players.Entities[i];
-                    if (other == null || other == player || other.PlayerConnection.ConnectionState < ConnectionState.Authenticated)//so we dont add ourself to the list
+                    if (other == null || other == player || other.PlayerConnection.ConnectionState != ConnectionState.Authenticated)//so we dont add ourself to the list
                     {
+                        Console.WriteLine("Getting stopped here?");
                         continue;
                     }
 
                     //So we dont hit the client buffer of 5k - redo this keep track of players being added per cycle
                     //it's variable player adding to the seen surrounding area
-/*                    if ((outPacket.PayloadPosition + stateBlock.PayloadPosition) + 320 > 5000)
-                    {
-                        break;
-                    }*/
-
+                    /*                    if ((outPacket.PayloadPosition + stateBlock.PayloadPosition) + 320 > 5000)
+                                        {
+                                            break;
+                                        }*/
+                    Console.WriteLine("Trying to update?! 3");
                     if (!player.LocalPlayers.Contains(other) && other.Position.isViewableFrom(player.Position))
                     {
                         player.LocalPlayers.Add(other);

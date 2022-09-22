@@ -1,4 +1,5 @@
-﻿using RSPS.src.entity.player;
+﻿using RSPS.src.entity.flag;
+using RSPS.src.entity.player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace RSPS.src.entity
         public bool ResetMovementQueue = false;
 
         public int WorldIndex = -1;
+
+        public EntityFlags Flags = new EntityFlags();
 
         public Position CurrentRegion = new Position(0, 0, 0);
 
