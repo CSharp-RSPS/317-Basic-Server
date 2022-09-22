@@ -43,8 +43,12 @@ namespace RSPS.src.net.Codec
                 Console.Error.WriteLine("Unable to decode packet as no decryptor is present");
                 return false;
             }
+            int loop = 0;
+            Debug.WriteLine("Buffer: " + string.Join(" ", reader.Buffer.ToArray()));
+
             while (reader.Pointer < reader.Length)
             {
+                int startPointer = reader.Pointer;
                 // Retrieve the opcode and assumed size of the received packet
                 int packetOpcode = reader.ReadByte();
                 packetOpcode = packetOpcode - connection.NetworkDecryptor.getNextValue() & 0xFF;
@@ -79,7 +83,8 @@ namespace RSPS.src.net.Codec
                     }
                     PacketHandler.HandlePacket(_player, packetOpcode, packetSize, reader);
                     
-                    Debug.WriteLine("After [Opcode: " + packetOpcode + "][Size: " + packetSize + "]: " + string.Join(" ", reader.Buffer.ToArray()));
+                    Debug.WriteLine("[Loop: " + (++loop)+ "][Pointer: start@" + startPointer + " stop@" + reader.Pointer + "]" +
+                        "[Opcode: " + packetOpcode + "][Size: " + packetSize + "]: " + string.Join(" ", reader.Buffer.ToArray()));
                     Debug.WriteLine("==========================");
 
                     //PacketHandler.HandlePacket(_player, reader);
