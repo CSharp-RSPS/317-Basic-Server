@@ -176,41 +176,17 @@ namespace RSPS.src.net.Connections
 
                 while (reader.Pointer < reader.Length)
                 {
-                    if (connection.ConnectionState == ConnectionState.Disconnected)
-                    {
-                        break;
-                    }
-                    if (connection.ConnectionState == ConnectionState.ConnectionRequest)
-                    {
-                        new ConnectionRequestDecoder().Decode(connection, reader);
-                        break;
-                    }
-                    if (connection.ConnectionState == ConnectionState.Authenticate)
-                    {
-                        connection.ProtocolDecoder = new LoginDecoder().Decode(connection, reader);
-                        break;
-                    }
-                    if (connection.ConnectionState == ConnectionState.Authenticated)
-                    {
-                        if (connection.ProtocolDecoder.Decode(connection, reader) == null)
-                        {
-                            Console.Error.WriteLine("Decoding failed using decoder: {0}", connection.ProtocolDecoder.GetType().Name);
-                            connection.Dispose();
-                            return;
-                        }
-                    }
-                }
-                /*
-                IProtocolDecoder? nextDecoder = connection.ProtocolDecoder.Decode(connection, packetReader);
+                    IProtocolDecoder? nextDecoder = connection.ProtocolDecoder.Decode(connection, reader);
 
-                if (nextDecoder == null)
-                {
-                    Console.Error.WriteLine("Decoding failed using decoder: {0}", connection.ProtocolDecoder.GetType().Name);
-                    connection.Dispose();
-                    return;
+                    if (nextDecoder == null)
+                    {
+                        Console.Error.WriteLine("Decoding failed using decoder: {0}", connection.ProtocolDecoder.GetType().Name);
+                        connection.Dispose();
+                        return;
+                    }
+                    // Set the next protocol decoder
+                    connection.ProtocolDecoder = nextDecoder;
                 }
-                // Set the next protocol decoder
-                connection.ProtocolDecoder = nextDecoder;*/
                 // Reset the data buffer
                 connection.ResetBuffer();
                 // Start listening for the next incoming packet
