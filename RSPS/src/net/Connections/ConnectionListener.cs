@@ -200,9 +200,15 @@ namespace RSPS.src.net.Connections
                 return;
             }
             catch (ObjectDisposedException ex)
-            {
+            { // Socket is disposed
                 Debug.WriteLine(ex);
                 connection.MarkDisconnected();
+                return;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                connection.Dispose();
                 return;
             }
         }
