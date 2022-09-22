@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.send.impl
 {
+    /// <summary>
+    /// Sends a server message (e.g. 'Welcome to RuneScape') or trade/duel request.
+    /// </summary>
     public sealed class SendMessage : ISendPacket
     {
 

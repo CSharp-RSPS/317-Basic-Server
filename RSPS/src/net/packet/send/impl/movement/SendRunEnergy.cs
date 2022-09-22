@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.send.impl
 {
+    /// <summary>
+    /// Sends the players run energy level.
+    /// </summary>
     public sealed class SendRunEnergy : ISendPacket
     {
 
