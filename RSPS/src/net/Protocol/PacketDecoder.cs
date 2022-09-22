@@ -70,22 +70,30 @@ namespace RSPS.src.net.Codec
                 if (reader.Length >= packetSize)
                 {
                     //reader.Opcode = packetOpCode;
-                  //  reader.PayloadSize = packetSize;
+                    //  reader.PayloadSize = packetSize;
+                    byte[] packetBuffer = new byte[packetSize];
+
+                    for (int i = 0; i < packetBuffer.Length; i++)
+                    {
+                        packetBuffer[i] = (byte)reader.ReadByte();
+                    }
+                    Debug.WriteLine("[Loop: " + (++loop) + "][Pointer: start@" + startPointer + " stop@" + reader.Pointer + "]" +
+                        "[Opcode: " + packetOpcode + "][Size: " + packetSize + "]: " + string.Join(" ", packetBuffer.ToArray()));
+                    Debug.WriteLine("==========================");
 
                     try
                     {
-                        PacketHandler.HandlePacket(_player, packetOpcode, packetSize, reader);
+                        PacketHandler.HandlePacket(_player, packetOpcode, packetSize, new PacketReader(packetBuffer));
                     }
                     catch (Exception ex)
                     {
                         Debug.WriteLine(ex);
                         return false;
                     }
+
                     
                     
-                    Debug.WriteLine("[Loop: " + (++loop)+ "][Pointer: start@" + startPointer + " stop@" + reader.Pointer + "]" +
-                        "[Opcode: " + packetOpcode + "][Size: " + packetSize + "]: " + string.Join(" ", reader.Buffer.ToArray()));
-                    Debug.WriteLine("==========================");
+                    
 
                     //PacketHandler.HandlePacket(_player, reader);
                 }
