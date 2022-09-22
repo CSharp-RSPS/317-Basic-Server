@@ -60,7 +60,7 @@ namespace RSPS.src.net.Codec
                     {
                         break;
                     }
-                    packetSize = reader.ReadByte() & 0xFF;
+                    packetSize = reader.ReadByte();
 
                     Debug.WriteLine(packetOpcode + " => VARIABLE => " + packetSize);
                 }
@@ -74,14 +74,14 @@ namespace RSPS.src.net.Codec
 
                     try
                     {
-
+                        PacketHandler.HandlePacket(_player, packetOpcode, packetSize, reader);
                     }
                     catch (Exception ex)
                     {
                         Debug.WriteLine(ex);
                         return false;
                     }
-                    PacketHandler.HandlePacket(_player, packetOpcode, packetSize, reader);
+                    
                     
                     Debug.WriteLine("[Loop: " + (++loop)+ "][Pointer: start@" + startPointer + " stop@" + reader.Pointer + "]" +
                         "[Opcode: " + packetOpcode + "][Size: " + packetSize + "]: " + string.Join(" ", reader.Buffer.ToArray()));
