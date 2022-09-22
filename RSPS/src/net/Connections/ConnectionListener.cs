@@ -219,7 +219,7 @@ namespace RSPS.src.net.Connections
                 byte[] packetBuffer = new byte[bytesRead];
                 Array.Copy(connection.Buffer, 0, packetBuffer, 0, bytesRead);
                 // Resets the connection buffer for the next packet
-                //connection.ResetBuffer();
+                connection.ResetBuffer();
                 // Wrap the buffer into a packet reader and decodes the data
                 if (!decoder.Decode(connection, new(packetBuffer)))
                 {

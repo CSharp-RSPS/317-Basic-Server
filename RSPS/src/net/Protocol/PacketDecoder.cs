@@ -85,7 +85,6 @@ namespace RSPS.src.net.Codec
                     //PacketHandler.HandlePacket(_player, reader);
                 }
             }
-            connection.ResetBuffer();
             return true;
         }
 
