@@ -44,9 +44,6 @@ namespace RSPS.src.net.Codec
                 Console.Error.WriteLine("Unable to decode packet as no decryptor is present");
                 return false;
             }
-            Debug.WriteLine("Buffer: " + string.Join(" ", reader.Buffer.ToArray()));
-            int packetsHandled = 0;
-
             while (reader.HasReadableBytes && connection.ConnectionState != ConnectionState.Disconnected)
             {
                 List<byte> temp = new();
@@ -54,8 +51,6 @@ namespace RSPS.src.net.Codec
                 {
                     temp.Add(reader.Buffer[i]);
                 }
-                Debug.WriteLine("Pointer@ " + reader.Pointer + ", buffer left: " + string.Join(" ", temp.ToArray()));
-
                 // Extract the packet opcode and the corresponding default size
                 int packetOpcode = reader.ReadByte();
                 packetOpcode = packetOpcode - connection.NetworkDecryptor.getNextValue() & 0xFF;
@@ -80,16 +75,9 @@ namespace RSPS.src.net.Codec
                 // Consume the bytes used by the handled packet from the data reader
                 reader.ReadBytes(packetPayloadSize);
 
-                Debug.WriteLine("Copied packet payload to buffer, reader pointing @ {0}/{1}", reader.Pointer, reader.Length);
-
                 try
                 { // Handle the packet
                     PacketHandler.HandlePacket(_player, packetOpcode, packetPayloadSize, new(packetPayloadBuffer));
-                    packetsHandled++;
-
-                    Debug.WriteLine(">>> Packet {0} with size {1} built. Payload => {2}",
-                        packetOpcode, packetPayloadSize, string.Join(" ", packetPayloadBuffer));
-                    Debug.WriteLine("--------------------------------------");
                 }
                 catch (Exception ex)
                 {
@@ -97,8 +85,6 @@ namespace RSPS.src.net.Codec
                     return false;
                 }
             }
-            Debug.WriteLine("Handled {0} packets in decoding session. Reader data left: {1}", packetsHandled, reader.ReadableBytes);
-            Debug.WriteLine(" =========================================== ");
             return true;
         }
 
