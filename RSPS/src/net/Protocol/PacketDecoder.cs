@@ -46,11 +46,6 @@ namespace RSPS.src.net.Codec
             }
             while (reader.HasReadableBytes && connection.ConnectionState != ConnectionState.Disconnected)
             {
-                List<byte> temp = new();
-                for (int i = reader.Pointer; i < reader.Length; i++)
-                {
-                    temp.Add(reader.Buffer[i]);
-                }
                 // Extract the packet opcode and the corresponding default size
                 int packetOpcode = reader.ReadByte();
                 packetOpcode = packetOpcode - connection.NetworkDecryptor.getNextValue() & 0xFF;

@@ -219,48 +219,6 @@ namespace RSPS.src.net.Connections
                 {
                     return true;
                 } 
-
-                #region Original
-                /* PacketReader? dataReader = null;
-
-                 using (MemoryStream ms = new(bytesRead))
-                 {
-                     ms.Write(connection.Buffer, 0, bytesRead);
-                     dataReader = new(ms.ToArray());
-                 }
-                 if (connection.ConnectionState != ConnectionState.Authenticated)
-                 {
-                     decoder.Decode(connection, dataReader);
-                 }
-                 else
-                 {
-                     while (dataReader.Pointer < dataReader.Length)
-                     {
-                         int packetOpCode = dataReader.ReadByte() & 0xFF;
-                         packetOpCode = (packetOpCode - connection.NetworkDecryptor.getNextValue()) & 0xFF;// -- cryption
-                                                                                                           //Console.WriteLine("packet op code: " + packetOpCode);
-                         int packetLength = PacketDecoder.PacketSizes[packetOpCode];
-                         if (packetLength == -1)//variable length packet
-                         {
-                             if (dataReader.Pointer >= dataReader.Length)
-                             {
-                                 break;
-                             }
-                             packetLength = dataReader.ReadByte();
-                             packetLength = packetLength & 0xFF;//new
-                         }
-
-                         if (dataReader.Length >= packetLength)
-                         {
-                             PacketHandler.HandlePacket(connection.PacketDecoder._player, packetOpCode, packetLength, dataReader);
-                         }
-                     }
-                 }
-                 // Resets the connection data buffer
-                 connection.ResetBuffer();
-                */
-                #endregion
-
                 // Write the received bytes to a new buffer
                 byte[] packetBuffer = new byte[bytesRead];
                 Array.Copy(connection.Buffer, 0, packetBuffer, 0, bytesRead);
