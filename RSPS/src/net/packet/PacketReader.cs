@@ -28,6 +28,11 @@ namespace RSPS.src.net.packet
         /// </summary>
         public int ReadableBytes => Buffer.Length - Pointer;
 
+        /// <summary>
+        /// Retrieves whether any undread bytes are left in the buffer
+        /// </summary>
+        public bool HasReadableBytes => Pointer < Length;
+
 
         public PacketReader(byte[] stream) : base(stream)
         {

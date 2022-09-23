@@ -5,13 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using RSPS.src.entity.player;
 using RSPS.src.net.Connections;
+using RSPS.src.Util.Annotations;
 
 namespace RSPS.src.net.packet.receive.impl
 {
     /// <summary>
     /// Sent when there are no actions being performed by the player for this cycle.
     /// </summary>
-    public class ReceiveIdle : IReceivePacket
+    [Opcode(0)]
+    public sealed class ReceiveIdle : IReceivePacket
     {
 
 

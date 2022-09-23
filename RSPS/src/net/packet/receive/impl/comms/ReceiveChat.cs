@@ -1,5 +1,6 @@
 ﻿using RSPS.src.entity.player;
 using RSPS.src.net.Connections;
+using RSPS.src.Util.Annotations;
 using RSPS.src.Worlds;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace RSPS.src.net.packet.receive.impl
     /// <summary>
     /// Sent when the player enters a chat message.
     /// </summary>
+    [Opcode(4)]
     public sealed class ReceiveChat : IReceivePacket
     {
 
