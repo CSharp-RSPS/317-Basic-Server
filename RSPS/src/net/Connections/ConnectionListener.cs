@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Numerics;
 using System.Reflection.PortableExecutable;
 using System.Text;
 
@@ -264,17 +265,21 @@ namespace RSPS.src.net.Connections
                 // Write the received bytes to a new buffer
                 byte[] packetBuffer = new byte[bytesRead];
                 Array.Copy(connection.Buffer, 0, packetBuffer, 0, bytesRead);
-                // Resets the connection buffer for the next packet
-                connection.ResetBuffer();
-
-                //Task.Run(() => decoder.Decode(connection, new(packetBuffer)));
-                
-                // Wrap the buffer into a packet reader and decodes the data
-                if (!decoder.Decode(connection, new(packetBuffer)))
+                // Wrap the buffer into a packet reader
+                PacketReader packetReader = new(packetBuffer);
+                // Decode the packet(s)
+                if (!decoder.Decode(connection, packetReader))
                 {
                     Console.Error.WriteLine("Decoding failed using decoder: {0}", decoder.GetType().Name);
                     connection.Dispose();
                     return false;
+                }
+                // Resets the connection buffer for the next packet
+                connection.ResetBuffer();
+
+                if (packetReader.ReadableBytes > 0)
+                { // Store any non-consumed data back into the connection' data buffer
+                    Array.Copy(packetReader.Buffer, packetReader.Pointer, connection.Buffer, 0, packetReader.ReadableBytes);
                 }
                 return true;
             }

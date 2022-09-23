@@ -24,15 +24,7 @@ namespace RSPS.src.net.Codec
         /// <summary>
         /// The player we're decoding for
         /// </summary>
-        public readonly Player _player;
-
-        private int packetOpcode;
-
-        private int packetPayloadSize;
-
-        private byte[]? packetPayloadBuffer;
-
-        private int packetsHandled = 0;
+        private readonly Player _player;
 
 
         /// <summary>
@@ -42,8 +34,6 @@ namespace RSPS.src.net.Codec
         public PacketDecoder(Player player)
         {
             _player = player;
-            packetOpcode = -1;
-            packetPayloadSize = -1;
         }
 
         public bool Decode(Connection connection, PacketReader reader)
@@ -54,92 +44,48 @@ namespace RSPS.src.net.Codec
                 return false;
             }
             Debug.WriteLine("Buffer: " + string.Join(" ", reader.Buffer.ToArray()));
+            int packetsHandled = 0;
 
-            if (reader.ReadableBytes <= 0 || connection.ConnectionState == ConnectionState.Disconnected)
-            {
-                return connection.ConnectionState != ConnectionState.Disconnected;
-            }
-            if (packetOpcode == -1)
-            { // Extract the packet opcode and the corresponding default size
-                packetOpcode = reader.ReadByte();
-                packetOpcode = packetOpcode - connection.NetworkDecryptor.getNextValue() & 0xFF;
-                packetPayloadSize = PacketSizes[packetOpcode];
-                packetPayloadBuffer = packetPayloadSize != -1 ? new byte[packetPayloadSize] : null;
-            }
-            if (packetPayloadBuffer == null)
-            { // Resolve the packet size of a dynamic packet
-                if (reader.ReadableBytes <= 0)
-                { // End of data stream reached
-                    Debug.WriteLine("Unable to determine variable packet size for packet {0}, no more data present", packetOpcode);
-                    return true;
-                }
-                packetPayloadSize = reader.ReadByte();
-                packetPayloadBuffer = new byte[packetPayloadSize];
-            }
-            if (reader.ReadableBytes >= packetPayloadSize)
-            { // Retrieve the payload of the packet
-                Array.Copy(reader.Buffer, reader.Pointer, packetPayloadBuffer, 0, packetPayloadSize);
-                Debug.WriteLine("Copied packet payload to buffer, reader pointing @ {0}/{1}", reader.Pointer, reader.Length);
-                reader.Pointer += packetPayloadSize;
-
-                try
-                {
-                    PacketHandler.HandlePacket(_player, packetOpcode, packetPayloadSize, new(packetPayloadBuffer));
-                    packetsHandled++;
-
-                    Debug.WriteLine(">>> Packet {0} with size {1} built. Payload => {2}", 
-                        packetOpcode, packetPayloadSize, string.Join(" ", packetPayloadBuffer));
-                    Debug.WriteLine("--------------------------------------");
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex);
-                    return false;
-                }
-                finally
-                {
-                    packetOpcode = -1;
-                    packetPayloadSize = -1;
-                }
-                if (reader.ReadableBytes > 0)
-                { // If there is still data left after handling a packet we continue decoding for a potential next packet
-                    return Decode(connection, reader);
-                }
-            }
-            /*
             while (reader.ReadableBytes > 0 && connection.ConnectionState != ConnectionState.Disconnected)
-            { // As long as there's data left in the data buffer and the connection is connected we try to consume the data
-              
+            {
+                // Extract the packet opcode and the corresponding default size
+                int packetOpcode = reader.ReadByte();
+                packetOpcode = packetOpcode - connection.NetworkDecryptor.getNextValue() & 0xFF;
+                int packetPayloadSize = PacketSizes[packetOpcode];
 
-                
-                
+                if (packetPayloadSize == -1)
+                { // Resolve the packet size of a dynamic packet
+                    if (reader.ReadableBytes <= 0)
+                    { // End of data stream reached
+                        Debug.WriteLine("Unable to determine variable packet size for packet {0}, no more data present", packetOpcode);
+                        break;
+                    }
+                    packetPayloadSize = reader.ReadByte();
+                }
+                if (reader.Length >= packetPayloadSize)
+                {  // Retrieve the payload of the packet
 
-                if (reader.ReadableBytes >= packetSize)
-                { // Retrieve the packet payload
-                    Array.Copy(reader.Buffer, reader.Pointer, buffer, 0, packetSize);
-                    reader.Pointer += packetSize;
-                    Debug.WriteLine("Copied packet payload to buffer, reader pointing @ {0}/{1}", reader.Pointer, reader.Length);
+                    // Array.Copy(reader.Buffer, reader.Pointer, packetPayloadBuffer, 0, packetPayloadSize);
+                    //Debug.WriteLine("Copied packet payload to buffer, reader pointing @ {0}/{1}", reader.Pointer, reader.Length);
 
                     try
                     {
-                        PacketHandler.HandlePacket(_player, packetOpcode, packetSize, new(buffer));
+                        PacketHandler.HandlePacket(_player, packetOpcode, packetPayloadSize, reader);
                         packetsHandled++;
+
+                        Debug.WriteLine(">>> Packet {0} with size {1} built. Payload => {2}",
+                            packetOpcode, packetPayloadSize, string.Join(" ", reader.Buffer));
+                        Debug.WriteLine("--------------------------------------");
                     }
                     catch (Exception ex)
                     {
                         Debug.WriteLine(ex);
                         return false;
                     }
-                    reader.Pointer += packetSize;
                 }
-
-                Debug.WriteLine(">>> Packet {0} with size {1} built. Payload => {2}", packetOpcode, packetSize, string.Join(" ", buffer));
-                Debug.WriteLine("--------------------------------------");
-               
-            }*/
+            }
             Debug.WriteLine("Handled {0} packets in decoding session. Reader data left: {1}", packetsHandled, reader.ReadableBytes);
             Debug.WriteLine(" =========================================== ");
-            packetsHandled = 0;
             return true;
         }
 
