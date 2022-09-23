@@ -14,16 +14,6 @@ namespace RSPS.src.net.packet
     {
 
         /// <summary>
-        /// The opcode of the packet when applicable
-        /// </summary>
-        public int Opcode { get; set; }
-
-        /// <summary>
-        /// Whether the packet is a variable or fixed size
-        /// </summary>
-        public bool VariableSize { get; set; }
-
-        /// <summary>
         /// The readable bytes left in the reader
         /// </summary>
         public int ReadableBytes => Buffer.Length - Pointer;
@@ -31,7 +21,7 @@ namespace RSPS.src.net.packet
         /// <summary>
         /// Retrieves whether any undread bytes are left in the buffer
         /// </summary>
-        public bool HasReadableBytes => Pointer < Length;
+        public bool HasReadableBytes => ReadableBytes > 0;
 
 
         public PacketReader(byte[] stream) : base(stream)
@@ -506,8 +496,9 @@ namespace RSPS.src.net.packet
 
             for (int i = Pointer + amount - 1; i >= Pointer; i--)
             {
-                int value = Buffer[i];
-
+                //int value = Buffer[i];
+                int value = ReadByte(type);
+                /*
                 switch (type)
                 {
                     case ValueType.Additional:
@@ -521,10 +512,10 @@ namespace RSPS.src.net.packet
                     case ValueType.Subtrahend:
                         value = 128 - value;
                         break;
-                }
+                }*/
                 data[dataPosition++] = (byte)value;
             }
-            Pointer += dataPosition;
+            //Pointer += dataPosition;
             return data;
         }
 

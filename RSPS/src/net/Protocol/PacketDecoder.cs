@@ -49,6 +49,13 @@ namespace RSPS.src.net.Codec
 
             while (reader.HasReadableBytes && connection.ConnectionState != ConnectionState.Disconnected)
             {
+                List<byte> temp = new();
+                for (int i = reader.Pointer; i < reader.Length; i++)
+                {
+                    temp.Add(reader.Buffer[i]);
+                }
+                Debug.WriteLine("Pointer@ " + reader.Pointer + ", buffer left: " + string.Join(" ", temp.ToArray()));
+
                 // Extract the packet opcode and the corresponding default size
                 int packetOpcode = reader.ReadByte();
                 packetOpcode = packetOpcode - connection.NetworkDecryptor.getNextValue() & 0xFF;
@@ -63,22 +70,8 @@ namespace RSPS.src.net.Codec
                     }
                     packetPayloadSize = reader.ReadByte();
                 }
-                if (packetPayloadSize == -2)
-                { // Anything else than -1 shouldn't exist however the client also reads a short for -2 as size so i'll add it
-                    if (reader.ReadableBytes < 2)
-                    { // End of data stream reached
-                        Debug.WriteLine("Unable to determine variable packet size for packet {0}, not enough data present", packetOpcode);
-                        break;
-                    }
-                    // Anything else than -1 shouldn't exist however the client also reads a short for -2 as size so i'll add it
-                    reader.Pointer = reader.Pointer > 2 ? (reader.Pointer - 2) : 0;
-                    packetPayloadSize = reader.ReadShort(false);
-                    reader.Pointer -= 2;
-                }
-               // reader.Pointer -= 1;
-
                 if (reader.ReadableBytes < packetPayloadSize)
-                {
+                { // Break out if there's less readable bytes available than we need to complete the packet
                     break;
                 }
                 // Retrieve the payload of the packet and write it to a new buffer
@@ -103,10 +96,6 @@ namespace RSPS.src.net.Codec
                     Debug.WriteLine(ex);
                     return false;
                 }
-                if (reader.ReadableBytes == 1 && reader.Buffer[reader.Length - 1] == 0)
-                {
-                    break;
-                }
             }
             Debug.WriteLine("Handled {0} packets in decoding session. Reader data left: {1}", packetsHandled, reader.ReadableBytes);
             Debug.WriteLine(" =========================================== ");
@@ -117,33 +106,34 @@ namespace RSPS.src.net.Codec
         /// Holds the predetermined sizes of packets with the index in the array being the packet opcode.
         /// -1 indiciates a packet has a variable size
         /// </summary>
+        /// <remarks>TRISTAN YOU PIECE OF SHIT PASTING 377 SIZES - GOD WILL PUNISH</remarks>
         public static readonly int[] PacketSizes = {
             0, 0, 0, 1, -1, 0, 0, 0, 0, 0, // 0
-            0, 0, 0, 0, 8, 0, 6, 2, 2, 0, // 10
-            0, 2, 0, 6, 0, 12, 0, 0, 0, 0, // 20
-            0, 0, 0, 0, 0, 8, 4, 0, 0, 2, // 30
-            2, 6, 0, 6, 0, -1, 0, 0, 0, 0, // 40
-            0, 0, 0, 12, 0, 0, 0, 0, 8, 0, // 50
-            0, 8, 0, 0, 0, 0, 0, 0, 0, 0, // 60
-            6, 0, 2, 2, 8, 6, 0, -1, 0, 6, // 70
-            0, 0, 0, 0, 0, 1, 4, 6, 0, 0, // 80
-            0, 0, 0, 0, 0, 3, 0, 0, -1, 0, // 90
-            0, 13, 0, -1, 0, 0, 0, 0, 0, 0,// 100
-            0, 0, 0, 0, 0, 0, 0, 6, 0, 0, // 110
-            1, 0, 6, 0, 0, 0, -1, 0, 2, 6, // 120
-            0, 4, 6, 8, 0, 6, 0, 0, 0, 2, // 130
-            0, 0, 0, 0, 0, 6, 0, 0, 0, 0, // 140
-            0, 0, 1, 2, 0, 2, 6, 0, 0, 0, // 150
-            0, 0, 0, 0, - 1, -1, 0, 0, 0, 0,// 160
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 170
-            0, 8, 0, 3, 0, 2, 0, 0, 8, 1, // 180
-            0, 0, 12, 0, 0, 0, 0, 0, 0, 0, // 190
-            2, 0, 0, 0, 0, 0, 0, 0, 4, 0, // 200
-            4, 0, 0, 0, 7, 8, 0, 0, 10, 0, // 210
-            0, 0, 0, 0, 0, 0, -1, 0, 6, 0, // 220
-            1, 0, 0, 0, 6, 0, 6, 8, 1, 0, // 230
-            0, 4, 0, 0, 0, 0, -1, 0, -1, 4,// 240
-            0, 0, 6, 6, 0, 0, 0 // 250
+		    0, 0, 0, 0, 8, 0, 6, 2, 2, 0, // 10
+		    0, 2, 0, 6, 0, 12, 0, 0, 0, 0, // 20
+		    0, 0, 0, 0, 0, 8, 4, 0, 0, 2, // 30
+		    2, 6, 0, 6, 0, -1, 0, 0, 0, 0, // 40
+		    0, 0, 0, 12, 0, 0, 0, 8, 8, 12, // 50
+		    8, 8, 0, 0, 0, 0, 0, 0, 0, 0, // 60
+		    8, 0, 2, 2, 8, 6, 0, -1, 0, 6, // 70
+		    0, 0, 0, 0, 0, 1, 4, 6, 0, 0, // 80
+		    0, 0, 0, 0, 0, 3, 0, 0, -1, 0, // 90
+		    0, 13, 0, -1, 0, 0, 0, 0, 0, 0,// 100
+		    0, 0, 0, 0, 0, 0, 0, 6, 0, 0, // 110
+		    1, 0, 6, 0, 0, 0, -1, 0, 2, 6, // 120
+		    0, 4, 8, 8, 0, 6, 0, 0, 0, 2, // 130
+		    0, 0, 0, 0, 0, 6, 0, 0, 0, 0, // 140
+		    0, 0, 1, 2, 0, 2, 6, 0, 0, 0, // 150
+		    0, 0, 0, 0, -1, -1, 0, 0, 0, 0,// 160
+		    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 170
+		    0, 8, 0, 3, 0, 2, 0, 0, 8, 1, // 180
+		    0, 0, 14, 0, 0, 0, 0, 0, 0, 0, // 190
+		    2, 0, 0, 0, 0, 0, 0, 0, 4, 0, // 200
+		    4, 0, 0, 0, 7, 8, 0, 0, 10, 0, // 210
+		    0, 0, 0, 0, 0, 0, -1, 0, 6, 0, // 220
+		    1, 0, 0, 0, 6, 0, 6, 8, 1, 0, // 230
+		    0, 4, 0, 0, 0, 0, -1, 0, -1, 4,// 240
+		    0, 0, 8, 6, 0, 0, 0 // 250
         };
 
     }
