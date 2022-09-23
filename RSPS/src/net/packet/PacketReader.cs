@@ -13,6 +13,19 @@ namespace RSPS.src.net.packet
     public sealed class PacketReader : Packet
     {
 
+        /// <summary>
+        /// The opcode of the packet when applicable
+        /// </summary>
+        public int Opcode { get; set; }
+
+        /// <summary>
+        /// Whether the packet is a variable or fixed size
+        /// </summary>
+        public bool VariableSize { get; set; }
+
+        /// <summary>
+        /// The readable bytes left in the reader
+        /// </summary>
         public int ReadableBytes => Buffer.Length - Pointer;
 
 

@@ -27,6 +27,11 @@ namespace RSPS.src.net.Connections
         private static readonly int MaxBufferSize = 4096;
 
         /// <summary>
+        /// The packet decoder to be used by the connection
+        /// </summary>
+        public PacketDecoder PacketDecoder { get; set; }
+
+        /// <summary>
         /// The data buffer for reading data from the client
         /// </summary>
         public byte[] Buffer { get; private set; }

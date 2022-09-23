@@ -173,7 +173,9 @@ namespace RSPS.src.net.Connections
         /// </summary>
         /// <param name="player">The player</param>
         private void OnAuthenticated(Player player)
-        { 
+        {
+            // Asign a packet decoder for the player to their connection
+            player.PlayerConnection.PacketDecoder = new PacketDecoder(player);
             //Start listening for packets
             player.PlayerConnection.ClientSocket.BeginReceive(player.PlayerConnection.Buffer, 0, player.PlayerConnection.Buffer.Length, SocketFlags.None,
                     new AsyncCallback(ReadPacketCallback), player);
@@ -192,11 +194,12 @@ namespace RSPS.src.net.Connections
             }
             Player player = (Player)result.AsyncState;
 
-            if (HandleProtocolDecoding(result, new PacketDecoder(player), player.PlayerConnection))
+            if (HandleProtocolDecoding(result, player.PlayerConnection.PacketDecoder, player.PlayerConnection))
             {
                 player.PlayerConnection.ClientSocket.BeginReceive(player.PlayerConnection.Buffer, 0, player.PlayerConnection.Buffer.Length, SocketFlags.None,
                     new AsyncCallback(ReadPacketCallback), player);
             }
+            //TODO work with connection, player stats in decoder player.PlayerConnection.PacketDecoder
         }
 
         private bool HandleProtocolDecoding(IAsyncResult result, IProtocolDecoder decoder, Connection connection)
@@ -215,11 +218,57 @@ namespace RSPS.src.net.Connections
                 {
                     return true;
                 }
+
+                #region Original
+               /* PacketReader? dataReader = null;
+
+                using (MemoryStream ms = new(bytesRead))
+                {
+                    ms.Write(connection.Buffer, 0, bytesRead);
+                    dataReader = new(ms.ToArray());
+                }
+                if (connection.ConnectionState != ConnectionState.Authenticated)
+                {
+                    decoder.Decode(connection, dataReader);
+                }
+                else
+                {
+                    while (dataReader.Pointer < dataReader.Length)
+                    {
+                        int packetOpCode = dataReader.ReadByte() & 0xFF;
+                        packetOpCode = (packetOpCode - connection.NetworkDecryptor.getNextValue()) & 0xFF;// -- cryption
+                                                                                                          //Console.WriteLine("packet op code: " + packetOpCode);
+                        int packetLength = PacketDecoder.PacketSizes[packetOpCode];
+                        if (packetLength == -1)//variable length packet
+                        {
+                            if (dataReader.Pointer >= dataReader.Length)
+                            {
+                                break;
+                            }
+                            packetLength = dataReader.ReadByte();
+                            packetLength = packetLength & 0xFF;//new
+                        }
+
+                        if (dataReader.Length >= packetLength)
+                        {
+                            PacketHandler.HandlePacket(connection.PacketDecoder._player, packetOpCode, packetLength, dataReader);
+                        }
+                    }
+                }
+                // Resets the connection data buffer
+                connection.ResetBuffer();
+               */
+                #endregion
+
+                
                 // Write the received bytes to a new buffer
                 byte[] packetBuffer = new byte[bytesRead];
                 Array.Copy(connection.Buffer, 0, packetBuffer, 0, bytesRead);
                 // Resets the connection buffer for the next packet
                 connection.ResetBuffer();
+
+                //Task.Run(() => decoder.Decode(connection, new(packetBuffer)));
+                
                 // Wrap the buffer into a packet reader and decodes the data
                 if (!decoder.Decode(connection, new(packetBuffer)))
                 {
