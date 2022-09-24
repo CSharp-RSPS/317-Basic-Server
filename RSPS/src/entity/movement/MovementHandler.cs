@@ -1,6 +1,7 @@
 ﻿using RSPS.src.entity.npc;
 using RSPS.src.entity.player;
 using RSPS.src.net.packet;
+using RSPS.src.net.packet.send;
 using RSPS.src.net.packet.send.impl;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,7 @@ namespace RSPS.src.entity.movement
             if (!IsRunning && Energy < 10000)
             {
                 ProcessRunEnergyRecovery(Energy);
-                PacketHandler.SendPacket(Player.PlayerConnection, new SendRunEnergy(Energy));
+                PacketHandler.SendPacket(Player, new SendRunEnergy(Energy));
             }
 
             if (walkPoint != null && walkPoint.Direction != -1)
@@ -71,7 +72,7 @@ namespace RSPS.src.entity.movement
             if (deltaX < 16 || deltaX >= 88 || deltaY < 16 || deltaY > 88)
             {
                 if (!(Player.GetType() == typeof(Npc))) {
-                    PacketHandler.SendPacket(Player.PlayerConnection, new SendMapRegion(Player));
+                    PacketHandler.SendPacket(Player, new SendLoadMapRegion(Player));
                 }
             }
         }
@@ -91,12 +92,12 @@ namespace RSPS.src.entity.movement
             if (energy == 0)
             {
                 RunToggled = false;
-                PacketHandler.SendPacket(Player.PlayerConnection, new SendConfiguration(173, RunToggled));
+                PacketHandler.SendPacket(Player, new SendConfiguration(173, RunToggled));
                 return;
             }
             int EnergyUseDamper = 67 + ((67 * Math.Clamp(Weight, 0, 64)) / 64);
             Energy = Math.Clamp(energy - EnergyUseDamper, 0, 10000);
-            PacketHandler.SendPacket(Player.PlayerConnection, new SendRunEnergy(Energy));
+            PacketHandler.SendPacket(Player, new SendRunEnergy(Energy));
         }
 
         private void ProcessRunEnergyRecovery(int energy)
@@ -107,7 +108,7 @@ namespace RSPS.src.entity.movement
             }
             int EnergyRecovery = (0 / 6) + 8;
             Energy = Math.Clamp(energy + EnergyRecovery, 0, 10000);
-            PacketHandler.SendPacket(Player.PlayerConnection, new SendRunEnergy(Energy));
+            PacketHandler.SendPacket(Player, new SendRunEnergy(Energy));
         }
 
         public void FinishPath()

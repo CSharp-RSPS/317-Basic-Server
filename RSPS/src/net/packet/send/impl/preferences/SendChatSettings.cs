@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Sends the chat privacy settings.
     /// </summary>
-    public sealed class SendChatSettings : ISendPacket
+    [PacketDef(PacketDefinition.ChatSettings)]
+    public sealed class SendChatSettings : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(4);
-            writer.WriteHeader(encryptor, 206);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

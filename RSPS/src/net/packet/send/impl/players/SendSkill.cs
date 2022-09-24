@@ -1,4 +1,5 @@
 ﻿using RSPS.src.entity.player;
+using RSPS.src.Util.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,8 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Sends a skill level to the client.
     /// </summary>
-    public sealed class SendSkill : ISendPacket
+    [PacketDef(PacketDefinition.SkillLevel)]
+    public sealed class SendSkill : IPacketPayloadBuilder
     {
 
         public int Level { get; private set; }
@@ -25,14 +27,11 @@ namespace RSPS.src.net.packet.send.impl
             Experience = skill.CurrentExperience;
         }
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter packetWriter = Packet.CreatePacketWriter(7);
-            packetWriter.WriteHeader(encryptor, 134);
-            packetWriter.WriteByte(SkillId);
-            packetWriter.WriteInt(Experience, Packet.ByteOrder.MiddleEndian);
-            packetWriter.WriteByte(Level);
-            return packetWriter;
+            writer.WriteByte(SkillId);
+            writer.WriteInt(Experience, Packet.ByteOrder.MiddleEndian);
+            writer.WriteByte(Level);
         }
     }
 }

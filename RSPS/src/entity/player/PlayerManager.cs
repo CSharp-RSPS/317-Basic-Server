@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RSPS.src.net.Connections;
+using RSPS.src.net.packet.send;
 
 namespace RSPS.src.entity.player
 {
@@ -95,7 +96,7 @@ namespace RSPS.src.entity.player
                 PacketHandler.SendPacket(player, new SendSkill(player.GetSkill(skill)));
             }
             // Send the initial map region
-            PacketHandler.SendPacket(player, new SendMapRegion(player));
+            PacketHandler.SendPacket(player, new SendLoadMapRegion(player));
             // Send the run energy
             PacketHandler.SendPacket(player, new SendRunEnergy(player.MovementHandler.Energy));
 
@@ -114,12 +115,12 @@ namespace RSPS.src.entity.player
         {
             if (worldDetails.Debugging)
             {
-                PacketHandler.SendPacket(player.PlayerConnection, new SendMessage(string.Format("You are at {0}", player.Position.ToString())));
-                PacketHandler.SendPacket(player.PlayerConnection, new SendMessage(
+                PacketHandler.SendPacket(player, new SendMessage(string.Format("You are at {0}", player.Position.ToString())));
+                PacketHandler.SendPacket(player, new SendMessage(
                     string.Format("Index: {0}; Flagged: {1}; Rights: {2}", player.PlayerIndex, player.Flagged, player.Rights)));
             }
-            PacketHandler.SendPacket(player.PlayerConnection, new SendMessage(string.Format("Welcome to {0}.", worldDetails.Name)));
-            PacketHandler.SendPacket(player.PlayerConnection, new SendMessage(string.Format("Global notice: {0}.", "blablabla")));
+            PacketHandler.SendPacket(player, new SendMessage(string.Format("Welcome to {0}.", worldDetails.Name)));
+            PacketHandler.SendPacket(player, new SendMessage(string.Format("Global notice: {0}.", "blablabla")));
             // if muted etc send msg
 
             player.LoggedIn = true;

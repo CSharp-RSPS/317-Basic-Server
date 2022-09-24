@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Causes a sidebar icon to start flashing.
     /// </summary>
-    public sealed class SendFlashSidebar : ISendPacket
+    [PacketDef(PacketDefinition.FlashSidebar)]
+    public sealed class SendFlashSidebar : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(2);
-            writer.WriteHeader(encryptor, 24);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

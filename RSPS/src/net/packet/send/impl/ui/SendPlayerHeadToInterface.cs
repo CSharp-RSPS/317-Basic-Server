@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Sends the players head model to an interface
     /// </summary>
-    public sealed class SendPlayerHeadToInterface : ISendPacket
+    [PacketDef(PacketDefinition.PlayerHeadToInterface)]
+    public sealed class SendPlayerHeadToInterface : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(3);
-            writer.WriteHeader(encryptor, 185);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

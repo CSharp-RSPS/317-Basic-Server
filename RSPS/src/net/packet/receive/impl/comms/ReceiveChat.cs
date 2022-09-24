@@ -1,4 +1,6 @@
 ﻿using RSPS.src.entity.player;
+using RSPS.src.entity.player.updating.impl;
+using RSPS.src.game.comms.chat;
 using RSPS.src.net.Connections;
 using RSPS.src.Util.Annotations;
 using RSPS.src.Worlds;
@@ -13,7 +15,6 @@ namespace RSPS.src.net.packet.receive.impl
     /// <summary>
     /// Sent when the player enters a chat message.
     /// </summary>
-    [Opcode(4)]
     public sealed class ReceiveChat : IReceivePacket
     {
 
@@ -29,9 +30,11 @@ namespace RSPS.src.net.packet.receive.impl
             {
                 return;
             }
-            player.ChatEffects = effects;
-            player.ChatColor = color;
-            player.ChatText = text;
+            ChatMessage cm = new(effects, color, text);
+            ChatStateUpdate update = new(cm);
+
+            player.ChatMessage = cm;
+
             player.ChatUpdateRequired = true;
             player.UpdateRequired = true;
         }

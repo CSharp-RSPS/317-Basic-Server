@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.send.impl
 {
-    public sealed class SendConfiguration : ISendPacket
+    [PacketDef(PacketDefinition.ForceClientSetting)]
+    public sealed class SendConfiguration : IPacketPayloadBuilder
     {
 
         public int FrameId { get; private set; }
@@ -18,13 +20,10 @@ namespace RSPS.src.net.packet.send.impl
             FrameState = frameState;
         }
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = new PacketWriter(4);
-            writer.WriteHeader(encryptor, 36);
             writer.WriteShort(FrameId, Packet.ValueType.Standard, Packet.ByteOrder.LittleEndian);
             writer.WriteByte(FrameState == true ? 1 : 0);
-            return writer;
         }
     }
 }

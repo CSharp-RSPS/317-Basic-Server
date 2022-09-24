@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Remove non-specified ground items??????
     /// </summary>
-    public sealed class SendRemoveNonSpecifiedGroundItem : ISendPacket
+    [PacketDef(PacketDefinition.RemoveNonSpecifiedGroundItems)]
+    public sealed class SendRemoveNonSpecifiedGroundItem : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(4);
-            writer.WriteHeader(encryptor, 156);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

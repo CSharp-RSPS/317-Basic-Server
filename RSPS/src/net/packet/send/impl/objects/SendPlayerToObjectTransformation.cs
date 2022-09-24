@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Player to object transformation
     /// </summary>
-    public sealed class SendPlayerToObjectTransformation : ISendPacket
+    [PacketDef(PacketDefinition.PlayerToObjectTransformation)]
+    public sealed class SendPlayerToObjectTransformation : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(15);
-            writer.WriteHeader(encryptor, 147);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

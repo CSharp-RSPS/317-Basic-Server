@@ -13,7 +13,6 @@ namespace RSPS.src.net.packet.receive.impl
     /// <summary>
     /// Sent when a player uses an item on another player.
     /// </summary>
-    [Opcode(14)]
     public sealed class ReceiveItemOnPlayer : IReceivePacket
     {
 

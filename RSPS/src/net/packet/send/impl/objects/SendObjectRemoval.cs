@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Sends an object removal request to the client.
     /// </summary>
-    public sealed class SendObjectRemoval : ISendPacket
+    [PacketDef(PacketDefinition.ObjectRemoval)]
+    public sealed class SendObjectRemoval : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(4);
-            writer.WriteHeader(encryptor, 101);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

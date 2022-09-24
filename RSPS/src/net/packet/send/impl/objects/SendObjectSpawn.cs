@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Sends an object spawn request to the client.
     /// </summary>
-    public sealed class SendObjectSpawn : ISendPacket
+    [PacketDef(PacketDefinition.ObjectSpawn)]
+    public sealed class SendObjectSpawn : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(6);
-            writer.WriteHeader(encryptor, 151);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

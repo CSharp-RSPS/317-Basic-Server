@@ -4,6 +4,7 @@ using RSPS.src.net;
 using RSPS.src.net.Authentication;
 using RSPS.src.net.Connections;
 using RSPS.src.net.packet;
+using RSPS.src.net.packet.send;
 using RSPS.src.net.packet.send.impl;
 using RSPS.src.schedule;
 using System;
@@ -248,8 +249,8 @@ namespace RSPS.src.Worlds
 
                         // Process player updating
                         Players.Entities.ForEach(p => {
-                            PlayerUpdating.Update(this, p);
-                            //NpcUpdating.Update(player);
+                            PacketHandler.SendPacket(p, new SendBeginPlayerUpdating(p, Players.Entities));
+                            //PacketHandler.SendPacket(p, PacketDefinition.NPCUpdating, new SendNpcUpdating(p, Npcs.Entities));
                         });/*
                         Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) =>
                         {

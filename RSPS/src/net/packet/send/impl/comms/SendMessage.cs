@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,30 +10,33 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Sends a server message (e.g. 'Welcome to RuneScape') or trade/duel request.
     /// </summary>
-    public sealed class SendMessage : ISendPacket
+    [PacketDef(PacketDefinition.SendMessage)]
+    public sealed class SendMessage : IPacketVariablePayloadBuilder
     {
 
-        private string Message;
+        /// <summary>
+        /// The message
+        /// </summary>
+        public string Message { get; private set; }
 
+
+        /// <summary>
+        /// Creates a new message packet
+        /// </summary>
+        /// <param name="message">The message</param>
         public SendMessage(string message)
         {
             Message = message;
         }
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public int GetPayloadSize()
         {
-            //Console.WriteLine("preparing to send message: {0}", Message.Length + 3);
-            PacketWriter packetWriter = Packet.CreatePacketWriter(Message.Length + 3);
-            //Console.WriteLine("Payload size: {0}", packetWriter.Payload.Capacity);
-            packetWriter.WriteVariableHeader(encryptor, 253);
-            //System.Environment.Exit(0);
-            packetWriter.WriteString(Message);
-            packetWriter.FinishVariableHeader();
-            //foreach (var byte1 in packetWriter.Payload.ToArray())
-            //{
-            //    Console.WriteLine(byte1);
-            //}
-            return packetWriter;
+            return Message.Length;
+        }
+
+        public void WritePayload(PacketWriter writer)
+        {
+            writer.WriteString(Message);
         }
     }
 }

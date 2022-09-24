@@ -1,4 +1,5 @@
 ﻿using RSPS.src.entity.player;
+using RSPS.src.net.packet.send;
 using RSPS.src.net.packet.send.impl;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace RSPS.src.net.packet.receive.impl
             Console.WriteLine("Command: " + input);
 
             //resetanim
-            PacketHandler.SendPacket(player.PlayerConnection, new SendAnimationReset());
+            PacketHandler.SendPacket(player, PacketDefinition.AnimationReset);
             //TODO handle command
         }
 

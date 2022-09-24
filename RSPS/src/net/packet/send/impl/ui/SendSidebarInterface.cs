@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,8 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Assigns an interface to one of the tabs in the game sidebar.
     /// </summary>
-    public sealed class SendSidebarInterface : ISendPacket
+    [PacketDef(PacketDefinition.SendSidebarInterface)]
+    public sealed class SendSidebarInterface : IPacketPayloadBuilder
     {
 
         public int Slot { get; private set; }
@@ -23,13 +25,10 @@ namespace RSPS.src.net.packet.send.impl
             InterfaceID = interfaceID;
         }
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter packetWriter = Packet.CreatePacketWriter(4);
-            packetWriter.WriteHeader(encryptor, 71);
-            packetWriter.WriteShort(InterfaceID);
-            packetWriter.WriteByte(Slot, Packet.ValueType.Additional);
-            return packetWriter;
+            writer.WriteShort(InterfaceID);
+            writer.WriteByte(Slot, Packet.ValueType.Additional);
         }
     }
 }

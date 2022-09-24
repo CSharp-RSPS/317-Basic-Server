@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Sets an interface to be hidden until hovered over.
     /// </summary>
-    public sealed class SendHiddenInterface : ISendPacket
+    [PacketDef(PacketDefinition.HiddenInterface)]
+    public sealed class SendHiddenInterface : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(4);
-            writer.WriteHeader(encryptor, 171);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

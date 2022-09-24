@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Sets the scrollbar position of an interface.
     /// </summary>
-    public sealed class SendScrollPosition : ISendPacket
+    [PacketDef(PacketDefinition.ScrollPosition)]
+    public sealed class SendScrollPosition : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(5);
-            writer.WriteHeader(encryptor, 79);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="src\entity\player\appearance\**" />
+    <EmbeddedResource Remove="src\entity\player\appearance\**" />
+    <None Remove="src\entity\player\appearance\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="data\readfiles\prices.txt" />
   </ItemGroup>
 
@@ -18,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="src\entity\player\appearance\" />
+    <Folder Include="src\entity\updating\impl\" />
   </ItemGroup>
   
 

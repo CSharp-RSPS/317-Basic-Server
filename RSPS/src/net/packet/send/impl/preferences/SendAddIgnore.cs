@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,17 +10,19 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Sends a ignored player to the ignore list.
     /// </summary>
-    public sealed class SendAddIgnore : ISendPacket
+    [PacketDef(PacketDefinition.SendAddIgnore)]
+    public sealed class SendAddIgnore : IPacketVariablePayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public int GetPayloadSize()
         {
-            PacketWriter writer = Packet.CreatePacketWriter(1);
-            writer.WriteVariableShortHeader(encryptor, 214);
+            throw new NotImplementedException();
+        }
 
-            writer.FinishVariableShortHeader();
-            return writer;
+        public void WritePayload(PacketWriter writer)
+        {
+            throw new NotImplementedException();
         }
 
     }

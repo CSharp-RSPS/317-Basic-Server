@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Edit ground item amount
     /// </summary>
-    public sealed class SendEditGroundItemAmount : ISendPacket
+    [PacketDef(PacketDefinition.EditGroundItemAmount)]
+    public sealed class SendEditGroundItemAmount : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(8);
-            writer.WriteHeader(encryptor, 84);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

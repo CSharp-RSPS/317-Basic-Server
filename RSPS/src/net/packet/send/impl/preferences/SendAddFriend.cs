@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Sends a friend to the friend list.
     /// </summary>
-    public sealed class SendAddFriend : ISendPacket
+    [PacketDef(PacketDefinition.SendAddFriend)]
+    public sealed class SendAddFriend : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(10);
-            writer.WriteHeader(encryptor, 50);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

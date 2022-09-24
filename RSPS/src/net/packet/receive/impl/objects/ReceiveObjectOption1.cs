@@ -13,7 +13,6 @@ namespace RSPS.src.net.packet.receive.impl
     /// <summary>
     /// Sent when the player clicks the first option of an object, such as "Cut" for trees.
     /// </summary>
-    [Opcode(132)]
     public sealed class ReceiveObjectOption1 : IReceivePacket
     {
 

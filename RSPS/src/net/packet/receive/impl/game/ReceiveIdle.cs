@@ -12,7 +12,6 @@ namespace RSPS.src.net.packet.receive.impl
     /// <summary>
     /// Sent when there are no actions being performed by the player for this cycle.
     /// </summary>
-    [Opcode(0)]
     public sealed class ReceiveIdle : IReceivePacket
     {
 

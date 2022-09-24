@@ -2,16 +2,16 @@
 {
     public enum FlagType
     {
-        APPEARANCE = 0, 
-        CHAT  = 1,
-        GRAPHICS = 2,
-        ANIMATION = 3,
-        FORCED_CHAT = 4,
-        FACE_ENTITY = 5,
-        FACE_COORDINATE = 6,
-        HIT = 7,
-        HIT_2 = 8,
-        TRANSFORM = 9,
-        FLAGGED = 10,
+        Appearance = 0, 
+        Chat  = 1,
+        Graphics = 2,
+        Animation = 3,
+        ForcedChat = 4,
+        FaceEntity = 5,
+        FaceCoordinate = 6,
+        Hit = 7,
+        Hit2 = 8,
+        Transform = 9,
+        Flagged = 10,
     }
 }

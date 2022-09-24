@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,17 +10,19 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Adds a player option to the right click menu of player(s).
     /// </summary>
-    public sealed class SendPlayerOption : ISendPacket
+    [PacketDef(PacketDefinition.PlayerOption)]
+    public sealed class SendPlayerOption : IPacketVariablePayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public int GetPayloadSize()
         {
-            PacketWriter writer = Packet.CreatePacketWriter(1);
-            writer.WriteVariableHeader(encryptor, 104);
+            throw new NotImplementedException();
+        }
 
-            writer.FinishVariableHeader();
-            return writer;
+        public void WritePayload(PacketWriter writer)
+        {
+            throw new NotImplementedException();
         }
 
     }

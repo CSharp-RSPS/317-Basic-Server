@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Sends the players weight amount.
     /// </summary>
-    public sealed class SendWeight : ISendPacket
+    [PacketDef(PacketDefinition.Weight)]
+    public sealed class SendWeight : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(3);
-            writer.WriteHeader(encryptor, 240);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

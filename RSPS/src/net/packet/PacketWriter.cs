@@ -33,88 +33,62 @@ namespace RSPS.src.net.packet
         public PacketWriter(int length) : base(length)
         {}
 
-        /**
-         * Writes a packet header.
-         *
-         * @param cipher the encryptor
-         * @param value  the value
-         */
-        public void WriteHeader(ISAACCipher cipher, int value)
+        /// <summary>
+        /// Writes a packet header
+        /// </summary>
+        /// <param name="headerType">The header type</param>
+        /// <param name="cipher">The encrypion cipher</param>
+        /// <param name="opcode">The packet opcode</param>
+        /// <returns>The writer</returns>
+        public PacketWriter WriteHeader(PacketHeaderType headerType, ISAACCipher cipher, int opcode)
         {
-            WriteByte((value + cipher.getNextValue()) & 0xff);// -- cryption
-            //WriteByte(value);
+            WriteByte((opcode + cipher.getNextValue()) & 0xff);
+
+            if (headerType != PacketHeaderType.Fixed)
+            {
+                lengthPosition = Pointer;
+            }
+            switch (headerType)
+            {
+                case PacketHeaderType.VariableByte:
+                    WriteByte(0);
+                    break;
+
+                case PacketHeaderType.VariableShort:
+                    WriteShort(0);
+                    break;
+            }
+            return this;
         }
 
-        /**
-         * Writes a packet header for a variable length packet. Note that the
-         * corresponding "finishVariablePacketHeader" must be called to finish
-         * the packet.
-         *
-         * @param cipher the ISAACCipher encryptor
-         * @param value  the value
-         */
-        public void WriteVariableHeader(ISAACCipher cipher, int value)
+        /// <summary>
+        /// Finishes a packet header
+        /// </summary>
+        /// <param name="headerType">The header type</param>
+        /// <returns>The writer</returns>
+        public PacketWriter FinishHeader(PacketHeaderType headerType)
         {
-            WriteHeader(cipher, value);
-            lengthPosition = Pointer;
-            WriteByte(0);
-        }
-
-        /**
-         * Writes a packet header for a variable length packet, where the length
-         * is written as a short instead of a byte. Note that the corresponding
-         * "finishVariableShortPacketHeader must be called to finish the packet.
-         *
-         * @param cipher the ISAACCipher encryptor
-         * @param value  the value
-         */
-        public void WriteVariableShortHeader(ISAACCipher cipher, int value)
-        {
-            WriteHeader(cipher, value);
-            lengthPosition = Pointer;
-            WriteShort(0);
-        }
-
-        /**
-         * Finishes a variable packet header by writing the actual packet length
-         * at the length byte's position. Call this when the construction of the
-         * actual variable length packet is complete.
-         */
-        public void FinishVariableHeader()
-        {
+            if (headerType == PacketHeaderType.Fixed)
+            { // Static headers don't require anything to finish
+                return this;
+            }
             int oldPosition = Pointer;
             Pointer = lengthPosition;
-            //Payload.Seek(lengthPosition, SeekOrigin.Current);
-            WriteByte((byte)(oldPosition - lengthPosition - 1));
+
+            switch (headerType)
+            {
+                case PacketHeaderType.VariableByte:
+                    WriteByte((byte)(oldPosition - lengthPosition - 1));
+                    break;
+
+                case PacketHeaderType.VariableShort:
+                    short value = (short)(oldPosition - lengthPosition - 2);
+                    WriteByte((byte)(value >> 8));
+                    WriteByte((byte)(value));
+                    break;
+            }
             Pointer = oldPosition;
-            //Payload.W((byte)(Payload.Position - lengthPosition - 1), lengthPosition, 0);
-            //buffer[lengthPosition] = (byte)(Payload.Position - lengthPosition - 1);
-            //buffer.put(lengthPosition, (byte)(buffer.position() - lengthPosition - 1));
-        }
-
-        /**
-         * Finishes a variable packet header by writing the actual packet length
-         * at the length short's position. Call this when the construction of
-         * the variable length packet is complete.
-         */
-        public void FinishVariableShortHeader()
-        {
-            int oldPosition = Pointer;
-            Pointer = lengthPosition;
-            short value = (short)(oldPosition - lengthPosition - 2);
-            WriteByte((byte)(value >> 8));
-            WriteByte((byte)(value));
-            Pointer = oldPosition;
-
-            //byte[] buffer = BufferWriter;
-            //short value = (short)(BufferPosition - lengthPosition - 2);
-            //buffer[lengthPosition] = (byte)(value >> 8);
-            //buffer[lengthPosition + 1] = (byte)(value);
-            //buffer[lengthPosition] = (byte)(memoryStream.Position - lengthPosition - 1);
-
-            //buffer.putShort(lengthPosition, (short)(buffer.position() - lengthPosition - 2));
-            //WriteByte(value >> 8);
-            //WriteByte(value, type);
+            return this;
         }
 
         /**

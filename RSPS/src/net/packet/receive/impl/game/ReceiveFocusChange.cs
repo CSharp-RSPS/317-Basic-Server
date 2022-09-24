@@ -12,7 +12,6 @@ namespace RSPS.src.net.packet.receive.impl
     /// <summary>
     /// Sent when the game client window goes in and out of focus.
     /// </summary>
-    [Opcode(3)]
     public sealed class ReceiveFocusChange : IReceivePacket
     {
 

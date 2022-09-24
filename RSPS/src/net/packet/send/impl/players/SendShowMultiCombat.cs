@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Shows the player that they are in a multi-combat zone.
     /// </summary>
-    public sealed class SendShowMultiCombat : ISendPacket
+    [PacketDef(PacketDefinition.ShowMultiCombat)]
+    public sealed class SendShowMultiCombat : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(2);
-            writer.WriteHeader(encryptor, 61);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Displays an interface in walkable mode.
     /// </summary>
-    public sealed class SendWalkableInterface : ISendPacket
+    [PacketDef(PacketDefinition.WalkableInterface)]
+    public sealed class SendWalkableInterface : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(3);
-            writer.WriteHeader(encryptor, 208);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

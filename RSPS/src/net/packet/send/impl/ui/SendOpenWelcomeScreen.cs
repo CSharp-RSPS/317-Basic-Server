@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Displays the welcome screen.
     /// </summary>
-    public sealed class SendOpenWelcomeScreen : ISendPacket
+    [PacketDef(PacketDefinition.OpenWelcomeScreen)]
+    public sealed class SendOpenWelcomeScreen : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(11);
-            writer.WriteHeader(encryptor, 176);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

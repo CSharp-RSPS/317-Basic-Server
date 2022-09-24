@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,17 +10,17 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Attaches text to an interface.
     /// </summary>
-    public sealed class SendSetInterfaceText : ISendPacket
+    [PacketDef(PacketDefinition.SetInterfaceText)]
+    public sealed class SendSetInterfaceText : IPacketVariablePayloadBuilder
     {
-
-
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public int GetPayloadSize()
         {
-            PacketWriter writer = Packet.CreatePacketWriter(1);
-            writer.WriteVariableShortHeader(encryptor, 126);
+            throw new NotImplementedException();
+        }
 
-            writer.FinishVariableShortHeader();
-            return writer;
+        public void WritePayload(PacketWriter writer)
+        {
+            throw new NotImplementedException();
         }
 
     }

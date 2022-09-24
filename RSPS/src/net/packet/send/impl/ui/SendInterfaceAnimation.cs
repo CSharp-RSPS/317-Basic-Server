@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Sets an interface's model animation.
     /// </summary>
-    public sealed class SendInterfaceAnimation : ISendPacket
+    [PacketDef(PacketDefinition.InterfaceAnimation)]
+    public sealed class SendInterfaceAnimation : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(5);
-            writer.WriteHeader(encryptor, 200);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

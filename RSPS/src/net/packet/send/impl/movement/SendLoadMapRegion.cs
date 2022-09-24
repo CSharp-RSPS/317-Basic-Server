@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RSPS.src.entity.player;
+using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,20 +8,24 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.net.packet.send.impl
 {
-    /// <summary>
-    /// Loads a new map region.
-    /// </summary>
-    public sealed class SendLoadMapRegion : ISendPacket
+    [PacketDef(PacketDefinition.LoadMapRegion)]
+    public sealed class SendLoadMapRegion : IPacketPayloadBuilder
     {
 
+        private readonly Player Player;
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public SendLoadMapRegion(Player player)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(5);
-            writer.WriteHeader(encryptor, 73);
-            return writer;
+            this.Player = player;
         }
 
-    }
+        public void WritePayload(PacketWriter writer)
+        {
+            Player.CurrentRegion.SetNewPosition(Player.Position);
+            Player.NeedsPlacement = true;
 
+            writer.WriteShort(Player.Position.GetRegionX() + 6, Packet.ValueType.Additional);
+            writer.WriteShort(Player.Position.GetRegionY() + 6);
+        }
+    }
 }

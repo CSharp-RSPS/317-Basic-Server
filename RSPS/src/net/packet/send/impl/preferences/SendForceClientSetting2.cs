@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Forcefully changes a client's setting's value. Also changes the default value for that setting.
     /// </summary>
-    public sealed class SendForceClientSetting2 : ISendPacket
+    [PacketDef(PacketDefinition.ForceClientSetting2)]
+    public sealed class SendForceClientSetting2 : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(8);
-            writer.WriteHeader(encryptor, 87);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

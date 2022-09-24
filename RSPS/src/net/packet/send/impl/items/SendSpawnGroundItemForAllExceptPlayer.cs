@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Spawn ground item for all except specified player
     /// </summary>
-    public sealed class SendSpawnGroundItemForAllExceptPlayer : ISendPacket
+    [PacketDef(PacketDefinition.SpawnGroundItemForAllExceptSpecifiedPlayer)]
+    public sealed class SendSpawnGroundItemForAllExceptPlayer : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(8);
-            writer.WriteHeader(encryptor, 215);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

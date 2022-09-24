@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Draws an interface over the tab area.
     /// </summary>
-    public sealed class SendInterfaceOverTab : ISendPacket
+    [PacketDef(PacketDefinition.InterfaceOverTab)]
+    public sealed class SendInterfaceOverTab : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(2);
-            writer.WriteHeader(encryptor, 106);
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

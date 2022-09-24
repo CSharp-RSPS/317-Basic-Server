@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,17 +10,14 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Sends a private message to another player.
     /// </summary>
-    public sealed class SendPrivateMessage : ISendPacket
+    [PacketDef(PacketDefinition.SendPrivateMessage)]
+    public sealed class SendPrivateMessage : IPacketPayloadBuilder
     {
 
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter writer = Packet.CreatePacketWriter(1);
-            writer.WriteVariableHeader(encryptor, 196);
-
-            writer.FinishVariableHeader();
-            return writer;
+            throw new NotImplementedException();
         }
 
     }

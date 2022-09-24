@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSPS.src.Util.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,8 @@ namespace RSPS.src.net.packet.send.impl
     /// <summary>
     /// Sends the players run energy level.
     /// </summary>
-    public sealed class SendRunEnergy : ISendPacket
+    [PacketDef(PacketDefinition.RunEnergy)]
+    public sealed class SendRunEnergy : IPacketPayloadBuilder
     {
 
         private int energy;
@@ -19,12 +21,9 @@ namespace RSPS.src.net.packet.send.impl
             this.energy = energy;
         }
 
-        public PacketWriter SendPacket(ISAACCipher encryptor)
+        public void WritePayload(PacketWriter writer)
         {
-            PacketWriter packetWriter = Packet.CreatePacketWriter(2);
-            packetWriter.WriteHeader(encryptor, 110);//221
-            packetWriter.WriteByte((int)Math.Floor(energy * 0.01));//Server stored energy is 100x greater than clients
-            return packetWriter;
+            writer.WriteByte((int)Math.Floor(energy * 0.01));//Server stored energy is 100x greater than clients
         }
     }
 }

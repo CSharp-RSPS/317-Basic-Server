@@ -1,6 +1,8 @@
 ﻿using RSPS.src.entity.movement;
 using RSPS.src.entity.npc;
 using RSPS.src.entity.player.skill;
+using RSPS.src.entity.player.updating.impl;
+using RSPS.src.game.comms.chat;
 using RSPS.src.net.Codec;
 using RSPS.src.net.Connections;
 using RSPS.src.net.packet;
@@ -65,10 +67,8 @@ namespace RSPS.src.entity.player
         public bool UpdateRequired = false;
         public bool AppearanceUpdateRequired= false;
         public bool ChatUpdateRequired= false;
-        
-        public int ChatColor;
-        public int ChatEffects;
-        public byte[] ChatText;
+
+        public ChatMessage ChatMessage;
 
         public int PlayerIndex;
 
