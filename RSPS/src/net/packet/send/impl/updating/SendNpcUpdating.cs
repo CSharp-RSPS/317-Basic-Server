@@ -43,7 +43,7 @@ namespace RSPS.src.net.packet.send.impl
 
         public int GetPayloadSize()
         {
-            return 5096;
+            return 5093;
         }
 
         public void WritePayload(PacketWriter writer)

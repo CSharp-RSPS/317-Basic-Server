@@ -191,9 +191,9 @@ namespace RSPS.src.net.packet
                     // Additonally to the payload size,
                     // 1 byte for defining the payload size within the packet
                     // and 1 or 2 bytes for the opcode depending on it being a byte or a short
-                    /*packetSize = (packetInfo.HeaderType == PacketHeaderType.VariableByte ? 2 : 3) 
-                        + ((IPacketVariablePayloadBuilder)sendPacket).GetPayloadSize();*/
-                    packetSize = ((IPacketVariablePayloadBuilder)packetPayloadBuilder).GetPayloadSize();
+                    packetSize = (packetInfo.HeaderType == PacketHeaderType.VariableByte ? 2 : 3) 
+                        + ((IPacketVariablePayloadBuilder)packetPayloadBuilder).GetPayloadSize();
+                    //packetSize = ((IPacketVariablePayloadBuilder)packetPayloadBuilder).GetPayloadSize();
                 }
             }
             PacketWriter packetWriter = new(packetSize);
