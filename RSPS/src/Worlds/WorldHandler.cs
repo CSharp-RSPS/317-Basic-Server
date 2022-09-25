@@ -101,6 +101,16 @@ namespace RSPS.src.Worlds
         }
 
         /// <summary>
+        /// Resolve the world a player is logged into
+        /// </summary>
+        /// <param name="player">The player</param>
+        /// <returns>The world</returns>
+        public static World? ResolveWorld(Player player)
+        {
+            return ResolveWorld(player.PlayerConnection);
+        }
+
+        /// <summary>
         /// Resolve the world a connection is connected to
         /// </summary>
         /// <param name="connection">The connection</param>

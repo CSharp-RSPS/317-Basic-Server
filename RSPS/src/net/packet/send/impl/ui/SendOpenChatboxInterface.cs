@@ -8,16 +8,30 @@ using System.Threading.Tasks;
 namespace RSPS.src.net.packet.send.impl
 {
     /// <summary>
-    /// Opens an interface over the chatbox.
+    /// Sending this packet to the client will cause the client to open an interface over the chatbox.
     /// </summary>
     [PacketDef(PacketDefinition.OpenChatboxInterface)]
     public sealed class SendOpenChatboxInterface : IPacketPayloadBuilder
     {
 
+        /// <summary>
+        /// The interface ID
+        /// </summary>
+        public int InterfaceId { get; private set; }
+
+
+        /// <summary>
+        /// Creates a new open chatbox interface packet payload builder
+        /// </summary>
+        /// <param name="interfaceId">The interface ID</param>
+        public SendOpenChatboxInterface(int interfaceId)
+        {
+            InterfaceId = interfaceId;
+        }
 
         public void WritePayload(PacketWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteShort(InterfaceId, Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
         }
 
     }

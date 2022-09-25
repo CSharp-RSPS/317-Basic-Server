@@ -72,7 +72,10 @@ namespace RSPS.src.net.Codec
 
                 try
                 { // Handle the packet
-                    PacketHandler.HandlePacket(_player, packetOpcode, packetPayloadSize, new(packetPayloadBuffer));
+                    PacketHandler.HandlePacket(_player, new(packetPayloadBuffer) { 
+                        Opcode = packetOpcode,
+                        PayloadSize = packetPayloadSize,
+                    });
                 }
                 catch (Exception ex)
                 {

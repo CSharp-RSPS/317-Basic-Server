@@ -8,16 +8,30 @@ using System.Threading.Tasks;
 namespace RSPS.src.net.packet.send.impl
 {
     /// <summary>
-    /// Sends the players head model to an interface
+    /// This packet sends a players head to an interface
     /// </summary>
     [PacketDef(PacketDefinition.PlayerHeadToInterface)]
     public sealed class SendPlayerHeadToInterface : IPacketPayloadBuilder
     {
 
+        /// <summary>
+        /// The interface ID
+        /// </summary>
+        public int InterfaceId { get; private set; }
+
+
+        /// <summary>
+        /// Creates a new player head to interface packet payload builder
+        /// </summary>
+        /// <param name="interfaceId">The interface ID</param>
+        public SendPlayerHeadToInterface(int interfaceId)
+        {
+            InterfaceId = interfaceId;
+        }
 
         public void WritePayload(PacketWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteShort(InterfaceId, Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
         }
 
     }

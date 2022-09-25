@@ -5,18 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using RSPS.src.entity.player;
 using RSPS.src.net.Connections;
+using RSPS.src.Util.Annotations;
 
 namespace RSPS.src.net.packet.receive.impl
 {
     /// <summary>
-    /// Sent when the player clicks somewhere on the game screen.
+    /// This packet is sent when a player clicks somewhere on the game screen.
     /// </summary>
+    [PacketInfo(241, 3)] //TODO payload size not sure
     public class ReceiveMouseClick : IReceivePacket
     {
 
-        public void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
+        public void ReceivePacket(Player player, PacketReader reader)
         {
-            packetReader.ReadInt(Packet.ByteOrder.BigEndian);
+            reader.ReadInt(Packet.ByteOrder.BigEndian);
         }
 
     }

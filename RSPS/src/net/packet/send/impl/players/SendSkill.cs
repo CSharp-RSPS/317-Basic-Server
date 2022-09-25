@@ -9,16 +9,32 @@ using System.Threading.Tasks;
 namespace RSPS.src.net.packet.send.impl
 {
     /// <summary>
-    /// Sends a skill level to the client.
+    /// This packet sends a specific skill.
     /// </summary>
     [PacketDef(PacketDefinition.SkillLevel)]
     public sealed class SendSkill : IPacketPayloadBuilder
     {
 
+        /// <summary>
+        /// The skill level
+        /// </summary>
         public int Level { get; private set; }
+
+        /// <summary>
+        /// The experience of the skill
+        /// </summary>
         public int Experience { get; private set; }
+
+        /// <summary>
+        /// The skill ID
+        /// </summary>
         public int SkillId { get; private set; }
 
+
+        /// <summary>
+        /// Creates a new skill packet payload builder
+        /// </summary>
+        /// <param name="skill">The skill</param>
         public SendSkill(Skill skill)
         {
 

@@ -14,11 +14,32 @@ namespace RSPS.src.net.packet.send.impl
     public sealed class SendMinimapState : IPacketPayloadBuilder
     {
 
+        /// <summary>
+        /// The minimap state
+        /// </summary>
+        public int State { get; private set; }
+
+
+        /// <summary>
+        /// Creates a new minimap state packet payload builder
+        /// </summary>
+        /// <param name="state">The minimap state</param>
+        public SendMinimapState(int state)
+        {
+            State = state;
+        }   
 
         public void WritePayload(PacketWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteByte(State);
         }
+
+        /*
+         * State	Description
+0	Active: Clickable and viewable
+1	Locked: viewable but not clickable
+2	Blacked-out: Minimap is replaced with black background
+         * */
 
     }
 

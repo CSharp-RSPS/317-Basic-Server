@@ -11,16 +11,15 @@ using System.Threading.Tasks;
 namespace RSPS.src.net.packet.receive.impl
 {
     /// <summary>
-    /// Sent when a player clicks an in-game button.
+    /// This is sent when a player clicks a button in-game, with the id of the button being clicked.
     /// </summary>
     public sealed class ReceiveButtonClick : IReceivePacket
     {
 
 
-        public void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
+        public void ReceivePacket(Player player, PacketReader reader)
         {
-            //int buttonId = PacketReader.HexToInt(packetReader.ReadBytes(2));
-            int buttonId = packetReader.ReadShort();
+            int buttonId = reader.ReadShort();
 
             if (buttonId < 0)
             {

@@ -1,5 +1,6 @@
 ﻿using RSPS.src.entity.player;
 using RSPS.src.net.packet.send.impl;
+using RSPS.src.Util.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +13,14 @@ namespace RSPS.src.net.packet.receive.impl
     /// <summary>
     /// Sent when the player walks regularly.
     /// </summary>
+    [PacketInfo(164, 8)]
     public sealed class ReceiveRegularWalk : ReceiveWalk
     {
 
 
-        public override void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
+        public override void ReceivePacket(Player player, PacketReader packetReader)
         {
-            HandleWalking(player, packetReader, packetSize);
+            HandleWalking(player, packetReader, packetReader.PayloadSize);
         }
 
     }

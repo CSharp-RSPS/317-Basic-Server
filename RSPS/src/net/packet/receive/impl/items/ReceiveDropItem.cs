@@ -1,5 +1,6 @@
 ﻿using RSPS.src.entity.player;
 using RSPS.src.net.packet.send.impl;
+using RSPS.src.Util.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +11,24 @@ namespace RSPS.src.net.packet.receive.impl
 {
 
     /// <summary>
-    /// Sent when a player wants to drop an item onto the ground.
+    /// This packet is sent when a player wants to drop an item onto the ground.
     /// </summary>
+    [PacketInfo(87, 6)]
     public sealed class ReceiveDropItem : IReceivePacket
     {
 
 
-        public void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
+        public void ReceivePacket(Player player, PacketReader reader)
         {
+            int itemId = reader.ReadShort(Packet.ValueType.Additional);
+            int frameId = reader.ReadShort();
+            int slotId = reader.ReadShort(Packet.ValueType.Additional);
 
+            if (frameId < 0 || itemId < 0 || slotId < 0)
+            {
+                return;
+            }
+            //TODO: drop item
         }
 
     }

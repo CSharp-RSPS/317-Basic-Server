@@ -11,19 +11,22 @@ namespace RSPS.src.net.packet.receive.impl
 {
 
     /// <summary>
-    /// Sent when the player clicks the first option of an object, such as "Cut" for trees.
+    /// This packet is sent when a player clicks the first option of an object, such as "Cut" for trees or "Mine" for rocks.
+    /// Most servers use 6 as size and don't include rotation, the packet is actually 8 and includes rotation
     /// </summary>
+    [PacketInfo(132, 8)]
     public sealed class ReceiveObjectOption1 : IReceivePacket
     {
 
 
-        public void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
+        public void ReceivePacket(Player player, PacketReader reader)
         {
-            int objectX = packetReader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
-            int objectId = packetReader.ReadShort(false);
-            int objectY = packetReader.ReadShort(true, Packet.ValueType.Additional);
-           // int rotation = packetReader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
-            Console.WriteLine(objectId + " " + objectX + " " + objectY);
+            int objectX = reader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
+            int objectId = reader.ReadShort();
+            int objectY = reader.ReadShort(true, Packet.ValueType.Additional);
+            int rotation = reader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
+
+            Console.WriteLine(objectId + " " + objectX + " " + objectY + " " + rotation);
         }
 
     }

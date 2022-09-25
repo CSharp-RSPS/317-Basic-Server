@@ -244,7 +244,7 @@ namespace RSPS.src.net.packet.send
         /// <summary>
         /// Creates a projectile.
         /// </summary>
-        [PacketInfo(117, 0)]
+        [PacketInfo(117, 15)]
         CreateProjectile = 117,
 
         /// <summary>
@@ -322,7 +322,7 @@ namespace RSPS.src.net.packet.send
         /// <summary>
         /// Sets what audio/sound is to play at a certain time.
         /// </summary>
-        [PacketInfo(174, 0)]
+        [PacketInfo(174, 5)]
         Audio = 174,
 
         /// <summary>
@@ -352,7 +352,7 @@ namespace RSPS.src.net.packet.send
         /// <summary>
         /// Sends a private message to another player.
         /// </summary>
-        [PacketInfo(196, PacketHeaderType.VariableByte)]
+        [PacketInfo(196, PacketHeaderType.VariableShort)]
         SendPrivateMessage = 196,
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using RSPS.src.entity.player;
 using RSPS.src.net.packet.send.impl;
+using RSPS.src.Util.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +11,17 @@ namespace RSPS.src.net.packet.receive.impl
 {
 
     /// <summary>
-    /// Sent when a player uses an item with another item.
+    /// This packet is sent when a player uses an item on another item.
     /// </summary>
+    [PacketInfo(53, 4)]
     public sealed class ReceiveItemOnItem : IReceivePacket
     {
 
 
-        public void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
+        public void ReceivePacket(Player player, PacketReader reader)
         {
-
+            int itemTargetSlot = reader.ReadShort();
+            int itemBeingUsedSlot = reader.ReadShort(Packet.ValueType.Additional);
         }
 
     }

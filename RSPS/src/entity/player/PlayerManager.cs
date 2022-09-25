@@ -96,7 +96,7 @@ namespace RSPS.src.entity.player
                 PacketHandler.SendPacket(player, new SendSkill(player.GetSkill(skill)));
             }
             // Send the initial map region
-            PacketHandler.SendPacket(player, new SendLoadMapRegion(player));
+            player.LoadMapRegion();
             // Send the run energy
             PacketHandler.SendPacket(player, new SendRunEnergy(player.MovementHandler.Energy));
 

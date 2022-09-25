@@ -91,6 +91,11 @@ namespace RSPS.src.net.packet
             return this;
         }
 
+        public void WriteByte(bool value)
+        {
+            WriteByte(value ? 1 : 0);
+        }
+
         /**
          * Writes a value as a byte.
          *

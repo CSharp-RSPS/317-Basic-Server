@@ -38,14 +38,14 @@ namespace RSPS.src.net.packet
             ReceivablePackets.Add(39, new ReceiveFollow()); //Sent when a player clicks the follow option on another player.
             ReceivablePackets.Add(40, new ReceiveDialogue()); //Send when a player continues a dialogue.
             ReceivablePackets.Add(41, new ReceiveEquipItem()); //Sent when a player equips an item.
-            ReceivablePackets.Add(43, new ReceiveBank10Items()); //Sent when a player banks 10 of a certain item.
+            ReceivablePackets.Add(43, new InterfaceItemOption3()); //Sent when a player banks 10 of a certain item.
             ReceivablePackets.Add(45, new ReceiveFlaggedAccount()); //Sent when a players account is flagged.
             ReceivablePackets.Add(53, new ReceiveItemOnItem()); //Sent when a player uses an item with another item.
             ReceivablePackets.Add(57, new ReceiveItemOnNpc()); //Sent when a player uses an item on an NPC.
             ReceivablePackets.Add(60, new ReceiveTypingOntoInterface()); //Sent while typing onto an interface
             ReceivablePackets.Add(70, new ReceiveObjectOption3()); //Sent when the player clicks the third action available for an object.
             ReceivablePackets.Add(72, new ReceiveAttackNpc()); //Sent when a player attacks an NPC.
-          ReceivablePackets.Add(73, new ReceiveAttackPlayer()); //Sent when a player selects the attack option on another player.
+            ReceivablePackets.Add(73, new ReceiveAttackPlayer()); //Sent when a player selects the attack option on another player.
             ReceivablePackets.Add(74, new ReceiveRemoveIgnore()); //Sent when a player removes a player from their ignore list.
             ReceivablePackets.Add(75, new ReceiveItemOption3()); //Send when a player clicks the third option of an item.
             ReceivablePackets.Add(79, new ReceiveLightItem()); //Sent when a player attempts to light logs on fire.
@@ -56,12 +56,12 @@ namespace RSPS.src.net.packet
             ReceivablePackets.Add(98, new ReceiveWalkOnCommand()); //Sent when the player should walk somewhere according to a certain action performed, such as clicking an object.
             ReceivablePackets.Add(101, new ReceiveDesignScreen()); //Sent when a player is choosing their character design options.
             ReceivablePackets.Add(103, new ReceivePlayerCommand()); //Sent when the player enters a command in the chat box (e.g. "::command")
-            ReceivablePackets.Add(117, new ReceiveBank5Items()); //Sent when a player banks 5 of a certain item.
+            ReceivablePackets.Add(117, new InterfaceItemOption2()); //Sent when a player banks 5 of a certain item.
             ReceivablePackets.Add(121, new ReceiveLoadingFinished()); //Sent when the client finishes loading a map region.
             ReceivablePackets.Add(122, new ReceiveItemOption1()); //Sent when the player clicks the first option of an item, such as "Bury" for bones.
             ReceivablePackets.Add(126, new ReceivePrivateMessage()); //Sent when a player sends a private message to another player.
             ReceivablePackets.Add(128, new ReceiveAcceptChallenge()); //Sent when a player accepts another players duel request.
-            ReceivablePackets.Add(129, new ReceiveBankAllItems()); //Sent when a player banks all of a certain item that they have in their inventory.
+            ReceivablePackets.Add(129, new InterfaceItemOption4()); //Sent when a player banks all of a certain item that they have in their inventory.
             ReceivablePackets.Add(130, new ReceiveCloseWindow()); //Sent when a player presses the close, exit or cancel button on an interface.
             ReceivablePackets.Add(131, new ReceiveMagicOnNpc()); //Sent when a player uses magic on an npc.
             ReceivablePackets.Add(132, new ReceiveObjectOption1()); //Sent when the player clicks the first option of an object, such as "Cut" for trees.
@@ -69,7 +69,7 @@ namespace RSPS.src.net.packet
             ReceivablePackets.Add(135, new ReceiveBankXItemsPt1()); //Sent when a player requests to bank an X amount of items.
             ReceivablePackets.Add(136, new ReceiveValidatePlayerOption1()); //Send with client action 561, 6 has to do with player option 1
             ReceivablePackets.Add(139, new ReceiveTradeRequest()); //Sent when a player Requests a trade from another player. (e.g. "Sending Trade Request...")
-            ReceivablePackets.Add(145, new ReceiveUnequipItem()); //Sent when a player unequips an item.
+            ReceivablePackets.Add(145, new ReceiveInterfaceItemOption1()); //Sent when a player unequips an item.
             ReceivablePackets.Add(152, new ReceiveValidateNpcOption3()); //Send to validate npc option 3 (client action 965)
             ReceivablePackets.Add(153, new ReceivePlayerOption2()); //Sent when a moderator or administrator selects the second option of a player.
             ReceivablePackets.Add(155, new ReceiveNpcOption1()); //Sent when a player clicks first option of an NPC, such as "Talk."
@@ -89,7 +89,7 @@ namespace RSPS.src.net.packet
             ReceivablePackets.Add(218, new ReceiveReportPlayer()); //Sent when a player reports another player.
             ReceivablePackets.Add(228, new ReceiveObjectOption4()); //Sent when a player uses the 4th option of an object.
             ReceivablePackets.Add(230, new ReceiveValidateNpcOption2()); //Validates NPC option 2
-            ReceivablePackets.Add(234, new ReceiveGroundItemAction()); //Send when a player uses the 2nd option of an object.
+            ReceivablePackets.Add(234, new ReceiveGroundItemOption1()); //Send when a player uses the 2nd option of an object.
             ReceivablePackets.Add(236, new ReceivePickupGroundItem()); //Sent when the player picks up an item from the ground.
             ReceivablePackets.Add(237, new ReceiveMagicOnItems()); //Sent when a player casts magic on the items in their inventory.
             ReceivablePackets.Add(241, new ReceiveMouseClick()); //Sent when the player clicks somewhere on the game screen.
@@ -97,7 +97,7 @@ namespace RSPS.src.net.packet
             ReceivablePackets.Add(248, new ReceiveMapWalk()); //Sent when the player walks using the map. Has 14 additional (assumed to be anticheat) bytes added to the end of it that are ignored.
             ReceivablePackets.Add(249, new ReceiveMagicOnPlayer()); //Sent when a player attempts to cast magic on another player.
             ReceivablePackets.Add(252, new ReceiveObjectOption2()); //Sent when the player clicks the second option available for an object.
-            ReceivablePackets.Add(253, new ReceiveGroundItemAction()); //Sent when the player clicks the first option for a ground item
+            ReceivablePackets.Add(253, new ReceiveGroundItemOption1()); //Sent when the player clicks the first option for a ground item
         }
 
         /// <summary>
@@ -105,15 +105,24 @@ namespace RSPS.src.net.packet
         /// </summary>
         /// <param name="player">The player</param>
         /// <param name="packetReader">The packet reader</param>
-        public static void HandlePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
+        public static void HandlePacket(Player player, PacketReader packetReader)
         {
-            if (!ReceivablePackets.ContainsKey(packetOpcode)) {
-                Console.Error.WriteLine("Unknown packet {0} (Length: {1})", packetOpcode, packetSize);
-                packetReader.ReadBytes(packetSize);
+            if (!ReceivablePackets.ContainsKey(packetReader.Opcode)) {
+                Console.Error.WriteLine("Unknown packet {0} (Length: {1})", packetReader.Opcode, packetReader.PayloadSize);
+                //packetReader.ReadBytes(packetReader.PayloadSize);
                 return;
             }
-            ReceivablePackets[packetOpcode].ReceivePacket(player, packetOpcode, packetSize, packetReader);
-            Debug.WriteLine("Handled packet [Opcode: {0}][Payload size: {1}]", packetOpcode, packetSize);
+            IReceivePacket receivePacket = ReceivablePackets[packetReader.Opcode];
+            PacketInfoAttribute? packetInfo = receivePacket.GetPacketInfo();
+
+            if (packetInfo == null)
+            {
+                Console.Error.WriteLine("No packet definition present on packet receiver {0} [Opcode: {1}][Size: {2}]",
+                    receivePacket.GetType().Name, packetReader.Opcode, packetReader.PayloadSize);
+                return;
+            }
+            receivePacket.ReceivePacket(player, packetReader);
+            Debug.WriteLine("Handled packet [Opcode: {0}][Payload size: {1}]", packetReader.Opcode, packetReader.PayloadSize);
         }
 
         /// <summary>
@@ -226,6 +235,17 @@ namespace RSPS.src.net.packet
             return fieldInfo == null 
                 ? null 
                 : fieldInfo.GetCustomAttributes(typeof(PacketInfoAttribute), false).FirstOrDefault() as PacketInfoAttribute;
+        }
+
+        /// <summary>
+        /// Retrieves the packet definition attribute on a receive packet handler
+        /// </summary>
+        /// <param name="receivePacket">The receive packet handler</param>
+        /// <returns>The packet definition attribute</returns>
+        public static PacketInfoAttribute? GetPacketInfo(this IReceivePacket receivePacket)
+        {
+            Attribute? attr = Attribute.GetCustomAttribute(receivePacket.GetType(), typeof(PacketInfoAttribute));
+            return attr == null ? null : (PacketInfoAttribute)attr;
         }
 
         /// <summary>

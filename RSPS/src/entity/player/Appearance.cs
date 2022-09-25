@@ -3,19 +3,19 @@
     public struct Appearance
     {
 
-        public int Gender { get; private set; }
-		public int Chest { get; private set; }
-		public int Arms { get; private set; }
-		public int Legs { get; private set; }
-		public int Head { get; private set; }
-		public int Hands { get; private set; }
-		public int Feet { get; private set; }
-		public int Beard { get; private set; }
-		public int HairColor { get; private set; }
-		public int TorsoColor { get; private set; }
-		public int LegColor { get; private set; }
-		public int FeetColor { get; private set; }
-		public int SkinColor { get; private set; }
+        public int Gender { get; set; }
+		public int Chest { get; set; }
+		public int Arms { get; set; }
+		public int Legs { get; set; }
+		public int Head { get; set; }
+		public int Hands { get; set; }
+		public int Feet { get; set; }
+		public int Beard { get; set; }
+		public int HairColor { get; set; }
+		public int TorsoColor { get; set; }
+		public int LegColor { get; set; }
+		public int FeetColor { get; set; }
+		public int SkinColor { get; set; }
 
 		public Appearance()
 		{

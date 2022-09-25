@@ -14,10 +14,24 @@ namespace RSPS.src.net.packet.send.impl
     public sealed class SendWalkableInterface : IPacketPayloadBuilder
     {
 
+        /// <summary>
+        /// The interface ID
+        /// </summary>
+        public int InterfaceId { get; private set; }
+
+
+        /// <summary>
+        /// Creates a new walkable interface packet payload builder
+        /// </summary>
+        /// <param name="interfaceId">The interface ID</param>
+        public SendWalkableInterface(int interfaceId)
+        {
+            InterfaceId = interfaceId;
+        }
 
         public void WritePayload(PacketWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteShort(InterfaceId, Packet.ByteOrder.LittleEndian);
         }
 
     }

@@ -8,16 +8,46 @@ using System.Threading.Tasks;
 namespace RSPS.src.net.packet.send.impl
 {
     /// <summary>
-    /// Sends an object spawn request to the client.
+    /// This packet requests the client to spawn an object.
     /// </summary>
     [PacketDef(PacketDefinition.ObjectSpawn)]
     public sealed class SendObjectSpawn : IPacketPayloadBuilder
     {
 
+        /// <summary>
+        /// The object ID
+        /// </summary>
+        public int ObjectId { get; private set; }
+
+        /// <summary>
+        /// The type of object
+        /// </summary>
+        public int ObjectType { get; private set; }
+
+        /// <summary>
+        /// The rotation of the object
+        /// </summary>
+        public int ObjectRotation { get; private set; }
+
+
+        /// <summary>
+        /// Creates a new object spawn packet payload builder
+        /// </summary>
+        /// <param name="objectId">The object ID</param>
+        /// <param name="objectType">The type of object</param>
+        /// <param name="objectRotation">The rotation of the object</param>
+        public SendObjectSpawn(int objectId, int objectType, int objectRotation)
+        {
+            ObjectId = objectId;
+            ObjectType = objectType;
+            ObjectRotation = objectRotation;
+        }
 
         public void WritePayload(PacketWriter writer)
-        {
-            throw new NotImplementedException();
+        { //TODO: Not correct yet
+            writer.WriteByte(0, Packet.ValueType.Subtrahend);
+            //writer.WriteByte(ObjectId, Packet.ByteOrder.LittleEndian);
+            writer.WriteByte(ObjectType << 2 + ObjectRotation & 3, Packet.ValueType.Subtrahend);
         }
 
     }

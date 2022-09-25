@@ -8,19 +8,43 @@ using System.Threading.Tasks;
 namespace RSPS.src.net.packet.send.impl
 {
     /// <summary>
-    /// Attaches text to an interface.
+    /// Sets the text for the specific interface.
     /// </summary>
     [PacketDef(PacketDefinition.SetInterfaceText)]
     public sealed class SendSetInterfaceText : IPacketVariablePayloadBuilder
     {
+
+        /// <summary>
+        /// The interface ID
+        /// </summary>
+        public int InterfaceId { get; private set; }
+
+        /// <summary>
+        /// The new text for the interface
+        /// </summary>
+        public string Text { get; private set; }
+
+
+        /// <summary>
+        /// Creates a new set interface text packet payload builder
+        /// </summary>
+        /// <param name="interfaceId">The interface ID</param>
+        /// <param name="text">The new text for the interface</param>
+        public SendSetInterfaceText(int interfaceId, string text)
+        {
+            InterfaceId = interfaceId;
+            Text = text;
+        }
+
         public int GetPayloadSize()
         {
-            throw new NotImplementedException();
+            return Text.Length + 2;
         }
 
         public void WritePayload(PacketWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteString(Text);
+            writer.WriteShort(InterfaceId, Packet.ValueType.Additional);
         }
 
     }

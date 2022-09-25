@@ -1,4 +1,5 @@
 ﻿using RSPS.src.entity;
+using RSPS.src.entity.flag;
 using RSPS.src.entity.player;
 using RSPS.src.entity.player.skill;
 using RSPS.src.net.Connections;
@@ -175,10 +176,8 @@ namespace RSPS.src.net.packet.send.impl
         /**
          * Updates the flag-based state of a player.
          */
-        private static void UpdateState(Player player, PacketWriter block, bool forceAppearance,
-                                       bool noPublicChat)
+        private static void UpdateState(Player player, PacketWriter block, bool forceAppearance, bool noPublicChat)
         {
-
             // First we must calculate and write the mask.
             int mask = 0x0;
 

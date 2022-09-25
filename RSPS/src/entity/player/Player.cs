@@ -51,6 +51,11 @@ namespace RSPS.src.entity.player
         /// </summary>
         public Position Position { get; private set; }
 
+
+        public List<long> Ignores { get; private set; } = new();
+        public List<long> Friends { get; private set; } = new();
+
+
         //public Position Position = new Position(3222, 3222);
         public Position CurrentRegion = new Position(0, 0);
         public List<Skill> Skills = new List<Skill>();
@@ -79,6 +84,18 @@ namespace RSPS.src.entity.player
             PlayerConnection = playerConnection;
             MovementHandler = new MovementHandler(this);
             //Scheduler.AddJob(new PlayerWalkingJob("Player Walking Job", this, TimeSpan.FromMilliseconds(600)));
+        }
+
+        /// <summary>
+        /// Loads a new map region for the player
+        /// </summary>
+        /// <returns>The player</returns>
+        public Player LoadMapRegion()
+        {
+            CurrentRegion.SetNewPosition(Position);
+            NeedsPlacement = true;
+            PacketHandler.SendPacket(this, new SendLoadMapRegion(Position.GetRegionX(), Position.GetRegionY()));
+            return this;
         }
 
         public Player RequestUpdate()

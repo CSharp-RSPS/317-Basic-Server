@@ -8,16 +8,39 @@ using System.Threading.Tasks;
 namespace RSPS.src.net.packet.send.impl
 {
     /// <summary>
-    /// Sends a friend to the friend list.
+    /// Sends friend data to the client
+    /// Attempts to update player node, if player isn't in the friends list and there is space, the player is added to the friend list.
     /// </summary>
     [PacketDef(PacketDefinition.SendAddFriend)]
     public sealed class SendAddFriend : IPacketPayloadBuilder
     {
 
+        /// <summary>
+        /// The name of the player as long value
+        /// </summary>
+        public long PlayerName { get; private set; }
+
+        /// <summary>
+        /// The world status meaning the ID of the world if online, 0 when logged out
+        /// </summary>
+        public int WorldStatus { get; private set; }
+
+
+        /// <summary>
+        /// Creates a new add friend packet payload builder
+        /// </summary>
+        /// <param name="playerName">The name of the player as long value</param>
+        /// <param name="worldStatus"></param>
+        public SendAddFriend(long playerName, int worldStatus)
+        {
+            PlayerName = playerName;
+            WorldStatus = worldStatus;
+        }
 
         public void WritePayload(PacketWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteLong(PlayerName);
+            writer.WriteByte(WorldStatus);
         }
 
     }

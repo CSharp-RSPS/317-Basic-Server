@@ -15,23 +15,25 @@ namespace RSPS.src.net.packet.receive.impl
     /// <summary>
     /// Sent when the player enters a chat message.
     /// </summary>
+    [PacketInfo(3, PacketHeaderType.VariableShort)]
     public sealed class ReceiveChat : IReceivePacket
     {
 
 
-        public void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
+        public void ReceivePacket(Player player, PacketReader reader)
         {
-            int effects = packetReader.ReadByte(false, Packet.ValueType.Subtrahend);
-            int color = packetReader.ReadByte(false, Packet.ValueType.Subtrahend);
-            int chatLength = packetSize - 2;
-            byte[] text = packetReader.ReadBytesReverse(chatLength, Packet.ValueType.Additional);
+            int effects = reader.ReadByte(false, Packet.ValueType.Subtrahend);
+            int color = reader.ReadByte(false, Packet.ValueType.Subtrahend);
+            int chatLength = reader.PayloadSize - 2;
+            byte[] text = reader.ReadBytesReverse(chatLength, Packet.ValueType.Additional);
             
             if (effects < 0 || color < 0 || chatLength < 0 || text == null || text.Length <= 0)
             {
                 return;
             }
             ChatMessage cm = new(effects, color, text);
-            ChatStateUpdate update = new(cm);
+
+            player.Flags.UpdateFlag(entity.flag.FlagType.Chat, true);
 
             player.ChatMessage = cm;
 

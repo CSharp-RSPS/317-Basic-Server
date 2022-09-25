@@ -14,10 +14,32 @@ namespace RSPS.src.net.packet.send.impl
     public sealed class SendNpcHeadOnInterface : IPacketPayloadBuilder
     {
 
+        /// <summary>
+        /// The NPC ID
+        /// </summary>
+        public int NpcId { get; private set; }
+
+        /// <summary>
+        /// The 'slot' ID for where you wish to place the head
+        /// </summary>
+        public int Slot { get; private set; }
+
+
+        /// <summary>
+        /// Creates a new NPC head on interface packet payload builder
+        /// </summary>
+        /// <param name="npcId">The NPC ID</param>
+        /// <param name="slot">The 'slot' ID for where you wish to place the head</param>
+        public SendNpcHeadOnInterface(int npcId, int slot)
+        {
+            NpcId = npcId;
+            Slot = slot;
+        }
 
         public void WritePayload(PacketWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteShort(NpcId, Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
+            writer.WriteShort(Slot, Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
         }
 
     }

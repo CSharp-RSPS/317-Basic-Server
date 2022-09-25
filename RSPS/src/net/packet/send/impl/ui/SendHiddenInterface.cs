@@ -14,10 +14,32 @@ namespace RSPS.src.net.packet.send.impl
     public sealed class SendHiddenInterface : IPacketPayloadBuilder
     {
 
+        /// <summary>
+        /// The interface ID
+        /// </summary>
+        public int InterfaceId { get; private set; }
+
+        /// <summary>
+        /// Whether to hide until hovered
+        /// </summary>
+        public bool HideUntilHovered { get; private set; }
+
+
+        /// <summary>
+        /// Creates a new hidden interface payload builder
+        /// </summary>
+        /// <param name="interfaceId">The interface ID</param>
+        /// <param name="hideUntilHovered">Whether to hide until hovered</param>
+        public SendHiddenInterface(int interfaceId, bool hideUntilHovered)
+        {
+            InterfaceId = interfaceId;
+            HideUntilHovered = hideUntilHovered;
+        }   
 
         public void WritePayload(PacketWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteByte(HideUntilHovered);
+            writer.WriteShort(InterfaceId);
         }
 
     }

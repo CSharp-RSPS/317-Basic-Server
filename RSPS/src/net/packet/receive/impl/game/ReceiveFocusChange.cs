@@ -10,15 +10,16 @@ using RSPS.src.Util.Annotations;
 namespace RSPS.src.net.packet.receive.impl
 {
     /// <summary>
-    /// Sent when the game client window goes in and out of focus.
+    /// This packet is sent when the game client window goes in and out of focus.
     /// </summary>
+    [PacketInfo(3, 1)]
     public sealed class ReceiveFocusChange : IReceivePacket
     {
 
 
-        public void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
+        public void ReceivePacket(Player player, PacketReader reader)
         {
-            bool lostFocus = packetReader.ReadByte() == 0;
+            bool lostFocus = reader.ReadByte() == 0;
             Console.WriteLine("WE lost focus? " + lostFocus);
         }
 

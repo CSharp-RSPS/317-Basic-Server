@@ -10,7 +10,7 @@ namespace RSPS.src.Util.Annotations
     /// <summary>
     /// Represents a packet information attribute
     /// </summary>
-    [AttributeUsage(AttributeTargets.Field)]
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Class)]
     public sealed class PacketInfoAttribute : Attribute
     {
 

@@ -14,10 +14,40 @@ namespace RSPS.src.net.packet.send.impl
     public sealed class SendInterfaceOffset : IPacketPayloadBuilder
     {
 
+        /// <summary>
+        /// The interface ID
+        /// </summary>
+        public int InterfaceId { get; private set; }
+
+        /// <summary>
+        /// The X offset
+        /// </summary>
+        public int OffsetX { get; private set; }
+
+        /// <summary>
+        /// The Y offset
+        /// </summary>
+        public int OffsetY { get; private set; }
+
+
+        /// <summary>
+        /// Creates a new interface offset packet payload builder
+        /// </summary>
+        /// <param name="interfaceId">The interface ID</param>
+        /// <param name="offsetX">The X offset</param>
+        /// <param name="offsetY">The Y offset</param>
+        public SendInterfaceOffset(int interfaceId, int offsetX, int offsetY)
+        {
+            InterfaceId = interfaceId;
+            OffsetX = offsetX;
+            OffsetY = offsetY;
+        }
 
         public void WritePayload(PacketWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteShort(OffsetX);
+            writer.WriteShort(OffsetY, Packet.ByteOrder.LittleEndian);
+            writer.WriteShort(InterfaceId, Packet.ByteOrder.LittleEndian);
         }
 
     }

@@ -16,11 +16,11 @@ namespace RSPS.src.net.packet.receive.impl
     {
 
 
-        public override void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
+        public override void ReceivePacket(Player player, PacketReader packetReader)
         {
             //TODO: Can map walk
 
-            HandleWalking(player, packetReader, packetSize - 14);
+            HandleWalking(player, packetReader, packetReader.PayloadSize - 14);
 
             packetReader.ReadBytes(14); //client sends additional info we need to get rid of
         }

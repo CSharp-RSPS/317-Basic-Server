@@ -1,5 +1,8 @@
-﻿using RSPS.src.entity.player;
+﻿using RSPS.src.entity.npc;
+using RSPS.src.entity.player;
 using RSPS.src.net.packet.send.impl;
+using RSPS.src.Util.Annotations;
+using RSPS.src.Worlds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +13,30 @@ namespace RSPS.src.net.packet.receive.impl
 {
 
     /// <summary>
-    /// Sent when a player uses magic on an npc.
+    /// Sent when a player attempts to use a magic attack on an NPC.
     /// </summary>
+    [PacketInfo(131, 4)]
     public sealed class ReceiveMagicOnNpc : IReceivePacket
     {
 
 
-        public void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
+        public void ReceivePacket(Player player, PacketReader reader)
         {
+            int npcIndex = reader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
+            int spellId = reader.ReadShort(Packet.ValueType.Additional);
 
+            World? world = WorldHandler.ResolveWorld(player);
+
+            if (world == null)
+            {
+                return;
+            }
+            Npc? npc = world.Npcs.ByIndex(npcIndex);
+
+            if (npc == null)
+            {
+                return;
+            }
         }
 
     }

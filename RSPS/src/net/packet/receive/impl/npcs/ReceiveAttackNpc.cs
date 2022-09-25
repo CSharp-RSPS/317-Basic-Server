@@ -1,5 +1,8 @@
-﻿using RSPS.src.entity.player;
+﻿using RSPS.src.entity.npc;
+using RSPS.src.entity.player;
 using RSPS.src.net.packet.send.impl;
+using RSPS.src.Util.Annotations;
+using RSPS.src.Worlds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +13,34 @@ namespace RSPS.src.net.packet.receive.impl
 {
 
     /// <summary>
-    /// Sent when a player attacks an NPC.
+    /// This packet is sent when a player attacks an NPC.
     /// </summary>
+    [PacketInfo(72, 2)]
     public sealed class ReceiveAttackNpc : IReceivePacket
     {
 
 
-        public void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
+        public void ReceivePacket(Player player, PacketReader reader)
         {
+            /*if (player.Disabled)
+            {
 
+            }*/
+            int npcIndex = reader.ReadShort(false, Packet.ValueType.Additional);
+
+            World? world = WorldHandler.ResolveWorld(player);
+
+            if (world == null)
+            {
+                return;
+            }
+            Npc? npc = world.Npcs.ByIndex(npcIndex);
+
+            if (npc == null)
+            {
+                return;
+            }
+            //TODO: Engage combat
         }
 
     }

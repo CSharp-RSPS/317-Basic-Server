@@ -14,15 +14,29 @@ namespace RSPS.src.net.packet.send.impl
     public sealed class SendDisplayHintIcon : IPacketVariablePayloadBuilder
     {
 
+        /// <summary>
+        /// The icon type
+        /// </summary>
+        public int IconType { get; private set; }
+
+
+        /// <summary>
+        /// Creates a new display hint icon payload builder
+        /// </summary>
+        /// <param name="iconType">The icon type</param>
+        public SendDisplayHintIcon(int iconType)
+        {
+            IconType = iconType;
+        }
 
         public int GetPayloadSize()
         {
-            throw new NotImplementedException();
+            return 1;
         }
 
         public void WritePayload(PacketWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteByte(IconType);
         }
 
     }

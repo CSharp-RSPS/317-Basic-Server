@@ -22,10 +22,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="src\entity\updating\impl\" />
-  </ItemGroup>
   
 
 </Project>

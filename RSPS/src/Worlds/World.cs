@@ -235,6 +235,7 @@ namespace RSPS.src.Worlds
                                 return;
                             }
                             Players.Add(player);
+                            PacketHandler.SendPacket(player, new SendInitializePlayer(true, player.PlayerIndex));
                         });
                     }
                     if (Players.Entities.Count > 0)

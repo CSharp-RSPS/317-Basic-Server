@@ -72,7 +72,7 @@ namespace RSPS.src.entity.movement
             if (deltaX < 16 || deltaX >= 88 || deltaY < 16 || deltaY > 88)
             {
                 if (!(Player.GetType() == typeof(Npc))) {
-                    PacketHandler.SendPacket(Player, new SendLoadMapRegion(Player));
+                    Player.LoadMapRegion();
                 }
             }
         }

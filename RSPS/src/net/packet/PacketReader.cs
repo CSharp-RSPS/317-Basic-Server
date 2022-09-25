@@ -14,6 +14,16 @@ namespace RSPS.src.net.packet
     {
 
         /// <summary>
+        /// The packet opcode when applicable
+        /// </summary>
+        public int Opcode { get; set; }
+
+        /// <summary>
+        /// The payload size of the packet when applicable
+        /// </summary>
+        public int PayloadSize { get; set; }
+
+        /// <summary>
         /// The readable bytes left in the reader
         /// </summary>
         public int ReadableBytes => Buffer.Length - Pointer;

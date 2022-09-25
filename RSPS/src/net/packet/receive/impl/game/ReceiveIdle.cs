@@ -10,13 +10,14 @@ using RSPS.src.Util.Annotations;
 namespace RSPS.src.net.packet.receive.impl
 {
     /// <summary>
-    /// Sent when there are no actions being performed by the player for this cycle.
+    /// Sent when the player is idle for the current cycle, and acts as a "ping" packet.
     /// </summary>
+    [PacketInfo(0, 0)]
     public sealed class ReceiveIdle : IReceivePacket
     {
 
 
-        public void ReceivePacket(Player player, int packetOpcode, int packetSize, PacketReader packetReader)
+        public void ReceivePacket(Player player, PacketReader reader)
         {
             if (player.IdleTimer.IsRunning)
             {

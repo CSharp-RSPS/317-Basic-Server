@@ -8,16 +8,38 @@ using System.Threading.Tasks;
 namespace RSPS.src.net.packet.send.impl
 {
     /// <summary>
-    /// Sets the scrollbar position of an interface.
+    /// This packet sets the scrollbar position of an interface.
     /// </summary>
     [PacketDef(PacketDefinition.ScrollPosition)]
     public sealed class SendScrollPosition : IPacketPayloadBuilder
     {
 
+        /// <summary>
+        /// The interface ID
+        /// </summary>
+        public int InterfaceId { get; private set; }
+
+        /// <summary>
+        /// The position of the scrollbar
+        /// </summary>
+        public int ScrollbarPosition { get; private set; }
+
+
+        /// <summary>
+        /// Creates a new scroll position packet payload builder
+        /// </summary>
+        /// <param name="interfaceId">The interface ID</param>
+        /// <param name="scrollbarPosition">The position of the scrollbar</param>
+        public SendScrollPosition(int interfaceId, int scrollbarPosition)
+        {
+            InterfaceId = interfaceId;
+            ScrollbarPosition = scrollbarPosition;
+        }
 
         public void WritePayload(PacketWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteShort(InterfaceId, Packet.ByteOrder.LittleEndian);
+            writer.WriteShort(ScrollbarPosition, Packet.ValueType.Additional);
         }
 
     }
