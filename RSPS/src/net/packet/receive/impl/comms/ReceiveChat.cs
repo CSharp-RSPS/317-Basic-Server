@@ -1,5 +1,4 @@
 ﻿using RSPS.src.entity.player;
-using RSPS.src.entity.player.updating.impl;
 using RSPS.src.game.comms.chat;
 using RSPS.src.net.Connections;
 using RSPS.src.Util.Annotations;

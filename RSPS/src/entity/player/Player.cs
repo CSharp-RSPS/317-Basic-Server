@@ -1,7 +1,6 @@
 ﻿using RSPS.src.entity.movement;
 using RSPS.src.entity.npc;
 using RSPS.src.entity.player.skill;
-using RSPS.src.entity.player.updating.impl;
 using RSPS.src.game.comms.chat;
 using RSPS.src.net.Codec;
 using RSPS.src.net.Connections;

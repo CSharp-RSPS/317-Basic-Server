@@ -1,6 +1,5 @@
 ﻿using RSPS.src.entity.flag;
 using RSPS.src.entity.player;
-using RSPS.src.entity.updating;
 using System;
 using System.Collections.Generic;
 using System.Linq;
