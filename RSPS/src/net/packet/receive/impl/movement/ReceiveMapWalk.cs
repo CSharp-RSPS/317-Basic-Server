@@ -1,5 +1,6 @@
 ﻿using RSPS.src.entity.player;
 using RSPS.src.net.packet.send.impl;
+using RSPS.src.Util.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace RSPS.src.net.packet.receive.impl
     /// <summary>
     /// Sent when the player walks using the map. Has 14 additional (assumed to be anticheat) bytes added to the end of it that are ignored.
     /// </summary>
+    [PacketInfo(248, PacketHeaderType.VariableByte)]
     public sealed class ReceiveMapWalk : ReceiveWalk
     {
 

@@ -117,12 +117,16 @@ namespace RSPS.src.net.packet
 
             if (packetInfo == null)
             {
-                Console.Error.WriteLine("No packet definition present on packet receiver {0} [Opcode: {1}][Size: {2}]",
+                Console.Error.WriteLine("No packet info present on packet receiver {0} [Opcode: {1}][Size: {2}]",
                     receivePacket.GetType().Name, packetReader.Opcode, packetReader.PayloadSize);
                 return;
             }
             receivePacket.ReceivePacket(player, packetReader);
-            Debug.WriteLine("Handled packet [Opcode: {0}][Payload size: {1}]", packetReader.Opcode, packetReader.PayloadSize);
+
+            if (packetReader.Opcode != 0)
+            {
+                Debug.WriteLine("Handled packet [Opcode: {0}][Payload size: {1}]", packetReader.Opcode, packetReader.PayloadSize);
+            }
         }
 
         /// <summary>
@@ -220,8 +224,11 @@ namespace RSPS.src.net.packet
             // Dispatch the packet to the client
             connection.Send(packetWriter.Buffer, packetWriter.Pointer);
 
-            Debug.WriteLine("Packet ({0}) [Opcode: {1}][Size: {2}] dispatched to client",
+            if (packetInfo.Opcode != 81)
+            {
+                Debug.WriteLine("Packet ({0}) [Opcode: {1}][Size: {2}] dispatched to client",
                 Enum.GetName(typeof(PacketDefinition), packetDef), packetInfo.Opcode, packetSize);
+            }
         }
 
         /// <summary>

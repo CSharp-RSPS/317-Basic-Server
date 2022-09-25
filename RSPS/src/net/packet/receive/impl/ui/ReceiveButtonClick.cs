@@ -2,6 +2,7 @@
 using RSPS.src.net.Connections;
 using RSPS.src.net.packet.send;
 using RSPS.src.net.packet.send.impl;
+using RSPS.src.Util.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace RSPS.src.net.packet.receive.impl
     /// <summary>
     /// This is sent when a player clicks a button in-game, with the id of the button being clicked.
     /// </summary>
+    [PacketInfo(185, 2)]
     public sealed class ReceiveButtonClick : IReceivePacket
     {
 
