@@ -1,9 +1,9 @@
-﻿namespace RSPS.src.entity.flag
+﻿namespace RSPS.src.entity.update.flag
 {
     public enum FlagType
     {
-        Appearance = 0, 
-        Chat  = 1,
+        Appearance = 0,
+        Chat = 1,
         Graphics = 2,
         Animation = 3,
         ForcedChat = 4,

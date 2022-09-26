@@ -1,4 +1,5 @@
 ﻿using RSPS.src.entity.player;
+using RSPS.src.entity.update.flag;
 using RSPS.src.game.comms.chat;
 using RSPS.src.net.Connections;
 using RSPS.src.Util.Annotations;
@@ -32,7 +33,7 @@ namespace RSPS.src.net.packet.receive.impl
             }
             ChatMessage cm = new(effects, color, text);
 
-            player.Flags.UpdateFlag(entity.flag.FlagType.Chat, true);
+            player.Flags.UpdateFlag(FlagType.Chat, true);
 
             player.ChatMessage = cm;
 
