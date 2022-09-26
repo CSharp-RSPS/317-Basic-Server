@@ -1,0 +1,66 @@
+[
+	{
+		"itemId": 526,
+		"experience": 4.5
+	},
+	{
+		"itemId": 528,
+		"experience": 4.5
+	},
+	{
+		"itemId": 2859,
+		"experience": 4.5
+	},
+	{
+		"itemId": 3179,
+		"experience": 5
+	},
+	{
+		"itemId": 530,
+		"experience": 5.3
+	},
+	{
+		"itemId": 532,
+		"experience": 15
+	},
+	{
+		"itemId": 3125,
+		"experience": 15
+	},
+	{
+		"itemId": 4812,
+		"experience": 22.5
+	},
+	{
+		"itemId": 3123,
+		"experience": 25
+	},
+	{
+		"itemId": 534,
+		"experience": 30
+	},
+	{
+		"itemId": 6812,
+		"experience": 50
+	},
+	{
+		"itemId": 536,
+		"experience": 72
+	},
+	{
+		"itemId": 4830,
+		"experience": 84
+	},
+	{
+		"itemId": 4832,
+		"experience": 96
+	},
+	{
+		"itemId": 4834,
+		"experience": 140
+	},
+	{
+		"itemId": 6729,
+		"experience": 125
+	}
+]

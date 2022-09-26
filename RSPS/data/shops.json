@@ -1,0 +1,129 @@
+[
+	{
+		"name": "General store",
+		"identity": 1,
+		"currency": 995,
+		"member": false,
+		"items": [
+			{
+				"id": 1931,
+				"amount": 10
+			},
+			{
+				"id": 1935,
+				"amount": 10
+			},
+			{
+				"id": 1735,
+				"amount": 10
+			},
+			{
+				"id": 1925,
+				"amount": 10
+			},
+			{
+				"id": 1923,
+				"amount": 10
+			},
+			{
+				"id": 1887,
+				"amount": 10
+			},
+			{
+				"id": 590,
+				"amount": 10
+			},
+			{
+				"id": 1755,
+				"amount": 10
+			},
+			{
+				"id": 2347,
+				"amount": 10
+			},
+			{
+				"id": 550,
+				"amount": 10
+			}
+		],
+		"shopType": "BUY_ALL"
+    },
+	{
+		"name": "Bob's Brilliant Axes",
+		"identity": 2,
+		"currency": 995,
+		"member": false,
+		"items": [
+			{
+				"id": 1265,
+				"amount": 5
+			},
+			{
+				"id": 1351,
+				"amount": 10
+			},
+			{
+				"id": 1349,
+				"amount": 5
+			},
+			{
+				"id": 1353,
+				"amount": 3
+			},
+			{
+				"id": 1363,
+				"amount": 5
+			},
+			{
+				"id": 1365,
+				"amount": 2
+			},
+			{
+				"id": 1369,
+				"amount": 1
+			}
+		],
+		"shopType": "SELL_STOCK"
+    },
+	{
+		"name": "Horvik's Smithy",
+		"identity": 3,
+		"currency": 995,
+		"member": false,
+		"items": [
+			{
+				"id": 1103,
+				"amount": 10
+			},
+			{
+				"id": 1101,
+				"amount": 5
+			},
+			{
+				"id": 1105,
+				"amount": 3
+			},
+			{
+				"id": 1109,
+				"amount": 1
+			},
+			{
+				"id": 1117,
+				"amount": 8
+			},
+			{
+				"id": 1115,
+				"amount": 5
+			},
+			{
+				"id": 1119,
+				"amount": 3
+			},
+			{
+				"id": 1121,
+				"amount": 1
+			}
+		],
+		"shopType": "SELL_STOCK"
+    }
+]

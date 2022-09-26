@@ -1,0 +1,137 @@
+[
+	{
+		"identity": 5070,
+		"rewards": [
+			{
+				"id": 5076,
+				"amount": 1,
+				"chance": 100
+			}
+		]
+	},
+	{
+		"identity": 5071,
+		"rewards": [
+			{
+				"id": 5078,
+				"amount": 1,
+				"chance": 100
+			}
+		]
+	},
+	{
+		"identity": 5072,
+		"rewards": [
+			{
+				"id": 5077,
+				"amount": 1,
+				"chance": 100
+			}
+		]
+	},
+	{
+		"identity": 5073,
+		"rewards": [
+			{
+				"id": 5312,
+				"amount": 1,
+				"chance": 20.3
+			},
+			{
+				"id": 5313,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 1514,
+				"amount": 1,
+				"chance": 5.9
+			},
+			{
+				"id": 5315,
+				"amount": 1,
+				"chance": 2.4
+			},
+			{
+				"id": 5316,
+				"amount": 1,
+				"chance": 1.1
+			},
+			{
+				"id": 5283,
+				"amount": 1,
+				"chance": 14.6
+			},
+			{
+				"id": 5284,
+				"amount": 1,
+				"chance": 10.7
+			},
+			{
+				"id": 5285,
+				"amount": 1,
+				"chance": 8.0
+			},
+			{
+				"id": 5286,
+				"amount": 1,
+				"chance": 7.2
+			},
+			{
+				"id": 5287,
+				"amount": 1,
+				"chance": 5.4
+			},
+			{
+				"id": 5288,
+				"amount": 1,
+				"chance": 4.3
+			},
+			{
+				"id": 5289,
+				"amount": 1,
+				"chance": 3.2
+			},
+			{
+				"id": 5290,
+				"amount": 1,
+				"chance": 2.2
+			},
+			{
+				"id": 5317,
+				"amount": 1,
+				"chance": 0.4
+			}
+		]
+	},
+	{
+		"identity": 5074,
+		"rewards": [
+			{
+				"id": 1635,
+				"amount": 1,
+				"chance": 35
+			},
+			{
+				"id": 1637,
+				"amount": 1,
+				"chance": 30
+			},
+			{
+				"id": 1639,
+				"amount": 1,
+				"chance": 20
+			},
+			{
+				"id": 1641,
+				"amount": 1,
+				"chance": 10
+			},
+			{
+				"id": 1643,
+				"amount": 1,
+				"chance": 5
+			}
+		]
+	}
+]

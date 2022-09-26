@@ -1,0 +1,512 @@
+[
+	{
+		"identity": 1282,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1283,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1284,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1285,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1286,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1289,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1290,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1291,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1365,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1383,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1384,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 5902,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 5903,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 5904,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 3035,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 3036,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1280,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 2409,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 3033,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 3034,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1279,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1278,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1277,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1276,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 6212,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1315,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 3884,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1316,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 3884,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1318,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 3884,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1319,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 3884,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1330,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 3884,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1331,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 3884,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1332,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 3884,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 3879,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 3884,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 3881,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 3884,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 3882,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 1511,
+		"emptyId": 3884,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 2023,
+		"level": 1,
+		"experience": 25,
+		"contains": 1,
+		"resourceId": 2862,
+		"emptyId": 3371,
+		"respawnTime": 30,
+		"resourceGainTime": 7750
+	},
+	{
+		"identity": 1281,
+		"level": 15,
+		"experience": 37.5,
+		"contains": 8,
+		"resourceId": 1521,
+		"emptyId": 3371,
+		"respawnTime": 10,
+		"resourceGainTime": 9000
+	},
+	{
+		"identity": 3037,
+		"level": 15,
+		"experience": 37.5,
+		"contains": 8,
+		"resourceId": 1521,
+		"emptyId": 3371,
+		"respawnTime": 10,
+		"resourceGainTime": 9000
+	},
+	{
+		"identity": 1356,
+		"level": 15,
+		"experience": 37.5,
+		"contains": 8,
+		"resourceId": 1521,
+		"emptyId": 3371,
+		"respawnTime": 10,
+		"resourceGainTime": 9000
+	},
+	{
+		"identity": 1308,
+		"level": 30,
+		"experience": 67.5,
+		"contains": 12,
+		"resourceId": 1519,
+		"emptyId": 3371,
+		"respawnTime": 10,
+		"resourceGainTime": 10000
+	},
+	{
+		"identity": 5551,
+		"level": 30,
+		"experience": 67.5,
+		"contains": 12,
+		"resourceId": 1519,
+		"emptyId": 3371,
+		"respawnTime": 10,
+		"resourceGainTime": 10000
+	},
+	{
+		"identity": 5552,
+		"level": 30,
+		"experience": 67.5,
+		"contains": 12,
+		"resourceId": 1519,
+		"emptyId": 3371,
+		"respawnTime": 10,
+		"resourceGainTime": 10000
+	},
+	{
+		"identity": 5553,
+		"level": 30,
+		"experience": 67.5,
+		"contains": 12,
+		"resourceId": 1519,
+		"emptyId": 3371,
+		"respawnTime": 10,
+		"resourceGainTime": 10000
+	},
+	{
+		"identity": 9036,
+		"level": 35,
+		"experience": 85,
+		"contains": 10,
+		"resourceId": 6333,
+		"emptyId": 9037,
+		"respawnTime": 15,
+		"resourceGainTime": 12500
+	},
+	{
+		"identity": 1307,
+		"level": 45,
+		"experience": 100,
+		"contains": 15,
+		"resourceId": 1517,
+		"emptyId": 1343,
+		"respawnTime": 35,
+		"resourceGainTime": 14000
+	},
+	{
+		"identity": 4674,
+		"level": 45,
+		"experience": 100,
+		"contains": 15,
+		"resourceId": 1517,
+		"emptyId": 1343,
+		"respawnTime": 35,
+		"resourceGainTime": 14000
+	},
+	{
+		"identity": 2289,
+		"level": 45,
+		"experience": 82.5,
+		"contains": 6,
+		"resourceId": 3239,
+		"emptyId": 2310,
+		"respawnTime": 20,
+		"resourceGainTime": 14000
+	},
+	{
+		"identity": 4060,
+		"level": 45,
+		"experience": 82.5,
+		"contains": 6,
+		"resourceId": 3239,
+		"emptyId": 4061,
+		"respawnTime": 20,
+		"resourceGainTime": 14000
+	},
+	{
+		"identity": 9034,
+		"level": 50,
+		"experience": 125,
+		"contains": 13,
+		"resourceId": 6332,
+		"emptyId": 9035,
+		"respawnTime": 30,
+		"resourceGainTime": 16500
+	},
+	{
+		"identity": 1309,
+		"level": 60,
+		"experience": 175,
+		"contains": 16,
+		"resourceId": 1515,
+		"emptyId": 1355,
+		"respawnTime": 60,
+		"resourceGainTime": 18000
+	},
+	{
+		"identity": 1306,
+		"level": 75,
+		"experience": 250,
+		"contains": 20,
+		"resourceId": 1513,
+		"emptyId": 7401,
+		"respawnTime": 120,
+		"resourceGainTime": 22000
+	},
+	{
+		"identity": 1292,
+		"level": 36,
+		"experience": 0,
+		"contains": 1000,
+		"resourceId": 771,
+		"emptyId": 7401,
+		"respawnTime": 5,
+		"resourceGainTime": 8000
+	}
+]

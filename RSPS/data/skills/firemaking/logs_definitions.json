@@ -1,0 +1,47 @@
+[
+	{
+		"identity": 1511,
+		"level": 1,
+		"experience": 40
+	},
+	{
+		"identity": 2862,
+		"level": 1,
+		"experience": 40
+	},
+	{
+		"identity": 1521,
+		"level": 15,
+		"experience": 60
+	},
+	{
+		"identity": 1519,
+		"level": 30,
+		"experience": 90
+	},
+	{
+		"identity": 6333,
+		"level": 35,
+		"experience": 105
+	},
+	{
+		"identity": 1517,
+		"level": 45,
+		"experience": 135
+	},
+	{
+		"identity": 6332,
+		"level": 50,
+		"experience": 157.5
+	},
+	{
+		"identity": 1515,
+		"level": 60,
+		"experience": 202.5
+	},
+	{
+		"identity": 1513,
+		"level": 75,
+		"experience": 303.8
+	}
+]

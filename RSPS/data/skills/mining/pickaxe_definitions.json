@@ -1,0 +1,38 @@
+[
+	{
+		"identity": 1265,
+		"level": 1,
+		"reduction": 0,
+		"animation": 625
+	},
+	{
+		"identity": 1267,
+		"level": 1,
+		"reduction": 250,
+		"animation": 626
+	},
+	{
+		"identity": 1269,
+		"level": 6,
+		"reduction": 500,
+		"animation": 627
+	},
+	{
+		"identity": 1273,
+		"level": 21,
+		"reduction": 1000,
+		"animation": 628
+	},
+	{
+		"identity": 1271,
+		"level": 31,
+		"reduction": 1500,
+		"animation": 629
+	},
+	{
+		"identity": 1275,
+		"level": 41,
+		"reduction": 2000,
+		"animation": 624
+	}
+]

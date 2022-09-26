@@ -1,0 +1,160 @@
+[
+	{
+		"level": 1,
+		"experience": 39,
+		"area": {
+			"maxX": 2490,
+			"minX": 2469,
+			"maxY": 3440,
+			"minY": 3414
+		},
+		"obstacles": [
+			{
+				"objectId": 2295,
+				"orderId": 1,
+				"departure": {
+					"maxX": 2474,
+					"minX": 2474,
+					"maxY": 3436,
+					"minY": 3436
+				},
+				"destination": {
+					"x": 2474,
+					"y": 3429,
+					"z": 0
+				},
+				"animationId": 762,
+				"experience": 7.5,
+				"preMessage": "You attempt to cross the log...",
+				"postMessage": "You make it safely to the other side." 
+			},
+			{
+				"objectId": 2285,
+				"orderId": 2,
+				"departure": {
+					"maxX": 2476,
+					"minX": 2471,
+					"maxY": 3426,
+					"minY": 3426
+				},
+				"destination": {
+					"x": -1,
+					"y": 3424,
+					"z": 1
+				},
+				"animationId": 828,
+				"experience": 7.5,
+				"preMessage": "You climb the nets..."
+			},
+			{
+				"objectId": 2313,
+				"orderId": 3,
+				"departure": {
+					"maxX": 2474,
+					"minX": 2472,
+					"maxY": 3423,
+					"minY": 3422
+				},
+				"destination": {
+					"x": 2473,
+					"y": 3420,
+					"z": 2
+				},
+				"animationId": 828,
+				"experience": 5,
+				"preMessage": "You climb the branch..."
+			},
+			{
+				"objectId": 2312,
+				"orderId": 4,
+				"departure": {
+					"maxX": 2477,
+					"minX": 2477,
+					"maxY": 3420,
+					"minY": 3420
+				},
+				"destination": {
+					"x": 2483,
+					"y": 3420,
+					"z": 2
+				},
+				"animationId": 762,
+				"experience": 7.5,
+				"preMessage": "You balance across the rope...",
+				"postMessage": "You make it safely to the other side." 
+			},
+			{
+				"objectId": 2314,
+				"orderId": 5,
+				"departure": {
+					"maxX": 2488,
+					"minX": 2485,
+					"maxY": 3421,
+					"minY": 3418
+				},
+				"destination": {
+					"x": -1,
+					"y": -1,
+					"z": 0
+				},
+				"animationId": 762,
+				"experience": 5,
+				"preMessage": "You climb down the branch..."
+			},
+			{
+				"objectId": 2286,
+				"orderId": 6,
+				"departure": {
+					"maxX": 2488,
+					"minX": 2483,
+					"maxY": 3425,
+					"minY": 3425
+				},
+				"destination": {
+					"x": -1,
+					"y": 3427,
+					"z": 0
+				},
+				"animationId": 828,
+				"experience": 7.5,
+				"preMessage": "You clim over the nets..."
+			},
+			{
+				"objectId": 154, //4058
+				"orderId": 7,
+				"departure": {
+					"maxX": 2484,
+					"minX": 2484,
+					"maxY": 3430,
+					"minY": 3430
+				},
+				"destination": {
+					"x": 2484,
+					"y": 3437,
+					"z": 0
+				},
+				"animationId": 749,
+				"experience": 7,
+				"preMessage": "You slide through the pipe..."
+			},
+			{
+				"objectId": 4058, //154
+				"orderId": 7,
+				"departure": {
+					"maxX": 2487,
+					"minX": 2487,
+					"maxY": 3430,
+					"minY": 3430
+				},
+				"destination": {
+					"x": 2487,
+					"y": 3437,
+					"z": 0
+				},
+				"animationId": 749,
+				"experience": 7.5,
+				"preMessage": "You slide through the pipe..."
+			}
+		]
+	}
+]

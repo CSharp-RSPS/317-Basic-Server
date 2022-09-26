@@ -1,0 +1,806 @@
+[
+	{
+		"id": 2561,
+		"level": 5,
+		"experience": 16,
+		"resources": [
+			{
+				"id": 1891,
+				"amount": 1,
+				"chance": 62.0
+			},
+			{
+				"id": 1901,
+				"amount": 1,
+				"chance": 10.0
+			},
+			{
+				"id": 2309,
+				"amount": 1,
+				"chance": 28.0
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 2000
+	},
+	{
+		"id": 6163,
+		"level": 5,
+		"experience": 16,
+		"resources": [
+			{
+				"id": 1891,
+				"amount": 1,
+				"chance": 62
+			},
+			{
+				"id": 1901,
+				"amount": 1,
+				"chance": 10
+			},
+			{
+				"id": 2309,
+				"amount": 1,
+				"chance": 28
+			}
+		],
+		"emptyId": 6984,
+		"respawnTime": 2000
+	},
+	{
+		"id": 6569,
+		"level": 5,
+		"experience": 16,
+		"resources": [
+			{
+				"id": 1891,
+				"amount": 1,
+				"chance": 62
+			},
+			{
+				"id": 1901,
+				"amount": 1,
+				"chance": 10
+			},
+			{
+				"id": 2309,
+				"amount": 1,
+				"chance": 28
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 2000
+	},
+	{
+		"id": 630,
+		"level": 5,
+		"experience": 16,
+		"resources": [
+			{
+				"id": 1891,
+				"amount": 1,
+				"chance": 62
+			},
+			{
+				"id": 1901,
+				"amount": 1,
+				"chance": 10
+			},
+			{
+				"id": 2309,
+				"amount": 1,
+				"chance": 28
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 2000
+	},
+	{
+		"id": 2560,
+		"level": 20,
+		"experience": 24,
+		"resources": [
+			{
+				"id": 950,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 5000
+	},
+	{
+		"id": 6568,
+		"level": 20,
+		"experience": 24,
+		"resources": [
+			{
+				"id": 950,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 5000
+	},
+	{
+		"id": 629,
+		"level": 20,
+		"experience": 24,
+		"resources": [
+			{
+				"id": 950,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 5000
+	},
+	{
+		"id": 2565,
+		"level": 50,
+		"experience": 54,
+		"resources": [
+			{
+				"id": 442,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 30000
+	},
+	{
+		"id": 628,
+		"level": 50,
+		"experience": 54,
+		"resources": [
+			{
+				"id": 442,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 30000
+	},
+	{
+		"id": 6164,
+		"level": 50,
+		"experience": 54,
+		"resources": [
+			{
+				"id": 442,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 6984,
+		"respawnTime": 30000
+	},
+	{
+		"id": 2564,
+		"level": 65,
+		"experience": 81,
+		"resources": [
+			{
+				"id": 2007,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 10
+	},
+	{
+		"id": 6572,
+		"level": 65,
+		"experience": 81,
+		"resources": [
+			{
+				"id": 2007,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 10
+	},
+	{
+		"id": 633,
+		"level": 65,
+		"experience": 81,
+		"resources": [
+			{
+				"id": 2007,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 10
+	},
+	{
+		"id": 2563,
+		"level": 35,
+		"experience": 36,
+		"resources": [
+			{
+				"id": 958,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 10000
+	},
+	{
+		"id": 4278,
+		"level": 35,
+		"experience": 36,
+		"resources": [
+			{
+				"id": 958,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 10000
+	},
+	{
+		"id": 632,
+		"level": 35,
+		"experience": 36,
+		"resources": [
+			{
+				"id": 958,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 10000
+	},
+	{
+		"id": 6571,
+		"level": 35,
+		"experience": 36,
+		"resources": [
+			{
+				"id": 958,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 10000
+	},
+	{
+		"id": 2562,
+		"level": 75,
+		"experience": 160,
+		"resources": [
+			{
+				"id": 1617,
+				"amount": 1,
+				"chance": 10
+			},
+			{
+				"id": 1619,
+				"amount": 1,
+				"chance": 20
+			},
+			{
+				"id": 1621,
+				"amount": 1,
+				"chance": 30
+			},
+			{
+				"id": 1623,
+				"amount": 1,
+				"chance": 40
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 180000
+	},
+	{
+		"id": 6162,
+		"level": 75,
+		"experience": 160,
+		"resources": [
+			{
+				"id": 1617,
+				"amount": 1,
+				"chance": 10
+			},
+			{
+				"id": 1619,
+				"amount": 1,
+				"chance": 20
+			},
+			{
+				"id": 1621,
+				"amount": 1,
+				"chance": 30
+			},
+			{
+				"id": 1623,
+				"amount": 1,
+				"chance": 40
+			}
+		],
+		"emptyId": 6984,
+		"respawnTime": 180000
+	},
+	{
+		"id": 6570,
+		"level": 75,
+		"experience": 160,
+		"resources": [
+			{
+				"id": 1617,
+				"amount": 1,
+				"chance": 10
+			},
+			{
+				"id": 1619,
+				"amount": 1,
+				"chance": 20
+			},
+			{
+				"id": 1621,
+				"amount": 1,
+				"chance": 30
+			},
+			{
+				"id": 1623,
+				"amount": 1,
+				"chance": 40
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 180000
+	},
+	{
+		"id": 631,
+		"level": 75,
+		"experience": 160,
+		"resources": [
+			{
+				"id": 1617,
+				"amount": 1,
+				"chance": 10
+			},
+			{
+				"id": 1619,
+				"amount": 1,
+				"chance": 20
+			},
+			{
+				"id": 1621,
+				"amount": 1,
+				"chance": 30
+			},
+			{
+				"id": 1623,
+				"amount": 1,
+				"chance": 40
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 180000
+	},
+	{
+		"id": 635,
+		"level": 5,
+		"experience": 16,
+		"resources": [
+			{
+				"id": 712,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 7000
+	},
+	{
+		"id": 6574,
+		"level": 5,
+		"experience": 16,
+		"resources": [
+			{
+				"id": 712,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 7000
+	},
+	{
+		"id": 4277,
+		"level": 42,
+		"experience": 42,
+		"resources": [
+			{
+				"id": 331,
+				"amount": 1,
+				"chance": 45
+			},
+			{
+				"id": 359,
+				"amount": 1,
+				"chance": 30
+			},
+			{
+				"id": 377,
+				"amount": 1,
+				"chance": 25
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 25000
+	},
+	{
+		"id": 4705,
+		"level": 42,
+		"experience": 42,
+		"resources": [
+			{
+				"id": 331,
+				"amount": 1,
+				"chance": 45
+			},
+			{
+				"id": 359,
+				"amount": 1,
+				"chance": 30
+			},
+			{
+				"id": 377,
+				"amount": 1,
+				"chance": 25
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 25000
+	},
+	{
+		"id": 4707,
+		"level": 42,
+		"experience": 42,
+		"resources": [
+			{
+				"id": 331,
+				"amount": 1,
+				"chance": 45
+			},
+			{
+				"id": 359,
+				"amount": 1,
+				"chance": 30
+			},
+			{
+				"id": 377,
+				"amount": 1,
+				"chance": 25
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 25000
+	},
+	{
+		"id": 4706,
+		"level": 2,
+		"experience": 10,
+		"resources": [
+			{
+				"id": 1957,
+				"amount": 1,
+				"chance": 20
+			},
+			{
+				"id": 1965,
+				"amount": 1,
+				"chance": 25
+			},
+			{
+				"id": 1942,
+				"amount": 1,
+				"chance": 20
+			},
+			{
+				"id": 1982,
+				"amount": 1,
+				"chance": 20
+			},
+			{
+				"id": 1550,
+				"amount": 1,
+				"chance": 15
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 2000
+	},
+	{
+		"id": 4708,
+		"level": 2,
+		"experience": 10,
+		"resources": [
+			{
+				"id": 1957,
+				"amount": 1,
+				"chance": 20
+			},
+			{
+				"id": 1965,
+				"amount": 1,
+				"chance": 25
+			},
+			{
+				"id": 1942,
+				"amount": 1,
+				"chance": 20
+			},
+			{
+				"id": 1982,
+				"amount": 1,
+				"chance": 20
+			},
+			{
+				"id": 1550,
+				"amount": 1,
+				"chance": 15
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 2000
+	},
+	{
+		"id": 4874,
+		"level": 5,
+		"experience": 16,
+		"resources": [
+			{
+				"id": 1755,
+				"amount": 1,
+				"chance": 40
+			},
+			{
+				"id": 1592,
+				"amount": 1,
+				"chance": 30
+			},
+			{
+				"id": 1597,
+				"amount": 1,
+				"chance": 30
+			}
+		],
+		"emptyId": 2906,
+		"respawnTime": 7000
+	},
+	{
+		"id": 6166,
+		"level": 5,
+		"experience": 16,
+		"resources": [
+			{
+				"id": 1755,
+				"amount": 1,
+				"chance": 40
+			},
+			{
+				"id": 1592,
+				"amount": 1,
+				"chance": 30
+			},
+			{
+				"id": 1597,
+				"amount": 1,
+				"chance": 30
+			}
+		],
+		"emptyId": 6984,
+		"respawnTime": 7000
+	},
+	{
+		"id": 4875,
+		"level": 5,
+		"experience": 16,
+		"resources": [
+			{
+				"id": 1963,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 2906,
+		"respawnTime": 7000
+	},
+	{
+		"id": 4876,
+		"level": 5,
+		"experience": 16,
+		"resources": [
+			{
+				"id": 1931,
+				"amount": 1,
+				"chance": 35
+			},
+			{
+				"id": 2347,
+				"amount": 1,
+				"chance": 35
+			},
+			{
+				"id": 590,
+				"amount": 1,
+				"chance": 30
+			}
+		],
+		"emptyId": 2906,
+		"respawnTime": 7000
+	},
+	{
+		"id": 4877,
+		"level": 65,
+		"experience": 100,
+		"resources": [
+			{
+				"id": 563,
+				"amount": 1,
+				"chance": 16
+			},
+			{
+				"id": 554,
+				"amount": 1,
+				"chance": 21
+			},
+			{
+				"id": 555,
+				"amount": 1,
+				"chance": 21
+			},
+			{
+				"id": 556,
+				"amount": 1,
+				"chance": 21
+			},
+			{
+				"id": 557,
+				"amount": 1,
+				"chance": 21
+			}
+		],
+		"emptyId": 2906,
+		"respawnTime": 80000
+	},
+	{
+		"id": 4878,
+		"level": 65,
+		"experience": 100,
+		"resources": [
+			{
+				"id": 1323,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 2906,
+		"respawnTime": 80000
+	},
+	{
+		"id": 6165,
+		"level": 100,
+		"experience": 160,
+		"resources": [
+			{
+				"id": 995,
+				"amount": 1,
+				"chance": 100
+			}
+		],
+		"emptyId": 6984,
+		"respawnTime": 0
+	},
+	{
+		"id": 7053,
+		"level": 27,
+		"experience": 10,
+		"resources": [
+			{
+				"id": 5318,
+				"amount": 1,
+				"chance": 6
+			},
+			{
+				"id": 5319,
+				"amount": 1,
+				"chance": 6
+			},
+			{
+				"id": 5320,
+				"amount": 1,
+				"chance": 6
+			},
+			{
+				"id": 5322,
+				"amount": 1,
+				"chance": 6
+			},
+			{
+				"id": 5324,
+				"amount": 1,
+				"chance": 6
+			},
+			{
+				"id": 5323,
+				"amount": 1,
+				"chance": 6
+			},
+			{
+				"id": 5321,
+				"amount": 1,
+				"chance": 6
+			},
+			{
+				"id": 5307,
+				"amount": 1,
+				"chance": 6
+			},
+			{
+				"id": 5305,
+				"amount": 1,
+				"chance": 6
+			},
+			{
+				"id": 5306,
+				"amount": 1,
+				"chance": 6
+			},
+			{
+				"id": 5308,
+				"amount": 1,
+				"chance": 6
+			},
+			{
+				"id": 5309,
+				"amount": 1,
+				"chance": 6
+			},
+			{
+				"id": 5310,
+				"amount": 1,
+				"chance": 6
+			},
+			{
+				"id": 5311,
+				"amount": 1,
+				"chance": 6
+			},
+			{
+				"id": 5096,
+				"amount": 1,
+				"chance": 6
+			},
+			{
+				"id": 5097,
+				"amount": 1,
+				"chance": 5
+			},
+			{
+				"id": 5098,
+				"amount": 1,
+				"chance": 5
+			}
+		],
+		"emptyId": 634,
+		"respawnTime": 18000
+	}
+]

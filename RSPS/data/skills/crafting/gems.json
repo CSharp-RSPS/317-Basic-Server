@@ -1,0 +1,62 @@
+[
+	{
+		"uncutGem": 1625,//opal
+		"level": 1,
+		"experience": 15,
+		"cutGem": 1609
+	},
+	{
+		"uncutGem": 1627,//jade
+		"level": 13,
+		"experience": 20,
+		"cutGem": 1611
+	},
+	{
+		"uncutGem": 1629,//topaz
+		"level": 16,
+		"experience": 25,
+		"cutGem": 1613
+	},
+	{
+		"uncutGem": 1623,//sapphire
+		"level": 20,
+		"experience": 50,
+		"cutGem": 1607
+	},
+	{
+		"uncutGem": 1621,//emerald
+		"level": 27,
+		"experience": 67.5,
+		"cutGem": 1605
+	},
+	{
+		"uncutGem": 1621,//emerald
+		"level": 27,
+		"experience": 67.5,
+		"cutGem": 1605
+	},
+	{
+		"uncutGem": 1619,//ruby
+		"level": 34,
+		"experience": 85,
+		"cutGem": 1603
+	},
+	{
+		"uncutGem": 1617,//diamond
+		"level": 43,
+		"experience": 107.5,
+		"cutGem": 1601
+	},
+	{
+		"uncutGem": 1631,//dragonstone
+		"level": 55,
+		"experience": 137.5,
+		"cutGem": 1615
+	},
+	{
+		"uncutGem": 6571,//onyx
+		"level": 67,
+		"experience": 167.5,
+		"cutGem": 6573
+	}
+]

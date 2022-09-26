@@ -1,0 +1,383 @@
+[
+	{
+		"identity": 1195,
+		"level": 1,
+		"experience": 0,
+		"runes": [],
+		"location": {
+			"x": 2599,
+			"y": 3088,
+			"z": 0
+		}
+	},
+	{
+		"identity": 12856,
+		"level": 1,
+		"experience": 0,
+		"runes": [],
+		"location": {
+			"x": 2599,
+			"y": 3088,
+			"z": 0
+		}
+	},
+	{
+		"identity": 19210,
+		"level": 1,
+		"experience": 0,
+		"runes": [],
+		"location": {
+			"x": 2599,
+			"y": 3088,
+			"z": 0
+		}
+	},
+	{
+		"identity": 1164,
+		"level": 25,
+		"experience": 35,
+		"runes": [
+			{
+				"id": 563,
+				"amount": 1
+			},
+			{
+				"id": 554,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 3
+			}
+		],
+		"location": {
+			"x": 3210,
+			"y": 3424,
+			"z": 0
+		}
+	},
+	{
+		"identity": 1167,
+		"level": 31,
+		"experience": 41,
+		"runes": [
+			{
+				"id": 563,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 3
+			},
+			{
+				"id": 557,
+				"amount": 1
+			}
+		],
+		"location": {
+			"x": 3222,
+			"y": 3218,
+			"z": 0
+		}
+	},
+	{
+		"identity": 1170,
+		"level": 37,
+		"experience": 48,
+		"runes": [
+			{
+				"id": 563,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 3
+			},
+			{
+				"id": 555,
+				"amount": 1
+			}
+		],
+		"location": {
+			"x": 2964,
+			"y": 3378,
+			"z": 0
+		}
+	},
+	{
+		"identity": 1174,
+		"level": 45,
+		"experience": 55.5,
+		"runes": [
+			{
+				"id": 563,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 5
+			}
+		],
+		"location": {
+			"x": 2757,
+			"y": 3477,
+			"z": 0
+		}
+	},
+	{
+		"identity": 1540,
+		"level": 51,
+		"experience": 61,
+		"runes": [
+			{
+				"id": 563,
+				"amount": 2
+			},
+			{
+				"id": 555,
+				"amount": 2
+			}
+		],
+		"location": {
+			"x": 2662,
+			"y": 3305,
+			"z": 0
+		}
+	},
+	{
+		"identity": 1541,
+		"level": 58,
+		"experience": 68,
+		"runes": [
+			{
+				"id": 563,
+				"amount": 2
+			},
+			{
+				"id": 557,
+				"amount": 2
+			}
+		],
+		"location": {
+			"x": 2936,
+			"y": 4714,
+			"z": 0
+		}
+	},
+	{
+		"identity": 7455,
+		"level": 61,
+		"experience": 68,
+		"runes": [
+			{
+				"id": 563,
+				"amount": 2
+			},
+			{
+				"id": 554,
+				"amount": 2
+			}
+		],
+		"location": {
+			"x": 2910,
+			"y": 3612,
+			"z": 0
+		}
+	},
+	{
+		"identity": 18470,
+		"level": 64,
+		"experience": 74,
+		"runes": [
+			{
+				"id": 563,
+				"amount": 2
+			},
+			{
+				"id": 554,
+				"amount": 2
+			},
+			{
+				"id": 555,
+				"amount": 1
+			},
+			{
+				"id": 1963,
+				"amount": 1
+			}
+		],
+		"location": {
+			"x": 2755,
+			"y": 2784,
+			"z": 0
+		}
+	},
+	{
+		"identity": 13035,
+		"level": 54,
+		"experience": 64,
+		"runes": [
+			{
+				"id": 563,
+				"amount": 2
+			},
+			{
+				"id": 554,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 1
+			}
+		],
+		"location": {
+			"x": 3098,
+			"y": 9884,
+			"z": 0
+		}
+	},
+	{
+		"identity": 13045,
+		"level": 60,
+		"experience": 70,
+		"runes": [
+			{
+				"id": 563,
+				"amount": 2
+			},
+			{
+				"id": 566,
+				"amount": 1
+			}
+		],
+		"location": {
+			"x": 3322,
+			"y": 3336,
+			"z": 0
+		}
+	},
+	{
+		"identity": 13053,
+		"level": 66,
+		"experience": 76,
+		"runes": [
+			{
+				"id": 563,
+				"amount": 2
+			},
+			{
+				"id": 565,
+				"amount": 1
+			}
+		],
+		"location": {
+			"x": 3492,
+			"y": 3471,
+			"z": 0
+		}
+	},
+	{
+		"identity": 13061,
+		"level": 72,
+		"experience": 82,
+		"runes": [
+			{
+				"id": 563,
+				"amount": 2
+			},
+			{
+				"id": 555,
+				"amount": 4
+			}
+		],
+		"location": {
+			"x": 3006,
+			"y": 3471,
+			"z": 0
+		}
+	},
+	{
+		"identity": 13069, //dareeyak
+		"level": 78,
+		"experience": 88,
+		"runes": [
+			{
+				"id": 563,
+				"amount": 2
+			},
+			{
+				"id": 554,
+				"amount": 3
+			},
+			{
+				"id": 556,
+				"amount": 2
+			}
+		],
+		"location": {
+			"x": 3161,
+			"y": 3671,
+			"z": 0
+		}
+	},
+	{
+		"identity": 13079,
+		"level": 84,
+		"experience": 94,
+		"runes": [
+			{
+				"id": 563,
+				"amount": 2
+			},
+			{
+				"id": 566,
+				"amount": 2
+			}
+		],
+		"location": {
+			"x": 3156,
+			"y": 3666,
+			"z": 0
+		}
+	},
+	{
+		"identity": 13087,
+		"level": 90,
+		"experience": 100,
+		"runes": [
+			{
+				"id": 563,
+				"amount": 2
+			},
+			{
+				"id": 565,
+				"amount": 2
+			}
+		],
+		"location": {
+			"x": 3288,
+			"y": 3886,
+			"z": 0
+		}
+	},
+	{
+		"identity": 13095,
+		"level": 96,
+		"experience": 106,
+		"runes": [
+			{
+				"id": 563,
+				"amount": 2
+			},
+			{
+				"id": 555,
+				"amount": 8
+			}
+		],
+		"location": {
+			"x": 2977,
+			"y": 3873,
+			"z": 0
+		}
+	}
+]

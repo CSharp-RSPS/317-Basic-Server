@@ -1,0 +1,1997 @@
+[
+	{
+		"id": 1,
+		"level": 1,
+		"experience": 8,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 3,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 2,
+		"level": 1,
+		"experience": 8,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 3,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 3,
+		"level": 1,
+		"experience": 8,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 3,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 4,
+		"level": 1,
+		"experience": 8,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 3,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 5,
+		"level": 1,
+		"experience": 8,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 3,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 6,
+		"level": 1,
+		"experience": 8,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 3,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 16,
+		"level": 1,
+		"experience": 8,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 3,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 24,
+		"level": 1,
+		"experience": 8,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 3,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 25,
+		"level": 1,
+		"experience": 8,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 3,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 7,
+		"level": 10,
+		"experience": 14.5,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 9,
+				"chance": 60
+			},
+			{
+				"id": 5318,
+				"amount": 1,
+				"chance": 30
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 1757,
+		"level": 10,
+		"experience": 14.5,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 9,
+				"chance": 60
+			},
+			{
+				"id": 5318,
+				"amount": 1,
+				"chance": 30
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 1758,
+		"level": 10,
+		"experience": 14.5,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 9,
+				"chance": 60
+			},
+			{
+				"id": 5318,
+				"amount": 1,
+				"chance": 30
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 1715,
+		"level": 15,
+		"experience": 18.5,
+		"loot": [
+			{
+				"id": 688,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 686,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 697,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 314,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 2677,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1351,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1205,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1265,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1739,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1349,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1267,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1129,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1511,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1734,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 321,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 2138,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 440,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 453,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 886,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1353,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1269,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 946,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1733,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1207,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 590,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1625,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1627,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 4298,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 4300,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 4302,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 4304,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 4306,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 4308,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 4310,
+				"amount": 1,
+				"chance": 2.8
+			},
+			{
+				"id": 199,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 201,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 203,
+				"amount": 1,
+				"chance": 2.7
+			}
+		],
+		"stunTime": 4000,
+		"stunDamage": 2
+	},
+	{
+		"id": 1714,
+		"level": 20,
+		"experience": 22.5,
+		"loot": [
+			{
+				"id": 688,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 686,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 697,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 314,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 2677,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1351,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1205,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1265,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1739,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1349,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1267,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1129,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1511,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1734,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 321,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 2138,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 440,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 453,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 886,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1353,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1269,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 946,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1733,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1207,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 590,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1625,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 1627,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 4298,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 4300,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 4302,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 4304,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 4306,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 4308,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 4310,
+				"amount": 1,
+				"chance": 2.8
+			},
+			{
+				"id": 199,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 201,
+				"amount": 1,
+				"chance": 2.7
+			},
+			{
+				"id": 203,
+				"amount": 1,
+				"chance": 2.7
+			}
+		],
+		"stunTime": 4000,
+		"stunDamage": 3
+	},
+	{
+		"id": 15,
+		"level": 25,
+		"experience": 26,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 18,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 2
+	},
+	{
+		"id": 18,
+		"level": 25,
+		"experience": 26,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 18,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 2
+	},
+	{
+		"id": 187,
+		"level": 32,
+		"experience": 35.5,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 40,
+				"chance": 5
+			},
+			{
+				"id": 995,
+				"amount": 25,
+				"chance": 5
+			},
+			{
+				"id": 1993,
+				"amount": 1,
+				"chance": 5
+			},
+			{
+				"id": 556,
+				"amount": 8,
+				"chance": 5
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 2
+	},
+	{
+		"id": 1822,
+		"level": 36,
+		"experience": 40,
+		"loot": [
+			{
+				"id": 4550,
+				"amount": 1,
+				"chance": 14.2
+			},
+			{
+				"id": 594,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 4539,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 1939,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 590,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 440,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 995,
+				"amount": 10,
+				"chance": 14.3
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 1823,
+		"level": 36,
+		"experience": 40,
+		"loot": [
+			{
+				"id": 4550,
+				"amount": 1,
+				"chance": 14.2
+			},
+			{
+				"id": 594,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 4539,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 1939,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 590,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 440,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 995,
+				"amount": 10,
+				"chance": 14.3
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 1824,
+		"level": 36,
+		"experience": 40,
+		"loot": [
+			{
+				"id": 4550,
+				"amount": 1,
+				"chance": 14.2
+			},
+			{
+				"id": 594,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 4539,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 1939,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 590,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 440,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 995,
+				"amount": 10,
+				"chance": 14.3
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 1825,
+		"level": 36,
+		"experience": 40,
+		"loot": [
+			{
+				"id": 4550,
+				"amount": 1,
+				"chance": 14.2
+			},
+			{
+				"id": 594,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 4539,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 1939,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 590,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 440,
+				"amount": 1,
+				"chance": 14.3
+			},
+			{
+				"id": 995,
+				"amount": 10,
+				"chance": 14.3
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 2234,
+		"level": 38,
+		"experience": 43,
+		"loot": [
+			{
+				"id": 5304,
+				"amount": 1,
+				"chance": 1.5
+			},
+			{
+				"id": 5303,
+				"amount": 1,
+				"chance": 1.5
+			},
+			{
+				"id": 5106,
+				"amount": 1,
+				"chance": 1.5
+			},
+			{
+				"id": 5301,
+				"amount": 1,
+				"chance": 2
+			},
+			{
+				"id": 5302,
+				"amount": 1,
+				"chance": 2
+			},
+			{
+				"id": 5300,
+				"amount": 1,
+				"chance": 2
+			},
+			{
+				"id": 5299,
+				"amount": 1,
+				"chance": 2.5
+			},
+			{
+				"id": 5298,
+				"amount": 1,
+				"chance": 2.5
+			},
+			{
+				"id": 5321,
+				"amount": 1,
+				"chance": 2.5
+			},
+			{
+				"id": 5104,
+				"amount": 1,
+				"chance": 2.5
+			},
+			{
+				"id": 5297,
+				"amount": 1,
+				"chance": 2.5
+			},
+			{
+				"id": 5323,
+				"amount": 1,
+				"chance": 3
+			},
+			{
+				"id": 5296,
+				"amount": 1,
+				"chance": 3
+			},
+			{
+				"id": 5311,
+				"amount": 1,
+				"chance": 3
+			},
+			{
+				"id": 5100,
+				"amount": 1,
+				"chance": 3
+			},
+			{
+				"id": 5295,
+				"amount": 1,
+				"chance": 3
+			},
+			{
+				"id": 5294,
+				"amount": 1,
+				"chance": 3
+			},
+			{
+				"id": 5320,
+				"amount": 1,
+				"chance": 3.5
+			},
+			{
+				"id": 5310,
+				"amount": 1,
+				"chance": 3.5
+			},
+			{
+				"id": 5293,
+				"amount": 1,
+				"chance": 3.5
+			},
+			{
+				"id": 5309,
+				"amount": 1,
+				"chance": 3.5
+			},
+			{
+				"id": 5292,
+				"amount": 1,
+				"chance": 3.5
+			},
+			{
+				"id": 5322,
+				"amount": 1,
+				"chance": 3.5
+			},
+			{
+				"id": 5318,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5319,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5324,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5291,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5305,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5307,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5308,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5306,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5097,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5101,
+				"amount": 1,
+				"chance": 3.8
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 3
+	},
+	{
+		"id": 2235,
+		"level": 38,
+		"experience": 43,
+		"loot": [
+			{
+				"id": 5304,
+				"amount": 1,
+				"chance": 1.5
+			},
+			{
+				"id": 5303,
+				"amount": 1,
+				"chance": 1.5
+			},
+			{
+				"id": 5106,
+				"amount": 1,
+				"chance": 1.5
+			},
+			{
+				"id": 5301,
+				"amount": 1,
+				"chance": 2
+			},
+			{
+				"id": 5302,
+				"amount": 1,
+				"chance": 2
+			},
+			{
+				"id": 5300,
+				"amount": 1,
+				"chance": 2
+			},
+			{
+				"id": 5299,
+				"amount": 1,
+				"chance": 2.5
+			},
+			{
+				"id": 5298,
+				"amount": 1,
+				"chance": 2.5
+			},
+			{
+				"id": 5321,
+				"amount": 1,
+				"chance": 2.5
+			},
+			{
+				"id": 5104,
+				"amount": 1,
+				"chance": 2.5
+			},
+			{
+				"id": 5297,
+				"amount": 1,
+				"chance": 2.5
+			},
+			{
+				"id": 5323,
+				"amount": 1,
+				"chance": 3
+			},
+			{
+				"id": 5296,
+				"amount": 1,
+				"chance": 3
+			},
+			{
+				"id": 5311,
+				"amount": 1,
+				"chance": 3
+			},
+			{
+				"id": 5100,
+				"amount": 1,
+				"chance": 3
+			},
+			{
+				"id": 5295,
+				"amount": 1,
+				"chance": 3
+			},
+			{
+				"id": 5294,
+				"amount": 1,
+				"chance": 3
+			},
+			{
+				"id": 5320,
+				"amount": 1,
+				"chance": 3.5
+			},
+			{
+				"id": 5310,
+				"amount": 1,
+				"chance": 3.5
+			},
+			{
+				"id": 5293,
+				"amount": 1,
+				"chance": 3.5
+			},
+			{
+				"id": 5309,
+				"amount": 1,
+				"chance": 3.5
+			},
+			{
+				"id": 5292,
+				"amount": 1,
+				"chance": 3.5
+			},
+			{
+				"id": 5322,
+				"amount": 1,
+				"chance": 3.5
+			},
+			{
+				"id": 5318,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5319,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5324,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5291,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5305,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5307,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5308,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5306,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5097,
+				"amount": 1,
+				"chance": 3.8
+			},
+			{
+				"id": 5101,
+				"amount": 1,
+				"chance": 3.8
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 3
+	},
+	{
+		"id": 9,
+		"level": 40,
+		"experience": 46.8,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 30,
+				"chance": 80
+			},
+			{
+				"id": 1987,
+				"amount": 1,
+				"chance": 20
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 2
+	},
+	{
+		"id": 32,
+		"level": 40,
+		"experience": 46.8,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 30,
+				"chance": 80
+			},
+			{
+				"id": 1987,
+				"amount": 1,
+				"chance": 20
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 2
+	},
+	{
+		"id": 1305,
+		"level": 45,
+		"experience": 65,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 40,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 2
+	},
+	{
+		"id": 1306,
+		"level": 45,
+		"experience": 65,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 40,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 2
+	},
+	{
+		"id": 1307,
+		"level": 45,
+		"experience": 65,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 40,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 2
+	},
+	{
+		"id": 1308,
+		"level": 45,
+		"experience": 65,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 40,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 2
+	},
+	{
+		"id": 1309,
+		"level": 45,
+		"experience": 65,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 40,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 2
+	},
+	{
+		"id": 1310,
+		"level": 45,
+		"experience": 65,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 40,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 2
+	},
+	{
+		"id": 1311,
+		"level": 45,
+		"experience": 65,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 40,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 2
+	},
+	{
+		"id": 1312,
+		"level": 45,
+		"experience": 65,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 40,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 2
+	},
+	{
+		"id": 1313,
+		"level": 45,
+		"experience": 65,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 40,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 2
+	},
+	{
+		"id": 1314,
+		"level": 45,
+		"experience": 65,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 40,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 2
+	},
+	{
+		"id": 1880,
+		"level": 53,
+		"experience": 79.5,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 30,
+				"chance": 50
+			},
+			{
+				"id": 1523,
+				"amount": 1,
+				"chance": 30
+			},
+			{
+				"id": 175,
+				"amount": 1,
+				"chance": 20
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 3
+	},
+	{
+		"id": 1881,
+		"level": 53,
+		"experience": 79.5,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 30,
+				"chance": 50
+			},
+			{
+				"id": 1523,
+				"amount": 1,
+				"chance": 30
+			},
+			{
+				"id": 175,
+				"amount": 1,
+				"chance": 20
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 3
+	},
+	{
+		"id": 1883,
+		"level": 53,
+		"experience": 79.5,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 30,
+				"chance": 50
+			},
+			{
+				"id": 1523,
+				"amount": 1,
+				"chance": 30
+			},
+			{
+				"id": 175,
+				"amount": 1,
+				"chance": 20
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 3
+	},
+	{
+		"id": 1884,
+		"level": 53,
+		"experience": 79.5,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 30,
+				"chance": 50
+			},
+			{
+				"id": 1523,
+				"amount": 1,
+				"chance": 30
+			},
+			{
+				"id": 175,
+				"amount": 1,
+				"chance": 20
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 3
+	},
+	{
+		"id": 3251,
+		"level": 55,
+		"experience": 84.3,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 50,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 5
+	},
+	{
+		"id": 1904,
+		"level": 65,
+		"experience": 137.5,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 60,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 5
+	},
+	{
+		"id": 1905,
+		"level": 65,
+		"experience": 137.5,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 60,
+				"chance": 100
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 5
+	},
+	{
+		"id": 2265,
+		"level": 70,
+		"experience": 151.75,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 80,
+				"chance": 70
+			},
+			{
+				"id": 562,
+				"amount": 2,
+				"chance": 30
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 3
+	},
+	{
+		"id": 20,
+		"level": 70,
+		"experience": 151.75,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 80,
+				"chance": 70
+			},
+			{
+				"id": 562,
+				"amount": 2,
+				"chance": 30
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 3
+	},
+	{
+		"id": 66,
+		"level": 75,
+		"experience": 198.5,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 300,
+				"chance": 15
+			},
+			{
+				"id": 444,
+				"amount": 1,
+				"chance": 15
+			},
+			{
+				"id": 569,
+				"amount": 1,
+				"chance": 15
+			},
+			{
+				"id": 2162,
+				"amount": 1,
+				"chance": 15
+			},
+			{
+				"id": 2150,
+				"amount": 1,
+				"chance": 20
+			},
+			{
+				"id": 557,
+				"amount": 1,
+				"chance": 20
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 67,
+		"level": 75,
+		"experience": 198.5,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 300,
+				"chance": 15
+			},
+			{
+				"id": 444,
+				"amount": 1,
+				"chance": 15
+			},
+			{
+				"id": 569,
+				"amount": 1,
+				"chance": 15
+			},
+			{
+				"id": 2162,
+				"amount": 1,
+				"chance": 15
+			},
+			{
+				"id": 2150,
+				"amount": 1,
+				"chance": 20
+			},
+			{
+				"id": 557,
+				"amount": 1,
+				"chance": 20
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 68,
+		"level": 75,
+		"experience": 198.5,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 300,
+				"chance": 15
+			},
+			{
+				"id": 444,
+				"amount": 1,
+				"chance": 15
+			},
+			{
+				"id": 569,
+				"amount": 1,
+				"chance": 15
+			},
+			{
+				"id": 2162,
+				"amount": 1,
+				"chance": 15
+			},
+			{
+				"id": 2150,
+				"amount": 1,
+				"chance": 20
+			},
+			{
+				"id": 557,
+				"amount": 1,
+				"chance": 20
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 168,
+		"level": 75,
+		"experience": 198.5,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 300,
+				"chance": 15
+			},
+			{
+				"id": 444,
+				"amount": 1,
+				"chance": 15
+			},
+			{
+				"id": 569,
+				"amount": 1,
+				"chance": 15
+			},
+			{
+				"id": 2162,
+				"amount": 1,
+				"chance": 15
+			},
+			{
+				"id": 2150,
+				"amount": 1,
+				"chance": 20
+			},
+			{
+				"id": 557,
+				"amount": 1,
+				"chance": 20
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 169,
+		"level": 75,
+		"experience": 198.5,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 300,
+				"chance": 15
+			},
+			{
+				"id": 444,
+				"amount": 1,
+				"chance": 15
+			},
+			{
+				"id": 569,
+				"amount": 1,
+				"chance": 15
+			},
+			{
+				"id": 2162,
+				"amount": 1,
+				"chance": 15
+			},
+			{
+				"id": 2150,
+				"amount": 1,
+				"chance": 20
+			},
+			{
+				"id": 557,
+				"amount": 1,
+				"chance": 20
+			}
+		],
+		"stunTime": 5000,
+		"stunDamage": 1
+	},
+	{
+		"id": 21,
+		"level": 80,
+		"experience": 275,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 300,
+				"chance": 12.5
+			},
+			{
+				"id": 995,
+				"amount": 200,
+				"chance": 12.5
+			},
+			{
+				"id": 565,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 1601,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 1993,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 569,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 560,
+				"amount": 2,
+				"chance": 12.5
+			},
+			{
+				"id": 444,
+				"amount": 1,
+				"chance": 12.5
+			}
+		],
+		"stunTime": 6000,
+		"stunDamage": 4
+	},
+	{
+		"id": 2363,
+		"level": 85,
+		"experience": 353,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 280,
+				"chance": 12.5
+			},
+			{
+				"id": 995,
+				"amount": 350,
+				"chance": 12.5
+			},
+			{
+				"id": 561,
+				"amount": 3,
+				"chance": 12.5
+			},
+			{
+				"id": 1601,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 1993,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 569,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 560,
+				"amount": 2,
+				"chance": 12.5
+			},
+			{
+				"id": 444,
+				"amount": 1,
+				"chance": 12.5
+			}
+		],
+		"stunTime": 6000,
+		"stunDamage": 5
+	},
+	{
+		"id": 2364,
+		"level": 85,
+		"experience": 353,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 280,
+				"chance": 12.5
+			},
+			{
+				"id": 995,
+				"amount": 350,
+				"chance": 12.5
+			},
+			{
+				"id": 561,
+				"amount": 3,
+				"chance": 12.5
+			},
+			{
+				"id": 1601,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 1993,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 569,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 560,
+				"amount": 2,
+				"chance": 12.5
+			},
+			{
+				"id": 444,
+				"amount": 1,
+				"chance": 12.5
+			}
+		],
+		"stunTime": 6000,
+		"stunDamage": 5
+	},
+	{
+		"id": 2365,
+		"level": 85,
+		"experience": 353,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 280,
+				"chance": 12.5
+			},
+			{
+				"id": 995,
+				"amount": 350,
+				"chance": 12.5
+			},
+			{
+				"id": 561,
+				"amount": 3,
+				"chance": 12.5
+			},
+			{
+				"id": 1601,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 1993,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 569,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 560,
+				"amount": 2,
+				"chance": 12.5
+			},
+			{
+				"id": 444,
+				"amount": 1,
+				"chance": 12.5
+			}
+		],
+		"stunTime": 6000,
+		"stunDamage": 5
+	},
+	{
+		"id": 2366,
+		"level": 85,
+		"experience": 353,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 280,
+				"chance": 12.5
+			},
+			{
+				"id": 995,
+				"amount": 350,
+				"chance": 12.5
+			},
+			{
+				"id": 561,
+				"amount": 3,
+				"chance": 12.5
+			},
+			{
+				"id": 1601,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 1993,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 569,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 560,
+				"amount": 2,
+				"chance": 12.5
+			},
+			{
+				"id": 444,
+				"amount": 1,
+				"chance": 12.5
+			}
+		],
+		"stunTime": 6000,
+		"stunDamage": 5
+	},
+	{
+		"id": 2367,
+		"level": 85,
+		"experience": 353,
+		"loot": [
+			{
+				"id": 995,
+				"amount": 280,
+				"chance": 12.5
+			},
+			{
+				"id": 995,
+				"amount": 350,
+				"chance": 12.5
+			},
+			{
+				"id": 561,
+				"amount": 3,
+				"chance": 12.5
+			},
+			{
+				"id": 1601,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 1993,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 569,
+				"amount": 1,
+				"chance": 12.5
+			},
+			{
+				"id": 560,
+				"amount": 2,
+				"chance": 12.5
+			},
+			{
+				"id": 444,
+				"amount": 1,
+				"chance": 12.5
+			}
+		],
+		"stunTime": 6000,
+		"stunDamage": 5
+	}
+]

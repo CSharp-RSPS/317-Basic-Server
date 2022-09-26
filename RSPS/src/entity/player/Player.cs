@@ -3,6 +3,7 @@ using RSPS.src.entity.movement.Locations;
 using RSPS.src.entity.npc;
 using RSPS.src.entity.player.skill;
 using RSPS.src.game.comms.chat;
+using RSPS.src.game.Items.Containers;
 using RSPS.src.net.Codec;
 using RSPS.src.net.Connections;
 using RSPS.src.net.packet;
@@ -18,6 +19,11 @@ namespace RSPS.src.entity.player
     /// </summary>
     public class Player : Entity
     {
+
+        /// <summary>
+        /// The player's client connection
+        /// </summary>
+        public Connection PlayerConnection { get; private set; }
 
         /// <summary>
         /// Holds the player credentials
@@ -40,16 +46,25 @@ namespace RSPS.src.entity.player
         public bool LoggedIn { get; set; }
 
         /// <summary>
-        /// The player's client connection
-        /// </summary>
-        public Connection PlayerConnection { get; private set; }
-
-        public Stopwatch IdleTimer = new Stopwatch();
-
-        /// <summary>
         /// The current position
         /// </summary>
         public Position Position { get; private set; }
+
+        /// <summary>
+        /// The inventory item container
+        /// </summary>
+        public ItemContainer Inventory { get; private set; }
+
+        /// <summary>
+        /// The bank item container
+        /// </summary>
+        public ItemContainer Bank { get; private set; }
+
+
+
+        public Stopwatch IdleTimer = new Stopwatch();
+
+
 
 
         public List<long> Ignores { get; private set; } = new();
@@ -83,6 +98,8 @@ namespace RSPS.src.entity.player
             Position = new Position(3222 + new Random().Next(-1, 4), 3222 + new Random().Next(0, 6));
             PlayerConnection = playerConnection;
             MovementHandler = new MovementHandler(this);
+            Inventory = new ItemContainer(28, true, false);
+            Bank = new ItemContainer(256, true, true);
             //Scheduler.AddJob(new PlayerWalkingJob("Player Walking Job", this, TimeSpan.FromMilliseconds(600)));
         }
 

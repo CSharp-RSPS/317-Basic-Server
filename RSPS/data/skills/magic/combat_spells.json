@@ -1,0 +1,322 @@
+[
+	{ //air strike
+		"identity": 1152,
+		"level": 1,
+		"experience": 5.5,
+		"runes": [
+			{
+				"id": 558,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 1
+			}
+		],
+		"gfx": 114,
+		"maxHit": 2
+	},
+	{ //water strike
+		"identity": 1154,
+		"level": 5,
+		"experience": 7.5,
+		"runes": [
+			{
+				"id": 558,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 1
+			},
+			{
+				"id": 555,
+				"amount": 1
+			}
+		],
+		"gfx": 114,
+		"maxHit": 4
+	},
+	{ //earth strike
+		"identity": 1156,
+		"level": 9,
+		"experience": 9.5,
+		"runes": [
+			{
+				"id": 558,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 1
+			},
+			{
+				"id": 557,
+				"amount": 2
+			}
+		],
+		"gfx": 114,
+		"maxHit": 6
+	},
+	{ //fire strike
+		"identity": 1158,
+		"level": 13,
+		"experience": 11.5,
+		"runes": [
+			{
+				"id": 558,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 2
+			},
+			{
+				"id": 554,
+				"amount": 3
+			}
+		],
+		"gfx": 114,
+		"maxHit": 8
+	},
+	{ //wind bolt
+		"identity": 1160,
+		"level": 17,
+		"experience": 13.5,
+		"runes": [
+			{
+				"id": 562,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 2
+			}
+		],
+		"gfx": 114,
+		"maxHit": 9
+	},
+	{ //water bolt
+		"identity": 1163,
+		"level": 23,
+		"experience": 16.5,
+		"runes": [
+			{
+				"id": 562,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 2
+			},
+			{
+				"id": 555,
+				"amount": 2
+			}
+		],
+		"gfx": 114,
+		"maxHit": 10
+	},
+	{ //earth bolt
+		"identity": 1166,
+		"level": 29,
+		"experience": 19.5,
+		"runes": [
+			{
+				"id": 562,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 2
+			},
+			{
+				"id": 557,
+				"amount": 3
+			}
+		],
+		"gfx": 114,
+		"maxHit": 11
+	},
+	{ //fire bolt
+		"identity": 1169,
+		"level": 35,
+		"experience": 22.5,
+		"runes": [
+			{
+				"id": 562,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 3
+			},
+			{
+				"id": 554,
+				"amount": 4
+			}
+		],
+		"gfx": 114,
+		"maxHit": 12
+	},
+	{ //wind blast
+		"identity": 1172,
+		"level": 41,
+		"experience": 25.5,
+		"runes": [
+			{
+				"id": 560,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 3
+			}
+		],
+		"gfx": 114,
+		"maxHit": 13
+	},
+	{ //water blast
+		"identity": 1175,
+		"level": 47,
+		"experience": 28.5,
+		"runes": [
+			{
+				"id": 560,
+				"amount": 1
+			},
+			{
+				"id": 555,
+				"amount": 3
+			},
+			{
+				"id": 556,
+				"amount": 3
+			}
+		],
+		"gfx": 114,
+		"maxHit": 14
+	},
+	{ //earth blast
+		"identity": 1177,
+		"level": 53,
+		"experience": 31.5,
+		"runes": [
+			{
+				"id": 560,
+				"amount": 1
+			},
+			{
+				"id": 557,
+				"amount": 4
+			},
+			{
+				"id": 556,
+				"amount": 3
+			}
+		],
+		"gfx": 114,
+		"maxHit": 15
+	},
+	{ //fire blast
+		"identity": 1181,
+		"level": 59,
+		"experience": 34.5,
+		"runes": [
+			{
+				"id": 560,
+				"amount": 1
+			},
+			{
+				"id": 554,
+				"amount": 5
+			},
+			{
+				"id": 556,
+				"amount": 4
+			}
+		],
+		"gfx": 114,
+		"maxHit": 16
+	},
+	{ //wind wave
+		"identity": 1183,
+		"level": 62,
+		"experience": 36,
+		"runes": [
+			{
+				"id": 565,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 5
+			}
+		],
+		"gfx": 114,
+		"maxHit": 17
+	},
+	{ //water wave
+		"identity": 1185,
+		"level": 65,
+		"experience": 37.5,
+		"runes": [
+			{
+				"id": 565,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 5
+			},
+			{
+				"id": 555,
+				"amount": 7
+			}
+		],
+		"gfx": 114,
+		"maxHit": 18
+	},
+	{ //earth wave
+		"identity": 1188,
+		"level": 70,
+		"experience": 40,
+		"runes": [
+			{
+				"id": 565,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 5
+			},
+			{
+				"id": 557,
+				"amount": 7
+			}
+		],
+		"gfx": 114,
+		"maxHit": 19
+	},
+	{ //fire wave
+		"identity": 1189,
+		"level": 75,
+		"experience": 42.5,
+		"runes": [
+			{
+				"id": 565,
+				"amount": 1
+			},
+			{
+				"id": 556,
+				"amount": 5
+			},
+			{
+				"id": 554,
+				"amount": 7
+			}
+		],
+		"gfx": 114,
+		"maxHit": 20
+	}
+]

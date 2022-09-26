@@ -1,0 +1,379 @@
+[
+	{
+		"buttonId": 168,//yes
+		"gfxId": -1,
+		"animationId": 855
+	},
+	{
+		"buttonId": 169,//no
+		"gfxId": -1,
+		"animationId": 856
+	},
+	{
+		"buttonId": 167,//angry
+		"gfxId": -1,
+		"animationId": 864
+	},
+	{
+		"buttonId": 164,//bow
+		"gfxId": -1,
+		"animationId": 858
+	},
+	{
+		"buttonId": 162,//think
+		"gfxId": -1,
+		"animationId": 857
+	},
+	{
+		"buttonId": 13370,//shrug
+		"gfxId": -1,
+		"animationId": 2113
+	},
+	{
+		"buttonId": 163,//wave
+		"gfxId": -1,
+		"animationId": 863
+	},
+	{
+		"buttonId": 170,//laugh
+		"gfxId": -1,
+		"animationId": 861
+	},
+	{
+		"buttonId": 171,//cheer
+		"gfxId": -1,
+		"animationId": 862
+	},
+	{
+		"buttonId": 165,//beckon
+		"gfxId": -1,
+		"animationId": 864
+	},
+	{
+		"buttonId": 13366,//jump for joy
+		"gfxId": -1,
+		"animationId": 2109
+	},
+	{
+		"buttonId": 13368,//Yawn
+		"gfxId": -1,
+		"animationId": 2111
+	},
+	{
+		"buttonId": 166,//Dance
+		"gfxId": -1,
+		"animationId": 886
+	},
+	{
+		"buttonId": 13363,//Jig
+		"gfxId": -1,
+		"animationId": 2106
+	},
+	{
+		"buttonId": 13364,//Twirl
+		"gfxId": -1,
+		"animationId": 2107
+	},
+	{
+		"buttonId": 13365,//headbang
+		"gfxId": -1,
+		"animationId": 2108
+	},
+	{
+		"buttonId": 161,//cry
+		"gfxId": -1,
+		"animationId": 860
+	},
+	{
+		"buttonId": 11100,//blow kiss
+		"gfxId": 574,
+		"animationId": 1368
+	},
+	{
+		"buttonId": 13362,//panic
+		"gfxId": -1,
+		"animationId": 2105
+	},
+	{
+		"buttonId": 13367,//raspberry
+		"gfxId": -1,
+		"animationId": 2110
+	},
+	{
+		"buttonId": 172,//clap
+		"gfxId": -1,
+		"animationId": 865
+	},
+	{
+		"buttonId": 13369,//Salute
+		"gfxId": -1,
+		"animationId": 2112
+	},
+	{
+		"buttonId": 13383,//goblin bow
+		"gfxId": -1,
+		"animationId": 2127
+	},
+	{
+		"buttonId": 13384,//goblin salute
+		"gfxId": -1,
+		"animationId": 2128
+	},
+	{
+		"buttonId": 667,//Glass Box
+		"gfxId": -1,
+		"animationId": 1131
+	},
+	{
+		"buttonId": 6503,//climb rope
+		"gfxId": -1,
+		"animationId": 1130
+	},
+	{
+		"buttonId": 6506,//Lean
+		"gfxId": -1,
+		"animationId": 1129
+	},
+	{
+		"buttonId": 666,//Glass Wall
+		"gfxId": -1,
+		"animationId": 1128
+	},
+	{
+		"buttonId": 22588,//Idea
+		"gfxId": 712,
+		"animationId": 4276
+	},
+	{
+		"buttonId": 22589,//Stomp
+		"gfxId": -1,
+		"animationId": 4278
+	},
+	{
+		"buttonId": 22590,//Flap
+		"gfxId": -1,
+		"animationId": 4280
+	},
+	{
+		"buttonId": 22591,//Slap Head
+		"gfxId": -1,
+		"animationId": 4275
+	},
+	{
+		"buttonId": 18464,//Zombie Walk
+		"gfxId": -1,
+		"animationId": 3544
+	},
+	{
+		"buttonId": 18465,//Zombie Dance
+		"gfxId": -1,
+		"animationId": 3543
+	},
+	{
+		"buttonId": 22593,//Zombie Hand
+		"gfxId": 1244,
+		"animationId": 7272
+	},
+	{
+		"buttonId": 15166,//Scared
+		"gfxId": -1,
+		"animationId": 2836
+	},
+	{
+		"buttonId": 18686,//Bunny Hop
+		"gfxId": -1,
+		"animationId": 6111
+	},
+	{
+		"buttonId": 19052, //attack skillcape
+		"gfxId": 823,
+		"animationId": 4959,
+		"skillcapeIds": [
+			9747
+		]
+	},
+	{
+		"buttonId": 19052, //defence skillcape
+		"gfxId": 824,
+		"animationId": 4961,
+		"skillcapeIds": [
+			9753
+		]
+	},
+	{
+		"buttonId": 19052, //strength skillcape
+		"gfxId": 828,
+		"animationId": 4981,
+		"skillcapeIds": [
+			9750
+		]
+	},
+	{
+		"buttonId": 19052, //hitpoints skillcape
+		"gfxId": 2745,
+		"animationId": 4971,
+		"skillcapeIds": [
+			9768
+		]
+	},
+	{
+		"buttonId": 19052, //ranged skillcape
+		"gfxId": 832,
+		"animationId": 4973,
+		"skillcapeIds": [
+			9756
+		]
+	},
+	{
+		"buttonId": 19052, //prayer skillcape
+		"gfxId": 829,
+		"animationId": 4979,
+		"skillcapeIds": [
+			9759
+		]
+	},
+	{
+		"buttonId": 19052, //magic skillcape
+		"gfxId": 813,
+		"animationId": 4939,
+		"skillcapeIds": [
+			9762
+		]
+	},
+	{
+		"buttonId": 19052, //cooking skillcape
+		"gfxId": 821,
+		"animationId": 4955,
+		"skillcapeIds": [
+			9801
+		]
+	},
+	{
+		"buttonId": 19052, //woodcutting skillcape
+		"gfxId": 822,
+		"animationId": 4957,
+		"skillcapeIds": [
+			9807
+		]
+	},
+	{
+		"buttonId": 19052, //fletching skillcape
+		"gfxId": 812,
+		"animationId": 4937,
+		"skillcapeIds": [
+			9783
+		]
+	},
+	{
+		"buttonId": 19052, //fishing skillcape
+		"gfxId": 819,
+		"animationId": 4951,
+		"skillcapeIds": [
+			9798
+		]
+	},
+	{
+		"buttonId": 19052, //firemaking skillcape
+		"gfxId": 831,
+		"animationId": 4975,
+		"skillcapeIds": [
+			9804
+		]
+	},
+	{
+		"buttonId": 19052, //crafting skillcape
+		"gfxId": 818,
+		"animationId": 4949,
+		"skillcapeIds": [
+			9780
+		]
+	},
+	{
+		"buttonId": 19052, //smithing skillcape
+		"gfxId": 815,
+		"animationId": 4943,
+		"skillcapeIds": [
+			9795
+		]
+	},
+	{
+		"buttonId": 19052, //mining skillcape
+		"gfxId": 814,
+		"animationId": 4941,
+		"skillcapeIds": [
+			9792
+		]
+	},
+	{
+		"buttonId": 19052, //herblore skillcape
+		"gfxId": 835,
+		"animationId": 4969,
+		"skillcapeIds": [
+			9774
+		]
+	},
+	{
+		"buttonId": 19052, //agility skillcape
+		"gfxId": 830,
+		"animationId": 4977,
+		"skillcapeIds": [
+			9771
+		]
+	},
+	{
+		"buttonId": 19052, //thieving skillcape
+		"gfxId": 826,
+		"animationId": 4965,
+		"skillcapeIds": [
+			9777
+		]
+	},
+	{
+		"buttonId": 19052, //slayer skillcape
+		"gfxId": 1656,
+		"animationId": 4967,
+		"skillcapeIds": [
+			9786
+		]
+	},
+	{
+		"buttonId": 19052, //farming skillcape
+		"gfxId": 825,
+		"animationId": 4963,
+		"skillcapeIds": [
+			9810
+		]
+	},
+	{
+		"buttonId": 19052, //runecrafting skillcape
+		"gfxId": 817,
+		"animationId": 4947,
+		"skillcapeIds": [
+			9765
+		]
+	},
+	{
+		"buttonId": 19052, //construction skillcape
+		"gfxId": 820,
+		"animationId": 8525,
+		"skillcapeIds": [
+			9789
+		]
+	},
+	{
+		"buttonId": 19052, //hunter skillcape
+		"gfxId": 907,
+		"animationId": 5158,
+		"skillcapeIds": [
+			9948
+		]
+	},
+	{
+		"buttonId": 19052, //quest skillcape
+		"gfxId": 816,
+		"animationId": 4945,
+		"skillcapeIds": [
+			9813
+		]
+	}
+]

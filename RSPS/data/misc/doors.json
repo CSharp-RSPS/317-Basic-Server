@@ -1,0 +1,22 @@
+[
+	{
+		"id": 1601,
+		"rotation": 3,
+		"neighboor": 1600,
+		"position": {
+			"x": 2597,
+			"y": 3088,
+			"z": 0
+		}
+	},
+	{
+		"id": 1600,
+		"rotation": 3,
+		"neighboor": 1601,
+		"position": {
+			"x": 2597,
+			"y": 3087,
+			"z": 0
+		}
+	}
+]

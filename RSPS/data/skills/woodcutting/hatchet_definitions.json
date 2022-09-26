@@ -1,0 +1,50 @@
+[
+	{
+		"identity": 1351,
+		"level": 1,
+		"reduction": 0,
+		"animation": 879
+	},
+	{
+		"identity": 1349,
+		"level": 1,
+		"reduction": 250,
+		"animation": 877
+	},
+	{
+		"identity": 1353,
+		"level": 6,
+		"reduction": 500,
+		"animation": 875
+	},
+	{
+		"identity": 1361,
+		"level": 11,
+		"reduction": 750,
+		"animation": 873
+	},
+	{
+		"identity": 1355,
+		"level": 21,
+		"reduction": 1000,
+		"animation": 871
+	},
+	{
+		"identity": 1357,
+		"level": 31,
+		"reduction": 1500,
+		"animation": 869
+	},
+	{
+		"identity": 1359,
+		"level": 41,
+		"reduction": 2000,
+		"animation": 867
+	},
+	{
+		"identity": 6739,
+		"level": 61,
+		"reduction": 2750,
+		"animation": 2846
+	}
+]

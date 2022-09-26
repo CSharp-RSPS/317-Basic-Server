@@ -1,5 +1,6 @@
 ﻿using RSPS.src.entity.player;
 using RSPS.src.net.packet.send.impl;
+using RSPS.src.Util.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace RSPS.src.net.packet.receive.impl
     /// <summary>
     /// Not sure
     /// </summary>
+    [PacketInfo(246, 0)]
     public sealed class ReceiveUnknownAntiCheat : IReceivePacket
     {
 

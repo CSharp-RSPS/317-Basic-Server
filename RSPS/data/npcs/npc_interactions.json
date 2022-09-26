@@ -1,0 +1,158 @@
+[
+	{
+		"npcId": 520,
+		"shopId": 1,
+		"dialogueId": -1,
+		"bank": false
+    },
+	{
+		"npcId": 521,
+		"shopId": 1,
+		"dialogueId": -1,
+		"bank": false
+    },
+	{
+		"npcId": 815,
+		"shopId": 2,
+		"dialogueId": -1,
+		"bank": false
+    },
+	{
+		"npcId": 166,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 494,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 495,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 496,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 497,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 498,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 499,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 953,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 1036,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 1360,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 1702,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 2163,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 2164,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 2271,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 2354,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 2355,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 2568,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 2569,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 2570,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 3046,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 3198,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 3199,
+		"shopId": -1,
+		"dialogueId": -1,
+		"bank": true
+    },
+	{
+		"npcId": 549,
+		"shopId": 3,
+		"dialogueId": -1,
+		"bank": false
+    }
+]

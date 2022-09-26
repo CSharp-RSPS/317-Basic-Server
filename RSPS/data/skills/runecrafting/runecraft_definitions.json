@@ -1,0 +1,171 @@
+[
+	{
+		"altarId": 2478,
+		"abbysId": 7139,
+		"runeId": 556,
+		"level": 1,
+		"experience": 5,
+		"needPureEss": false,
+		"location": {
+			"x": 2841,
+			"y": 4829,
+			"z": 0
+		}
+	},
+	{
+		"altarId": 2479,
+		"abbysId": 7140,
+		"runeId": 558,
+		"level": 2,
+		"experience": 5.5,
+		"needPureEss": false,
+		"location": {
+			"x": 2739,
+			"y": 4828,
+			"z": 0
+		}
+	},
+	{
+		"altarId": 2480,
+		"abbysId": 7137,
+		"runeId": 555,
+		"level": 5,
+		"experience": 6,
+		"needPureEss": false,
+		"location": {
+			"x": 2725,
+			"y": 4532,
+			"z": 0
+		}
+	},
+	{
+		"altarId": 2481,
+		"abbysId": 7130,
+		"runeId": 557,
+		"level": 9,
+		"experience": 6.5,
+		"needPureEss": false,
+		"location": {
+			"x": 2655,
+			"y": 4830,
+			"z": 0
+		}
+	},
+	{
+		"altarId": 2482,
+		"abbysId": 7129,
+		"runeId": 554,
+		"level": 14,
+		"experience": 7,
+		"needPureEss": false,
+		"location": {
+			"x": 2574,
+			"y": 4848,
+			"z": 0
+		}
+	},
+	{
+		"altarId": 2483,
+		"abbysId": 7131,
+		"runeId": 559,
+		"level": 20,
+		"experience": 7.5,
+		"needPureEss": false,
+		"location": {
+			"x": 2523,
+			"y": 4826,
+			"z": 0
+		}
+	},
+	{
+		"altarId": 2484,
+		"abbysId": 7132,
+		"runeId": 564,
+		"level": 27,
+		"experience": 8,
+		"needPureEss": true,
+		"location": {
+			"x": 2162,
+			"y": 4833,
+			"z": 0
+		}
+	},
+	{
+		"altarId": 2487,
+		"abbysId": 7134,
+		"runeId": 562,
+		"level": 35,
+		"experience": 8.5,
+		"needPureEss": true,
+		"location": {
+			"x": 2281,
+			"y": 4837,
+			"z": 0
+		}
+	},
+	{
+		"altarId": 2486,
+		"abbysId": 7133,
+		"runeId": 561,
+		"level": 44,
+		"experience": 9,
+		"needPureEss": true,
+		"location": {
+			"x": 2400,
+			"y": 4835,
+			"z": 0
+		}
+	},
+	{
+		"altarId": 2485,
+		"abbysId": 7135,
+		"runeId": 563,
+		"level": 54,
+		"experience": 9.5,
+		"needPureEss": true,
+		"location": {
+			"x": 2464,
+			"y": 4818,
+			"z": 0
+		}
+	},
+	{
+		"altarId": 2488,
+		"abbysId": 7136,
+		"runeId": 560,
+		"level": 65,
+		"experience": 10,
+		"needPureEss": true,
+		"location": {
+			"x": 2208,
+			"y": 4830,
+			"z": 0
+		}
+	},
+	{
+		"altarId": 30624,
+		"abbysId": 7141,
+		"runeId": 565,
+		"level": 77,
+		"experience": 10.5,
+		"needPureEss": true,
+		"location": {
+			"x": 2468,
+			"y": 4889,
+			"z": 1
+		}
+	},
+	{
+		"altarId": 17010,
+		"abbysId": 7138,
+		"runeId": 566,
+		"level": 90,
+		"experience": 11,
+		"needPureEss": true,
+		"location": {
+			"x": 2153,
+			"y": 3868,
+			"z": 0000
+		}
+	}
+]
