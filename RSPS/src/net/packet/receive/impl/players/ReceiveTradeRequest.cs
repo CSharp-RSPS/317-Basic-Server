@@ -32,7 +32,7 @@ namespace RSPS.src.net.packet.receive.impl
             }
             Player? other = world.Players.ByWorldIndex(playerIndex);
 
-            if (other == null || !other.Position.isViewableFrom(player.Position))
+            if (other == null || !other.Position.IsWithinDistance(player.Position))
             {
                 return;
             }

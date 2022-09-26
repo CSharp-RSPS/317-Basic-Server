@@ -1,4 +1,5 @@
-﻿using RSPS.src.entity.npc;
+﻿using RSPS.src.entity.movement.Locations;
+using RSPS.src.entity.npc;
 using RSPS.src.entity.player;
 using RSPS.src.net.packet;
 using RSPS.src.net.packet.send;
@@ -67,10 +68,11 @@ namespace RSPS.src.entity.movement
             }
 
             // Check for region changes
-            int deltaX = Player.Position.X - (Player.CurrentRegion.GetRegionX() * 8);
-            int deltaY = Player.Position.Y - (Player.CurrentRegion.GetRegionY() * 8);
+            int deltaX = Player.Position.X - (Player.CurrentRegion.RegionX * 8);
+            int deltaY = Player.Position.Y - (Player.CurrentRegion.RegionY * 8);
+
             if (deltaX < 16 || deltaX >= 88 || deltaY < 16 || deltaY > 88)
-            {
+            { // Region changed
                 if (!(Player.GetType() == typeof(Npc))) {
                     Player.LoadMapRegion();
                 }

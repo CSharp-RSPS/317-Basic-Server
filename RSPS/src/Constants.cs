@@ -1,4 +1,4 @@
-﻿using RSPS.src.entity;
+﻿using RSPS.src.entity.movement.Locations;
 using System;
 using System.Collections.Generic;
 using System.Linq;

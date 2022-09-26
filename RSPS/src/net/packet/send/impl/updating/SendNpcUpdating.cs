@@ -1,4 +1,4 @@
-﻿using RSPS.src.entity;
+﻿using RSPS.src.entity.movement.Locations;
 using RSPS.src.entity.npc;
 using RSPS.src.entity.player;
 using RSPS.src.Util.Annotations;
@@ -55,7 +55,7 @@ namespace RSPS.src.net.packet.send.impl
 
             foreach (Npc npc in Player.LocalNpcs)
             {
-                if (npc.Position.isViewableFrom(Player.Position) && npc.Visible)
+                if (npc.Position.IsWithinDistance(Player.Position) && npc.Visible)
                 {
                     UpdateNpcMovement(writer, npc);
 
@@ -80,7 +80,7 @@ namespace RSPS.src.net.packet.send.impl
                 {
                     continue;
                 }
-                if (npc.Position.isViewableFrom(Player.Position))
+                if (npc.Position.IsWithinDistance(Player.Position))
                 {
                     Player.LocalNpcs.Add(npc);
                     addNpc(writer, Player, npc);

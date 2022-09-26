@@ -1,4 +1,5 @@
 ﻿using RSPS.src.entity.movement;
+using RSPS.src.entity.movement.Locations;
 using RSPS.src.entity.npc;
 using RSPS.src.entity.player.skill;
 using RSPS.src.game.comms.chat;
@@ -93,7 +94,7 @@ namespace RSPS.src.entity.player
         {
             CurrentRegion.SetNewPosition(Position);
             NeedsPlacement = true;
-            PacketHandler.SendPacket(this, new SendLoadMapRegion(Position.GetRegionX(), Position.GetRegionY()));
+            PacketHandler.SendPacket(this, new SendLoadMapRegion(Position.RegionX, Position.RegionY));
             return this;
         }
 

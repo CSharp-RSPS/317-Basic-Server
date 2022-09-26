@@ -35,7 +35,7 @@ namespace RSPS.src.net.packet.receive.impl
             }
             Player? leader = world.Players.ByWorldIndex(playerIndex);
 
-            if (leader == null || !leader.Position.isViewableFrom(player.Position))
+            if (leader == null || !leader.Position.IsWithinDistance(player.Position))
             {
                 return;
             }

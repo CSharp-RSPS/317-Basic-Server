@@ -1,5 +1,5 @@
-﻿using RSPS.src.entity;
-using RSPS.src.entity.flag;
+﻿using RSPS.src.entity.flag;
+using RSPS.src.entity.movement.Locations;
 using RSPS.src.entity.player;
 using RSPS.src.entity.player.skill;
 using RSPS.src.net.Connections;
@@ -71,7 +71,7 @@ namespace RSPS.src.net.packet.send.impl
             // ====== Processes all player changes in the region ========
             foreach (Player other in Player.LocalPlayers.ToArray())
             {
-                if (other.Position.isViewableFrom(Player.Position) && other.PlayerConnection.ConnectionState == ConnectionState.Authenticated && !other.NeedsPlacement)
+                if (other.Position.IsWithinDistance(Player.Position) && other.PlayerConnection.ConnectionState == ConnectionState.Authenticated && !other.NeedsPlacement)
                 {
                     UpdateOtherPlayerMovement(other, writer);
 
@@ -114,7 +114,7 @@ namespace RSPS.src.net.packet.send.impl
                                         break;
                                     }*/
                 Console.WriteLine("Trying to update?! 3");
-                if (!Player.LocalPlayers.Contains(other) && other.Position.isViewableFrom(Player.Position))
+                if (!Player.LocalPlayers.Contains(other) && other.Position.IsWithinDistance(Player.Position))
                 {
                     Player.LocalPlayers.Add(other);
                     addedLocalPlayers++;
