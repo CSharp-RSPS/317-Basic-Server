@@ -1,5 +1,5 @@
-﻿using RSPS.src.entity.flag;
-using RSPS.src.entity.player;
+﻿using RSPS.src.entity.player;
+using RSPS.src.entity.update.flag;
 using RSPS.src.net.packet.send;
 using RSPS.src.net.packet.send.impl;
 using RSPS.src.Util.Annotations;

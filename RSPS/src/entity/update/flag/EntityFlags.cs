@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSPS.src.entity.flag
+namespace RSPS.src.entity.update.flag
 {
     public class EntityFlags
     {
@@ -24,7 +24,7 @@ namespace RSPS.src.entity.flag
 
         public bool IsUpdateNeeded()
         {
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 if (i <= 9 && flag[i] == true)
                 {
