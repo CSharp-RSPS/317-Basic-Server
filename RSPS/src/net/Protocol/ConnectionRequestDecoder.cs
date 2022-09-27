@@ -38,7 +38,7 @@ namespace RSPS.src.net.Codec
             }
             int nameHash = reader.ReadByte(); // nameHash: used for login servers, not sure how it works
 
-            PacketWriter writer = Packet.CreatePacketWriter(17);
+            PacketWriter writer = new(17);
             writer.WriteLong(0);
             writer.WriteByte(0);
             writer.WriteLong(new Random().NextInt64()); // 8 ignored bytes

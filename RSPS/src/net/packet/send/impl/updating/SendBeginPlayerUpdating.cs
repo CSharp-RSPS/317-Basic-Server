@@ -55,7 +55,7 @@ namespace RSPS.src.net.packet.send.impl
 
         public void WritePayload(PacketWriter writer)
         {
-            PacketWriter stateBlock = Packet.CreatePacketWriter(1024);
+            PacketWriter stateBlock = new(1024);
 
             writer.SetAccessType(Packet.AccessType.BitAccess);
             UpdateLocalPlayerMovement(Player, writer);
@@ -195,7 +195,7 @@ namespace RSPS.src.net.packet.send.impl
             if (mask >= 0x100)
             {
                 mask |= 0x40;
-                block.WriteShort(mask, Packet.ByteOrder.LittleEndian);
+                block.WriteShortLittleEndian(mask);
             }
             else
             {
@@ -232,9 +232,9 @@ namespace RSPS.src.net.packet.send.impl
          */
         private static void AppendPublicChat(Player player, PacketWriter writer)
         {
-            writer.WriteShort(((player.ChatMessage.Color & 0xff) << 8) + (player.ChatMessage.Effects & 0xff), Packet.ByteOrder.LittleEndian);
+            writer.WriteShortLittleEndian(((player.ChatMessage.Color & 0xff) << 8) + (player.ChatMessage.Effects & 0xff));
             writer.WriteByte(1);//rights
-            writer.WriteByte(player.ChatMessage.Text.Length, Packet.ValueType.Negated);
+            writer.WriteByteNegated(player.ChatMessage.Text.Length);
             writer.WriteBytesReverse(player.ChatMessage.Text);
         }
 
@@ -246,7 +246,7 @@ namespace RSPS.src.net.packet.send.impl
         private static void AppendAppearance(Player player, PacketWriter outPacket)
         {
             //PlayerAttributes attributes = player.getAttributes();
-            PacketWriter block = Packet.CreatePacketWriter(MAX_APPEARANCE_BUFFER_SIZE);
+            PacketWriter block = new(MAX_APPEARANCE_BUFFER_SIZE);
 
             block.WriteByte(0); // Gender
             block.WriteByte(-1);//prayer icon - -1 off 6 is max
@@ -433,7 +433,7 @@ namespace RSPS.src.net.packet.send.impl
                                                                  //45 bytes total?
 
             // Append the block length and the block to the packet.
-            outPacket.WriteByte((int)block.Pointer, Packet.ValueType.Negated);
+            outPacket.WriteByteNegated(block.Pointer);
             //Console.WriteLine("Block Position: " + block.Payload.Position);
             //Console.WriteLine("Block Length: " + block.Payload.Length);
             //Console.WriteLine("Buffer position before appearance: " + outPacket.Payload.Position);

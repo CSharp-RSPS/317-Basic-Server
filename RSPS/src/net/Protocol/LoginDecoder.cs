@@ -99,8 +99,8 @@ namespace RSPS.src.net.Codec
 
             int uid = reader.ReadInt();
 
-            string username = reader.ReadString();
-            string password = reader.ReadString();
+            string username = reader.ReadRS2String();
+            string password = reader.ReadRS2String();
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
@@ -161,7 +161,11 @@ namespace RSPS.src.net.Codec
                 SendLoginResponse(connection, AuthenticationResponse.LoginLimitExceeded);
                 return false;
             }
-            //TODO: world being updated
+            if (world.HasUpdatePending)
+            {
+                SendLoginResponse(connection, AuthenticationResponse.ServerBeingUpdated);
+                return false;
+            }
             //TODO: login attempts exceeded
             //TODO: standing in members only area
             //TODO: Just left another world, will be transfered in ...
@@ -194,7 +198,7 @@ namespace RSPS.src.net.Codec
             {
                 throw new ArgumentNullException(nameof(player));
             }
-            PacketWriter pw = Packet.CreatePacketWriter(loginResponse == AuthenticationResponse.SuccessfulReconnect ? 1 : 3);
+            PacketWriter pw = new(loginResponse == AuthenticationResponse.SuccessfulReconnect ? 1 : 3);
 
             pw.WriteByte((int)loginResponse);
 

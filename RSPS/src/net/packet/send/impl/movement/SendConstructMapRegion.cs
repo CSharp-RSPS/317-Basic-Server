@@ -45,7 +45,7 @@ namespace RSPS.src.net.packet.send.impl
 
         public void WritePayload(PacketWriter writer)
         {
-            writer.WriteShort(RegionY, Packet.ValueType.Additional);
+            writer.WriteShortAdditional(RegionY);
             // Write the bit block containing the "palette" of map regions to make up the new region
             writer.SetAccessType(Packet.AccessType.BitAccess);
 

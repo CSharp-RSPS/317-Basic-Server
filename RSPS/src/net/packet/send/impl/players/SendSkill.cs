@@ -46,7 +46,7 @@ namespace RSPS.src.net.packet.send.impl
         public void WritePayload(PacketWriter writer)
         {
             writer.WriteByte(SkillId);
-            writer.WriteInt(Experience, Packet.ByteOrder.MiddleEndian);
+            writer.WriteIntMiddleEndian(Experience);
             writer.WriteByte(Level);
         }
     }

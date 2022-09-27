@@ -42,17 +42,17 @@ namespace RSPS.src.net.packet.receive.impl
                 return;
             }
             int[,] path = new int[steps, 2];
-            int firstStepX = reader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
+            int firstStepX = reader.ReadShortAdditionalLittleEndian();
 
             for (int i = 0; i < steps; i++)
             {
                 path[i, 0] = (sbyte)reader.ReadByte();
                 path[i, 1] = (sbyte)reader.ReadByte();
             }
-            int firstStepY = reader.ReadShort(Packet.ByteOrder.LittleEndian);
+            int firstStepY = reader.ReadShortLittleEndian();
 
             player.MovementHandler.Reset();
-            player.MovementHandler.IsRunPath = reader.ReadByte(Packet.ValueType.Negated) == 1;
+            player.MovementHandler.IsRunPath = reader.ReadByteNegated() == 1;
             player.MovementHandler.AddToPath(new Position(firstStepX, firstStepY));
 
             for (int i = 0; i < steps; i++)

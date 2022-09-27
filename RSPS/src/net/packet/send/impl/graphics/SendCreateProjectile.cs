@@ -60,11 +60,11 @@ namespace RSPS.src.net.packet.send.impl
             writer.WriteByte(SecondXOffset);
             writer.WriteByte(SecondYOffet);
             writer.WriteShort(Target);
-            writer.WriteShort(GraphicId, Packet.ByteOrder.LittleEndian);
+            writer.WriteShortLittleEndian(GraphicId);
             writer.WriteByte(StartingHeight);
             writer.WriteByte(EndingHeight);
-            writer.WriteShort(StartingTime, Packet.ByteOrder.LittleEndian);
-            writer.WriteShort(Speed, Packet.ByteOrder.LittleEndian);
+            writer.WriteShortLittleEndian(StartingTime);
+            writer.WriteShortLittleEndian(Speed);
             writer.WriteByte(InitialSlope);
             writer.WriteByte(InitialDistanceFromSource);
         }

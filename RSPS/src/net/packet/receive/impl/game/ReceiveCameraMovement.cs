@@ -19,7 +19,7 @@ namespace RSPS.src.net.packet.receive.impl
         public void ReceivePacket(Player player, PacketReader reader)
         {
             int cameraY = reader.ReadShort();
-            int cameraX = reader.ReadShort(Packet.ValueType.Additional);
+            int cameraX = reader.ReadShortAdditional();
         }
 
     }

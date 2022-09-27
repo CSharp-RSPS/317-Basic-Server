@@ -38,8 +38,8 @@ namespace RSPS.src.net.packet.send.impl
 
         public void WritePayload(PacketWriter writer)
         {
-            writer.WriteByte(Member ? 1 : 0, Packet.ValueType.Additional);
-            writer.WriteShort(PlayerListIndex, Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
+            writer.WriteByteAdditional(Member ? 1 : 0);
+            writer.WriteShortAdditionalLittleEndian(PlayerListIndex);
         }
 
     }

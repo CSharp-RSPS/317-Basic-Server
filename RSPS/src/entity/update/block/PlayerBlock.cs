@@ -19,7 +19,7 @@ namespace RSPS.src.entity.update.block
             //REMVOE THESE TWO
             var noPublicChat = false;
             var forceAppearance = false;
-            if (player.Flags.IsFlagged(flag.FlagType.Public_Chat) && !noPublicChat)
+            if (player.Flags.IsFlagged(flag.FlagType.PublicChat) && !noPublicChat)
             {
                 mask |= 0x80;
             }
@@ -34,7 +34,7 @@ namespace RSPS.src.entity.update.block
             if (mask >= 0x100)
             {
                 mask |= 0x40;
-                writer.WriteShort(mask, Packet.ByteOrder.LittleEndian);
+                writer.WriteShortLittleEndian(mask);
             }
             else
             {
@@ -44,7 +44,7 @@ namespace RSPS.src.entity.update.block
             //Graphics
             //Animation
             //FOrced Chat
-            if (player.Flags.IsFlagged(flag.FlagType.Public_Chat) && !noPublicChat)
+            if (player.Flags.IsFlagged(flag.FlagType.PublicChat) && !noPublicChat)
             {
                 new PlayerPublicChatBlock().ProcessBlock(player, writer);
             }

@@ -44,7 +44,7 @@ namespace RSPS.src.net.packet.send.impl
 
         public void WritePayload(PacketWriter writer)
         {
-            writer.WriteShort(RegionX + 6, Packet.ValueType.Additional);
+            writer.WriteShortAdditional(RegionX + 6);
             writer.WriteShort(RegionY + 6);
         }
     }

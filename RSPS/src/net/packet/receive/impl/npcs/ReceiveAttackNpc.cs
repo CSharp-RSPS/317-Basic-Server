@@ -1,4 +1,4 @@
-﻿using RSPS.src.entity.npc;
+﻿using RSPS.src.entity.Mobiles.Npcs;
 using RSPS.src.entity.player;
 using RSPS.src.net.packet.send.impl;
 using RSPS.src.Util.Annotations;
@@ -26,7 +26,7 @@ namespace RSPS.src.net.packet.receive.impl
             {
 
             }*/
-            int npcIndex = reader.ReadShort(false, Packet.ValueType.Additional);
+            int npcIndex = reader.ReadShortAdditional(false);
 
             World? world = WorldHandler.ResolveWorld(player);
 

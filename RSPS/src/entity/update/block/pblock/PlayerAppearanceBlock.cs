@@ -19,7 +19,7 @@ namespace RSPS.src.entity.update.block.pblock
         {
             try
             {
-                PacketWriter block = Packet.CreatePacketWriter(MAX_APPEARANCE_BUFFER_SIZE);
+                PacketWriter block = new(MAX_APPEARANCE_BUFFER_SIZE);
 
                 block.WriteByte(player.Appearance.Gender);
                 block.WriteByte(-1);//prayer icon : -1 off 6 is max
@@ -60,7 +60,7 @@ namespace RSPS.src.entity.update.block.pblock
                                                                      //45 bytes total?
 
                 // Append the block length and the block to the packet.
-                writer.WriteByte((int)block.Pointer, Packet.ValueType.Negated);
+                writer.WriteByteNegated(block.Pointer);
                 writer.WriteBytes(block.Buffer, block.Pointer);
             }
             catch (Exception e)

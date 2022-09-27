@@ -33,7 +33,7 @@ namespace RSPS.src.net.packet.send.impl
 
         public void WritePayload(PacketWriter writer)
         {
-            writer.WriteShort(TimeUntilUpdate, Packet.ByteOrder.LittleEndian);
+            writer.WriteShortLittleEndian(TimeUntilUpdate);
         }
 
     }

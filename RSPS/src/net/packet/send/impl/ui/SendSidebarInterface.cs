@@ -39,7 +39,7 @@ namespace RSPS.src.net.packet.send.impl
         public void WritePayload(PacketWriter writer)
         {
             writer.WriteShort(InterfaceId);
-            writer.WriteByte(SidebarId, Packet.ValueType.Additional);
+            writer.WriteByteAdditional(SidebarId);
         }
 
         /*

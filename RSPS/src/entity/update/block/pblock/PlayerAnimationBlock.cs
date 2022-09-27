@@ -12,8 +12,8 @@ namespace RSPS.src.entity.update.block.pblock
     {
         public void ProcessBlock(Player player, PacketWriter writer)
         {
-            writer.WriteShort(-1, Packet.ValueType.Standard, Packet.ByteOrder.LittleEndian);
-            writer.WriteByte(-1, Packet.ValueType.Negated);
+            writer.WriteShortLittleEndian(-1);
+            writer.WriteByteNegated(-1);
         }
 
     }

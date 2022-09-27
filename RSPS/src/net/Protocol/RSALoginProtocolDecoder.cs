@@ -24,7 +24,7 @@ namespace RSPS.src.net.Authentication
             switch (connection.ConnectionState)
             {
                 case ConnectionState.ConnectionRequest://connection state
-                    readPacket = Packet.CreatePacketReader(connection.Buffer);
+                    readPacket = new(connection.Buffer);
                     int opcode = readPacket.ReadByte() & 0xff;
                     int nameHash = readPacket.ReadByte() & 0xff;
                     if (opcode == 14)
@@ -44,7 +44,7 @@ namespace RSPS.src.net.Authentication
                     break;
 
                 case ConnectionState.Authenticate://login state
-                    readPacket = Packet.CreatePacketReader(connection.Buffer);
+                    readPacket = new(connection.Buffer);
 
                     //Console.WriteLine("We are inside the login state");
                     int loginType = readPacket.ReadByte();
@@ -115,8 +115,8 @@ namespace RSPS.src.net.Authentication
                     int uid = rsaReader.ReadInt();
                     Console.WriteLine("UID: {0}", uid);
 
-                    string username = rsaReader.ReadString();
-                    string password = rsaReader.ReadString();
+                    string username = rsaReader.ReadRS2String();
+                    string password = rsaReader.ReadRS2String();
                     Console.WriteLine("Username: {0}", username);
                     Console.WriteLine("Password: {0}", password);
 

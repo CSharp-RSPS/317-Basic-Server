@@ -45,9 +45,9 @@ namespace RSPS.src.net.packet.send.impl
 
         public void WritePayload(PacketWriter writer)
         { //TODO: Not correct yet
-            writer.WriteByte(0, Packet.ValueType.Subtrahend);
+            writer.WriteByteSubtrahend(0);
             //writer.WriteByte(ObjectId, Packet.ByteOrder.LittleEndian);
-            writer.WriteByte(ObjectType << 2 + ObjectRotation & 3, Packet.ValueType.Subtrahend);
+            writer.WriteByteSubtrahend(ObjectType << 2 + ObjectRotation & 3);
         }
 
     }

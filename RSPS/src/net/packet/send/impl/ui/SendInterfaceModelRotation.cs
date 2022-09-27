@@ -52,10 +52,10 @@ namespace RSPS.src.net.packet.send.impl
 
         public void WritePayload(PacketWriter writer)
         {
-            writer.WriteShort(Zoom, Packet.ValueType.Additional);
+            writer.WriteShortAdditional(Zoom);
             writer.WriteShort(InterfaceId);
             writer.WriteShort(Rotation1);
-            writer.WriteShort(Rotation2, Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
+            writer.WriteShortAdditionalLittleEndian(Rotation2);
         }
 
     }

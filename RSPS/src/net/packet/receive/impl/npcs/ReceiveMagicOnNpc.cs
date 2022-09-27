@@ -1,4 +1,4 @@
-﻿using RSPS.src.entity.npc;
+﻿using RSPS.src.entity.Mobiles.Npcs;
 using RSPS.src.entity.player;
 using RSPS.src.net.packet.send.impl;
 using RSPS.src.Util.Annotations;
@@ -22,8 +22,8 @@ namespace RSPS.src.net.packet.receive.impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            int npcIndex = reader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
-            int spellId = reader.ReadShort(Packet.ValueType.Additional);
+            int npcIndex = reader.ReadShortAdditionalLittleEndian();
+            int spellId = reader.ReadShortAdditional();
 
             World? world = WorldHandler.ResolveWorld(player);
 

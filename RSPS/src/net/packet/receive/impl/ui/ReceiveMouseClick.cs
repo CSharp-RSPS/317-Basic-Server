@@ -18,7 +18,7 @@ namespace RSPS.src.net.packet.receive.impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            reader.ReadInt(Packet.ByteOrder.BigEndian);
+            reader.ReadInt();
         }
 
     }

@@ -20,9 +20,9 @@ namespace RSPS.src.net.packet.receive.impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            int itemY = reader.ReadShort(Packet.ByteOrder.LittleEndian);
+            int itemY = reader.ReadShortLittleEndian();
             int itemId = reader.ReadShort();
-            int itemX = reader.ReadShort(Packet.ByteOrder.LittleEndian);
+            int itemX = reader.ReadShortLittleEndian();
 
 
         }

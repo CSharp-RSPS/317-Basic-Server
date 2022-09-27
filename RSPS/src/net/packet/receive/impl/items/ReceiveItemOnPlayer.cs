@@ -21,10 +21,10 @@ namespace RSPS.src.net.packet.receive.impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            int interfaceId = reader.ReadShort(Packet.ValueType.Additional);
+            int interfaceId = reader.ReadShortAdditional();
             int playerIndex = reader.ReadShort();
             int itemId = reader.ReadShort();
-            int itemSlot = reader.ReadShort(Packet.ByteOrder.LittleEndian);
+            int itemSlot = reader.ReadShortLittleEndian();
 
             World? world = WorldHandler.ResolveWorld(player);
 

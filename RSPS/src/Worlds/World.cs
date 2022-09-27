@@ -1,4 +1,6 @@
-﻿using RSPS.src.entity.npc;
+﻿using RSPS.src.entity.Mobiles.Npcs;
+using RSPS.src.entity.movement;
+using RSPS.src.entity.movement.Locations.Regions;
 using RSPS.src.entity.player;
 using RSPS.src.net;
 using RSPS.src.net.Authentication;
@@ -46,6 +48,16 @@ namespace RSPS.src.Worlds
         public bool Online { get; set; }
 
         /// <summary>
+        /// The world update task in case of an upcomingupdate
+        /// </summary>
+        public dynamic? UpdateTask { get; set; } //TODO
+
+        /// <summary>
+        /// Whether the world has an update pending
+        /// </summary>
+        public bool HasUpdatePending => UpdateTask != null;
+
+        /// <summary>
         /// Retrieves whether the world is full
         /// </summary>
         public bool IsFull => Players.Entities.Count >= Details.MaxPlayers;
@@ -64,6 +76,11 @@ namespace RSPS.src.Worlds
         /// Manages players
         /// </summary>
         public readonly PlayerManager Players;
+
+        /// <summary>
+        /// Manages regions in the world
+        /// </summary>
+        public readonly RegionManager RegionManager;
 
         /// <summary>
         /// The max. login and/or logout operations allowed per cycle
@@ -97,9 +114,21 @@ namespace RSPS.src.Worlds
 
             Npcs = new();
             Players = new();
+            RegionManager = new();
+            RegionManager.RegionLoaded += OnRegionLoaded;
 
             mainParallelOptions = new() { MaxDegreeOfParallelism = 25 };
             cycleTimes = new();
+        }
+
+        /// <summary>
+        /// Handles a newly loaded region
+        /// </summary>
+        /// <param name="region">The region</param>
+        private void OnRegionLoaded(Region region)
+        {
+            Npcs.LoadRegionalNpcs(region);
+            //TODO: GroundItemManager.getSingleton().loadRegionalsGroundItems(r);
         }
 
         /// <summary>
@@ -246,7 +275,13 @@ namespace RSPS.src.Worlds
                             return;
                         }
                         // Process the movement of players
-                        Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) => player?.MovementHandler.ProcessMovements());
+                        Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) => {
+                            if (player.Movement.FollowLeader != null)
+                            {
+                                Following.Follow(player.Movement.FollowLeader);
+                            }
+                            MovementHandler.ProcessMovement(player);
+                        });
 
                         // Process player updating
                         Players.Entities.ForEach(p => {
@@ -263,7 +298,22 @@ namespace RSPS.src.Worlds
                             
                         });*/
                         // Reset the player flags
-                        Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) => player?.ResetFlags());
+                        Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) => {
+                            if (player.Disabled != null)
+                            {
+                                player.Disabled.OnTick();
+
+                                if (player.Disabled.TimeDisabled <= 0)
+                                {
+                                    player.Disabled = null;
+                                }
+                            }
+                            player.Movement.Teleported = false;
+                            ((PlayerMovement)player.Movement).MapRegionChanged = false;
+                            player.Movement.WalkingDirection = DirectionType.None;
+                            player.Movement.RunningDirection = DirectionType.None;
+                            player?.ResetFlags();
+                        });
 
                         Console.WriteLine("Processed {0} active players in world {1}", Players.Entities.Count, Details.Id);
                     }

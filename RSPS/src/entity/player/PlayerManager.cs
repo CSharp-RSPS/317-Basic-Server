@@ -84,21 +84,36 @@ namespace RSPS.src.entity.player
         /// <param name="player">The player</param>
         public static void InitializeSession(Player player)
         {
+            PacketHandler.SendPacket(player, new SendInitializePlayer(true, player.WorldIndex));
+            PacketHandler.SendPacket(player, PacketDefinition.ResetCamera);
+            PacketHandler.SendPacket(player, new SendChatSettings(0, 0, 0));
+
             // Send the side bars
             for (int i = 0; i < SidebarInterfaceIds.Length; i++)
-            {
+            { // TODO the right spell book
                 PacketHandler.SendPacket(player, new SendSidebarInterface(i, SidebarInterfaceIds[i]));
             }
             // Send the skills in the skill tab
             foreach (SkillType skill in Enum.GetValues(typeof(SkillType)))
-            {
+            { // TODO skills from player
                 player.Skills.Add(skill != SkillType.HITPOINTS ? new Skill(skill) : new Skill(skill, 10, 1300));
                 PacketHandler.SendPacket(player, new SendSkill(player.GetSkill(skill)));
             }
+            PacketHandler.SendPacket(player, new SendPlayerOption(1, "null"));
+            PacketHandler.SendPacket(player, new SendPlayerOption(2, "null"));
+            PacketHandler.SendPacket(player, new SendPlayerOption(3, "Follow"));
+            PacketHandler.SendPacket(player, new SendPlayerOption(4, "Trade with"));
+
+            //TODO: Refresh inventory, equipment, configurations
+            //TODO: weapon interface update
+            //TODO: initialize pm's
+            //TODO: refresh quest tab
+            
+
             // Send the initial map region
-            player.LoadMapRegion();
+            //player.LoadMapRegion();
             // Send the run energy
-            PacketHandler.SendPacket(player, new SendRunEnergy(player.MovementHandler.Energy));
+            //PacketHandler.SendPacket(player, new SendRunEnergy(((PlayerMovement)player.Movement).Energy));
 
             //player.NeedsPlacement = true; - already sent from MapRegion packet
             //player.Flags.UpdateFlag(flag.FlagType.APPEARANCE, true);

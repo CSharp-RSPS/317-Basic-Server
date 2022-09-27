@@ -1,6 +1,6 @@
 ﻿using RSPS.src.Data;
-using RSPS.src.entity.npc;
 using RSPS.src.net.packet;
+using RSPS.src.Worlds;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,7 +15,7 @@ namespace RSPS.src.entity.movement.Locations.Regions
     /// <summary>
     /// Manages regions and region related operations
     /// </summary>
-    public static class RegionManager
+    public sealed class RegionManager
     {
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace RSPS.src.entity.movement.Locations.Regions
         public static int[] MapObjectFileIds { get; private set; }
 
         /// <summary>
-        /// The loaded regions
+        /// The available regions
         /// </summary>
         public static Region[] Regions { get; private set; }
 
@@ -76,6 +76,17 @@ namespace RSPS.src.entity.movement.Locations.Regions
         }
 
         /// <summary>
+        /// Indicates a region was loaded
+        /// </summary>
+        /// <param name="region">The region</param>
+        public delegate void WhenRegionLoaded(Region region);
+
+        /// <summary>
+        /// The region loaded event
+        /// </summary>
+        public event WhenRegionLoaded? RegionLoaded;
+
+        /// <summary>
         /// Retrieves the region ID for a given position
         /// </summary>
         /// <param name="position">The position</param>
@@ -94,7 +105,7 @@ namespace RSPS.src.entity.movement.Locations.Regions
         /// </summary>
         /// <param name="position">The position</param>
         /// <returns>The region</returns>
-        public static Region? GetRegion(Position position)
+        public Region? GetRegion(Position position)
         {
             int regionId = GetRegionId(position);
             Region? region = null;
@@ -126,7 +137,7 @@ namespace RSPS.src.entity.movement.Locations.Regions
         /// <param name="position">The position</param>
         /// <param name="direction">The direction</param>
         /// <returns>The result</returns>
-        public static bool IsClipped(Position position, DirectionType direction)
+        public bool IsClipped(Position position, DirectionType direction)
         {
             switch (direction)
             {
@@ -166,7 +177,7 @@ namespace RSPS.src.entity.movement.Locations.Regions
         /// <param name="y">The Y coordinate</param>
         /// <param name="z">The Z coordinate</param>
         /// <returns>The value</returns>
-        public static int GetClipping(int x, int y, int z)
+        public int GetClipping(int x, int y, int z)
         {
             Position pos = new(x, y, z);
             Region? r = GetRegion(pos);
@@ -192,7 +203,7 @@ namespace RSPS.src.entity.movement.Locations.Regions
         /// <param name="targetX">The target X coordinate</param>
         /// <param name="targetY">The target Y coordinate</param>
         /// <returns>The result</returns>
-        public static bool GetClipping(int x, int y, int z, int targetX, int targetY)
+        public bool GetClipping(int x, int y, int z, int targetX, int targetY)
         {
             if (z > 3)
             {
@@ -253,7 +264,7 @@ namespace RSPS.src.entity.movement.Locations.Regions
         /// Removes the clipping for a given position
         /// </summary>
         /// <param name="position">The position</param>
-        public static void RemoveClip(Position position)
+        public void RemoveClip(Position position)
         {
             Region? r = GetRegion(position);
 
@@ -272,7 +283,7 @@ namespace RSPS.src.entity.movement.Locations.Regions
         /// <param name="y">The Y coordinate</param>
         /// <param name="z">The Z coordinate</param>
         /// <param name="shift">The shift</param>
-        private static void AddClip(int x, int y, int z, int shift)
+        private void AddClip(int x, int y, int z, int shift)
         {
             AddClip(new Position(x, y, z), shift);
         }
@@ -282,7 +293,7 @@ namespace RSPS.src.entity.movement.Locations.Regions
         /// </summary>
         /// <param name="position">The position</param>
         /// <param name="shift">The shift</param>
-        private static void AddClip(Position position, int shift)
+        private void AddClip(Position position, int shift)
         {
             Region? r = GetRegion(position);
 
@@ -302,7 +313,7 @@ namespace RSPS.src.entity.movement.Locations.Regions
         /// <param name="position">The position</param>
         /// <param name="type">The object type</param>
         /// <param name="rotation">The object rotation</param>
-        public static void AddObjectClipping(int id, Position position, int type, int rotation)
+        public void AddObjectClipping(int id, Position position, int type, int rotation)
         {
             //TODO: ObjectDefinition def = ObjectManager.getSingleton().getDefinition(id);
             dynamic? def = null;
@@ -336,7 +347,7 @@ namespace RSPS.src.entity.movement.Locations.Regions
         /// <param name="xSize">The size on the X axis</param>
         /// <param name="ySize">The size on the Y axis</param>
         /// <param name="solid">Whether the object is solid</param>
-        private static void AddClippingForStaticObject(Position position, int xSize, int ySize, bool solid)
+        private void AddClippingForStaticObject(Position position, int xSize, int ySize, bool solid)
         {
             int clipping = 256;
 
@@ -360,7 +371,7 @@ namespace RSPS.src.entity.movement.Locations.Regions
         /// <param name="type">The object type</param>
         /// <param name="rotation">The object rotation</param>
         /// <param name="solid">Whether the object is solid</param>
-        private static void AddClippingForVariableObject(Position position, int type, int rotation, bool solid)
+        private void AddClippingForVariableObject(Position position, int type, int rotation, bool solid)
         {
             int x = position.X;
             int y = position.Y;
@@ -539,7 +550,7 @@ namespace RSPS.src.entity.movement.Locations.Regions
         /// </summary>
         /// <param name="regionId">The region ID</param>
         /// <returns>The loaded region</returns>
-        public static Region? LoadRegion(int regionId)
+        public Region? LoadRegion(int regionId)
         {
             int index = GetRegionIndex(regionId);
 
@@ -568,14 +579,13 @@ namespace RSPS.src.entity.movement.Locations.Regions
                 Debug.WriteLine(ex);
                 Debug.WriteLine("Failed to load maps for region: " + regionId);
             }
-            //TODO: NpcManager.getSingleton().loadRegionalNpcs(r);
-            //TODO: GroundItemManager.getSingleton().loadRegionalsGroundItems(r);
+            RegionLoaded?.Invoke(r);
 
             Debug.WriteLine("Loaded region: " + regionId);
             return r;
         }
 
-        private static void LoadMaps(Region region, PacketReader str1, PacketReader str2)
+        private void LoadMaps(Region region, PacketReader str1, PacketReader str2)
         {
 
             /*if (region.getPosition().getX() >= 0 && region.getPosition().getX() < 104 

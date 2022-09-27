@@ -31,7 +31,7 @@ namespace RSPS.src.net.packet.send.impl
 
         public void WritePayload(PacketWriter writer)
         {
-            writer.WriteByte(InterfaceId, Packet.ValueType.Subtrahend);
+            writer.WriteByteSubtrahend(InterfaceId);
         }
 
     }

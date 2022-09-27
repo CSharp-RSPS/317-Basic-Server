@@ -1,4 +1,4 @@
-﻿using RSPS.src.entity.npc;
+﻿using RSPS.src.entity.Mobiles.Npcs;
 using RSPS.src.entity.player;
 using RSPS.src.net.packet.send.impl;
 using RSPS.src.Worlds;
@@ -20,10 +20,10 @@ namespace RSPS.src.net.packet.receive.impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            int itemId = reader.ReadShort(Packet.ValueType.Additional);
-            int npcIndex = reader.ReadShort(Packet.ValueType.Additional);
-            int itemSlot = reader.ReadShort(Packet.ByteOrder.LittleEndian);
-            int interfaceId = reader.ReadShort(Packet.ValueType.Additional);
+            int itemId = reader.ReadShortAdditional();
+            int npcIndex = reader.ReadShortAdditional();
+            int itemSlot = reader.ReadShortLittleEndian();
+            int interfaceId = reader.ReadShortAdditional();
 
             if (itemId < 0 || npcIndex < 0 || itemSlot < 0 || interfaceId < 0)
             {

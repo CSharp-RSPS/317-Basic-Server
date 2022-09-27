@@ -1,6 +1,7 @@
-﻿using RSPS.src.entity.movement;
+﻿using RSPS.src.entity.Mobiles;
+using RSPS.src.entity.Mobiles.Npcs;
+using RSPS.src.entity.movement;
 using RSPS.src.entity.movement.Locations;
-using RSPS.src.entity.npc;
 using RSPS.src.entity.player.skill;
 using RSPS.src.game.comms.chat;
 using RSPS.src.game.Items.Containers;
@@ -17,7 +18,7 @@ namespace RSPS.src.entity.player
     /// <summary>
     /// Represents a human playable character
     /// </summary>
-    public class Player : Entity
+    public class Player : Mobile
     {
 
         /// <summary>
@@ -46,11 +47,6 @@ namespace RSPS.src.entity.player
         public bool LoggedIn { get; set; }
 
         /// <summary>
-        /// The current position
-        /// </summary>
-        public Position Position { get; private set; }
-
-        /// <summary>
         /// The inventory item container
         /// </summary>
         public ItemContainer Inventory { get; private set; }
@@ -59,6 +55,11 @@ namespace RSPS.src.entity.player
         /// The bank item container
         /// </summary>
         public ItemContainer Bank { get; private set; }
+
+        /// <summary>
+        /// The equipment item container
+        /// </summary>
+        public ItemContainer Equipment { get; private set; }
 
 
 
@@ -79,7 +80,6 @@ namespace RSPS.src.entity.player
         public List<Npc> LocalNpcs = new List<Npc>();
         public Appearance Appearance = new Appearance();
 
-        public MovementHandler MovementHandler { get; private set; }
 
         public int PrimaryDirection = -1;
         public int SecondaryDirection = -1;
@@ -93,11 +93,12 @@ namespace RSPS.src.entity.player
         public int PlayerIndex;
 
         public Player(PlayerCredentials credentials, Connection playerConnection)
+            : base(playerConnection.WorldDetails.Id, 
+                  new Position(3222 + new Random().Next(-1, 4), 3222 + new Random().Next(0, 6)), 
+                  new PlayerMovement())
         {
             Credentials = credentials;
-            Position = new Position(3222 + new Random().Next(-1, 4), 3222 + new Random().Next(0, 6));
             PlayerConnection = playerConnection;
-            MovementHandler = new MovementHandler(this);
             Inventory = new ItemContainer(28, true, false);
             Bank = new ItemContainer(256, true, true);
             //Scheduler.AddJob(new PlayerWalkingJob("Player Walking Job", this, TimeSpan.FromMilliseconds(600)));

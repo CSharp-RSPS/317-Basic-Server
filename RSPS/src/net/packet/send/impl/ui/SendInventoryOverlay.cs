@@ -38,7 +38,7 @@ namespace RSPS.src.net.packet.send.impl
 
         public void WritePayload(PacketWriter writer)
         {
-            writer.WriteShort(InterfaceToOpenId, Packet.ValueType.Additional);
+            writer.WriteShortAdditional(InterfaceToOpenId);
             writer.WriteShort(InterfaceToOverlayId);
         }
 
