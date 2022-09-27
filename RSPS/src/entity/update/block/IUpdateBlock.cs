@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSPS.src.entity.update
+namespace RSPS.src.entity.update.block
 {
-    public interface IUpdateProtocol<E> where E : Entity
+    public interface IUpdateBlock<T> where T : class
     {
 
-        public void Process(E entity, PacketWriter writer);
+        public void ProcessBlock(T t, PacketWriter writer);
 
     }
 }

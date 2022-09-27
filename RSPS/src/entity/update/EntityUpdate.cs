@@ -8,6 +8,7 @@ namespace RSPS.src.entity.update
 {
     public class EntityUpdate<T> where T : Entity
     {
+        public T? Entity;
 
         private static Dictionary<int, IUpdateProtocol<T>> UpdateTunnel = new Dictionary<int, IUpdateProtocol<T>>();
 
@@ -15,11 +16,14 @@ namespace RSPS.src.entity.update
         {
             for (int i = 0; i < UpdateTunnel.Count; i++)
             {
-                UpdateTunnel[i].Process();
+                //UpdateTunnel[i].Process(Entity);
             }
         }
 
+        public void AddEntity()
+        {
 
+        }
 
     }
 }

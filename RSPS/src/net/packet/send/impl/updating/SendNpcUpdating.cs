@@ -19,6 +19,10 @@ namespace RSPS.src.net.packet.send.impl
     public sealed class SendNpcUpdating : IPacketVariablePayloadBuilder
     {
 
+        private static readonly int REGION_NPCS_LIMIT = 255;
+
+        private static readonly int NEW_NPCS_PER_CYCLE = 45;
+
         /// <summary>
         /// The player we're updating npc's for
         /// </summary>
@@ -43,12 +47,12 @@ namespace RSPS.src.net.packet.send.impl
 
         public int GetPayloadSize()
         {
-            return 5000;
+            return 2048;
         }
 
         public void WritePayload(PacketWriter writer)
         {
-            PacketWriter stateBlock = Packet.CreatePacketWriter(2048);
+            PacketWriter stateBlock = Packet.CreatePacketWriter(1024);
 
             writer.SetAccessType(Packet.AccessType.BitAccess);
             writer.WriteBits(8, Player.LocalNpcs.Count);

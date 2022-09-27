@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSPS.src.entity.update.block.shared
+namespace RSPS.src.entity.update.block.nblock
 {
-    internal class FaceCoordinateBlock
+    internal class NpcAnimationBlock
     {
     }
 }

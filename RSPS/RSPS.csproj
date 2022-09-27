@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <Folder Include="src\entity\player\Items\" />
+    <Folder Include="src\entity\update\player\local\" />
   </ItemGroup>
   
 

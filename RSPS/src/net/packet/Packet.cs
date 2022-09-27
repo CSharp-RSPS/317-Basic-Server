@@ -81,12 +81,10 @@ namespace RSPS.src.net.packet
             if ((Pointer + length) > Buffer.Length)
             {
                 byte[] oldBuffer = Buffer;
-                int newLength = ((int)((Buffer.Length + length) * 1.5));//* 1.5 so we can reduce calls to make new array
+                int newLength = (int)Math.Round((Buffer.Length + length) * 1.5);//* 1.5 so we can reduce calls to make new array. Since making a new array is expensive
                 //TODO LLN: testing, was => int newLength = ((int)(Data.Length * 1.5));
-                //Console.WriteLine("old buffer length: " + Payload.Length);
                 Buffer = new byte[newLength];
                 Array.Copy(oldBuffer, 0, Buffer, 0, oldBuffer.Length);
-                //Console.WriteLine("new buffer length: " + Payload.Length);
             }
         }
 
