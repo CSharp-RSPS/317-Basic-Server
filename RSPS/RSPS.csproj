@@ -25,7 +25,7 @@
 
   <ItemGroup>
     <Folder Include="src\entity\player\Items\" />
-    <Folder Include="src\entity\update\player\local\" />
+    <Folder Include="src\entity\update\movement\npc\" />
   </ItemGroup>
   
 

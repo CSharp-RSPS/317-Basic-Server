@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.entity.update.block
 {
-    public interface IUpdateBlock<T> where T : class
+    public interface IUpdateMask<T> where T : class
     {
 
         public void ProcessBlock(T t, PacketWriter writer);

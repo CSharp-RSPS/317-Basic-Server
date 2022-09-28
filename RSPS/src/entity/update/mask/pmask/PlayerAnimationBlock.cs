@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.entity.update.block.pblock
 {
-    internal class PlayerAnimationBlock : IUpdateBlock<Player>
+    internal class PlayerAnimationBlock : IUpdateMask<Player>
     {
         public void ProcessBlock(Player player, PacketWriter writer)
         {

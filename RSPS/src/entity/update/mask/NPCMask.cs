@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.entity.update.block
 {
-    public class NPCBlock : IUpdateProtocol<Npc>
+    public class NPCMask : IUpdateProtocol<Npc>
     {
 
         public void Process(Npc entity, PacketWriter writer)

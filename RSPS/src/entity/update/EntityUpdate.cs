@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RSPS.src.entity.player;
+using RSPS.src.net.packet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,20 +11,26 @@ namespace RSPS.src.entity.update
     public class EntityUpdate<T> where T : Entity
     {
         public T? Entity;
+        public PacketWriter writer;
 
         private static Dictionary<int, IUpdateProtocol<T>> UpdateTunnel = new Dictionary<int, IUpdateProtocol<T>>();
 
-        public void ExecuteUpdate()
+        public EntityUpdate(T t, PacketWriter writer) {
+            Entity = t;
+            this.writer = writer;
+        }
+
+        public void ExecuteUpdates()
         {
             for (int i = 0; i < UpdateTunnel.Count; i++)
             {
-                //UpdateTunnel[i].Process(Entity);
+                UpdateTunnel[i].Process(Entity, writer);
             }
         }
 
-        public void AddEntity()
+        public void AddUpdateProcess(UpdateState state, IUpdateProtocol<T> updateProtocol)
         {
-
+            UpdateTunnel.Add((int)state, updateProtocol);
         }
 
     }

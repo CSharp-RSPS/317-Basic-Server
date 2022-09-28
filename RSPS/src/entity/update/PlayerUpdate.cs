@@ -1,5 +1,6 @@
 ﻿using RSPS.src.entity.movement.Locations;
 using RSPS.src.entity.player;
+using RSPS.src.entity.update.block;
 using RSPS.src.net.packet;
 using System;
 using System.Collections.Generic;
@@ -9,23 +10,19 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.entity.update
 {
-    internal class PlayerUpdate : EntityUpdate<Player>, IUpdateProtocol<Player>
+    internal class PlayerUpdate : EntityUpdate<Player>
     {
 
-        
+        public PlayerUpdate(Player player, PacketWriter writer) : base(player, writer)
+        {}
 
-        public void Process(Player player, PacketWriter writer)
+        public void Process()
         {
-            throw new NotImplementedException();
-        }
-
-        private void AddNewPlayer(PacketWriter writer, Player otherPlayer)
-        {
-            writer.WriteBits(11, otherPlayer.PlayerIndex);//Server slot
-            writer.WriteBit(true);// Yes an update is required
-            writer.WriteBit(true);// Discard walking queue
-
-            //Position delta = Position.Delta(player.Position, )
+            if (Entity.Flags.IsUpdateNeeded())
+            {
+                new PlayerMask(false, true).Process(Entity, writer);
+            }
+            base.ExecuteUpdates();
         }
     }
 }

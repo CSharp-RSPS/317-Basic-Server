@@ -9,22 +9,35 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.entity.update.block
 {
-    public class PlayerBlock : IUpdateProtocol<Player>
+    public class PlayerMask : IUpdateProtocol<Player>
     {
+
+        private bool ForceAppearance;
+        private bool NoPublicChat;
+
+        public PlayerMask(bool forceAppearance, bool noPublicChat)
+        {
+            ForceAppearance = forceAppearance;
+            NoPublicChat = noPublicChat;
+        }
+
         public void Process(Player player, PacketWriter writer)
         {
+            if (!player.Flags.IsUpdateNeeded() && !ForceAppearance)
+            {
+                return;
+            }
+
             // First we must calculate and write the mask.
             int mask = 0x0;
 
             //REMVOE THESE TWO
-            var noPublicChat = false;
-            var forceAppearance = false;
-            if (player.Flags.IsFlagged(flag.FlagType.Public_Chat) && !noPublicChat)
+            if (player.Flags.IsFlagged(flag.FlagType.PublicChat) && !NoPublicChat)
             {
                 mask |= 0x80;
             }
 
-            if (player.Flags.IsFlagged(flag.FlagType.Appearance) || forceAppearance)
+            if (player.Flags.IsFlagged(flag.FlagType.Appearance) || ForceAppearance)
             {
                 mask |= 0x10;
             }
@@ -44,14 +57,14 @@ namespace RSPS.src.entity.update.block
             //Graphics
             //Animation
             //FOrced Chat
-            if (player.Flags.IsFlagged(flag.FlagType.Public_Chat) && !noPublicChat)
+            if (player.Flags.IsFlagged(flag.FlagType.PublicChat) && !NoPublicChat)
             {
                 new PlayerPublicChatBlock().ProcessBlock(player, writer);
             }
 
             //Face Entity
             //Appearance
-            if (player.Flags.IsFlagged(flag.FlagType.Appearance) || forceAppearance)
+            if (player.Flags.IsFlagged(flag.FlagType.Appearance) || ForceAppearance)
             {
                 new PlayerAppearanceBlock().ProcessBlock(player, writer);
             }

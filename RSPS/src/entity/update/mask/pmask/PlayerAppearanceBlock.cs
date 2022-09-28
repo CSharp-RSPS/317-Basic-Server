@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RSPS.src.entity.update.block.pblock
 {
-    public class PlayerAppearanceBlock : IUpdateBlock<Player>
+    public class PlayerAppearanceBlock : IUpdateMask<Player>
     {
 
         private static readonly int MAX_APPEARANCE_BUFFER_SIZE = 58;
