@@ -38,9 +38,9 @@ namespace RSPS.src.net.packet.receive.impl
                     break;
 
                 case 152:
-                    player.MovementHandler.RunToggled = !player.MovementHandler.RunToggled;
-                    PacketHandler.SendPacket(player, new SendConfiguration(173, player.MovementHandler.RunToggled));
-                    Console.WriteLine("Is player run toggled? " + player.MovementHandler.RunToggled);
+                    player.PlayerMovement.Running = !player.PlayerMovement.Running;
+                    PacketHandler.SendPacket(player, new SendConfiguration(173, player.PlayerMovement.Running));
+                    Console.WriteLine("Is player run toggled? " + player.PlayerMovement.Running);
                     break;
 
                 default:

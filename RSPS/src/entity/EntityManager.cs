@@ -40,16 +40,6 @@ namespace RSPS.src.entity
         }
 
         /// <summary>
-        /// Retrieves an entity by it's world index
-        /// </summary>
-        /// <param name="index">The world index</param>
-        /// <returns>The result</returns>
-        public virtual T? ByWorldIndex(int index)
-        {
-            return Entities.FirstOrDefault(e => e.WorldIndex == index);
-        }
-
-        /// <summary>
         /// Adds an entity to the entities collection
         /// </summary>
         /// <param name="entity">The entity</param>

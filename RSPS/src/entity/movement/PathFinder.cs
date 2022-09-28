@@ -13,33 +13,35 @@ namespace RSPS.src.entity.movement
     /// <summary>
     /// Handles path finding
     /// </summary>
-    public static class PathFinder
+    public sealed class PathFinder
     {
 
 
         /// <summary>
         /// Finds a path for a mobile to a given destination
         /// </summary>
+        /// <param name="regionManager">The region manager to determine the regions we're pathfinding in</param>
         /// <param name="mob">The mobile</param>
         /// <param name="destination">The destination position</param>
         /// <param name="nearby">Whether moving nearby is acceptable</param>
         /// <param name="nearX">How close we can move nearby on the X axis</param>
         /// <param name="nearY">How close we can move nearby on the Y axis</param>
-        public static void FindPath(Mobile mob, Position destination, bool nearby = false, int nearX = 1, int nearY = 1)
+        public static void FindPath(RegionManager regionManager, Mobile mob, Position destination, bool nearby = false, int nearX = 1, int nearY = 1)
         {
-            FindPath(mob, destination.X, destination.Y, nearby, nearX, nearY);
+            FindPath(regionManager, mob, destination.X, destination.Y, nearby, nearX, nearY);
         }
 
         /// <summary>
         /// Finds a path for a mobile to a given destination
         /// </summary>
+        /// <param name="regionManager">The region manager to determine the regions we're pathfinding in</param>
         /// <param name="mob">The mobile</param>
         /// <param name="destX">The destination X coordinate</param>
         /// <param name="destY">The destination Y coordinate</param>
         /// <param name="nearby">Whether moving nearby is acceptable</param>
         /// <param name="nearX">How close we can move nearby on the X axis</param>
         /// <param name="nearY">How close we can move nearby on the Y axis</param>
-        public static void FindPath(Mobile mob, int destX, int destY, bool nearby, int nearX, int nearY)
+        public static void FindPath(RegionManager regionManager, Mobile mob, int destX, int destY, bool nearby, int nearX, int nearY)
         {
             try
             {
@@ -113,10 +115,10 @@ namespace RSPS.src.entity.movement
                         return;
                     }
                     int thisCost = cost[curX][curY] + 1;
-                    Position pos = new Position(curAbsX, curAbsY, height);
+                    Position pos = new(curAbsX, curAbsY, height);
 
                     if (curY > 0 && via[curX][curY - 1] == 0
-                            && !RegionManager.IsClipped(pos, DirectionType.South))
+                            && !regionManager.IsClipped(pos, DirectionType.South))
                     { //blocked south
                         tileQueueX.Add(curX);
                         tileQueueY.Add(curY - 1);
@@ -124,7 +126,7 @@ namespace RSPS.src.entity.movement
                         cost[curX][curY - 1] = thisCost;
                     }
                     if (curX > 0 && via[curX - 1][curY] == 0
-                            && !RegionManager.IsClipped(pos, DirectionType.West))
+                            && !regionManager.IsClipped(pos, DirectionType.West))
                     { //Blocked west
                         tileQueueX.Add(curX - 1);
                         tileQueueY.Add(curY);
@@ -132,7 +134,7 @@ namespace RSPS.src.entity.movement
                         cost[curX - 1][curY] = thisCost;
                     }
                     if (curY < 104 - 1 && via[curX][curY + 1] == 0
-                            && !RegionManager.IsClipped(pos, DirectionType.North))
+                            && !regionManager.IsClipped(pos, DirectionType.North))
                     { //blocked north
                         tileQueueX.Add(curX);
                         tileQueueY.Add(curY + 1);
@@ -140,7 +142,7 @@ namespace RSPS.src.entity.movement
                         cost[curX][curY + 1] = thisCost;
                     }
                     if (curX < 104 - 1 && via[curX + 1][curY] == 0
-                            && !RegionManager.IsClipped(pos, DirectionType.East))
+                            && !regionManager.IsClipped(pos, DirectionType.East))
                     { //blocked east
                         tileQueueX.Add(curX + 1);
                         tileQueueY.Add(curY);
@@ -148,9 +150,9 @@ namespace RSPS.src.entity.movement
                         cost[curX + 1][curY] = thisCost;
                     }
                     if (curX > 0 && curY > 0 && via[curX - 1][curY - 1] == 0
-                            && !RegionManager.IsClipped(pos, DirectionType.SouthWest) //southwest
-                            && !RegionManager.IsClipped(pos, DirectionType.West) //west
-                            && !RegionManager.IsClipped(pos, DirectionType.South))
+                            && !regionManager.IsClipped(pos, DirectionType.SouthWest) //southwest
+                            && !regionManager.IsClipped(pos, DirectionType.West) //west
+                            && !regionManager.IsClipped(pos, DirectionType.South))
                     { //south
                         tileQueueX.Add(curX - 1);
                         tileQueueY.Add(curY - 1);
@@ -158,9 +160,9 @@ namespace RSPS.src.entity.movement
                         cost[curX - 1][curY - 1] = thisCost;
                     }
                     if (curX > 0 && curY < 104 - 1 && via[curX - 1][curY + 1] == 0
-                            && !RegionManager.IsClipped(pos, DirectionType.NorthWest) //northwest
-                            && !RegionManager.IsClipped(pos, DirectionType.West) //west
-                            && !RegionManager.IsClipped(pos, DirectionType.North))
+                            && !regionManager.IsClipped(pos, DirectionType.NorthWest) //northwest
+                            && !regionManager.IsClipped(pos, DirectionType.West) //west
+                            && !regionManager.IsClipped(pos, DirectionType.North))
                     { //north
                         tileQueueX.Add(curX - 1);
                         tileQueueY.Add(curY + 1);
@@ -168,9 +170,9 @@ namespace RSPS.src.entity.movement
                         cost[curX - 1][curY + 1] = thisCost;
                     }
                     if (curX < 104 - 1 && curY > 0 && via[curX + 1][curY - 1] == 0
-                            && !RegionManager.IsClipped(pos, DirectionType.SouthEast) //south east
-                            && !RegionManager.IsClipped(pos, DirectionType.East) //east
-                            && !RegionManager.IsClipped(pos, DirectionType.South))
+                            && !regionManager.IsClipped(pos, DirectionType.SouthEast) //south east
+                            && !regionManager.IsClipped(pos, DirectionType.East) //east
+                            && !regionManager.IsClipped(pos, DirectionType.South))
                     { //south
                         tileQueueX.Add(curX + 1);
                         tileQueueY.Add(curY - 1);
@@ -178,9 +180,9 @@ namespace RSPS.src.entity.movement
                         cost[curX + 1][curY - 1] = thisCost;
                     }
                     if (curX < 104 - 1 && curY < 104 - 1 && via[curX + 1][curY + 1] == 0
-                            && !RegionManager.IsClipped(pos, DirectionType.NorthEast) //north east
-                            && !RegionManager.IsClipped(pos, DirectionType.East) //east
-                            && !RegionManager.IsClipped(pos, DirectionType.North))
+                            && !regionManager.IsClipped(pos, DirectionType.NorthEast) //north east
+                            && !regionManager.IsClipped(pos, DirectionType.East) //east
+                            && !regionManager.IsClipped(pos, DirectionType.North))
                     { //north
                         tileQueueX.Add(curX + 1);
                         tileQueueY.Add(curY + 1);

@@ -32,6 +32,11 @@ namespace RSPS.src.entity.player
         public PlayerCredentials Credentials { get; private set; }
 
         /// <summary>
+        /// Retrieves the player movement
+        /// </summary>
+        public PlayerMovement PlayerMovement => (PlayerMovement)Movement;
+
+        /// <summary>
         /// The administrative rights of the player
         /// </summary>
         public PlayerRights Rights { get; set; }
@@ -72,12 +77,8 @@ namespace RSPS.src.entity.player
         public List<long> Friends { get; private set; } = new();
 
 
-        //public Position Position = new Position(3222, 3222);
-        public Position CurrentRegion = new Position(0, 0);
         public List<Skill> Skills = new List<Skill>();
 
-        public List<Player> LocalPlayers = new List<Player>();
-        public List<Npc> LocalNpcs = new List<Npc>();
         public Appearance Appearance = new Appearance();
 
 
@@ -90,11 +91,8 @@ namespace RSPS.src.entity.player
 
         public ChatMessage ChatMessage;
 
-        public int PlayerIndex;
-
         public Player(PlayerCredentials credentials, Connection playerConnection)
-            : base(playerConnection.WorldDetails.Id, 
-                  new Position(3222 + new Random().Next(-1, 4), 3222 + new Random().Next(0, 6)), 
+            : base(new Position(3222 + new Random().Next(-1, 4), 3222 + new Random().Next(0, 6)), 
                   new PlayerMovement())
         {
             Credentials = credentials;
@@ -138,5 +136,6 @@ namespace RSPS.src.entity.player
         {
             return Skills[(int)skillType];
         }
+
     }
 }

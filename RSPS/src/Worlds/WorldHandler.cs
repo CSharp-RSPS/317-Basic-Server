@@ -21,6 +21,16 @@ namespace RSPS.src.Worlds
         public static readonly int DevevelopmentWorldId = 1337;
 
         /// <summary>
+        /// The development world
+        /// </summary>
+        private static readonly World DevelopmentWorld = new(new("0.0.0.0", 43594), new(DevevelopmentWorldId, "Development World", true));
+
+        /// <summary>
+        /// The currently active world
+        /// </summary>
+        public static World World { get; private set; } = DevelopmentWorld;
+
+        /// <summary>
         /// The identifier for the main test world
         /// </summary>
         public static readonly int TestWorldId = 0;
@@ -33,7 +43,8 @@ namespace RSPS.src.Worlds
 
         static WorldHandler()
         {
-            Register(new(new("0.0.0.0", 43594), new(DevevelopmentWorldId, "Development World", true)));
+            Register(DevelopmentWorld);
+
             Register(new(new("0.0.0.0", 5556), new(TestWorldId, "Test World", true)));
             Register(new(new("0.0.0.0", 5555), new(1, "Wynn's Framework"))); // Live world
         }
@@ -105,6 +116,7 @@ namespace RSPS.src.Worlds
         /// </summary>
         /// <param name="player">The player</param>
         /// <returns>The world</returns>
+        [Obsolete("Should not be used anymore since only 1 static world can be online", true)]
         public static World? ResolveWorld(Player player)
         {
             return ResolveWorld(player.PlayerConnection);
@@ -115,6 +127,7 @@ namespace RSPS.src.Worlds
         /// </summary>
         /// <param name="connection">The connection</param>
         /// <returns>The world</returns>
+        [Obsolete("Should not be used anymore since only 1 static world can be online", true)]
         public static World? ResolveWorld(Connection connection)
         {
             return ById(connection.WorldDetails.Id);
@@ -125,9 +138,11 @@ namespace RSPS.src.Worlds
         /// </summary>
         /// <param name="username">The username</param>
         /// <returns>The result</returns>
+        [Obsolete("Use the method within the playermanager", true)]
         public static Player? FindPlayerByUsername(string username)
         {
-            foreach (World w in Worlds)
+            return World?.Players.ByUsername(username);
+           /* foreach (World w in Worlds)
             {
                 Player? player = w.Players.ByUsername(username);
 
@@ -136,7 +151,7 @@ namespace RSPS.src.Worlds
                     return player;
                 }
             }
-            return default;
+            return default;*/
         }
 
         /// <summary>
@@ -145,6 +160,7 @@ namespace RSPS.src.Worlds
         /// <param name="player">The player</param>
         /// <param name="world">The world to swap to</param>
         /// <returns>The result</returns>
+        [Obsolete("Should not be used anymore since only 1 static world can be online", true)]
         public static bool SwapWorlds(Player player, World world)
         {
             if (!world.Online)

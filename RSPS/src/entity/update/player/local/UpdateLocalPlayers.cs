@@ -22,15 +22,13 @@ namespace RSPS.src.entity.update.player.local
         public void Process(Player player, PacketWriter writer)
         {
             int addedPlayers = 0;
-            World world = WorldHandler.ResolveWorld(player.PlayerConnection);
-            int worldPlayers = world == null ? 0 : world.Players.Entities.Count;
-            for (int i = 0; i < worldPlayers; i++)
+
             {
                 if (player.LocalPlayers.Count >= REGION_PLAYERS_LIMIT || addedPlayers >= NEW_PLAYERS_PER_CYCLE)
                 {
                     break;
                 }
-                Player other = world.Players.Entities[i];
+
                 if (other == null || other == player || other.PlayerConnection.ConnectionState != ConnectionState.Authenticated)//so we dont add ourself to the list
                 {
                     continue;
@@ -51,7 +49,7 @@ namespace RSPS.src.entity.update.player.local
 
         private void AddPlayer(PacketWriter writer, Player player, Player otherPlayer)
         {
-            writer.WriteBits(11, otherPlayer.PlayerIndex);//Server slot
+            writer.WriteBits(11, otherPlayer.WorldIndex);//Server slot
             writer.WriteBit(true);// Yes an update is required
             writer.WriteBit(true);// Discard walking queue
 

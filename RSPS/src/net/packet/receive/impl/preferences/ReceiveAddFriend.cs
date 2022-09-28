@@ -28,12 +28,6 @@ namespace RSPS.src.net.packet.receive.impl
             {
                 return;
             }
-            World? world = WorldHandler.ResolveWorld(player);
-
-            if (world == null)
-            {
-                return;
-            }
             player.Friends.Add(playerId);
         }
 

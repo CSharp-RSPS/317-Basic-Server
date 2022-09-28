@@ -144,7 +144,7 @@ namespace RSPS.src.net.packet.send.impl
          */
         private static void AddPlayer(PacketWriter outPacket, Player player, Player other)
         {
-            outPacket.WriteBits(11, other.PlayerIndex); // Server slot.
+            outPacket.WriteBits(11, other.WorldIndex); // Server slot.
             outPacket.WriteBit(true); // Yes, an update is required.
             outPacket.WriteBit(true); // Discard walking queue(?)
 

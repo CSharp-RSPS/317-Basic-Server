@@ -28,13 +28,7 @@ namespace RSPS.src.net.packet.receive.impl
             {
                 return;
             }
-            World? world = WorldHandler.ResolveWorld(player);
-
-            if (world == null)
-            {
-                return;
-            }
-            Player? target = world.Players.ByWorldIndex(playerIndex);
+            Player? target = WorldHandler.World.Players.ByPlayerIndex(playerIndex);
 
             if (target == null)
             {

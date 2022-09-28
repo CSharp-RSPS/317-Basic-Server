@@ -24,17 +24,15 @@ namespace RSPS.src.net.packet.receive.impl
         /// <summary>
         /// Handles player walking
         /// </summary>
-        /// <param name="player"></param>
-        /// <param name="reader"></param>
-        /// <param name="walkingDataSize"></param>
+        /// <param name="player">The player</param>
+        /// <param name="reader">The packet reader</param>
+        /// <param name="walkingDataSize">The walking data size</param>
         protected static void HandleWalking(Player player, PacketReader reader, int walkingDataSize)
         {
-            if (walkingDataSize < 0)
+            if (walkingDataSize < 0 || !player.Movement.CanMove(player))
             {
                 return;
             }
-            //TODO: if can't move - return
-
             int steps = (walkingDataSize - 5) / 2;
 
             if (steps < 0)
@@ -51,18 +49,18 @@ namespace RSPS.src.net.packet.receive.impl
             }
             int firstStepY = reader.ReadShortLittleEndian();
 
-            player.MovementHandler.Reset();
-            player.MovementHandler.IsRunPath = reader.ReadByteNegated() == 1;
-            player.MovementHandler.AddToPath(new Position(firstStepX, firstStepY));
+            MovementHandler.PrepareMovement(player);
+            player.PlayerMovement.RunningQueueEnabled = reader.ReadByteNegated() == 1;
+            MovementHandler.AddExternalStep(player, new Position(firstStepX, firstStepY, player.Position.Z));
 
             for (int i = 0; i < steps; i++)
             {
                 path[i, 0] += firstStepX;
                 path[i, 1] += firstStepY;
 
-                player.MovementHandler.AddToPath(new Position(path[i, 0], path[i, 1]));
+                MovementHandler.AddExternalStep(player, new Position(path[i, 0], path[i, 1], player.Position.Z));
             }
-            player.MovementHandler.FinishPath();
+            player.Movement.FinishMovement();
         }
 
     }
