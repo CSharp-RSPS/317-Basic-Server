@@ -3,9 +3,11 @@ using RSPS.src.entity.player;
 using RSPS.src.entity.update.block;
 using RSPS.src.net.Connections;
 using RSPS.src.net.packet;
+using RSPS.src.Worlds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,13 +22,15 @@ namespace RSPS.src.entity.update.player.local
         public void Process(Player player, PacketWriter writer)
         {
             int addedPlayers = 0;
-            for (int i = 0; i < Players.Count; i++)
+            World world = WorldHandler.ResolveWorld(player.PlayerConnection);
+            int worldPlayers = world == null ? 0 : world.Players.Entities.Count;
+            for (int i = 0; i < worldPlayers; i++)
             {
                 if (player.LocalPlayers.Count >= REGION_PLAYERS_LIMIT || addedPlayers >= NEW_PLAYERS_PER_CYCLE)
                 {
                     break;
                 }
-                Player other = Players[i];
+                Player other = world.Players.Entities[i];
                 if (other == null || other == player || other.PlayerConnection.ConnectionState != ConnectionState.Authenticated)//so we dont add ourself to the list
                 {
                     continue;
