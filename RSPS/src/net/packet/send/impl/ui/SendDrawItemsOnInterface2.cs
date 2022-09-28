@@ -54,10 +54,10 @@ namespace RSPS.src.net.packet.send.impl
                 if (itemQty == 255)
                 {
                     itemQty = 1000;
-                    writer.WriteInt(itemQty, Packet.ByteOrder.MiddleEndian);
+                    writer.WriteIntMiddleEndian(itemQty);
                 }
                 int itemId = 0;
-                writer.WriteShort(itemId, Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
+                writer.WriteShortAdditionalLittleEndian(itemId);
             }
         }
 

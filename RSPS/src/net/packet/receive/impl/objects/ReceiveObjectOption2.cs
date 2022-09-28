@@ -22,9 +22,9 @@ namespace RSPS.src.net.packet.receive.impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            int objectId = reader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
-            int objectX = reader.ReadShort(Packet.ByteOrder.LittleEndian);
-            int objectY = reader.ReadShort(Packet.ValueType.Additional);
+            int objectId = reader.ReadShortAdditionalLittleEndian();
+            int objectX = reader.ReadShortLittleEndian();
+            int objectY = reader.ReadShortAdditional();
             // int rotation = reader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
         }
 

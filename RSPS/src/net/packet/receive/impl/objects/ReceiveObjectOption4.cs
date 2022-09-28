@@ -22,8 +22,8 @@ namespace RSPS.src.net.packet.receive.impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            int objectId = reader.ReadShort(Packet.ValueType.Additional);
-            int objectY = reader.ReadShort(Packet.ValueType.Additional);
+            int objectId = reader.ReadShortAdditional();
+            int objectY = reader.ReadShortAdditional();
             int objectX = reader.ReadShort();
         }
 

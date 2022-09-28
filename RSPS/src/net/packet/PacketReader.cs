@@ -16,12 +16,12 @@ namespace RSPS.src.net.packet
         /// <summary>
         /// The packet opcode when applicable
         /// </summary>
-        public int Opcode { get; set; }
+        public int Opcode { get; private set; }
 
         /// <summary>
         /// The payload size of the packet when applicable
         /// </summary>
-        public int PayloadSize { get; set; }
+        public int PayloadSize { get; private set; }
 
         /// <summary>
         /// The readable bytes left in the reader
@@ -34,9 +34,21 @@ namespace RSPS.src.net.packet
         public bool HasReadableBytes => ReadableBytes > 0;
 
 
-        public PacketReader(byte[] stream) : base(stream)
-        {
-            
+        /// <summary>
+        /// Creates a new packet reader
+        /// </summary>
+        /// <param name="buffer">The byte buffer to read from</param>
+        public PacketReader(byte[] buffer) : this(-1, buffer.Length, buffer) { }
+
+        /// <summary>
+        /// Creates a new packet reader
+        /// </summary>
+        /// <param name="opcode">The packet opcode</param>
+        /// <param name="payloadSize">The packet payload size</param>
+        /// <param name="buffer">The byte buffer to read from</param>
+        public PacketReader(int opcode, int payloadSize, byte[] buffer) : base(buffer) {
+            Opcode = opcode;
+            PayloadSize = payloadSize;
         }
 
         /// <summary>
@@ -45,7 +57,7 @@ namespace RSPS.src.net.packet
         /// <param name="signed">Whether the byte is signed</param>
         /// <param name="valueType">The value type</param>
         /// <returns>The value</returns>
-        public int ReadByte(bool signed, ValueType valueType)
+        private int ReadByte(bool signed, ValueType valueType)
         {
             int value = Buffer[Pointer++];
 
@@ -75,42 +87,33 @@ namespace RSPS.src.net.packet
         }
 
         /// <summary>
-        /// Reads a standard unsigned byte
+        /// Reads an additional byte
         /// </summary>
+        /// <param name="signed">Whether the byte is signed</param>
         /// <returns>The value</returns>
-        public int ReadUnsignedByte()
-        {
-            return ReadByte(false);
-        }
-
-        /// <summary>
-        /// Reads a signed byte
-        /// </summary>
-        /// <param name="type">The value type</param>
-        /// <returns>The value</returns>
-        public int ReadByte(ValueType type)
-        {
-            return ReadByte(true, type);
-        }
-
-        /// <summary>
-        /// Reads an unsigned byte
-        /// </summary>
-        /// <param name="type">The value type</param>
-        /// <returns>The value</returns>
-        public int ReadUnsignedByte(ValueType type)
-        {
-            return ReadByte(false, type);
-        }
-
-        /// <summary>
-        /// Reads an additional signed byte
-        /// </summary>
-        /// <param name="signed">Whether </param>
-        /// <returns></returns>
-        public int ReadAdditionalByte(bool signed = true)
+        public int ReadByteAdditional(bool signed = true)
         {
             return ReadByte(signed, ValueType.Additional);
+        }
+
+        /// <summary>
+        /// Reads a negated byte
+        /// </summary>
+        /// <param name="signed">Whether the byte is signed</param>
+        /// <returns>The value</returns>
+        public int ReadByteNegated(bool signed = true)
+        {
+            return ReadByte(signed, ValueType.Negated);
+        }
+
+        /// <summary>
+        /// Reads a subtrahend byte
+        /// </summary>
+        /// <param name="signed">Whether the byte is signed</param>
+        /// <returns>The value</returns>
+        public int ReadByteSubtrahend(bool signed = true)
+        {
+            return ReadByte(signed, ValueType.Subtrahend);
         }
 
         /// <summary>
@@ -121,7 +124,7 @@ namespace RSPS.src.net.packet
         /// <param name="order">The byte order</param>
         /// <returns>The value</returns>
         /// <exception cref="InvalidOperationException"></exception>
-        public int ReadShort(bool signed, ValueType type, ByteOrder order)
+        private int ReadShort(bool signed, ValueType type, ByteOrder order)
         {
             int value = 0;
 
@@ -146,94 +149,94 @@ namespace RSPS.src.net.packet
             return value;
         }
 
-        /**
-        * Reads a standard signed big-endian short.
-        *
-        * @return the value
-        */
-        public int ReadShort()
-        {
-            return ReadShort(true, ValueType.Standard, ByteOrder.BigEndian);
-        }
-
-        /**
-         * Reads a standard big-endian short.
-         *
-         * @param signed the signedness
-         * @return the value
-         */
-        public int ReadShort(bool signed)
+        /// <summary>
+        /// Reads a standard big endian short
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadShort(bool signed = true)
         {
             return ReadShort(signed, ValueType.Standard, ByteOrder.BigEndian);
         }
 
-        /**
-         * Reads a signed big-endian short.
-         *
-         * @param type the value type
-         * @return the value
-         */
-        public int ReadShort(ValueType type)
+        /// <summary>
+        /// Reads a standard little endian short
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadShortLittleEndian(bool signed = true)
         {
-            return ReadShort(true, type, ByteOrder.BigEndian);
+            return ReadShort(signed, ValueType.Standard, ByteOrder.LittleEndian);
         }
 
-        /**
-         * Reads a big-endian short.
-         *
-         * @param signed the signedness
-         * @param type   the value type
-         * @return the value
-         */
-        public int ReadShort(bool signed, ValueType type)
+        /// <summary>
+        /// Reads a negated big endian short
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadShortAdditional(bool signed = true)
         {
-            return ReadShort(signed, type, ByteOrder.BigEndian);
+            return ReadShort(signed, ValueType.Additional, ByteOrder.BigEndian);
         }
 
-        /**
-         * Reads a signed standard short.
-         *
-         * @param order the byte order
-         * @return the value
-         */
-        public int ReadShort(ByteOrder order)
+        /// <summary>
+        /// Reads a negated big endian short
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadShortNegated(bool signed = true)
         {
-            return ReadShort(true, ValueType.Standard, order);
+            return ReadShort(signed, ValueType.Negated, ByteOrder.BigEndian);
         }
 
-        /**
-         * Reads a standard short.
-         *
-         * @param signed the signedness
-         * @param order  the byte order
-         * @return the value
-         */
-        public int ReadShort(bool signed, ByteOrder order)
+        /// <summary>
+        /// Reads a negated big endian short
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadShortSubtrahend(bool signed = true)
         {
-            return ReadShort(signed, ValueType.Standard, order);
+            return ReadShort(signed, ValueType.Subtrahend, ByteOrder.BigEndian);
         }
 
-        /**
-         * Reads a signed short.
-         *
-         * @param type  the value type
-         * @param order the byte order
-         * @return the value
-         */
-        public int ReadShort(ValueType type, ByteOrder order)
+        /// <summary>
+        /// Reads a negated little endian short
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadShortAdditionalLittleEndian(bool signed = true)
         {
-            return ReadShort(true, type, order);
+            return ReadShort(signed, ValueType.Additional, ByteOrder.LittleEndian);
         }
 
-        /**
-         * Reads an integer.
-         *
-         * @param signed the signedness
-         * @param type   the value type
-         * @param order  the byte order
-         * @return the value
-         */
-        public long ReadInt(bool signed, ValueType type, ByteOrder order)
+        /// <summary>
+        /// Reads a negated little endian short
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadShortNegatedLittleEndian(bool signed = true)
+        {
+            return ReadShort(signed, ValueType.Negated, ByteOrder.LittleEndian);
+        }
+
+        /// <summary>
+        /// Reads a negated little endian short
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadShortSubtrahendLittleEndian(bool signed = true)
+        {
+            return ReadShort(signed, ValueType.Subtrahend, ByteOrder.LittleEndian);
+        }
+
+        /// <summary>
+        /// Reads an integer
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <param name="type">The type</param>
+        /// <param name="order">The byte order</param>
+        /// <returns>The value</returns>
+        private int ReadInt(bool signed, ValueType type, ByteOrder order)
         {
             int value = 0;
 
@@ -264,96 +267,176 @@ namespace RSPS.src.net.packet
                             ReadByte(false) << 24;
                     break;
             }
-            return signed ? value & 0xffffffffL : value;
+            return Convert.ToInt32(signed ? value & 0xffffffffL : value);
         }
 
-        /**
-         * Reads a signed standard big-endian integer.
-         *
-         * @return the value
-         */
-        public int ReadInt()
-        {
-            return (int)ReadInt(true, ValueType.Standard, ByteOrder.BigEndian);
-        }
-
-        /**
-         * Reads a standard big-endian integer.
-         *
-         * @param signed the signedness
-         * @return the value
-         */
-        public long ReadInt(bool signed)
+        /// <summary>
+        /// Reads a standard big endian integer.
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadInt(bool signed = true)
         {
             return ReadInt(signed, ValueType.Standard, ByteOrder.BigEndian);
         }
 
-        /**
-         * Reads a signed big-endian integer.
-         *
-         * @param type the value type
-         * @return the value
-         */
-        public int ReadInt(ValueType type)
+        /// <summary>
+        /// Reads a standard little endian integer.
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadIntLittleEndian(bool signed = true)
         {
-            return (int)ReadInt(true, type, ByteOrder.BigEndian);
+            return ReadInt(signed, ValueType.Standard, ByteOrder.LittleEndian);
         }
 
-        /**
-         * Reads a big-endian integer.
-         *
-         * @param signed the signedness
-         * @param type   the value type
-         * @return the value
-         */
-        public long ReadInt(bool signed, ValueType type)
+        /// <summary>
+        /// Reads a standard middle endian integer.
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadIntMiddleEndian(bool signed = true)
         {
-            return ReadInt(signed, type, ByteOrder.BigEndian);
+            return ReadInt(signed, ValueType.Standard, ByteOrder.MiddleEndian);
         }
 
-        /**
-         * Reads a signed standard integer.
-         *
-         * @param order the byte order
-         * @return the value
-         */
-        public int ReadInt(ByteOrder order)
+        /// <summary>
+        /// Reads a standard inverse middle endian integer.
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadIntInverseMiddleEndian(bool signed = true)
         {
-            return (int)ReadInt(true, ValueType.Standard, order);
+            return ReadInt(signed, ValueType.Standard, ByteOrder.InverseMiddleEndian);
         }
 
-        /**
-         * Reads a standard integer.
-         *
-         * @param signed the signedness
-         * @param order  the byte order
-         * @return the value
-         */
-        public long ReadInt(bool signed, ByteOrder order)
+        /// <summary>
+        /// Reads an additional big endian integer.
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadIntAdditional(bool signed = true)
         {
-            return ReadInt(signed, ValueType.Standard, order);
+            return ReadInt(signed, ValueType.Additional, ByteOrder.BigEndian);
         }
 
-        /**
-         * Reads a signed integer.
-         *
-         * @param type  the value type
-         * @param order the byte order
-         * @return the value
-         */
-        public int ReadInt(ValueType type, ByteOrder order)
+        /// <summary>
+        /// Reads an additional little endian integer.
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadIntAdditionalLittleEndian(bool signed = true)
         {
-            return (int)ReadInt(true, type, order);
+            return ReadInt(signed, ValueType.Additional, ByteOrder.LittleEndian);
         }
 
-        /**
-         * Reads a signed long value.
-         *
-         * @param type  the value type
-         * @param order the byte order
-         * @return the value
-         */
-        public long ReadLong(ValueType type, ByteOrder order)
+        /// <summary>
+        /// Reads a additional middle endian integer.
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadIntAdditionalMiddleEndian(bool signed = true)
+        {
+            return ReadInt(signed, ValueType.Additional, ByteOrder.MiddleEndian);
+        }
+
+        /// <summary>
+        /// Reads an additional inverse middle endian integer.
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadIntAdditionalInverseMiddleEndian(bool signed = true)
+        {
+            return ReadInt(signed, ValueType.Additional, ByteOrder.InverseMiddleEndian);
+        }
+
+        /// <summary>
+        /// Reads a negated big endian integer.
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadIntNegated(bool signed = true)
+        {
+            return ReadInt(signed, ValueType.Negated, ByteOrder.BigEndian);
+        }
+
+        /// <summary>
+        /// Reads a negated little endian integer.
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadIntNegatedLittleEndian(bool signed = true)
+        {
+            return ReadInt(signed, ValueType.Negated, ByteOrder.LittleEndian);
+        }
+
+        /// <summary>
+        /// Reads a negated middle endian integer.
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadIntNegatedMiddleEndian(bool signed = true)
+        {
+            return ReadInt(signed, ValueType.Negated, ByteOrder.MiddleEndian);
+        }
+
+        /// <summary>
+        /// Reads a negated inverse middle endian integer.
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadIntNegatedInverseMiddleEndian(bool signed = true)
+        {
+            return ReadInt(signed, ValueType.Negated, ByteOrder.InverseMiddleEndian);
+        }
+
+        /// <summary>
+        /// Reads a subtrahend big endian integer.
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadIntSubtrahend(bool signed = true)
+        {
+            return ReadInt(signed, ValueType.Subtrahend, ByteOrder.BigEndian);
+        }
+
+        /// <summary>
+        /// Reads a subtrahend little endian integer.
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadIntSubtrahendLittleEndian(bool signed = true)
+        {
+            return ReadInt(signed, ValueType.Subtrahend, ByteOrder.LittleEndian);
+        }
+
+        /// <summary>
+        /// Reads a subtrahend middle endian integer.
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadIntSubtrahendMiddleEndian(bool signed = true)
+        {
+            return ReadInt(signed, ValueType.Subtrahend, ByteOrder.MiddleEndian);
+        }
+
+        /// <summary>
+        /// Reads a subtrahend inverse middle endian integer.
+        /// </summary>
+        /// <param name="signed">Whether the value is signed</param>
+        /// <returns>The value</returns>
+        public int ReadIntSubtrahendInverseMiddleEndian(bool signed = true)
+        {
+            return ReadInt(signed, ValueType.Subtrahend, ByteOrder.InverseMiddleEndian);
+        }
+
+        /// <summary>
+        /// Reads a long
+        /// </summary>
+        /// <param name="type">The type</param>
+        /// <param name="order">The byte order</param>
+        /// <returns>The value</returns>
+        private long ReadLong(ValueType type, ByteOrder order)
         {
             long value = 0;
 
@@ -389,47 +472,78 @@ namespace RSPS.src.net.packet
             return value;
         }
 
-        /**
-         * Reads a signed standard big-endian long.
-         *
-         * @return the value
-         */
+        /// <summary>
+        /// Reads a standard big-endian long.
+        /// </summary>
+        /// <returns>The value</returns>
         public long ReadLong()
         {
             return ReadLong(ValueType.Standard, ByteOrder.BigEndian);
         }
 
-        /**
-         * Reads a signed big-endian long
-         *
-         * @param type the value type
-         * @return the value
-         */
-        public long ReadLong(ValueType type)
+        /// <summary>
+        /// Reads an additional big-endian long.
+        /// </summary>
+        /// <returns>The value</returns>
+        public long ReadLongAdditional()
         {
-            return ReadLong(type, ByteOrder.BigEndian);
+            return ReadLong(ValueType.Additional, ByteOrder.BigEndian);
         }
 
-        /**
-         * Reads a signed standard long.
-         *
-         * @param order the byte order
-         * @return the value
-         */
-        public long ReadLong(ByteOrder order)
+        /// <summary>
+        /// Reads an additional little-endian long.
+        /// </summary>
+        /// <returns>The value</returns>
+        public long ReadLongAdditionalLittleEndian()
         {
-            return ReadLong(ValueType.Standard, order);
+            return ReadLong(ValueType.Additional, ByteOrder.LittleEndian);
         }
 
-        /**
-         * Reads a RuneScape string value.
-         *
-         * @return the string
-         */
-        public String ReadString()
+        /// <summary>
+        /// Reads a negated big-endian long.
+        /// </summary>
+        /// <returns>The value</returns>
+        public long ReadLongNegated()
+        {
+            return ReadLong(ValueType.Negated, ByteOrder.BigEndian);
+        }
+
+        /// <summary>
+        /// Reads an negated little-endian long.
+        /// </summary>
+        /// <returns>The value</returns>
+        public long ReadLongNegatedLittleEndian()
+        {
+            return ReadLong(ValueType.Negated, ByteOrder.LittleEndian);
+        }
+
+        /// <summary>
+        /// Reads a subtrahend big-endian long.
+        /// </summary>
+        /// <returns>The value</returns>
+        public long ReadLongSubtrahend()
+        {
+            return ReadLong(ValueType.Subtrahend, ByteOrder.BigEndian);
+        }
+
+        /// <summary>
+        /// Reads an subtrahend little-endian long.
+        /// </summary>
+        /// <returns>The value</returns>
+        public long ReadLongSubtrahendLittleEndian()
+        {
+            return ReadLong(ValueType.Subtrahend, ByteOrder.LittleEndian);
+        }
+
+        /// <summary>
+        /// Reads a string value trailed by 10 bytes to indicate the end of the string
+        /// </summary>
+        /// <returns>The value</returns>
+        public string ReadRS2String()
         {
             byte temp;
             StringBuilder b = new();
+
             while ((temp = (byte)ReadByte()) != 10)
             {
                 b.Append((char)temp);
@@ -455,77 +569,33 @@ namespace RSPS.src.net.packet
             return value;
         }
 
-        /**
-         * Reads the amuont of bytes into the array, starting at the current
-         * position.
-         * 
-         * @param amount
-         *            the amount to read
-         * @return a buffer filled with the data
-         */
-        public byte[] ReadBytes(int amount)
-        {
-            return ReadBytes(amount, ValueType.Standard);
-        }
-
-        /**
-		 * Reads the amount of bytes into a byte array, starting at the current
-		 * position.
-		 * 
-		 * @param amount
-		 *            the amount of bytes
-		 * @param type
-		 *            the value type of each byte
-		 * @return a buffer filled with the data
-		 */
-        public byte[] ReadBytes(int amount, ValueType type)
+        /// <summary>
+        /// Reads the amuont of bytes into the array, starting at the current position
+        /// </summary>
+        /// <param name="amount">The amount of bytes to read</param>
+        /// <param name="type">The value type</param>
+        /// <returns>The read bytes</returns>
+        public byte[] ReadBytes(int amount, ValueType type = ValueType.Standard)
         {
             byte[] data = new byte[amount];
+
             for (int i = 0; i < amount; i++)
             {
-                data[i] = (byte)ReadByte(type);
+                data[i] = (byte)ReadByte(true, type);
             }
             return data;
         }
 
-        /**
-		 * Reads the amount of bytes from the buffer in reverse, starting at
-		 * current position + amount and reading in reverse until the current
-		 * position.
-		 * 
-		 * @param amount
-		 *            the amount of bytes
-		 * @param type
-		 *            the value type of each byte
-		 * @return a buffer filled with the data
-		 */
+        /// <summary>
+        /// Reads a given amount of bytes and retrieves them in reverse
+        /// </summary>
+        /// <param name="amount">The amount of bytes to read</param>
+        /// <param name="type">The value type</param>
+        /// <returns>The read bytes in reverse</returns>
         public byte[] ReadBytesReverse(int amount, ValueType type)
         {
-            byte[] data = new byte[amount];
-            int dataPosition = 0;
-
-            for (int i = Pointer + amount - 1; i >= Pointer; i--)
-            {
-                //int value = Buffer[i];
-                int value = ReadByte(type);
-                /*
-                switch (type)
-                {
-                    case ValueType.Additional:
-                        value -= 128;
-                        break;
-
-                    case ValueType.Negated:
-                        value = -value;
-                        break;
-
-                    case ValueType.Subtrahend:
-                        value = 128 - value;
-                        break;
-                }*/
-                data[dataPosition++] = (byte)value;
-            }
-            //Pointer += dataPosition;
+            byte[] data = ReadBytes(amount, type);
+            Array.Reverse(data);
             return data;
         }
 

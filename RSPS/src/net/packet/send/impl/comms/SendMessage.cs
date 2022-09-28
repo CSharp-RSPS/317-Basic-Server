@@ -38,7 +38,7 @@ namespace RSPS.src.net.packet.send.impl
 
         public void WritePayload(PacketWriter writer)
         {
-            writer.WriteString(Message);
+            writer.WriteRS2String(Message);
         }
 
     }

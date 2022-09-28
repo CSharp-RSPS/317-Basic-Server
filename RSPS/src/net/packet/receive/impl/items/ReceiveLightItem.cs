@@ -22,7 +22,7 @@ namespace RSPS.src.net.packet.receive.impl
         {
             int itemY = reader.ReadShort();
             int itemId = reader.ReadShort(false);
-            int itemX = reader.ReadShort(Packet.ByteOrder.LittleEndian);
+            int itemX = reader.ReadShortLittleEndian();
         }
 
     }

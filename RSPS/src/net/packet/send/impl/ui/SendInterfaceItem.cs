@@ -45,7 +45,7 @@ namespace RSPS.src.net.packet.send.impl
 
         public void WritePayload(PacketWriter writer)
         {
-            writer.WriteShort(InterfaceId, Packet.ByteOrder.LittleEndian);
+            writer.WriteShortLittleEndian(InterfaceId);
             writer.WriteShort(Zoom);
             writer.WriteShort(ItemId);
         }

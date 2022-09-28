@@ -60,10 +60,10 @@ namespace RSPS.src.net.packet.send.impl
 
         public void WritePayload(PacketWriter writer)
         {
-            writer.WriteByte(DaysSinceLastRecoveryChange, Packet.ValueType.Negated);
-            writer.WriteShort(UnreadMessageCount, Packet.ValueType.Additional);
+            writer.WriteByteNegated(DaysSinceLastRecoveryChange);
+            writer.WriteShortAdditional(UnreadMessageCount);
             writer.WriteByte(Member);
-            writer.WriteInt(LastLoggedIp, Packet.ByteOrder.MiddleEndian);
+            writer.WriteIntMiddleEndian(LastLoggedIp);
             writer.WriteShort(LastSuccessfulLogin);
         }
 

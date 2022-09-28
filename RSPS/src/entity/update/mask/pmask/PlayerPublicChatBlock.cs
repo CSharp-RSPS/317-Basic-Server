@@ -12,9 +12,9 @@ namespace RSPS.src.entity.update.block.pblock
     {
         public void ProcessBlock(Player player, PacketWriter writer)
         {
-            writer.WriteShort(((player.ChatMessage.Color & 0xff) << 8) + (player.ChatMessage.Effects & 0xff), Packet.ByteOrder.LittleEndian);
+            writer.WriteShortLittleEndian(((player.ChatMessage.Color & 0xff) << 8) + (player.ChatMessage.Effects & 0xff));
             writer.WriteByte((int)player.Rights);
-            writer.WriteByte(player.ChatMessage.Text.Length, Packet.ValueType.Negated);
+            writer.WriteByteNegated(player.ChatMessage.Text.Length);
             writer.WriteBytesReverse(player.ChatMessage.Text);
         }
     }

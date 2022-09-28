@@ -22,8 +22,8 @@ namespace RSPS.src.net.packet.receive.impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            int effects = reader.ReadByte(false, Packet.ValueType.Subtrahend);
-            int color = reader.ReadByte(false, Packet.ValueType.Subtrahend);
+            int effects = reader.ReadByteSubtrahend(false);
+            int color = reader.ReadByteSubtrahend(false);
             int chatLength = reader.PayloadSize - 2;
             byte[] text = reader.ReadBytesReverse(chatLength, Packet.ValueType.Additional);
             

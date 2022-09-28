@@ -20,11 +20,11 @@ namespace RSPS.src.net.packet.receive.impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            int interfaceId = reader.ReadShort(Packet.ByteOrder.LittleEndian);
-            int itemBeingUsedId = reader.ReadShort(false, Packet.ValueType.Additional);
+            int interfaceId = reader.ReadShortLittleEndian();
+            int itemBeingUsedId = reader.ReadShortAdditional(false);
             int floorItemsId = reader.ReadShort();
-            int floorItemY = reader.ReadShort(false, Packet.ValueType.Additional);
-            int itemBeingUsedSlot = reader.ReadShort(false, Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
+            int floorItemY = reader.ReadShortAdditional(false);
+            int itemBeingUsedSlot = reader.ReadShortAdditionalLittleEndian(false);
             int floorItemX = reader.ReadShort();
         }
 

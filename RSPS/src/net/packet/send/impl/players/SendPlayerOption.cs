@@ -34,9 +34,9 @@ namespace RSPS.src.net.packet.send.impl
         /// Creates a new player option packet payload builder
         /// </summary>
         /// <param name="optionIndex">The index in the option menu</param>
-        /// <param name="flag">TODO: No clue yet</param>
         /// <param name="actionText">The text to display</param>
-        public SendPlayerOption(int optionIndex, bool flag, string actionText)
+        /// <param name="flag">TODO: No clue yet</param>
+        public SendPlayerOption(int optionIndex, string actionText, bool flag = false)
         {
             OptionIndex = optionIndex;
             Flag = flag;
@@ -50,9 +50,9 @@ namespace RSPS.src.net.packet.send.impl
 
         public void WritePayload(PacketWriter writer)
         {
-            writer.WriteByte(OptionIndex, Packet.ValueType.Negated);
-            writer.WriteByte(Flag ? 1 : 0, Packet.ValueType.Additional);
-            writer.WriteString(ActionText);
+            writer.WriteByteNegated(OptionIndex);
+            writer.WriteByteAdditional(Flag ? 1 : 0);
+            writer.WriteRS2String(ActionText);
         }
 
     }

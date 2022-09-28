@@ -22,7 +22,7 @@ namespace RSPS.src.net.packet.receive.impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            string input = reader.ReadString().Trim().ToLower();
+            string input = reader.ReadRS2String().Trim().ToLower();
 
             if (string.IsNullOrEmpty(input))
             {

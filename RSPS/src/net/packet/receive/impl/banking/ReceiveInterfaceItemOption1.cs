@@ -20,9 +20,9 @@ namespace RSPS.src.net.packet.receive.impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            int interfaceId = reader.ReadShort(false, Packet.ValueType.Additional);
-            int itemSlot = reader.ReadShort(false, Packet.ValueType.Additional);
-            int itemId = reader.ReadShort(false, Packet.ValueType.Additional);
+            int interfaceId = reader.ReadShortAdditional(false);
+            int itemSlot = reader.ReadShortAdditional(false);
+            int itemId = reader.ReadShortAdditional(false);
 
             if (interfaceId < 0 || itemSlot < 0 || itemId < 0)
             {

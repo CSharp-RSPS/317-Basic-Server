@@ -19,9 +19,9 @@ namespace RSPS.src.net.packet.receive.impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            int interfaceId = reader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
-            int slot = reader.ReadShort(Packet.ValueType.Additional);
-            int itemId = reader.ReadShort(Packet.ByteOrder.LittleEndian);
+            int interfaceId = reader.ReadShortAdditionalLittleEndian();
+            int slot = reader.ReadShortAdditional();
+            int itemId = reader.ReadShortLittleEndian();
 
             switch (interfaceId)
             {

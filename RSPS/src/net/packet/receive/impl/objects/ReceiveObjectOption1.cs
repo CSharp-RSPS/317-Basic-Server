@@ -21,10 +21,10 @@ namespace RSPS.src.net.packet.receive.impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            int objectX = reader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
+            int objectX = reader.ReadShortAdditionalLittleEndian();
             int objectId = reader.ReadShort();
-            int objectY = reader.ReadShort(true, Packet.ValueType.Additional);
-            int rotation = reader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.LittleEndian);
+            int objectY = reader.ReadShortAdditional(true);
+            int rotation = reader.ReadShortAdditionalLittleEndian();
 
             Console.WriteLine(objectId + " " + objectX + " " + objectY + " " + rotation);
         }

@@ -21,13 +21,13 @@ namespace RSPS.src.net.packet.receive.impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            int interfaceId = reader.ReadShort(Packet.ValueType.Additional);
-            int objectId = reader.ReadShort(Packet.ByteOrder.LittleEndian);
-            int objectY = reader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.BigEndian);
-            int itemSlotId = reader.ReadShort(Packet.ByteOrder.BigEndian);
-            int objectX = reader.ReadShort(Packet.ValueType.Additional, Packet.ByteOrder.BigEndian);
+            int interfaceId = reader.ReadShortAdditional();
+            int objectId = reader.ReadShortLittleEndian();
+            int objectY = reader.ReadShortAdditional();
+            int itemSlotId = reader.ReadShort();
+            int objectX = reader.ReadShortAdditional();
             int itemId = reader.ReadShort();
-            int rotation = reader.ReadShort(Packet.ByteOrder.LittleEndian);
+            int rotation = reader.ReadShortLittleEndian();
 
             switch (interfaceId)
             {

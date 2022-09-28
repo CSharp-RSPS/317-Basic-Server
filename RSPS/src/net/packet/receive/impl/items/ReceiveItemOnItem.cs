@@ -21,7 +21,7 @@ namespace RSPS.src.net.packet.receive.impl
         public void ReceivePacket(Player player, PacketReader reader)
         {
             int itemTargetSlot = reader.ReadShort();
-            int itemBeingUsedSlot = reader.ReadShort(Packet.ValueType.Additional);
+            int itemBeingUsedSlot = reader.ReadShortAdditional();
         }
 
     }

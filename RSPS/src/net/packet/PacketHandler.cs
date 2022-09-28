@@ -219,7 +219,7 @@ namespace RSPS.src.net.packet
             }
             if (packetInfo.HasVariableSize)
             { // Finish the packet header in case of variables packets
-                packetWriter.FinishHeader(packetInfo.HeaderType);
+                packetWriter.FinishHeader();
             }
             // Dispatch the packet to the client
             connection.Send(packetWriter.Buffer, packetWriter.Pointer);

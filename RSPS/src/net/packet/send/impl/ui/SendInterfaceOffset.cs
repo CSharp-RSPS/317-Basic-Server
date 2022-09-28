@@ -46,8 +46,8 @@ namespace RSPS.src.net.packet.send.impl
         public void WritePayload(PacketWriter writer)
         {
             writer.WriteShort(OffsetX);
-            writer.WriteShort(OffsetY, Packet.ByteOrder.LittleEndian);
-            writer.WriteShort(InterfaceId, Packet.ByteOrder.LittleEndian);
+            writer.WriteShortLittleEndian(OffsetY);
+            writer.WriteShortLittleEndian(InterfaceId);
         }
 
     }

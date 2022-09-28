@@ -31,8 +31,7 @@ namespace RSPS.src.entity.update.block
             // First we must calculate and write the mask.
             int mask = 0x0;
 
-            //REMVOE THESE TWO
-            if (player.Flags.IsFlagged(flag.FlagType.PublicChat) && !NoPublicChat)
+            if (player.Flags.IsFlagged(flag.FlagType.PublicChat) && !noPublicChat)
             {
                 mask |= 0x80;
             }
@@ -47,7 +46,7 @@ namespace RSPS.src.entity.update.block
             if (mask >= 0x100)
             {
                 mask |= 0x40;
-                writer.WriteShort(mask, Packet.ByteOrder.LittleEndian);
+                writer.WriteShortLittleEndian(mask);
             }
             else
             {
@@ -57,7 +56,7 @@ namespace RSPS.src.entity.update.block
             //Graphics
             //Animation
             //FOrced Chat
-            if (player.Flags.IsFlagged(flag.FlagType.PublicChat) && !NoPublicChat)
+            if (player.Flags.IsFlagged(flag.FlagType.Public_Chat) && !noPublicChat)
             {
                 new PlayerPublicChatBlock().ProcessBlock(player, writer);
             }

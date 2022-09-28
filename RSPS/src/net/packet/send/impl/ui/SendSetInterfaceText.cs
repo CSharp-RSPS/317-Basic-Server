@@ -43,8 +43,8 @@ namespace RSPS.src.net.packet.send.impl
 
         public void WritePayload(PacketWriter writer)
         {
-            writer.WriteString(Text);
-            writer.WriteShort(InterfaceId, Packet.ValueType.Additional);
+            writer.WriteRS2String(Text)
+                .WriteShortAdditional(InterfaceId);
         }
 
     }

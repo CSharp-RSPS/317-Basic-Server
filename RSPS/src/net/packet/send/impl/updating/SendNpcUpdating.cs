@@ -1,5 +1,5 @@
-﻿using RSPS.src.entity.movement.Locations;
-using RSPS.src.entity.npc;
+﻿using RSPS.src.entity.Mobiles.Npcs;
+using RSPS.src.entity.movement.Locations;
 using RSPS.src.entity.player;
 using RSPS.src.Util.Annotations;
 using RSPS.src.Worlds;
@@ -52,7 +52,7 @@ namespace RSPS.src.net.packet.send.impl
 
         public void WritePayload(PacketWriter writer)
         {
-            PacketWriter stateBlock = Packet.CreatePacketWriter(1024);
+            PacketWriter stateBlock = new(1024);
 
             writer.SetAccessType(Packet.AccessType.BitAccess);
             writer.WriteBits(8, Player.LocalNpcs.Count);
@@ -175,7 +175,7 @@ namespace RSPS.src.net.packet.send.impl
             if (mask >= 0x100)
             {
                 mask |= 0x40;
-                block.WriteShort(mask, Packet.ByteOrder.LittleEndian);
+                block.WriteShortLittleEndian(mask);
             }
             else
             {

@@ -22,7 +22,7 @@ namespace RSPS.src.net.packet.receive.impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            int playerIndex = reader.ReadShort(Packet.ByteOrder.LittleEndian);
+            int playerIndex = reader.ReadShortLittleEndian();
 
             if (playerIndex < 1)
             {
