@@ -21,7 +21,8 @@ namespace RSPS.src.schedule.impl
         protected override void Perform()
         {
             Console.WriteLine("Player is walking!");
-            player.MovementHandler.ProcessMovements();
+            
+            //player.Movement.ProcessMovements();
         }
 
     }

@@ -46,10 +46,20 @@ namespace RSPS.src.entity.player
             return base.GetIndex(entity) + 1;
         }
 
+        /// <summary>
+        /// Retrieves a player by it's player index
+        /// </summary>
+        /// <param name="playerIndex">The player index</param>
+        /// <returns>The player</returns>
+        public Player? ByPlayerIndex(int playerIndex)
+        {
+            return Entities.FirstOrDefault(e => e.WorldIndex == playerIndex);
+        }
+
         public override Player Add(Player entity) {
             base.Add(entity);
 
-            entity.PlayerIndex = GetIndex(entity);
+            entity.WorldIndex = GetIndex(entity);
 
             return entity;
         }
@@ -132,7 +142,7 @@ namespace RSPS.src.entity.player
             {
                 PacketHandler.SendPacket(player, new SendMessage(string.Format("You are at {0}", player.Position.ToString())));
                 PacketHandler.SendPacket(player, new SendMessage(
-                    string.Format("Index: {0}; Flagged: {1}; Rights: {2}", player.PlayerIndex, player.Flagged, player.Rights)));
+                    string.Format("Index: {0}; Flagged: {1}; Rights: {2}", player.WorldIndex, player.Flagged, player.Rights)));
             }
             PacketHandler.SendPacket(player, new SendMessage(string.Format("Welcome to {0}.", worldDetails.Name)));
             PacketHandler.SendPacket(player, new SendMessage(string.Format("Global notice: {0}.", "blablabla")));

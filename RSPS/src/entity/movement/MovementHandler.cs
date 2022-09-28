@@ -262,13 +262,7 @@ namespace RSPS.src.entity.movement
         /// <returns>The step-away position</returns>
         public static Position? GetStepAway(Mobile mob, DirectionType direction)
         {
-            World? world = WorldHandler.ById(mob.WorldId);
-
-            if (world == null)
-            {
-                return null;
-            }
-            if (world.RegionManager.IsClipped(mob.Position, direction))
+            if (WorldHandler.World.RegionManager.IsClipped(mob.Position, direction))
             {
                 return null;
             }
@@ -323,7 +317,7 @@ namespace RSPS.src.entity.movement
         /// <param name="position">The position</param>
         public static void WalkTo(Mobile mob, Position position)
         {
-            PathFinder.FindPath(mob, position);
+            PathFinder.FindPath(WorldHandler.World.RegionManager, mob, position);
         }
 
         /// <summary>
@@ -334,7 +328,7 @@ namespace RSPS.src.entity.movement
         /// <param name="distance">The nearby distance</param>
         public static void WalkNearby(Mobile mob, Position position, int distance = 1)
         {
-            PathFinder.FindPath(mob, position, true, distance, distance);
+            PathFinder.FindPath(WorldHandler.World.RegionManager, mob, position, true, distance, distance);
         }
 
         /// <summary>

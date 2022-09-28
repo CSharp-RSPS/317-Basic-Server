@@ -17,18 +17,13 @@ namespace RSPS.src.entity.Mobiles
     public abstract class Mobile : Entity
     {
 
-        /// <summary>
-        /// The world identifier the mobile is part of
-        /// </summary>
-        public int WorldId { get; private set; }
-
         public bool NeedsPlacement = false;
 
         public bool ResetMovementQueue = false;
 
-        public int WorldIndex = -1;
+        public int WorldIndex { get; set; } = -1;
 
-        public EntityFlags Flags = new EntityFlags();
+        public EntityFlags Flags = new();
 
         /// <summary>
         /// Holds the NPC's nearby the mobile
@@ -74,10 +69,9 @@ namespace RSPS.src.entity.Mobiles
         /// <param name="worldId">The world identifier the mobile is part of</param>
         /// <param name="position">The position of the mobile</param>
         /// <param name="movement">The movement handler of the mobile</param>
-        public Mobile(int worldId, Position position, MobileMovement movement) 
+        public Mobile(Position position, MobileMovement movement) 
             : base(position)
         {
-            WorldId = worldId;
             LastPosition = position;
             Movement = movement;
             LocalNpcs = new();

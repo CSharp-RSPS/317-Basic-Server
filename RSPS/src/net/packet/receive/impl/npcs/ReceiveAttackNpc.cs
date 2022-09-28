@@ -28,13 +28,7 @@ namespace RSPS.src.net.packet.receive.impl
             }*/
             int npcIndex = reader.ReadShortAdditional(false);
 
-            World? world = WorldHandler.ResolveWorld(player);
-
-            if (world == null)
-            {
-                return;
-            }
-            Npc? npc = world.Npcs.ByIndex(npcIndex);
+            Npc? npc = WorldHandler.World.Npcs.ByIndex(npcIndex);
 
             if (npc == null)
             {

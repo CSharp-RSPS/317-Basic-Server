@@ -3,6 +3,7 @@ using RSPS.src.entity.player;
 using RSPS.src.entity.update.block;
 using RSPS.src.net.Connections;
 using RSPS.src.net.packet;
+using RSPS.src.Worlds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,13 +21,13 @@ namespace RSPS.src.entity.update.player.local
         public void Process(Player player, PacketWriter writer)
         {
             int addedPlayers = 0;
-            for (int i = 0; i < Players.Count; i++)
+            for (int i = 0; i < WorldHandler.World.Players.Entities.Count; i++)
             {
                 if (player.LocalPlayers.Count >= REGION_PLAYERS_LIMIT || addedPlayers >= NEW_PLAYERS_PER_CYCLE)
                 {
                     break;
                 }
-                Player other = Players[i];
+                Player other = WorldHandler.World.Players.Entities[i];
                 if (other == null || other == player || other.PlayerConnection.ConnectionState != ConnectionState.Authenticated)//so we dont add ourself to the list
                 {
                     continue;
@@ -47,7 +48,7 @@ namespace RSPS.src.entity.update.player.local
 
         private void AddPlayer(PacketWriter writer, Player player, Player otherPlayer)
         {
-            writer.WriteBits(11, otherPlayer.PlayerIndex);//Server slot
+            writer.WriteBits(11, otherPlayer.WorldIndex);//Server slot
             writer.WriteBit(true);// Yes an update is required
             writer.WriteBit(true);// Discard walking queue
 

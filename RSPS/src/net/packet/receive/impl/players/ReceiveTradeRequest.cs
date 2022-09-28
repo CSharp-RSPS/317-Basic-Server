@@ -23,13 +23,7 @@ namespace RSPS.src.net.packet.receive.impl
         {
             int playerIndex = reader.ReadShortLittleEndian();
 
-            World? world = WorldHandler.ResolveWorld(player);
-
-            if (world == null)
-            {
-                return;
-            }
-            Player? other = world.Players.ByWorldIndex(playerIndex);
+            Player? other = WorldHandler.World.Players.ByPlayerIndex(playerIndex);
 
             if (other == null || !other.Position.IsWithinDistance(player.Position))
             {

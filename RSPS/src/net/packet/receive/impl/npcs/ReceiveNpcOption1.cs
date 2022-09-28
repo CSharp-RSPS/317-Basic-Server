@@ -24,13 +24,7 @@ namespace RSPS.src.net.packet.receive
         {
             int npcIndex = reader.ReadShortLittleEndian();
 
-            World? world = WorldHandler.ResolveWorld(player);
-
-            if (world == null)
-            {
-                return;
-            }
-            Npc? npc = world.Npcs.ByIndex(npcIndex);
+            Npc? npc = WorldHandler.World.Npcs.ByIndex(npcIndex);
 
             if (npc == null)
             {

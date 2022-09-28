@@ -30,46 +30,22 @@ namespace RSPS.src
         /// </summary>
         public static void Main()
         {
-            if (Debug)
+            if (!WorldHandler.ValidateWorlds())
             {
-                World? debugWorld = WorldHandler.ById(WorldHandler.DevevelopmentWorldId);
-
-                if (debugWorld == null)
-                {
-                    Console.Error.WriteLine("Debug world {0} not registered", WorldHandler.DevevelopmentWorldId);
-                    return;
-                }
-                if (!debugWorld.Initialize())
-                {
-                    Console.Error.WriteLine("Failed to initialize world {0}:{1}", debugWorld.Details.Id, debugWorld.Details.Name);
-                    return;
-                }
-                debugWorld.Start().Wait();
+                Console.Error.WriteLine("Worlds collection invalid");
+                return;
             }
-            else
+            if (WorldHandler.World == null)
             {
-                if (!WorldHandler.ValidateWorlds())
-                {
-                    Console.Error.WriteLine("Worlds collection invalid");
-                    return;
-                }
-                foreach (World world in WorldHandler.Worlds)
-                {
-                    if (!world.Initialize())
-                    {
-                        Console.Error.WriteLine("Failed to initialize world {0}", world.Details.Id);
-                        continue;
-                    }
-                }
-                List<Task> worldTasks = new();
-
-                foreach (World world in WorldHandler.Worlds.Where(w => w.Initialized))
-                {
-                    worldTasks.Add(world.Start());
-                }
-                Task.WaitAll(worldTasks.ToArray());
+                Console.Error.WriteLine("No world set to run");
+                return;
             }
-            Console.Error.WriteLine("Application exited, no worlds were being handled anymore.");
+            if (!WorldHandler.World.Initialize())
+            {
+                Console.Error.WriteLine("Failed to initialize world {0}:{1}", WorldHandler.World.Details.Id, WorldHandler.World.Details.Name);
+                return;
+            }
+            WorldHandler.World.Start().Wait();
         }
 
     }

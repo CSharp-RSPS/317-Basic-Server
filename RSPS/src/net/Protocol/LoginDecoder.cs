@@ -134,34 +134,28 @@ namespace RSPS.src.net.Codec
             connection.NetworkDecryptor = decryptor;
             connection.NetworkEncryptor = encryptor;
 
-            World? world = WorldHandler.ResolveWorld(connection);
-
-            if (world == null)
-            {
-                SendLoginResponse(connection, AuthenticationResponse.InvalidLoginServer);
-                return false;
-            }
-            if (!world.Online)
+            if (!WorldHandler.World.Online)
             {
                 SendLoginResponse(connection, AuthenticationResponse.LoginServerOffline);
                 return false;
             }
-            if (world.IsFull)
+            if (WorldHandler.World.IsFull)
             {
                 SendLoginResponse(connection, AuthenticationResponse.WorldFull);
                 return false;
             }
-            if (WorldHandler.FindPlayerByUsername(username) != null)
+            if (WorldHandler.World.Players.ByUsername(username) != null)
             {
                 SendLoginResponse(connection, AuthenticationResponse.AlreadyLoggedIn);
                 return false;
             }
-            if (world.ConnectionListener.Connections.Where(c => c.IpAddress == connection.IpAddress).ToList().Count > Constants.MaxSimultaneousConnections)
+            if (WorldHandler.World.ConnectionListener.Connections
+                .Where(c => c.IpAddress == connection.IpAddress).ToList().Count > Constants.MaxSimultaneousConnections)
             {
                 SendLoginResponse(connection, AuthenticationResponse.LoginLimitExceeded);
                 return false;
             }
-            if (world.HasUpdatePending)
+            if (WorldHandler.World.HasUpdatePending)
             {
                 SendLoginResponse(connection, AuthenticationResponse.ServerBeingUpdated);
                 return false;
@@ -177,7 +171,7 @@ namespace RSPS.src.net.Codec
 
             PlayerManager.InitializeSession(player);
             PlayerManager.Login(player, connection.WorldDetails);
-            world.Players.PendingLogin.Enqueue(player);
+            WorldHandler.World.Players.PendingLogin.Enqueue(player);
 
             connection.ConnectionState = ConnectionState.Authenticated;
 

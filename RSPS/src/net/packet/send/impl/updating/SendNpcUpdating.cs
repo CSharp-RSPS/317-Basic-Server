@@ -59,7 +59,7 @@ namespace RSPS.src.net.packet.send.impl
 
             foreach (Npc npc in Player.LocalNpcs)
             {
-                if (npc.Position.IsWithinDistance(Player.Position) && npc.Visible)
+                if (npc.Position.IsWithinDistance(Player.Position) && npc.NpcSpawn.Spawned)
                 {
                     UpdateNpcMovement(writer, npc);
 
@@ -80,7 +80,7 @@ namespace RSPS.src.net.packet.send.impl
             for (int i = 0; i < Npcs.Count; i++)
             {
                 Npc npc = (Npc)Npcs[i];
-                if (npc == null || Player.LocalNpcs.Contains(npc) || !npc.Visible)
+                if (npc == null || Player.LocalNpcs.Contains(npc) || !npc.NpcSpawn.Spawned)
                 {
                     continue;
                 }
@@ -118,7 +118,7 @@ namespace RSPS.src.net.packet.send.impl
 		 */
         private static void addNpc(PacketWriter outPacket, Player player, Npc npc)
         {
-            outPacket.WriteBits(14, npc.Index);
+            outPacket.WriteBits(14, npc.WorldIndex);
             Position delta = Position.Delta(player.Position, npc.Position);
             outPacket.WriteBits(5, delta.Y);
             outPacket.WriteBits(5, delta.X);
