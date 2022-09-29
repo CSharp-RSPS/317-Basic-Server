@@ -122,57 +122,6 @@ namespace RSPS.src.entity.player
             }
             int energyUseDamper = 67 + ((67 * (int)Math.Round(Math.Clamp(playerMovement.Weight, 0, 64))) / 64);
             playerMovement.Energy = Math.Clamp(playerMovement.Energy - energyUseDamper, 0, 10000);
-
-            // TODO: Use agility level
-            int agLvl = 100;
-            double rpm = 0; // Recovery per minute
-
-            if (agLvl < 10)
-            {
-                rpm = 8;
-            }
-            else if (agLvl < 20)
-            {
-                rpm = 9.2;
-            }
-            else if (agLvl < 30)
-            {
-                rpm = 10.7;
-            }
-            else if (agLvl < 40)
-            {
-                rpm = 12.2;
-            }
-            else if (agLvl < 50)
-            {
-                rpm = 13.8;
-            }
-            else if (agLvl < 60)
-            {
-                rpm = 15;
-            }
-            else if (agLvl < 70)
-            {
-                rpm = 17;
-            }
-            else if (agLvl < 80)
-            {
-                rpm = 19;
-            }
-            else if (agLvl < 90)
-            {
-                rpm = 20.8;
-            }
-            else if (agLvl < 99)
-            {
-                rpm = 22.7;
-            }
-            else
-            {
-                rpm = 24.5;
-            }
-            double rps = rpm / 10; // Recovery per second
-
             PacketHandler.SendPacket(player, new SendRunEnergy(playerMovement.Energy));
         }
 
@@ -188,7 +137,7 @@ namespace RSPS.src.entity.player
             {
                 return;
             }
-            int energyRecovery = (0 / 6) + 8;
+            int energyRecovery = (0 / 6) + 8;//agilitylevel - replace the zero
             playerMovement.Energy = Math.Clamp(playerMovement.Energy + energyRecovery, 0, 10000);
 
             PacketHandler.SendPacket(player, new SendRunEnergy(playerMovement.Energy));
