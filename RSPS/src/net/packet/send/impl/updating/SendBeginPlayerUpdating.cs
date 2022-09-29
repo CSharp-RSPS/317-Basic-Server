@@ -46,16 +46,7 @@ namespace RSPS.src.net.packet.send.impl
         {
             if (Player.PlayerMovement.MapRegionChanged)
             {
-                PacketWriter w = new(5);
-                w.WriteHeader(PacketHeaderType.Fixed, Player.PlayerConnection.NetworkEncryptor, 73);
-                w.WriteShortAdditional(Player.Position.RegionX + 6);
-                w.WriteShort(Player.Position.RegionY + 6);
-                Debug.WriteLine(w.Pointer);
-                Player.PlayerConnection.Send(w.Buffer);
-
-                Player.LastPosition = Player.Position.Copy();
-
-              //  PacketHandler.SendPacket(Player, new SendLoadMapRegion(Player));
+                PacketHandler.SendPacket(Player, new SendLoadMapRegion(Player));
             }
             PacketWriter stateBlock = new(1024); //768
 
