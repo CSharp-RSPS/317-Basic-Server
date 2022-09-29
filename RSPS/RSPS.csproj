@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="src\entity\player\appearance\**" />
-    <EmbeddedResource Remove="src\entity\player\appearance\**" />
-    <None Remove="src\entity\player\appearance\**" />
+    <Compile Remove="src\entity\Mobiles\Players\appearance\**" />
+    <EmbeddedResource Remove="src\entity\Mobiles\Players\appearance\**" />
+    <None Remove="src\entity\Mobiles\Players\appearance\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,9 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="src\entity\npc\" />
-    <Folder Include="src\entity\player\Items\" />
-    <Folder Include="src\entity\update\movement\npc\" />
+    <Folder Include="src\entity\Mobiles\Players\Items\" />
   </ItemGroup>
   
 

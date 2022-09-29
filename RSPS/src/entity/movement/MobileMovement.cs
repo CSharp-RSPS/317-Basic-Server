@@ -70,7 +70,7 @@ namespace RSPS.src.entity.movement
             writer.WriteBits(3, mob.Movement.WalkingDirection.GetDirectionValue());
 
             if (mob.Movement.RunningDirection != DirectionType.None)
-            { // Running
+            { // Running, should only happen for players
                 writer.WriteBits(3, mob.Movement.RunningDirection.GetDirectionValue());
             }
             //writer.WriteBits(1, mob.Flags.IsUpdateNeeded() ? 1 : 0);

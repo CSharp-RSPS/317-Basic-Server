@@ -1,7 +1,7 @@
 ﻿using RSPS.src.entity.Mobiles;
 using RSPS.src.entity.movement.Locations;
 using RSPS.src.entity.movement.Locations.Regions;
-using RSPS.src.entity.player;
+using RSPS.src.entity.Mobiles.Players;
 using RSPS.src.net.packet;
 using RSPS.src.net.packet.send;
 using RSPS.src.net.packet.send.impl;

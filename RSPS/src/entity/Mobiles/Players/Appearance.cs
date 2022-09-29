@@ -1,4 +1,4 @@
-﻿namespace RSPS.src.entity.player
+﻿namespace RSPS.src.entity.Mobiles.Players
 {
     public struct Appearance
     {

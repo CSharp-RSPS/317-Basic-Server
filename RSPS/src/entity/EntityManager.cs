@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,10 @@ namespace RSPS.src.entity
         /// </summary>
         public List<T> Entities = new();
 
+
+        public abstract void PrepareTick(T entity);
+
+        public abstract void FinishTick(T entity);
 
         /// <summary>
         /// Retrieves the index of an entity within the entities collection
@@ -77,5 +82,6 @@ namespace RSPS.src.entity
 
             Entities.Clear();
         }
+
     }
 }

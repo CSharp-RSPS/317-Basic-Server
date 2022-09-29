@@ -1,6 +1,6 @@
 ﻿using RSPS.src.entity.Mobiles.Npcs;
 using RSPS.src.entity.movement.Locations;
-using RSPS.src.entity.player;
+using RSPS.src.entity.Mobiles.Players;
 using RSPS.src.Util.Annotations;
 using RSPS.src.Worlds;
 using System;
@@ -28,40 +28,36 @@ namespace RSPS.src.net.packet.send.impl
         /// </summary>
         public Player Player { get; private set; }
 
-        /// <summary>
-        /// The npc's in the world at the time of update
-        /// </summary>
-        public List<Npc> Npcs { get; private set; }
-
 
         /// <summary>
         /// Creates a new npc updating payload writer
         /// </summary>
         /// <param name="player">The player we're updating npc's for</param>
         /// <param name="npcs">The npc's in the world at the time of update</param>
-        public SendNpcUpdating(Player player, List<Npc> npcs)
+        public SendNpcUpdating(Player player)
         {
             Player = player;
-            Npcs = npcs;
         }
 
         public int GetPayloadSize()
         {
-            return 2048;
+            return 2048; // 1024
         }
 
         public void WritePayload(PacketWriter writer)
         {
-            PacketWriter stateBlock = new(1024);
+            PacketWriter stateBlock = new(1024); // 726
 
             writer.SetAccessType(Packet.AccessType.BitAccess);
             writer.WriteBits(8, Player.LocalNpcs.Count);
 
-            foreach (Npc npc in Player.LocalNpcs)
+            foreach (Npc npc in Player.LocalNpcs.ToArray())
             {
-                if (npc.Position.IsWithinDistance(Player.Position) && npc.NpcSpawn.Spawned)
+                if (npc.Position.IsWithinDistance(Player.Position) 
+                    && !npc.Movement.Teleported
+                    && npc.NpcSpawn.Spawned)
                 {
-                    UpdateNpcMovement(writer, npc);
+                    npc.Movement.Update(npc, writer);
 
                     if (npc.UpdateRequired)
                     {
@@ -71,27 +67,37 @@ namespace RSPS.src.net.packet.send.impl
                 else
                 {
                     // Remove the NPC from the local list.
-                    writer.WriteBit(true);
+                    //writer.WriteBit(true);
+                    writer.WriteBits(1, 1);
                     writer.WriteBits(2, 3);
+
                     Player.LocalNpcs.Remove(npc);
+                    npc.LocalPlayers.Remove(Player);
                 }
             }
-            // Update the local NPC list itself.
-            for (int i = 0; i < Npcs.Count; i++)
+            foreach (Npc npc in WorldHandler.World.Npcs.Entities)
             {
-                Npc npc = (Npc)Npcs[i];
-                if (npc == null || Player.LocalNpcs.Contains(npc) || !npc.NpcSpawn.Spawned)
+                if (npc == null || !npc.NpcSpawn.Spawned 
+                    || Player.LocalNpcs.Contains(npc)
+                    || !npc.Position.IsWithinDistance(Player.Position))
                 {
                     continue;
                 }
-                if (npc.Position.IsWithinDistance(Player.Position))
+                Player.LocalNpcs.Add(npc);
+                npc.LocalPlayers.Add(Player);
+
+                // Add the NPC for the player
+                writer.WriteBits(14, npc.WorldIndex);
+                Position delta = Position.Delta(Player.Position, npc.Position);
+                writer.WriteBits(5, delta.Y);
+                writer.WriteBits(5, delta.X);
+                writer.WriteBits(1, 1); // writer.WriteBit(npc.HasUpdates);
+                writer.WriteBits(12, npc.Id); // 14
+                writer.WriteBits(1, npc.UpdateRequired ? 1 : 0); //TODO change to new updating
+
+                if (npc.UpdateRequired)
                 {
-                    Player.LocalNpcs.Add(npc);
-                    addNpc(writer, Player, npc);
-                    if (npc.UpdateRequired)
-                    {
-                        updateState(stateBlock, npc);
-                    }
+                    updateState(stateBlock, npc);
                 }
             }
             // Append the update block to the packet if need be.

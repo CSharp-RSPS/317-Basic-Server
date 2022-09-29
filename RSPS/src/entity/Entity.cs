@@ -1,6 +1,6 @@
 ﻿using RSPS.src.entity.Mobiles;
 using RSPS.src.entity.movement.Locations;
-using RSPS.src.entity.player;
+using RSPS.src.entity.Mobiles.Players;
 using RSPS.src.entity.update.flag;
 using System;
 using System.Collections.Generic;

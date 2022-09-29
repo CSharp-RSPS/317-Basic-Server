@@ -1,5 +1,4 @@
 ﻿using RSPS.src.entity.movement;
-using RSPS.src.entity.player.skill;
 using RSPS.src.net;
 using RSPS.src.net.packet.send.impl;
 using RSPS.src.net.packet;
@@ -12,13 +11,14 @@ using System.Threading.Tasks;
 using RSPS.src.net.Connections;
 using RSPS.src.net.packet.send;
 using RSPS.src.entity.update.flag;
+using RSPS.src.entity.Mobiles.Players.Skills;
 
-namespace RSPS.src.entity.player
+namespace RSPS.src.entity.Mobiles.Players
 {
     /// <summary>
     /// Manages players in a game world
     /// </summary>
-    public sealed class PlayerManager : EntityManager<Player>
+    public sealed class PlayerManager : MobileManager<Player>
     {
 
         private static readonly int[] SidebarInterfaceIds = {
@@ -41,6 +41,30 @@ namespace RSPS.src.entity.player
         /// </summary>
         public Queue<Player> PendingRemoval = new();
 
+
+        public override void PrepareTick(Player player)
+        {
+            base.PrepareTick(player);
+        }
+
+        /// <summary>
+        /// Handles a game tick for a player
+        /// </summary>
+        /// <param name="player">The player</param>
+        public void OnTick(Player player)
+        {
+            PacketHandler.SendPacket(player, new SendBeginPlayerUpdating(player, Entities));
+            PacketHandler.SendPacket(player, new SendNpcUpdating(player));
+        }
+
+        public override void FinishTick(Player player)
+        {
+            player.PlayerMovement.MapRegionChanged = false;
+
+            base.FinishTick(player);
+            
+            //TODO: if in combat and pending logout, when out of combat => logout
+        }
 
         public override int GetIndex(Player entity)
         {

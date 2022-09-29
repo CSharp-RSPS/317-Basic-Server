@@ -1,4 +1,4 @@
-﻿using RSPS.src.entity.player;
+﻿using RSPS.src.entity.Mobiles.Players;
 using RSPS.src.net.Connections;
 using RSPS.src.net.packet.receive;
 using RSPS.src.net.packet.receive.impl;

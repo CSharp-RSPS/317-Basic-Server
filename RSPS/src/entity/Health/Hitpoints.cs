@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSPS.src.entity
+namespace RSPS.src.entity.Health
 {
     /// <summary>
-    /// Represents constitution for an entity
+    /// Represents hitpoints for an entity
     /// </summary>
-    public sealed class Constitution
+    public sealed class Hitpoints
     {
 
         /// <summary>

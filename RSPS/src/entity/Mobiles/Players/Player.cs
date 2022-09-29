@@ -1,8 +1,9 @@
-﻿using RSPS.src.entity.Mobiles;
+﻿using RSPS.src.entity.Health;
+using RSPS.src.entity.Mobiles;
 using RSPS.src.entity.Mobiles.Npcs;
+using RSPS.src.entity.Mobiles.Players.Skills;
 using RSPS.src.entity.movement;
 using RSPS.src.entity.movement.Locations;
-using RSPS.src.entity.player.skill;
 using RSPS.src.game.comms.chat;
 using RSPS.src.game.Items.Containers;
 using RSPS.src.net.Codec;
@@ -13,12 +14,12 @@ using RSPS.src.schedule;
 using RSPS.src.schedule.impl;
 using System.Diagnostics;
 
-namespace RSPS.src.entity.player
+namespace RSPS.src.entity.Mobiles.Players
 {
     /// <summary>
     /// Represents a human playable character
     /// </summary>
-    public class Player : Mobile
+    public class Player : Mobile, ICombatable
     {
 
         /// <summary>
@@ -75,15 +76,17 @@ namespace RSPS.src.entity.player
 
         public List<long> Ignores { get; private set; } = new();
         public List<long> Friends { get; private set; } = new();
-
+       
 
         public List<Skill> Skills = new List<Skill>();
 
         public Appearance Appearance = new Appearance();
 
+        public dynamic Combat { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public dynamic FightType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool AutoRetialate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Hitpoints Hitpoints { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public int PrimaryDirection = -1;
-        public int SecondaryDirection = -1;
         
         public bool UpdateRequired = false;
         public bool AppearanceUpdateRequired = false;
@@ -128,8 +131,6 @@ namespace RSPS.src.entity.player
             ChatUpdateRequired = false;
             ResetMovementQueue = false;
             NeedsPlacement = false;
-            PrimaryDirection = -1;
-            SecondaryDirection = -1;
         }
 
         public Skill GetSkill(SkillType skillType)

@@ -1,6 +1,5 @@
 ﻿using RSPS.src.entity.movement.Locations;
-using RSPS.src.entity.player;
-using RSPS.src.entity.player.skill;
+using RSPS.src.entity.Mobiles.Players;
 using RSPS.src.entity.update;
 using RSPS.src.net.Connections;
 using RSPS.src.Util.Annotations;
@@ -11,6 +10,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using RSPS.src.entity.Mobiles.Players.Skills;
 
 namespace RSPS.src.net.packet.send.impl
 {
@@ -23,9 +23,9 @@ namespace RSPS.src.net.packet.send.impl
 
         private static readonly int MAX_APPEARANCE_BUFFER_SIZE = 58;//full size of buffer per player
 
-        private static readonly int REGION_PLAYERS_LIMIT = 255;
+        private static readonly int RegionPlayersLimit = 255;
 
-        private static readonly int NEW_PLAYERS_PER_CYCLE = 45;
+        private static readonly int NewPlayersPerCycle = 45;
 
         /// <summary>
         /// The player we're updating for
@@ -51,17 +51,20 @@ namespace RSPS.src.net.packet.send.impl
 
         public int GetPayloadSize()
         {
-            return 2048;
+            return 2048; //1024
         }
 
         public void WritePayload(PacketWriter writer)
         {
-            PacketWriter stateBlock = new(1024);
+            if (Player.PlayerMovement.MapRegionChanged)
+            {
+                PacketHandler.SendPacket(Player, PacketDefinition.LoadMapRegion);
+            }
+            PacketWriter stateBlock = new(1024); //768
 
             writer.SetAccessType(Packet.AccessType.BitAccess);
-            UpdateLocalPlayerMovement(Player, writer);
 
-            //new PlayerUpdate(Player, stateBlock).Process(Player, writer, stateBlock);
+            Player.PlayerMovement.UpdatePersonal(Player, writer);
 
             if (Player.UpdateRequired)
             {
@@ -73,9 +76,11 @@ namespace RSPS.src.net.packet.send.impl
             // ====== Processes all player changes in the region ========
             foreach (Player other in Player.LocalPlayers.ToArray())
             {
-                if (other.Position.IsWithinDistance(Player.Position) && other.PlayerConnection.ConnectionState == ConnectionState.Authenticated && !other.NeedsPlacement)
+                if (other.Position.IsWithinDistance(Player.Position) 
+                    && other.PlayerConnection.ConnectionState == ConnectionState.Authenticated 
+                    && !other.Movement.Teleported)
                 {
-                    UpdateOtherPlayerMovement(other, writer);
+                    Player.Movement.Update(other, writer);
 
                     if (other.UpdateRequired)
                     {
@@ -84,41 +89,43 @@ namespace RSPS.src.net.packet.send.impl
                 }
                 else
                 {
-                    writer.WriteBit(true);
+                    writer.WriteBits(1, 1);
                     writer.WriteBits(2, 3);
                     Player.LocalPlayers.Remove(other);
                 }
             }
-            //Update the local players list.
             int addedLocalPlayers = 0;
-            for (int i = 0; i < Players.Count; i++)
+
+            foreach (Player other in WorldHandler.World.Players.Entities)
             {
-                if (Player.LocalPlayers.Count >= REGION_PLAYERS_LIMIT)
+                if (Player.LocalPlayers.Count >= RegionPlayersLimit
+                    || addedLocalPlayers >= NewPlayersPerCycle)
                 {
                     break;
                 }
-                else if (addedLocalPlayers >= NEW_PLAYERS_PER_CYCLE)
-                {
-                    break;
-                }
-                //Console.WriteLine("Trying to update?!");
-                Player other = Players[i];
-                if (other == null || other == Player || other.PlayerConnection.ConnectionState != ConnectionState.Authenticated)//so we dont add ourself to the list
+                if (other == null || other == Player || Player.LocalPlayers.Contains(other)
+                    || other.PlayerConnection.ConnectionState != ConnectionState.Authenticated)
                 {
                     //Console.WriteLine("Getting stopped here?");
                     continue;
                 }
-
-                //Console.WriteLine("Trying to update?! 3");
-                if (!Player.LocalPlayers.Contains(other) && other.Position.IsWithinDistance(Player.Position))
+                if (other.Position.IsWithinDistance(Player.Position))
                 {
                     Player.LocalPlayers.Add(other);
                     addedLocalPlayers++;
-                    AddPlayer(writer, Player, other);
+                    // Add the other player for the player
+                    writer.WriteBits(11, other.WorldIndex); // Server slot.
+                    writer.WriteBits(1, 1); // Yes, an update is required.
+                    writer.WriteBits(1, 1); // Discard walking queue(?)
+                    // Write the relative position.
+                    Position delta = Position.Delta(Player.Position, other.Position);
+                    writer.WriteBits(5, delta.Y);
+                    writer.WriteBits(5, delta.X);
+
                     UpdateState(other, stateBlock, true, false);
                 }
             }
-            //// Append the attributes block to the main packet.
+            // Append the attributes block to the main packet.
             if (stateBlock.Pointer > 0)
             {
                 writer.WriteBits(11, 2047);
@@ -128,45 +135,7 @@ namespace RSPS.src.net.packet.send.impl
             else
             {
                 writer.SetAccessType(Packet.AccessType.ByteAccess);
-                //outPacket.FinishBitAccess();
             }
-        }
-
-        /**
-         * Adds a player to the local player list of another player.
-         *
-         * @param out    the packet to write to
-         * @param player the host player
-         * @param other  the player being added
-         */
-        private static void AddPlayer(PacketWriter outPacket, Player player, Player other)
-        {
-            outPacket.WriteBits(11, other.WorldIndex); // Server slot.
-            outPacket.WriteBit(true); // Yes, an update is required.
-            outPacket.WriteBit(true); // Discard walking queue(?)
-
-            // Write the relative position.
-            Position delta = Position.Delta(player.Position, other.Position);
-            outPacket.WriteBits(5, delta.Y);
-            outPacket.WriteBits(5, delta.X);
-        }
-
-        /**
-         * Updates the movement of a player for another player (does not make use of sector 2, 3).
-         */
-        private static void UpdateOtherPlayerMovement(Player player, PacketWriter outPacket)
-        {
-            bool updateRequired = player.UpdateRequired;
-            int pDir = player.PrimaryDirection;//primary direction
-            int sDir = player.SecondaryDirection;//secondary direction
-            UpdateMovement(outPacket, pDir, sDir, updateRequired);
-
-            //    foreach (byte b in outPacket.Payload.ToArray())
-            //    {
-            //        Console.WriteLine(b);
-            //    }
-            //    Environment.Exit(0);
-
         }
 
         /**
@@ -441,139 +410,6 @@ namespace RSPS.src.net.packet.send.impl
 
             outPacket.WriteBytes(block.Buffer, block.Pointer);
             //Console.WriteLine("Buffer position after appearance: " + outPacket.Payload.Position);
-        }
-
-        /**
-         * Updates movement for this local player. The difference between this
-         * method and the other player method is that this will make use of sector
-         * 2,3 to place the player in a specific position while sector 2,3 is not
-         * present in updating of other players (it simply flags local list removal
-         * instead).
-         */
-        private static void UpdateLocalPlayerMovement(Player player, PacketWriter outPacket)
-        {
-            bool updateRequired = player.UpdateRequired;
-
-            if (player.NeedsPlacement) // Do they need placement?
-            {
-                outPacket.WriteBit(true); // Yes, there is an update.
-
-                int posX = player.Position.GetLocalX(player.CurrentRegion);
-                int posY = player.Position.GetLocalY(player.CurrentRegion);
-                // Console.WriteLine("Appending placement for: " + player.Username);//doesn't work for second player
-                AppendPlacement(outPacket, posX, posY, player.Position.Z, player.ResetMovementQueue, updateRequired);
-            }
-            else
-            { // No placement update, check for movement.
-                int pDir = player.PrimaryDirection;
-                int sDir = player.SecondaryDirection;
-                UpdateMovement(outPacket, pDir, sDir, updateRequired);
-            }
-        }
-
-        /**
-         * WORKS
-         **/
-        private static void UpdateMovement(PacketWriter outPacket, int pDir, int sDir, bool updateRequired)
-        {
-            if (pDir != -1)//// If they moved.
-            {
-                outPacket.WriteBit(true); // Yes, there is an update.
-
-                if (sDir != -1) // If they ran.
-                {
-                    AppendRun(outPacket, pDir, sDir, updateRequired);
-                }
-                else
-                { // Movement but no running - they walked.
-                    AppendWalk(outPacket, pDir, updateRequired);
-                }
-            }
-            else//// No movement.
-            {
-                if (updateRequired) // Does the state need to be updated?
-                {
-                    outPacket.WriteBit(true); // Yes, there is an update.
-                    AppendStand(outPacket);
-                }
-                else
-                { // No update whatsoever.
-                    outPacket.WriteBit(false);
-                }
-            }
-        }
-
-
-        /**
-         * Appends the player placement version of the movement section of the update packet (sector 2,3).
-         * Note that by others this was previously called the "teleport update".
-         *
-         * @param localX               the local X coordinate
-         * @param localY               the local Y coordinate
-         * @param z                    the Z coordinate
-         * @param discardMovementQueue whether or not the client should discard the movement queue
-         * @param attributesUpdate     whether or not a plater attributes update is required
-         */
-        private static void AppendPlacement(PacketWriter outPacket, int localX, int localY, int z,
-                                            bool discardMovementQueue, bool attributesUpdate)
-        {
-            outPacket.WriteBits(2, 3); // 3 - placement.
-            // Append the actual sector.
-            outPacket.WriteBits(2, z);
-            outPacket.WriteBit(discardMovementQueue);
-            outPacket.WriteBit(attributesUpdate);
-            //Console.WriteLine("LocalY: {0}", localY);
-            outPacket.WriteBits(7, localY);
-            outPacket.WriteBits(7, localX);
-            //foreach(var b in outPacket.Payload.ToArray())
-            //{
-            //    Console.WriteLine(b);
-            //}
-            //System.Environment.Exit(0);
-        }
-
-        /**
-         * Appends the walk version of the movement section of the update packet
-         * (sector 2,1).
-         *
-         * @param out              the buffer to append to
-         * @param direction        the walking direction
-         * @param attributesUpdate whether or not a player attributes update is required
-         */
-        private static void AppendWalk(PacketWriter outPacket, int direction, bool attributesUpdate)
-        {
-            outPacket.WriteBits(2, 1); // 1 - walking.
-
-            // Append the actual sector.
-            outPacket.WriteBits(3, direction);
-            outPacket.WriteBit(attributesUpdate);
-        }
-
-        /**
-         * Appends the walk version of the movement section of the update packet (sector 2,2).
-         *
-         * @param direction        the walking direction
-         * @param direction2       the running direction
-         * @param attributesUpdate whether or not a player attributes update is required
-         */
-        private static void AppendRun(PacketWriter outPacket, int direction, int direction2, bool attributesUpdate)
-        {
-            outPacket.WriteBits(2, 2); // 2 - running.
-
-            // Append the actual sector.
-            outPacket.WriteBits(3, direction);
-            outPacket.WriteBits(3, direction2);
-            outPacket.WriteBit(attributesUpdate);
-        }
-
-        /**
-         * Appends the stand version of the movement section of the update packet
-         * (sector 2,0). Appending this (instead of just a zero bit) automatically
-         * assumes that there is a required attribute update afterwards.
-         */
-        private static void AppendStand(PacketWriter outPacket)
-        {
-            outPacket.WriteBits(2, 0); // 0 - no movement.
         }
 
     }

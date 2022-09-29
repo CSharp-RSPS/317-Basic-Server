@@ -1,4 +1,4 @@
-﻿using RSPS.src.entity.player;
+﻿using RSPS.src.entity.Mobiles.Players;
 using RSPS.src.net.packet.send.impl;
 using RSPS.src.Util.Annotations;
 using RSPS.src.Worlds;

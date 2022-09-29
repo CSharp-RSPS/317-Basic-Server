@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSPS.src.entity.player.skill
+namespace RSPS.src.entity.Mobiles.Players.Skills
 {
     public static class SkillHandler
     {

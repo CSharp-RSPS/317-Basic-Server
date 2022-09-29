@@ -1,5 +1,5 @@
-﻿using RSPS.src.entity.player;
-using RSPS.src.entity.player.skill;
+﻿using RSPS.src.entity.Mobiles.Players;
+using RSPS.src.entity.Mobiles.Players.Skills;
 using RSPS.src.net.packet;
 using System;
 using System.Collections.Generic;

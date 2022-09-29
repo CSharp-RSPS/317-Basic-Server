@@ -24,5 +24,17 @@ namespace RSPS.src.entity
         /// <param name="entity">The entity to remove</param>
         public void Remove(T entity);
 
+        /// <summary>
+        /// Prepares the entity for a game tick
+        /// </summary>
+        /// <param name="entity">The entity</param>
+        public void PrepareTick(T entity);
+
+        /// <summary>
+        /// Finalizes the game tick for an entity
+        /// </summary>
+        /// <param name="entity">The entity</param>
+        public void FinishTick(T entity);
+
     }
 }

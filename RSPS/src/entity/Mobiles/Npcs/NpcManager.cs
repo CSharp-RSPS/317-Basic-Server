@@ -12,7 +12,7 @@ namespace RSPS.src.entity.Mobiles.Npcs
     /// <summary>
     /// Manages NPC's and handles NPC related operations
     /// </summary>
-    public sealed class NpcManager : EntityManager<Npc>
+    public sealed class NpcManager : MobileManager<Npc>
     {
 
         /// <summary>
@@ -34,6 +34,26 @@ namespace RSPS.src.entity.Mobiles.Npcs
         static NpcManager()
         {
 
+        }
+
+        public override void PrepareTick(Npc npc)
+        {
+            // TODO: yelling
+
+            if (npc.Rotation == -1)
+            {
+                // TODO: update face state
+            }
+            if (npc.Movement.FollowLeader == null)
+            {
+                NpcMovement.HandleMovement(npc);
+            }
+            base.PrepareTick(npc);
+        }
+
+        public override void FinishTick(Npc npc)
+        {
+            base.FinishTick(npc);
         }
 
         /// <summary>

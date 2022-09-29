@@ -1,5 +1,5 @@
 ﻿using RSPS.src.entity.Mobiles.Npcs;
-using RSPS.src.entity.player;
+using RSPS.src.entity.Mobiles.Players;
 using RSPS.src.net.packet.send.impl;
 using RSPS.src.Worlds;
 using System;

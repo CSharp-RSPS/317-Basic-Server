@@ -1,4 +1,4 @@
-﻿using RSPS.src.entity.player;
+﻿using RSPS.src.entity.Mobiles.Players;
 using RSPS.src.net.Authentication;
 using RSPS.src.net.Codec;
 using RSPS.src.net.packet;

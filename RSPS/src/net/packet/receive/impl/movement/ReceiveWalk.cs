@@ -1,7 +1,7 @@
 ﻿using RSPS.src.entity;
 using RSPS.src.entity.movement;
 using RSPS.src.entity.movement.Locations;
-using RSPS.src.entity.player;
+using RSPS.src.entity.Mobiles.Players;
 using RSPS.src.net.Connections;
 using RSPS.src.Worlds;
 using System;

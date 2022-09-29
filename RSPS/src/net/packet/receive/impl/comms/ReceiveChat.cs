@@ -1,4 +1,4 @@
-﻿using RSPS.src.entity.player;
+﻿using RSPS.src.entity.Mobiles.Players;
 using RSPS.src.entity.update.flag;
 using RSPS.src.game.comms.chat;
 using RSPS.src.net.Connections;

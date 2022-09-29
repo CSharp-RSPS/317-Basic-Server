@@ -1,12 +1,11 @@
-﻿using RSPS.src.entity.player.skill;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace RSPS.src.entity.player
+namespace RSPS.src.entity.Mobiles.Players.Skills
 {
     public struct Skill
     {

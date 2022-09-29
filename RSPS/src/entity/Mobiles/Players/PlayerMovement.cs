@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace RSPS.src.entity.player
+namespace RSPS.src.entity.Mobiles.Players
 {
     /// <summary>
     /// Handles the movement of a player
@@ -46,7 +46,7 @@ namespace RSPS.src.entity.player
 
 
         /// <summary>
-        /// Resets the player movement to prepare for the next movement
+        /// Resets the player movement
         /// </summary>
         /// <returns>The instance</returns>
         public static void Reset(Player player)

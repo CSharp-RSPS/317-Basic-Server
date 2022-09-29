@@ -1,7 +1,7 @@
 ﻿using RSPS.src.entity.Mobiles.Npcs;
 using RSPS.src.entity.movement;
 using RSPS.src.entity.movement.Locations.Regions;
-using RSPS.src.entity.player;
+using RSPS.src.entity.Mobiles.Players;
 using RSPS.src.net;
 using RSPS.src.net.Authentication;
 using RSPS.src.net.Connections;
@@ -267,63 +267,18 @@ namespace RSPS.src.Worlds
                             PacketHandler.SendPacket(player, new SendInitializePlayer(true, player.WorldIndex));
                         });
                     }
-                    if (Players.Entities.Count > 0)
-                    { // Handle active players in the world
-                        if (Players.Entities.Contains(null))
-                        {
-                            Console.Error.WriteLine("Nulled player slipped into players list somehow in world {0}", Details.Id);
-                            return;
-                        }
-                        // Process the movement of players
-                        Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) => {
-                            if (player.Movement.FollowLeader != null)
-                            {
-                                Following.Follow(player.Movement.FollowLeader);
-                            }
-                            MovementHandler.ProcessMovement(player);
-                        });
+                    // Prepare the NPC's for the game tick
+                    Parallel.ForEach(Npcs.Entities, mainParallelOptions, npc => Npcs.PrepareTick(npc));
+                    // Prepare the players for the game tick
+                    Parallel.ForEach(Players.Entities, mainParallelOptions, player => Players.PrepareTick(player));
 
-                        // Process player updating
-                        Players.Entities.ForEach(p => {
-                            PacketHandler.SendPacket(p, new SendBeginPlayerUpdating(p, Players.Entities));
-                            //PacketHandler.SendPacket(p, PacketDefinition.NPCUpdating, new SendNpcUpdating(p, Npcs.Entities));
-                        });/*
-                        Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) =>
-                        {
-                            if (player != null)
-                            {
-                                PlayerUpdating.Update(this, player);
-                            }
-                            //NpcUpdating.Update(player);
-                            
-                        });*/
-                        // Reset the player flags
-                        Parallel.ForEach(Players.Entities, mainParallelOptions, (Player? player) => {
-                            if (player.Disabled != null)
-                            {
-                                player.Disabled.OnTick();
+                    // Update the player for the game tick
+                    Parallel.ForEach(Players.Entities, mainParallelOptions, player => Players.OnTick(player));
 
-                                if (player.Disabled.TimeDisabled <= 0)
-                                {
-                                    player.Disabled = null;
-                                }
-                            }
-                            player.Movement.Teleported = false;
-                            ((PlayerMovement)player.Movement).MapRegionChanged = false;
-                            player.Movement.WalkingDirection = DirectionType.None;
-                            player.Movement.RunningDirection = DirectionType.None;
-                            player?.ResetFlags();
-                        });
-
-                        Console.WriteLine("Processed {0} active players in world {1}", Players.Entities.Count, Details.Id);
-                    }
-                    if (Npcs.Entities.Count > 0)
-                    { // Handle NPC's
-                        // Reset the NPC flags
-                        Parallel.ForEach(Npcs.Entities, mainParallelOptions, (Npc? npc) => npc?.ResetFlags());
-
-                        Console.WriteLine("Processed {0} npc's in world {1}", Npcs.Entities.Count, Details.Id);
-                    }
+                    // Finish the game tick for the NPC's
+                    Parallel.ForEach(Npcs.Entities, mainParallelOptions, npc => Npcs.FinishTick(npc));
+                    // Finish the game tick for the players
+                    Parallel.ForEach(Players.Entities, mainParallelOptions, player => Players.FinishTick(player));
                 }
                 catch (Exception ex)
                 {
