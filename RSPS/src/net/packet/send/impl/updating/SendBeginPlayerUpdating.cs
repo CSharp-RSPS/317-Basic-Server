@@ -44,10 +44,6 @@ namespace RSPS.src.net.packet.send.impl
 
         public void WritePayload(PacketWriter writer)
         {
-            if (Player.PlayerMovement.MapRegionChanged)
-            {
-                PacketHandler.SendPacket(Player, new SendLoadMapRegion(Player));
-            }
             PacketWriter stateBlock = new(1024); //768
 
             writer.SetAccessType(Packet.AccessType.BitAccess);

@@ -49,6 +49,10 @@ namespace RSPS.src.entity.Mobiles.Players
         /// <param name="player">The player</param>
         public void OnTick(Player player)
         {
+            if (player.PlayerMovement.MapRegionChanged)
+            {
+                PacketHandler.SendPacket(player, new SendLoadMapRegion(player));
+            }
             PacketHandler.SendPacket(player, new SendBeginPlayerUpdating(player));
          //   PacketHandler.SendPacket(player, new SendNpcUpdating(player));
         }
