@@ -23,7 +23,7 @@ namespace RSPS.src.entity.Mobiles
 
         public int WorldIndex { get; set; } = -1;
 
-        public EntityFlags Flags = new();
+        //public EntityFlags Flags = new();
 
         /// <summary>
         /// Holds the NPC's nearby the mobile
@@ -62,6 +62,7 @@ namespace RSPS.src.entity.Mobiles
 
         public Position CurrentRegion = new Position(0, 0, 0);
 
+        public EntityFlags Flags = new();
 
         /// <summary>
         /// Creates a new mobile entity

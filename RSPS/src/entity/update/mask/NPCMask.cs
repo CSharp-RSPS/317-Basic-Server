@@ -15,7 +15,7 @@ namespace RSPS.src.entity.update.block
             throw new NotImplementedException();
         }
 
-        public void Process(Npc entity, PacketWriter writer)
+        public void Process(Npc entity, PacketWriter writer, PacketWriter stateBlock)
         {
             throw new NotImplementedException();
         }

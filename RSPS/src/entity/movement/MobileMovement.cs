@@ -55,12 +55,12 @@ namespace RSPS.src.entity.movement
         {
             if (mob.Movement.WalkingDirection == DirectionType.None)
             { // Standing still
-                if (mob.Flags.IsUpdateNeeded())
+                /*if (mob.Flags.IsUpdateNeeded())
                 {
                     writer.WriteBits(1, 1);
                     writer.WriteBits(2, 0);
                     return;
-                }
+                }*/
                 writer.WriteBits(1, 0);
                 return;
             }
@@ -73,7 +73,7 @@ namespace RSPS.src.entity.movement
             { // Running
                 writer.WriteBits(3, mob.Movement.RunningDirection.GetDirectionValue());
             }
-            writer.WriteBits(1, mob.Flags.IsUpdateNeeded() ? 1 : 0);
+            //writer.WriteBits(1, mob.Flags.IsUpdateNeeded() ? 1 : 0);
         }
 
         /// <summary>

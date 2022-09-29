@@ -19,16 +19,17 @@ namespace RSPS.src.entity.update.player.local
         private static readonly int REGION_PLAYERS_LIMIT = 255;
         private static readonly int NEW_PLAYERS_PER_CYCLE = 45;
 
-        public void Process(Player player, PacketWriter writer)
+        public void Process(Player player, PacketWriter writer, PacketWriter stateBlock)
         {
-            int addedPlayers = 0;
-
+            int addedLocals = 0;
+            int worldPlayerCount = WorldHandler.World.Players.Entities.Count;
+            for (int i = 0; i < worldPlayerCount; i++)
             {
-                if (player.LocalPlayers.Count >= REGION_PLAYERS_LIMIT || addedPlayers >= NEW_PLAYERS_PER_CYCLE)
+                if (player.LocalPlayers.Count >= REGION_PLAYERS_LIMIT || addedLocals >= NEW_PLAYERS_PER_CYCLE)
                 {
                     break;
                 }
-
+                Player other = WorldHandler.World.Players.Entities[i];
                 if (other == null || other == player || other.PlayerConnection.ConnectionState != ConnectionState.Authenticated)//so we dont add ourself to the list
                 {
                     continue;
@@ -40,9 +41,9 @@ namespace RSPS.src.entity.update.player.local
                 }
 
                 player.LocalPlayers.Add(other);
-                addedPlayers++;
+                addedLocals++;
                 AddPlayer(writer, player, other);
-                new PlayerMask(true, false).Process(other, writer);
+                new PlayerMask(true, false).Process(other, writer, stateBlock);
                 //UpdateState(other, stateBlock, true, false);
             }
         }

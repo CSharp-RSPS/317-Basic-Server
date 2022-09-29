@@ -33,10 +33,9 @@ namespace RSPS.src.net.packet.receive.impl
             }
             ChatMessage cm = new(effects, color, text);
 
-            player.Flags.UpdateFlag(FlagType.PublicChat, true);
-
             player.ChatMessage = cm;
 
+            //player.Flags.UpdateFlag(FlagType.PublicChat, true);
             player.ChatUpdateRequired = true;
             player.UpdateRequired = true;
         }

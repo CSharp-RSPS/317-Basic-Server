@@ -21,9 +21,9 @@ namespace RSPS.src.entity.update.block
             NoPublicChat = noPublicChat;
         }
 
-        public void Process(Player player, PacketWriter writer)
+        public void Process(Player player, PacketWriter writer, PacketWriter stateBlock)
         {
-            if (!player.Flags.IsUpdateNeeded() && !ForceAppearance)
+            if (!player.UpdateRequired && !ForceAppearance)
             {
                 return;
             }
@@ -31,12 +31,12 @@ namespace RSPS.src.entity.update.block
             // First we must calculate and write the mask.
             int mask = 0x0;
 
-            if (player.Flags.IsFlagged(flag.FlagType.PublicChat) && !NoPublicChat)
+            if (player.ChatUpdateRequired && !NoPublicChat)
             {
                 mask |= 0x80;
             }
 
-            if (player.Flags.IsFlagged(flag.FlagType.Appearance) || ForceAppearance)
+            if (player.AppearanceUpdateRequired || ForceAppearance)
             {
                 mask |= 0x10;
             }
@@ -46,26 +46,26 @@ namespace RSPS.src.entity.update.block
             if (mask >= 0x100)
             {
                 mask |= 0x40;
-                writer.WriteShortLittleEndian(mask);
+                stateBlock.WriteShortLittleEndian(mask);
             }
             else
             {
-                writer.WriteByte(mask);
+                stateBlock.WriteByte(mask);
             }
 
             //Graphics
             //Animation
             //FOrced Chat
-            if (player.Flags.IsFlagged(flag.FlagType.PublicChat) && !NoPublicChat)
+            if (player.ChatUpdateRequired && !NoPublicChat)
             {
-                new PlayerPublicChatBlock().ProcessBlock(player, writer);
+                new PlayerPublicChatBlock().ProcessBlock(player, stateBlock);
             }
 
             //Face Entity
             //Appearance
-            if (player.Flags.IsFlagged(flag.FlagType.Appearance) || ForceAppearance)
+            if (player.AppearanceUpdateRequired || ForceAppearance)
             {
-                new PlayerAppearanceBlock().ProcessBlock(player, writer);
+                new PlayerAppearanceBlock().ProcessBlock(player, stateBlock);
             }
             //Face Coords
             //Primary Hit

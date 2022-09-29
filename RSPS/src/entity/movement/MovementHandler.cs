@@ -110,6 +110,10 @@ namespace RSPS.src.entity.movement
         /// <returns>The next movement point</returns>
         private static MovementPoint? GetNextTile(Mobile mob)
         {
+            if (mob.Movement.MovementPoints.Count <= 0)
+            {
+                return null;
+            }
             MovementPoint availableTile = mob.Movement.MovementPoints.Dequeue();
 
             if (availableTile.Direction == DirectionType.None)

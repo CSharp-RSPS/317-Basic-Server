@@ -1,6 +1,7 @@
 ﻿using RSPS.src.entity.movement.Locations;
 using RSPS.src.entity.player;
 using RSPS.src.entity.player.skill;
+using RSPS.src.entity.update;
 using RSPS.src.net.Connections;
 using RSPS.src.Util.Annotations;
 using RSPS.src.Worlds;
@@ -60,6 +61,8 @@ namespace RSPS.src.net.packet.send.impl
             writer.SetAccessType(Packet.AccessType.BitAccess);
             UpdateLocalPlayerMovement(Player, writer);
 
+            //new PlayerUpdate(Player, stateBlock).Process(Player, writer, stateBlock);
+
             if (Player.UpdateRequired)
             {
                 UpdateState(Player, stateBlock, false, true);
@@ -98,21 +101,15 @@ namespace RSPS.src.net.packet.send.impl
                 {
                     break;
                 }
-                Console.WriteLine("Trying to update?!");
+                //Console.WriteLine("Trying to update?!");
                 Player other = Players[i];
                 if (other == null || other == Player || other.PlayerConnection.ConnectionState != ConnectionState.Authenticated)//so we dont add ourself to the list
                 {
-                    Console.WriteLine("Getting stopped here?");
+                    //Console.WriteLine("Getting stopped here?");
                     continue;
                 }
 
-                //So we dont hit the client buffer of 5k - redo this keep track of players being added per cycle
-                //it's variable player adding to the seen surrounding area
-                /*                    if ((outPacket.PayloadPosition + stateBlock.PayloadPosition) + 320 > 5000)
-                                    {
-                                        break;
-                                    }*/
-                Console.WriteLine("Trying to update?! 3");
+                //Console.WriteLine("Trying to update?! 3");
                 if (!Player.LocalPlayers.Contains(other) && other.Position.IsWithinDistance(Player.Position))
                 {
                     Player.LocalPlayers.Add(other);

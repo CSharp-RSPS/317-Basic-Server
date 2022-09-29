@@ -22,10 +22,10 @@ namespace RSPS.src.entity.update
 
         public void ExecuteUpdates()
         {
-            for (int i = 0; i < UpdateTunnel.Count; i++)
+/*            for (int i = 0; i < UpdateTunnel.Count; i++)
             {
                 UpdateTunnel[i].Process(Entity, writer);
-            }
+            }*/
         }
 
         public void AddUpdateProcess(UpdateState state, IUpdateProtocol<T> updateProtocol)

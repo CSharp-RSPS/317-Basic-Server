@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RSPS.src.net.Connections;
 using RSPS.src.net.packet.send;
+using RSPS.src.entity.update.flag;
 
 namespace RSPS.src.entity.player
 {
@@ -121,12 +122,12 @@ namespace RSPS.src.entity.player
             
 
             // Send the initial map region
-            //player.LoadMapRegion();
+            player.LoadMapRegion();
             // Send the run energy
             //PacketHandler.SendPacket(player, new SendRunEnergy(((PlayerMovement)player.Movement).Energy));
 
             //player.NeedsPlacement = true; - already sent from MapRegion packet
-            //player.Flags.UpdateFlag(flag.FlagType.APPEARANCE, true);
+            //player.Flags.UpdateFlag(FlagType.Appearance, true);
             player.AppearanceUpdateRequired = true;
             player.RequestUpdate();
         }

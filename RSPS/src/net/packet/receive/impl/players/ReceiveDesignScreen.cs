@@ -37,7 +37,7 @@ namespace RSPS.src.net.packet.receive.impl
             player.Appearance.FeetColor = reader.ReadByte();
             player.Appearance.SkinColor = reader.ReadByte();
 
-            player.Flags.UpdateFlag(FlagType.Appearance, true);
+            //player.Flags.UpdateFlag(FlagType.Appearance, true);
 
             player.AppearanceUpdateRequired = true;
             player.UpdateRequired = true;

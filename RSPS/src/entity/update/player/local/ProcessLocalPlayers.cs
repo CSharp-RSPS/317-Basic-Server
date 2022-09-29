@@ -1,5 +1,6 @@
 ﻿using RSPS.src.entity.player;
 using RSPS.src.entity.update.block;
+using RSPS.src.entity.update.movement.player;
 using RSPS.src.net.Connections;
 using RSPS.src.net.packet;
 using System;
@@ -12,7 +13,7 @@ namespace RSPS.src.entity.update.player.local
 {
     internal class ProcessLocalPlayers : IUpdateProtocol<Player>
     {
-        public void Process(Player player, PacketWriter writer)
+        public void Process(Player player, PacketWriter writer, PacketWriter stateblock)
         {
             //Update other local players
             writer.WriteBits(8, player.LocalPlayers.Count);
@@ -21,10 +22,11 @@ namespace RSPS.src.entity.update.player.local
             {
                 if (other.Position.IsWithinDistance(player.Position) && other.PlayerConnection.ConnectionState == ConnectionState.Authenticated && !other.NeedsPlacement)
                 {
+                    new PlayerUpdateMovement(other, writer);
                     //UpdateOtherPlayerMovement(other, writer);
-                    if (other.Flags.IsUpdateNeeded())
+                    if (other.UpdateRequired)
                     {
-                        new PlayerMask(false, false).Process(player, writer);
+                        new PlayerMask(false, false).Process(player, writer, stateblock);
                         //UpdateState(other, stateBlock, false, false);
                     }
                 }

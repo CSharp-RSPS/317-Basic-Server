@@ -86,8 +86,8 @@ namespace RSPS.src.entity.player
         public int SecondaryDirection = -1;
         
         public bool UpdateRequired = false;
-        public bool AppearanceUpdateRequired= false;
-        public bool ChatUpdateRequired= false;
+        public bool AppearanceUpdateRequired = false;
+        public bool ChatUpdateRequired = false;
 
         public ChatMessage ChatMessage;
 

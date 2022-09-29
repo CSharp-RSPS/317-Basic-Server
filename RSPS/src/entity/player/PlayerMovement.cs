@@ -75,7 +75,7 @@ namespace RSPS.src.entity.player
             writer.WriteBits(2, 3);
             writer.WriteBits(2, player.Position.Z);
             writer.WriteBits(1, 1);
-            writer.WriteBits(1, player.Flags.IsUpdateNeeded() ? 1 : 0);
+            writer.WriteBits(1, player.UpdateRequired ? 1 : 0);
             writer.WriteBits(7, player.Position.GetLocalY(player.LastPosition));
             writer.WriteBits(7, player.Position.GetLocalX(player.LastPosition));
         }
