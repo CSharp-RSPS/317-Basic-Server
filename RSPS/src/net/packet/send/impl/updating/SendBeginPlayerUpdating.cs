@@ -1,16 +1,10 @@
-﻿using RSPS.src.entity.movement.Locations;
-using RSPS.src.entity.Mobiles.Players;
-using RSPS.src.entity.update;
+﻿using RSPS.src.entity.Mobiles.Players;
+using RSPS.src.entity.Mobiles.Players.Skills;
+using RSPS.src.entity.movement.Locations;
 using RSPS.src.net.Connections;
 using RSPS.src.Util.Annotations;
 using RSPS.src.Worlds;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using RSPS.src.entity.Mobiles.Players.Skills;
+using System.Diagnostics;
 
 namespace RSPS.src.net.packet.send.impl
 {
@@ -52,7 +46,16 @@ namespace RSPS.src.net.packet.send.impl
         {
             if (Player.PlayerMovement.MapRegionChanged)
             {
-                PacketHandler.SendPacket(Player, new SendLoadMapRegion(Player));
+                PacketWriter w = new(5);
+                w.WriteHeader(PacketHeaderType.Fixed, Player.PlayerConnection.NetworkEncryptor, 73);
+                w.WriteShortAdditional(Player.Position.RegionX + 6);
+                w.WriteShort(Player.Position.RegionY + 6);
+                Debug.WriteLine(w.Pointer);
+                Player.PlayerConnection.Send(w.Buffer);
+
+                Player.LastPosition = Player.Position.Copy();
+
+              //  PacketHandler.SendPacket(Player, new SendLoadMapRegion(Player));
             }
             PacketWriter stateBlock = new(1024); //768
 

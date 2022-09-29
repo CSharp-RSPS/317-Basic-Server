@@ -117,10 +117,10 @@ namespace RSPS.src.entity.Mobiles.Players
                 player.Skills.Add(skill);
                 PacketHandler.SendPacket(player, new SendSkill(skill));
             }
-            PacketHandler.SendPacket(player, new SendPlayerOption(1, "null"));
+      /*      PacketHandler.SendPacket(player, new SendPlayerOption(1, "null"));
             PacketHandler.SendPacket(player, new SendPlayerOption(2, "null"));
             PacketHandler.SendPacket(player, new SendPlayerOption(3, "Follow"));
-            PacketHandler.SendPacket(player, new SendPlayerOption(4, "Trade with"));
+            PacketHandler.SendPacket(player, new SendPlayerOption(4, "Trade with"));*/
 
             //TODO: Refresh inventory, equipment, configurations
             //TODO: weapon interface update
