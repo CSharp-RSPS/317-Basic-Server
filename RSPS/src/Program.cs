@@ -19,11 +19,6 @@ namespace RSPS.src
     public class Program
     {
 
-        /// <summary>
-        /// Whether to run the application in debug-mode only. Not meant to be enabled when working with live worlds!
-        /// </summary>
-        private static readonly bool Debug = true;
-
 
         /// <summary>
         /// The pinpoint of the application

@@ -12,6 +12,7 @@ using RSPS.src.net.Connections;
 using RSPS.src.net.packet.send;
 using RSPS.src.entity.update.flag;
 using RSPS.src.entity.Mobiles.Players.Skills;
+using System.Diagnostics;
 
 namespace RSPS.src.entity.Mobiles.Players
 {
@@ -25,11 +26,6 @@ namespace RSPS.src.entity.Mobiles.Players
             //3917, 638, 3213, 1644, 5608, 1151, 5065, 5715, 2449, 904, 147, 6299, 2423
             2423, 3917, 638, 3213, 1644, 5608, 1151, 18128, 5065, 5715, 2449, 904, 147, 962
         };
-
-        /// <summary>
-        /// Holds the players pending login
-        /// </summary>
-        public Queue<Player> PendingLogin = new();
 
         /// <summary>
         /// Holds the players that disconnected without logging out properly
@@ -53,8 +49,8 @@ namespace RSPS.src.entity.Mobiles.Players
         /// <param name="player">The player</param>
         public void OnTick(Player player)
         {
-            PacketHandler.SendPacket(player, new SendBeginPlayerUpdating(player, Entities));
-            PacketHandler.SendPacket(player, new SendNpcUpdating(player));
+            PacketHandler.SendPacket(player, new SendBeginPlayerUpdating(player));
+         //   PacketHandler.SendPacket(player, new SendNpcUpdating(player));
         }
 
         public override void FinishTick(Player player)
@@ -66,25 +62,11 @@ namespace RSPS.src.entity.Mobiles.Players
             //TODO: if in combat and pending logout, when out of combat => logout
         }
 
-        public override int GetIndex(Player entity)
+        public override Player Add(Player entity)
         {
-            return base.GetIndex(entity) + 1;
-        }
-
-        /// <summary>
-        /// Retrieves a player by it's player index
-        /// </summary>
-        /// <param name="playerIndex">The player index</param>
-        /// <returns>The player</returns>
-        public Player? ByPlayerIndex(int playerIndex)
-        {
-            return Entities.FirstOrDefault(e => e.WorldIndex == playerIndex);
-        }
-
-        public override Player Add(Player entity) {
             base.Add(entity);
 
-            entity.WorldIndex = GetIndex(entity);
+            entity.WorldIndex = GetIndex(entity) + 1;
 
             return entity;
         }
@@ -129,10 +111,11 @@ namespace RSPS.src.entity.Mobiles.Players
                 PacketHandler.SendPacket(player, new SendSidebarInterface(i, SidebarInterfaceIds[i]));
             }
             // Send the skills in the skill tab
-            foreach (SkillType skill in Enum.GetValues(typeof(SkillType)))
+            foreach (SkillType skillType in Enum.GetValues(typeof(SkillType)))
             { // TODO skills from player
-                player.Skills.Add(skill != SkillType.HITPOINTS ? new Skill(skill) : new Skill(skill, 10, 1300));
-                PacketHandler.SendPacket(player, new SendSkill(player.GetSkill(skill)));
+                Skill skill = skillType != SkillType.HITPOINTS ? new Skill(skillType) : new Skill(skillType, 10, 1300);
+                player.Skills.Add(skill);
+                PacketHandler.SendPacket(player, new SendSkill(skill));
             }
             PacketHandler.SendPacket(player, new SendPlayerOption(1, "null"));
             PacketHandler.SendPacket(player, new SendPlayerOption(2, "null"));
@@ -145,13 +128,11 @@ namespace RSPS.src.entity.Mobiles.Players
             //TODO: refresh quest tab
             
 
-            // Send the initial map region
-            player.LoadMapRegion();
             // Send the run energy
             //PacketHandler.SendPacket(player, new SendRunEnergy(((PlayerMovement)player.Movement).Energy));
 
             //player.NeedsPlacement = true; - already sent from MapRegion packet
-            //player.Flags.UpdateFlag(FlagType.Appearance, true);
+            player.Flags.UpdateFlag(FlagType.Appearance, true);
             player.AppearanceUpdateRequired = true;
             player.RequestUpdate();
         }
@@ -160,16 +141,15 @@ namespace RSPS.src.entity.Mobiles.Players
         /// Logs a player on, into the game world
         /// </summary>
         /// <param name="player">The player</param>
-        /// <param name="worldDetails">Details about the world the player is logging on to</param>
-        public static void Login(Player player, WorldDetails worldDetails)
+        public static void Login(Player player)
         {
-            if (worldDetails.Debugging)
+            if (WorldHandler.World.Details.Debugging)
             {
                 PacketHandler.SendPacket(player, new SendMessage(string.Format("You are at {0}", player.Position.ToString())));
                 PacketHandler.SendPacket(player, new SendMessage(
                     string.Format("Index: {0}; Flagged: {1}; Rights: {2}", player.WorldIndex, player.Flagged, player.Rights)));
             }
-            PacketHandler.SendPacket(player, new SendMessage(string.Format("Welcome to {0}.", worldDetails.Name)));
+            PacketHandler.SendPacket(player, new SendMessage(string.Format("Welcome to {0}.", WorldHandler.World.Details.Name)));
             PacketHandler.SendPacket(player, new SendMessage(string.Format("Global notice: {0}.", "blablabla")));
             // if muted etc send msg
 

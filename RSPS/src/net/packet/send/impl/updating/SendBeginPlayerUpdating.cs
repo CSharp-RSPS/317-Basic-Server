@@ -32,21 +32,15 @@ namespace RSPS.src.net.packet.send.impl
         /// </summary>
         public Player Player { get; private set; }
 
-        /// <summary>
-        /// The player in the world at the time of update
-        /// </summary>
-        public List<Player> Players { get; private set; }
-
 
         /// <summary>
         /// Creates a new player updating payload builder
         /// </summary>
         /// <param name="player">The player we're updating for</param>
         /// <param name="players">The player in the world at the time of update</param>
-        public SendBeginPlayerUpdating(Player player, List<Player> players)
+        public SendBeginPlayerUpdating(Player player)
         {
             Player = player;
-            Players = players;
         }
 
         public int GetPayloadSize()
@@ -58,7 +52,7 @@ namespace RSPS.src.net.packet.send.impl
         {
             if (Player.PlayerMovement.MapRegionChanged)
             {
-                PacketHandler.SendPacket(Player, PacketDefinition.LoadMapRegion);
+                PacketHandler.SendPacket(Player, new SendLoadMapRegion(Player));
             }
             PacketWriter stateBlock = new(1024); //768
 

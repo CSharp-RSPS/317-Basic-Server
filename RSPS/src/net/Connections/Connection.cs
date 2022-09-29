@@ -29,17 +29,12 @@ namespace RSPS.src.net.Connections
         /// <summary>
         /// The packet decoder to be used by the connection
         /// </summary>
-        public PacketDecoder PacketDecoder { get; set; }
+        public PacketDecoder? PacketDecoder { get; set; }
 
         /// <summary>
         /// The data buffer for reading data from the client
         /// </summary>
         public byte[] Buffer { get; private set; }
-
-        /// <summary>
-        /// The details of the world the connection is connected to
-        /// </summary>
-        public WorldDetails WorldDetails { get; private set; }
 
         /// <summary>
         /// The current state of the connection
@@ -85,7 +80,6 @@ namespace RSPS.src.net.Connections
         {
             Buffer = new byte[MaxBufferSize];
             ConnectionState = ConnectionState.ConnectionRequest;
-            WorldDetails = worldDetails;
             ClientSocket = socket;
             IpAddress = ResolveIpAddress();
         }

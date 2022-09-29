@@ -141,6 +141,19 @@ namespace RSPS.src.net.packet
                 Debug.WriteLine("Unable to send packet for player {0} because the player has no active connection", player.Credentials.Username);
                 return;
             }
+            PacketInfoAttribute? packetInfo = packetDef.GetPacketInfo();
+
+            if (packetInfo == null)
+            {
+                Debug.WriteLine("No packet info attribute present on packet definition: {0}", packetDef.ToString());
+                return;
+            }
+
+            if (packetInfo.HasPayload)
+            {
+                Debug.WriteLine("Packet should have a payload but it used here like it has not: {0}", packetDef.ToString());
+                return;
+            }
             SendPacket(player.PlayerConnection, packetDef, null);
         }
 

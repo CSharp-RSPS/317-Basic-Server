@@ -27,13 +27,13 @@ namespace RSPS.src.net.packet.receive.impl
             {
                 return;
             }
-            Player? leader = WorldHandler.World.Players.ByPlayerIndex(playerIndex);
+            Player? leader = WorldHandler.World.Players.ByWorldIndex(playerIndex);
 
             if (leader == null || !leader.Position.IsWithinDistance(player.Position))
             {
                 return;
             }
-            //TODO follow
+            player.Movement.FollowLeader = leader;
         }
 
     }

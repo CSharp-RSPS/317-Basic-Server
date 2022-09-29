@@ -169,9 +169,9 @@ namespace RSPS.src.net.Codec
                 : AuthenticationResponse.SuccessfulReconnect,
                 player);
 
+            WorldHandler.World.Players.Add(player);
             PlayerManager.InitializeSession(player);
-            PlayerManager.Login(player, connection.WorldDetails);
-            WorldHandler.World.Players.PendingLogin.Enqueue(player);
+            PlayerManager.Login(player);
 
             connection.ConnectionState = ConnectionState.Authenticated;
 

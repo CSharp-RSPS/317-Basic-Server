@@ -105,18 +105,6 @@ namespace RSPS.src.entity.Mobiles.Players
             //Scheduler.AddJob(new PlayerWalkingJob("Player Walking Job", this, TimeSpan.FromMilliseconds(600)));
         }
 
-        /// <summary>
-        /// Loads a new map region for the player
-        /// </summary>
-        /// <returns>The player</returns>
-        public Player LoadMapRegion()
-        {
-            CurrentRegion.SetNewPosition(Position);
-            NeedsPlacement = true;
-            PacketHandler.SendPacket(this, new SendLoadMapRegion(Position.RegionX, Position.RegionY));
-            return this;
-        }
-
         public Player RequestUpdate()
         {
             UpdateRequired = true;
@@ -135,7 +123,7 @@ namespace RSPS.src.entity.Mobiles.Players
 
         public Skill GetSkill(SkillType skillType)
         {
-            return Skills[(int)skillType];
+            return Skills.First(s => s.SkillType == skillType);
         }
 
     }

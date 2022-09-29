@@ -236,37 +236,16 @@ namespace RSPS.src.Worlds
                         Players.Disconnected.RemoveAt(i);
                         Players.PendingRemoval.Enqueue(player);
                     }
-                    if (Players.PendingLogin.Count > 0 || Players.PendingRemoval.Count > 0)
-                    { // Remove logged out players and add new logins from/to the world
-                        int removalOps = Players.PendingRemoval.Count;
-                        int loginOps = Players.PendingLogin.Count;
-
-                        if ((removalOps + loginOps) > _maxLoginLogoutOpsPerCycle)
-                        { // When the total operations exceed the max. allowed, balance out between logins and removals
-                            int balancedOps = (_maxLoginLogoutOpsPerCycle / 2);
-
-                            removalOps = loginOps < balancedOps ? (_maxLoginLogoutOpsPerCycle - loginOps) : balancedOps;
-                            loginOps = removalOps < balancedOps ? (_maxLoginLogoutOpsPerCycle - removalOps) : balancedOps;
+                    Parallel.For(0, Players.PendingRemoval.Count > _maxLoginLogoutOpsPerCycle
+                           ? _maxLoginLogoutOpsPerCycle : Players.PendingRemoval.Count, mainParallelOptions, _ =>
+                    { // Remove any players pending removal
+                        if (!Players.PendingRemoval.TryDequeue(out Player? player) || player == null)
+                        {
+                            return;
                         }
-                        Parallel.For(0, removalOps, mainParallelOptions, _ =>
-                        {
-                            if (!Players.PendingRemoval.TryDequeue(out Player? player) || player == null)
-                            {
-                                return;
-                            }
-                            player.PlayerConnection.Dispose();
-                            Players.Remove(player);
-                        });
-                        Parallel.For(0, loginOps, mainParallelOptions, _ =>
-                        {
-                            if (!Players.PendingLogin.TryDequeue(out Player? player) || player == null)
-                            {
-                                return;
-                            }
-                            Players.Add(player);
-                            PacketHandler.SendPacket(player, new SendInitializePlayer(true, player.WorldIndex));
-                        });
-                    }
+                        player.PlayerConnection.Dispose();
+                        Players.Remove(player);
+                    });
                     // Prepare the NPC's for the game tick
                     Parallel.ForEach(Npcs.Entities, mainParallelOptions, npc => Npcs.PrepareTick(npc));
                     // Prepare the players for the game tick

@@ -28,7 +28,7 @@ namespace RSPS.src.net.packet.receive.impl
             {
                 return;
             }
-            Player? target = WorldHandler.World.Players.ByPlayerIndex(playerIndex);
+            Player? target = WorldHandler.World.Players.ByWorldIndex(playerIndex);
 
             if (target == null)
             {

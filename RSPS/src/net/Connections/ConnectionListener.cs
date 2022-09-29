@@ -195,6 +195,11 @@ namespace RSPS.src.net.Connections
             }
             Player player = (Player)result.AsyncState;
 
+            if (player.PlayerConnection.PacketDecoder == null)
+            {
+                Console.Error.WriteLine("No packetdecoder found on connection when handling ReadPacketCallback");
+                return;
+            }
             if (HandleProtocolDecoding(result, player.PlayerConnection.PacketDecoder, player.PlayerConnection))
             {
                 player.PlayerConnection.ClientSocket.BeginReceive(player.PlayerConnection.Buffer, 0, player.PlayerConnection.Buffer.Length, SocketFlags.None,

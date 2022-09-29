@@ -26,7 +26,7 @@ namespace RSPS.src.net.packet.receive.impl
             int itemId = reader.ReadShort();
             int itemSlot = reader.ReadShortLittleEndian();
 
-            Player? other = WorldHandler.World.Players.ByPlayerIndex(playerIndex);
+            Player? other = WorldHandler.World.Players.ByWorldIndex(playerIndex);
 
             if (other == null)
             {

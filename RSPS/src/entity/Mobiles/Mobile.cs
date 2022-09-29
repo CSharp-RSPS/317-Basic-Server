@@ -33,7 +33,7 @@ namespace RSPS.src.entity.Mobiles
         /// <summary>
         /// The last position the mobile was at
         /// </summary>
-        public Position? LastPosition { get; private set; }
+        public Position? LastPosition { get; set; }
 
         /// <summary>
         /// The state updating cache for the mobile

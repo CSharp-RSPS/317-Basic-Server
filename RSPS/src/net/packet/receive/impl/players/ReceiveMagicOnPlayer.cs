@@ -24,7 +24,7 @@ namespace RSPS.src.net.packet.receive.impl
             int playerIndex = reader.ReadShortAdditional();
             int spellId = reader.ReadShortLittleEndian();
 
-            Player? other = WorldHandler.World.Players.ByPlayerIndex(playerIndex);
+            Player? other = WorldHandler.World.Players.ByWorldIndex(playerIndex);
 
             if (other == null)
             {

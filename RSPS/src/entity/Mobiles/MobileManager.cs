@@ -47,5 +47,24 @@ namespace RSPS.src.entity.Mobiles
             //TODO clear state updates
         }
 
+        public override T Add(T entity)
+        {
+            base.Add(entity);
+
+            entity.WorldIndex = GetIndex(entity);
+
+            return entity;
+        }
+
+        /// <summary>
+        /// Retrieves a mobile by it's world index
+        /// </summary>
+        /// <param name="worldIndex">The world index</param>
+        /// <returns>The player</returns>
+        public T? ByWorldIndex(int worldIndex)
+        {
+            return Entities.FirstOrDefault(e => e.WorldIndex == worldIndex);
+        }
+
     }
 }

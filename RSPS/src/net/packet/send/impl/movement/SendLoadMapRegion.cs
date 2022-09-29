@@ -23,12 +23,14 @@ namespace RSPS.src.net.packet.send.impl
         /// <summary>
         /// The region X coordinate - (absolute X / 8) plus 6
         /// </summary>
-        public int RegionX { get; private set; }
+        //public int RegionX { get; private set; }
 
         /// <summary>
         /// The region Y coordinate - (absolute Y / 8) plus 6
         /// </summary>
-        public int RegionY { get; private set; }
+      //  public int RegionY { get; private set; }
+
+        public Player Player { get; private set; }
 
 
         /// <summary>
@@ -36,16 +38,19 @@ namespace RSPS.src.net.packet.send.impl
         /// </summary>
         /// <param name="regionX">The region X coordinate - (absolute X / 8) plus 6</param>
         /// <param name="regionY">The region Y coordinate - (absolute Y / 8) plus 6</param>
-        public SendLoadMapRegion(int regionX, int regionY)
+        public SendLoadMapRegion(Player player)
         {
-            RegionX = regionX;
-            RegionY = regionY;
+            //RegionX = regionX;
+            //RegionY = regionY;
+            Player = player;
         }
 
         public void WritePayload(PacketWriter writer)
         {
-            writer.WriteShortAdditional(RegionX + 6);
-            writer.WriteShort(RegionY + 6);
+            writer.WriteShortAdditional(Player.Position.RegionX + 6);
+            writer.WriteShort(Player.Position.RegionY + 6);
+
+            Player.LastPosition = Player.Position.Copy();
         }
     }
 }
