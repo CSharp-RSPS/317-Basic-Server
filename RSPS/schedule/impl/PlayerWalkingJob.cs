@@ -1,4 +1,5 @@
 ﻿using RSPS.Entities.Mobiles.Players;
+using RSPS.Entities.movement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace RSPS.Schedule.Impl
         protected override void Perform()
         {
             Console.WriteLine("Player is walking!");
+
+           // MovementHandler.WalkTo()
             
             //player.Movement.ProcessMovements();
         }

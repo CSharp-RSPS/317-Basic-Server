@@ -13,6 +13,7 @@ using RSPS.Net.GamePackets.Send;
 using RSPS.Entities.Updating.flag;
 using RSPS.Entities.Mobiles.Players.Skills;
 using System.Diagnostics;
+using RSPS.Game.Comms.Messaging;
 
 namespace RSPS.Entities.Mobiles.Players
 {
@@ -121,16 +122,18 @@ namespace RSPS.Entities.Mobiles.Players
                 player.Skills.Add(skill);
                 PacketHandler.SendPacket(player, new SendSkill(skill));
             }
-      /*      PacketHandler.SendPacket(player, new SendPlayerOption(1, "null"));
-            PacketHandler.SendPacket(player, new SendPlayerOption(2, "null"));
-            PacketHandler.SendPacket(player, new SendPlayerOption(3, "Follow"));
-            PacketHandler.SendPacket(player, new SendPlayerOption(4, "Trade with"));*/
+            /*      PacketHandler.SendPacket(player, new SendPlayerOption(1, "null"));
+                  PacketHandler.SendPacket(player, new SendPlayerOption(2, "null"));
+                  PacketHandler.SendPacket(player, new SendPlayerOption(3, "Follow"));
+                  PacketHandler.SendPacket(player, new SendPlayerOption(4, "Trade with"));*/
 
             //TODO: Refresh inventory, equipment, configurations
             //TODO: weapon interface update
-            //TODO: initialize pm's
+
+            PrivateMessageHandler.Register(player);
+
             //TODO: refresh quest tab
-            
+
 
             // Send the run energy
             //PacketHandler.SendPacket(player, new SendRunEnergy(((PlayerMovement)player.Movement).Energy));
@@ -181,6 +184,7 @@ namespace RSPS.Entities.Mobiles.Players
             {
                 return false;
             }
+            PrivateMessageHandler.Unregister(player);
             player.LoggedIn = false;
             return true;
         }

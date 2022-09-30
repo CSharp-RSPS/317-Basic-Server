@@ -5,6 +5,7 @@ using RSPS.Entities.Mobiles.Players.Skills;
 using RSPS.Entities.movement;
 using RSPS.Entities.movement.Locations;
 using RSPS.Game.Comms.Chatting;
+using RSPS.Game.Comms.Messaging;
 using RSPS.Game.Items.Containers;
 using RSPS.Net.Codec;
 using RSPS.Net.Connections;
@@ -67,15 +68,17 @@ namespace RSPS.Entities.Mobiles.Players
         /// </summary>
         public ItemContainer Equipment { get; private set; }
 
+        /// <summary>
+        /// The player' friends
+        /// </summary>
+        public Contacts Friends { get; private set; }
 
+        /// <summary>
+        /// The player' ignores
+        /// </summary>
+        public Contacts Ignores { get; private set; }
 
         public Stopwatch IdleTimer = new Stopwatch();
-
-
-
-
-        public List<long> Ignores { get; private set; } = new();
-        public List<long> Friends { get; private set; } = new();
        
 
         public List<Skill> Skills = new List<Skill>();
@@ -102,6 +105,9 @@ namespace RSPS.Entities.Mobiles.Players
             PlayerConnection = playerConnection;
             Inventory = new ItemContainer(28, true, false);
             Bank = new ItemContainer(256, true, true);
+
+            Friends = new(ContactType.Friends);
+            Ignores = new(ContactType.Ignores);
             //Scheduler.AddJob(new PlayerWalkingJob("Player Walking Job", this, TimeSpan.FromMilliseconds(600)));
         }
 

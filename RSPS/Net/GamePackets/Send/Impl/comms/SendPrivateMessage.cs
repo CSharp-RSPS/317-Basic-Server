@@ -1,7 +1,10 @@
-﻿using RSPS.Util.Attributes;
+﻿using RSPS.Entities.Mobiles.Players;
+using RSPS.Util.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,44 +18,49 @@ namespace RSPS.Net.GamePackets.Send.Impl
     {
 
         /// <summary>
-        /// The player name as long
+        /// The name of the player to be receiving the message, as a long value
         /// </summary>
-        public long PlayerName { get; private set; }
+        public long Receiver { get; private set; }
 
         /// <summary>
-        /// The global message counter
+        /// The message size
         /// </summary>
-        public int GlobalMessageCounter { get; private set; }
+        public int Size { get; private set; }
 
         /// <summary>
-        /// The player rights
+        /// The message
         /// </summary>
-        public int Rights { get; private set; }
+        public byte[] Message { get; private set; }
 
 
         /// <summary>
         /// Creates a new private message packet payload builder
         /// </summary>
-        /// <param name="playerName"></param>
-        /// <param name="globalMessageCounter"></param>
-        /// <param name="rights"></param>
-        public SendPrivateMessage(long playerName, int globalMessageCounter, int rights)
+        /// <param name="receiver">The name of the player to be receiving the message, as a long value</param>
+        /// <param name="size">The message size</param>
+        /// <param name="message">The message</param>
+        public SendPrivateMessage(long receiver, int size, byte[] message)
         {
-            PlayerName = playerName;
-            GlobalMessageCounter = globalMessageCounter;
-            Rights = rights;
+            Receiver = receiver;
+            Size = size;
+            Message = message;
         }
 
         public int GetPayloadSize()
         {
-            throw new NotImplementedException();
+            return Size + 1 + 8 + 4; //?
         }
 
         public void WritePayload(PacketWriter writer)
         {
-            writer.WriteLong(PlayerName);
-            writer.WriteInt(GlobalMessageCounter);
-            writer.WriteByte(Rights);
+            /*
+            packet.writeHeader(PacketHeader.VARIABLE_BYTE, player.getConnection().getEncryptor(), 196);
+            packet.putLong(receiver);
+            packet.putInverseInteger(player.getAttributes().getLastPm());
+            packet.putByte(player.getRights().getProtocolValue());
+            packet.getBuffer().writeBytes(message, 0, size);
+            packet.finishPacket(PacketHeader.VARIABLE_BYTE);
+            */
         }
 
         
