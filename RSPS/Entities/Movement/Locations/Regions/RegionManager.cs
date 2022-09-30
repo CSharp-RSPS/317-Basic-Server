@@ -43,7 +43,7 @@ namespace RSPS.Entities.movement.Locations.Regions
         {
             try
             {
-                byte[] abyte2 = FileUtil.GetBuffer("./data/objects/map_index.dat");
+                byte[] abyte2 = FileUtil.GetBuffer("./Resources/objects/map_index.dat");
                 PacketReader stream2 = new(abyte2);
 
                 //int size = abyte2.length / 6;
@@ -567,8 +567,8 @@ namespace RSPS.Entities.movement.Locations.Regions
 
             try
             {
-                byte[] file1 = FileUtil.GetBuffer("./data/objects/maps/" + MapObjectFileIds[index]);
-                byte[] file2 = FileUtil.GetBuffer("./data/objects/maps/" + MapGroundFileIds[index]);
+                byte[] file1 = FileUtil.GetBuffer("./Resources/objects/maps/" + MapObjectFileIds[index]);
+                byte[] file2 = FileUtil.GetBuffer("./Resources/objects/maps/" + MapGroundFileIds[index]);
 
                 Debug.WriteLine("F's: " + file1 + ", " + file2);
 

@@ -27,6 +27,10 @@
   <ItemGroup>
     <Folder Include="Entities\Mobiles\Players\Items\" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="mkdir $(TargetDir)Resources\&#xD;&#xA;xcopy.exe /D /S /E /Y &quot;$(ProjectDir)Resources\*.*&quot; &quot;$(TargetDir)Resources\&quot;&#xD;&#xA;" />
+  </Target>
   
 
 </Project>

@@ -21,7 +21,7 @@ namespace RSPS.Game.Items
         
         static ItemManager()
         {
-            JsonUtil.DataImport<ItemDef>("./data/items/item_information.json", 
+            JsonUtil.DataImport<ItemDef>("./Resources/items/item_information.json", 
                 (elements) => elements.ForEach(def => Definitions.Add(def.Identity, def)));
         }
 

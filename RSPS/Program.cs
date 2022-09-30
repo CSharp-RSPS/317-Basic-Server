@@ -4,7 +4,6 @@ using RSPS.Net;
 using RSPS.Net.Connections;
 using RSPS.Net.GamePackets;
 using RSPS.Net.GamePackets.Send.Impl;
-using RSPS.readfiles;
 using RSPS.Worlds;
 using System.Data;
 using System.Diagnostics;
