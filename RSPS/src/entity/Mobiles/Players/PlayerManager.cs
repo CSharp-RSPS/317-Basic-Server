@@ -54,7 +54,7 @@ namespace RSPS.src.entity.Mobiles.Players
                 PacketHandler.SendPacket(player, new SendLoadMapRegion(player));
             }
             PacketHandler.SendPacket(player, new SendBeginPlayerUpdating(player));
-         //   PacketHandler.SendPacket(player, new SendNpcUpdating(player));
+            PacketHandler.SendPacket(player, new SendNpcUpdating(player));
         }
 
         public override void FinishTick(Player player)
