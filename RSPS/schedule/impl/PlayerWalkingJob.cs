@@ -6,7 +6,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSPS.schedule.impl
+namespace RSPS.Schedule.Impl
 {
     public class PlayerWalkingJob : Job
     {

@@ -8,7 +8,7 @@ using RSPS.Net.Connections;
 using RSPS.Net.GamePackets;
 using RSPS.Net.GamePackets.Send;
 using RSPS.Net.GamePackets.Send.Impl;
-using RSPS.schedule;
+using RSPS.Schedule;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

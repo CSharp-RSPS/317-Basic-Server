@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace RSPS.schedule
+namespace RSPS.Schedule
 {
     public class Job
     {

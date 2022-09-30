@@ -10,8 +10,8 @@ using RSPS.Net.Codec;
 using RSPS.Net.Connections;
 using RSPS.Net.GamePackets;
 using RSPS.Net.GamePackets.Send.Impl;
-using RSPS.schedule;
-using RSPS.schedule.impl;
+using RSPS.Schedule;
+using RSPS.Schedule.Impl;
 using System.Diagnostics;
 
 namespace RSPS.Entities.Mobiles.Players

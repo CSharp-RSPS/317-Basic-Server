@@ -1,4 +1,4 @@
-﻿namespace RSPS.schedule
+﻿namespace RSPS.Schedule
 {
     public static class Scheduler
     {
@@ -17,28 +17,27 @@
             Task.Run(() => { StartPerforming(); });
         }
 
-        private static void StartPerforming()
+        private static Task StartPerforming()
         {
-            Task.Run(() =>
-            {
-                Thread.BeginThreadAffinity();
-                while (true)
-                {
-                    Parallel.ForEach(JobList, ParallelOptions, (Job? job) =>
-                    {
-                        if (job == null) {
-                            return; 
-                        }
+            Thread.BeginThreadAffinity();
 
-                        bool success = job.Execute();
-                        if (!success)
-                        {
-                            JobList.Remove(job);
-                        }
-                    });
-                    Thread.Sleep(50);
-                }
-            });
+            while (true)
+            {
+                Parallel.ForEach(JobList, ParallelOptions, (Job? job) =>
+                {
+                    if (job == null)
+                    {
+                        return;
+                    }
+
+                    bool success = job.Execute();
+                    if (!success)
+                    {
+                        JobList.Remove(job);
+                    }
+                });
+                Thread.Sleep(50);
+            }
         }
     
     }
