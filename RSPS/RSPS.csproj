@@ -5,26 +5,27 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="src\entity\Mobiles\Players\appearance\**" />
-    <EmbeddedResource Remove="src\entity\Mobiles\Players\appearance\**" />
-    <None Remove="src\entity\Mobiles\Players\appearance\**" />
+    <Compile Remove="Entities\Mobiles\Players\appearance\**" />
+    <EmbeddedResource Remove="Entities\Mobiles\Players\appearance\**" />
+    <None Remove="Entities\Mobiles\Players\appearance\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="data\readfiles\prices.txt" />
+    <None Remove="Resources\readfiles\prices.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="data\readfiles\prices.txt">
+    <Content Include="Resources\readfiles\prices.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="src\entity\Mobiles\Players\Items\" />
+    <Folder Include="Entities\Mobiles\Players\Items\" />
   </ItemGroup>
   
 
