@@ -64,6 +64,8 @@ namespace RSPS.src.entity.Mobiles
 
         public EntityFlags Flags = new();
 
+        public bool UpdateRequired { get; set; } = false;
+
         /// <summary>
         /// Creates a new mobile entity
         /// </summary>

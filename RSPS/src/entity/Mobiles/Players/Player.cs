@@ -88,7 +88,7 @@ namespace RSPS.src.entity.Mobiles.Players
         public Hitpoints Hitpoints { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         
-        public bool UpdateRequired = false;
+        //public bool UpdateRequired = false;
         public bool AppearanceUpdateRequired = false;
         public bool ChatUpdateRequired = false;
 
