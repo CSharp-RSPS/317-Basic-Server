@@ -36,7 +36,7 @@ namespace RSPS.Game.Comms.Messaging
                 PacketHandler.SendPacket(sender, new SendMessage("This player is not online."));
                 return;
             }
-            PacketHandler.SendPacket(other, new SendPrivateMessage(sender.Comms, sender.Rights, receiver, messageSize, message));
+            PacketHandler.SendPacket(other, new SendPrivateMessage(sender.Comms, sender.PersistentVars.Rights, receiver, messageSize, message));
         }
 
         /// <summary>

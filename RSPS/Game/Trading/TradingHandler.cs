@@ -17,7 +17,7 @@ namespace RSPS.Game.Trading
 
         public static void Temp(Player player)
         {
-            ItemContainer tradeContainer = new ItemContainer(3322, 28, player.Member, false);
+            ItemContainer tradeContainer = new ItemContainer(3322, 28, player.PersistentVars.Member, false);
         }
 
     }

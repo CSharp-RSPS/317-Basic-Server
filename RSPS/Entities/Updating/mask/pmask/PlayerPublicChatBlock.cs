@@ -17,7 +17,7 @@ namespace RSPS.Entities.Updating.block.pblock
                 return;
             }
             writer.WriteShortLittleEndian(((player.Comms.ChatMessage.Color & 0xff) << 8) + (player.Comms.ChatMessage.Effects & 0xff));
-            writer.WriteByte((int)player.Rights);
+            writer.WriteByte((int)player.PersistentVars.Rights);
             writer.WriteByteNegated(player.Comms.ChatMessage.Text.Length);
             writer.WriteBytesReverse(player.Comms.ChatMessage.Text);
 

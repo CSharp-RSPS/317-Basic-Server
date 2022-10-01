@@ -156,7 +156,7 @@ namespace RSPS.Entities.Mobiles.Players
             {
                 PacketHandler.SendPacket(player, new SendMessage(string.Format("You are at {0}", player.Position.ToString())));
                 PacketHandler.SendPacket(player, new SendMessage(
-                    string.Format("Index: {0}; Flagged: {1}; Rights: {2}", player.WorldIndex, player.Flagged, player.Rights)));
+                    string.Format("Index: {0}; Flagged: {1}; Rights: {2}", player.WorldIndex, player.PersistentVars.Flagged, player.PersistentVars.Rights)));
             }
             PacketHandler.SendPacket(player, new SendMessage(string.Format("Welcome to {0}.", WorldHandler.World.Details.Name)));
             PacketHandler.SendPacket(player, new SendMessage(string.Format("Global notice: {0}.", "blablabla")));

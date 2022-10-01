@@ -204,8 +204,8 @@ namespace RSPS.Net.Codec
 
             if (loginResponse != AuthenticationResponse.SuccessfulReconnect)
             { // We only need to send these when it's a new login attempt
-                pw.WriteByte(player == null ? 0 : (int)player.Rights);
-                pw.WriteByte(player == null ? 0 : (player.Flagged ? 1 : 0)); //1 = flagged (information about mouse movements etc. are sent to the server. Suspected bot accounts are flagged.)
+                pw.WriteByte(player == null ? 0 : (int)player.PersistentVars.Rights);
+                pw.WriteByte(player == null ? 0 : (player.PersistentVars.Flagged ? 1 : 0)); //1 = flagged (information about mouse movements etc. are sent to the server. Suspected bot accounts are flagged.)
             }
             connection.Send(pw);
         }

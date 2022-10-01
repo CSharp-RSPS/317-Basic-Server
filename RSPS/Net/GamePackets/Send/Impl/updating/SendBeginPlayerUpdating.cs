@@ -187,7 +187,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
                 return;
             }
             writer.WriteShortLittleEndian(((player.Comms.ChatMessage.Color & 0xff) << 8) + (player.Comms.ChatMessage.Effects & 0xff));
-            writer.WriteByte((int)player.Rights);//rights
+            writer.WriteByte((int)player.PersistentVars.Rights);//rights
             writer.WriteByteNegated(player.Comms.ChatMessage.Text.Length);
             writer.WriteBytesReverse(player.Comms.ChatMessage.Text);
         }
