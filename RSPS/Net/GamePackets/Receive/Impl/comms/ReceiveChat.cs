@@ -31,9 +31,7 @@ namespace RSPS.Net.GamePackets.Receive.Impl
             {
                 return;
             }
-            ChatMessage cm = new(effects, color, text);
-
-            player.ChatMessage = cm;
+            player.Comms.ChatMessage = new(effects, color, text);
 
             //player.Flags.UpdateFlag(FlagType.PublicChat, true);
             player.ChatUpdateRequired = true;

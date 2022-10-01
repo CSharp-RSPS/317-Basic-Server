@@ -29,7 +29,6 @@ namespace RSPS.Game.Comms.Messaging
         /// <param name="messageSize">The message size</param>
         public static void SendPrivateMessage(Player sender, long receiver, byte[] message, int messageSize)
         {
-            string name = Misc.DecodeBase37(receiver);
             Player? other = WorldHandler.World.Players.ByUsername(Misc.DecodeBase37(receiver));
 
             if (other == null)
@@ -37,7 +36,7 @@ namespace RSPS.Game.Comms.Messaging
                 PacketHandler.SendPacket(sender, new SendMessage("This player is not online."));
                 return;
             }
-           //TODO PacketHandler.SendPacket(other, new SendPrivateMessage(receiver, message, messageSize));
+            PacketHandler.SendPacket(other, new SendPrivateMessage(sender.Comms, sender.Rights, receiver, messageSize, message));
         }
 
         /// <summary>
@@ -51,13 +50,13 @@ namespace RSPS.Game.Comms.Messaging
             foreach (Player other in WorldHandler.World.Players.Entities.Where(p => p != player))
             { // Mark the player as online for the players that have the player in their friends list
 
-                if (other.Friends.HasContact(other.Credentials.Username))
+                if (other.Comms.Friends.HasContact(other.Credentials.Username))
                 {
                     PacketHandler.SendPacket(other, new SendAddFriend(player.Credentials.UsernameAsLong,
                         WorldHandler.World.Details.Id));
                 }
             }
-            foreach (long usernameAsLong in player.Friends.Usernames)
+            foreach (long usernameAsLong in player.Comms.Friends.Usernames)
             { // Mark the contacts of the player that are online as online in the friends list
                 Player? other = WorldHandler.World.Players.ByUsername(Misc.DecodeBase37(usernameAsLong));
 
@@ -75,7 +74,7 @@ namespace RSPS.Game.Comms.Messaging
             foreach (Player other in WorldHandler.World.Players.Entities.Where(p => p != player))
             { // Mark the player as online for the players that have the player in their friends list
 
-                if (other.Friends.HasContact(other.Credentials.Username))
+                if (other.Comms.Friends.HasContact(other.Credentials.Username))
                 {
                     PacketHandler.SendPacket(other, new SendAddFriend(player.Credentials.UsernameAsLong,
                         ContactsHandler.ContactOfflineId));

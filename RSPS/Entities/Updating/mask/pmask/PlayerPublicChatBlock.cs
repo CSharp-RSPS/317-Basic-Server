@@ -12,10 +12,16 @@ namespace RSPS.Entities.Updating.block.pblock
     {
         public void ProcessBlock(Player player, PacketWriter writer)
         {
-            writer.WriteShortLittleEndian(((player.ChatMessage.Color & 0xff) << 8) + (player.ChatMessage.Effects & 0xff));
+            if (player.Comms.ChatMessage == null)
+            {
+                return;
+            }
+            writer.WriteShortLittleEndian(((player.Comms.ChatMessage.Color & 0xff) << 8) + (player.Comms.ChatMessage.Effects & 0xff));
             writer.WriteByte((int)player.Rights);
-            writer.WriteByteNegated(player.ChatMessage.Text.Length);
-            writer.WriteBytesReverse(player.ChatMessage.Text);
+            writer.WriteByteNegated(player.Comms.ChatMessage.Text.Length);
+            writer.WriteBytesReverse(player.Comms.ChatMessage.Text);
+
+            player.Comms.ChatMessage = null; // Reset the pending chat message
         }
     }
 }

@@ -75,14 +75,9 @@ namespace RSPS.Entities.Mobiles.Players
         public ItemContainer Equipment { get; private set; }
 
         /// <summary>
-        /// The player' friends
+        /// Handles communication for the player
         /// </summary>
-        public Contacts Friends { get; private set; }
-
-        /// <summary>
-        /// The player' ignores
-        /// </summary>
-        public Contacts Ignores { get; private set; }
+        public Communication Comms { get; private set; }
 
         public Stopwatch IdleTimer = new Stopwatch();
        
@@ -101,8 +96,6 @@ namespace RSPS.Entities.Mobiles.Players
         public bool AppearanceUpdateRequired = false;
         public bool ChatUpdateRequired = false;
 
-        public ChatMessage ChatMessage;
-
         public Player(PlayerCredentials credentials, Connection playerConnection)
             : base(new Position(3222 + new Random().Next(-1, 4), 3222 + new Random().Next(0, 6)), 
                   new PlayerMovement())
@@ -117,8 +110,8 @@ namespace RSPS.Entities.Mobiles.Players
             Bank = new ItemContainer(5382, Member ? 352 : 68, Member, true);
             Equipment = new ItemContainer(1688, 14, Member, false);
 
-            Friends = new(ContactType.Friends);
-            Ignores = new(ContactType.Ignores);
+            Comms = new Communication();
+
             //Scheduler.AddJob(new PlayerWalkingJob("Player Walking Job", this, TimeSpan.FromMilliseconds(600)));
         }
 

@@ -1,4 +1,5 @@
 ﻿using RSPS.Entities.Mobiles.Players;
+using RSPS.Game.Comms.Messaging;
 using RSPS.Util.Attributes;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,16 @@ namespace RSPS.Net.GamePackets.Send.Impl
     [PacketDef(PacketDefinition.SendPrivateMessage)]
     public sealed class SendPrivateMessage : IPacketVariablePayloadBuilder
     {
+
+        /// <summary>
+        /// The communication handler
+        /// </summary>
+        public Communication Comms { get; private set; }
+
+        /// <summary>
+        /// The rights of the player
+        /// </summary>
+        public PlayerRights Rights { get; private set; }
 
         /// <summary>
         /// The name of the player to be receiving the message, as a long value
@@ -36,11 +47,15 @@ namespace RSPS.Net.GamePackets.Send.Impl
         /// <summary>
         /// Creates a new private message packet payload builder
         /// </summary>
+        /// <param name="comms">The communication handler</param>
+        /// <param name="rights">The rights of the player</param>
         /// <param name="receiver">The name of the player to be receiving the message, as a long value</param>
         /// <param name="size">The message size</param>
         /// <param name="message">The message</param>
-        public SendPrivateMessage(long receiver, int size, byte[] message)
+        public SendPrivateMessage(Communication comms, PlayerRights rights, long receiver, int size, byte[] message)
         {
+            Comms = comms;
+            Rights = rights;
             Receiver = receiver;
             Size = size;
             Message = message;
@@ -48,19 +63,15 @@ namespace RSPS.Net.GamePackets.Send.Impl
 
         public int GetPayloadSize()
         {
-            return Size + 1 + 8 + 4; //?
+            return 8 + 4 + 1 + Size;
         }
 
         public void WritePayload(PacketWriter writer)
         {
-            /*
-            packet.writeHeader(PacketHeader.VARIABLE_BYTE, player.getConnection().getEncryptor(), 196);
-            packet.putLong(receiver);
-            packet.putInverseInteger(player.getAttributes().getLastPm());
-            packet.putByte(player.getRights().getProtocolValue());
-            packet.getBuffer().writeBytes(message, 0, size);
-            packet.finishPacket(PacketHeader.VARIABLE_BYTE);
-            */
+            writer.WriteLong(Receiver);
+            writer.WriteIntAdditionalInverseMiddleEndian(Comms.LastPrivateMessageId);
+            writer.WriteByte((int)Rights);
+            writer.WriteBytes(Message, Size); //packet.getBuffer().writeBytes(message, 0, size);
         }
 
         
