@@ -1,7 +1,9 @@
 ﻿using RSPS.Entities.Health;
 using RSPS.Entities.Mobiles;
 using RSPS.Entities.Mobiles.Npcs;
+using RSPS.Entities.Mobiles.Players.Events;
 using RSPS.Entities.Mobiles.Players.Skills;
+using RSPS.Entities.Mobiles.Players.Variables;
 using RSPS.Entities.movement;
 using RSPS.Entities.movement.Locations;
 using RSPS.Game.Comms.Chatting;
@@ -40,19 +42,14 @@ namespace RSPS.Entities.Mobiles.Players
         public PlayerMovement PlayerMovement => (PlayerMovement)Movement;
 
         /// <summary>
-        /// The administrative rights of the player
+        /// The player's persistent global variables
         /// </summary>
-        public PlayerRights Rights { get; set; }
+        public PersistentVariables PersistentVars { get; private set; }
 
         /// <summary>
-        /// Whether the player is a member
+        /// The player's non-persistent global variables
         /// </summary>
-        public bool Member { get; set; }
-
-        /// <summary>
-        /// Whether the player is flagged
-        /// </summary>
-        public bool Flagged { get; set; }
+        public NonPersistentVariables NonPersistentVars { get; private set; }
 
         /// <summary>
         /// The login state of the player
@@ -79,6 +76,11 @@ namespace RSPS.Entities.Mobiles.Players
         /// </summary>
         public Communication Comms { get; private set; }
 
+        /// <summary>
+        /// Controls player events
+        /// </summary>
+        public PlayerEventController PlayerEvents { get; private set; }
+
         public Stopwatch IdleTimer = new Stopwatch();
        
 
@@ -101,16 +103,17 @@ namespace RSPS.Entities.Mobiles.Players
                   new PlayerMovement())
         {
             Credentials = credentials;
-            Member = true;
-            Rights = PlayerRights.Administrator;
+            PersistentVars = new PersistentVariables();
+            NonPersistentVars = new NonPersistentVariables();
 
             PlayerConnection = playerConnection;
 
-            Inventory = new ItemContainer(3214, 28, Member, false);
-            Bank = new ItemContainer(5382, Member ? 352 : 68, Member, true);
-            Equipment = new ItemContainer(1688, 14, Member, false);
+            Inventory = new ItemContainer(3214, 28, PersistentVars.Member, false);
+            Bank = new ItemContainer(5382, PersistentVars.Member ? 352 : 68, PersistentVars.Member, true);
+            Equipment = new ItemContainer(1688, 14, PersistentVars.Member, false);
 
             Comms = new Communication();
+            PlayerEvents = new PlayerEventController();
 
             //Scheduler.AddJob(new PlayerWalkingJob("Player Walking Job", this, TimeSpan.FromMilliseconds(600)));
         }

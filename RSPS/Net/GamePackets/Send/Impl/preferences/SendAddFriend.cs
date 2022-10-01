@@ -40,7 +40,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
         public void WritePayload(PacketWriter writer)
         {
             writer.WriteLong(PlayerName);
-            writer.WriteByte(WorldStatus == 0 ? 0 : (WorldStatus) + 9);
+            writer.WriteByte(WorldStatus);
         }
 
     }

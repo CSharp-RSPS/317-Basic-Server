@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Entities\Mobiles\Players\Items\" />
+    <Folder Include="Entities\Mobiles\Players\Actions\" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

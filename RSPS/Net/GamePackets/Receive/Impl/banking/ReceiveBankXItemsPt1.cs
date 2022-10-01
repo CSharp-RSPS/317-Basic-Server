@@ -1,4 +1,5 @@
 ﻿using RSPS.Entities.Mobiles.Players;
+using RSPS.Entities.Mobiles.Players.Events.Impl;
 using RSPS.Net.GamePackets.Send;
 using RSPS.Net.GamePackets.Send.Impl;
 using RSPS.Util.Attributes;
@@ -25,28 +26,7 @@ namespace RSPS.Net.GamePackets.Receive.Impl
             int interfaceId = reader.ReadShortAdditional();
             int itemId = reader.ReadShortLittleEndian();
 
-            switch (interfaceId)
-            {
-                //Add to bank
-                case 5064:
-
-                //Remove from bank
-                case 5382:
-
-                //Buy from shop
-                case 3900:
-
-                //Sell to shop
-                case 3823:
-
-                //Offer in trade
-                case 3322:
-
-                //Remove from trade
-                case 3415:
-                    PacketHandler.SendPacket(player, PacketDefinition.InputAmount);
-                    break;
-            }
+            player.PlayerEvents.Start(player, new ItemAmountInputEvent(slotId, interfaceId, itemId));
         }
 
     }

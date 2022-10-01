@@ -52,7 +52,7 @@ namespace RSPS.Game.Comms.Messaging
         /// <param name="username">The username as long value</param>
         public static void AddContact(Player player, ContactType contactType, long username)
         {
-            Contacts contacts = contactType == ContactType.Friends ? player.Friends : player.Ignores;
+            Contacts contacts = contactType == ContactType.Friends ? player.Comms.Friends : player.Comms.Ignores;
 
             if (player.Credentials.UsernameAsLong == username)
             {
@@ -61,10 +61,10 @@ namespace RSPS.Game.Comms.Messaging
             }
             if (contacts.HasContact(username))
             {
-                PacketHandler.SendPacket(player, new SendMessage("This player is already in your list."));
+                PacketHandler.SendPacket(player, new SendMessage("This player is already in your " + contactType.ToString().ToLower() + " list."));
                 return;
             }
-            Contacts otherContacts = contactType == ContactType.Friends ? player.Ignores : player.Friends;
+            Contacts otherContacts = contactType == ContactType.Friends ? player.Comms.Ignores : player.Comms.Friends;
 
             if (otherContacts.HasContact(username))
             {
@@ -81,7 +81,7 @@ namespace RSPS.Game.Comms.Messaging
                 return;
             }
             Player? other = WorldHandler.World.Players.ByUsername(Misc.DecodeBase37(username));
-
+            // TODO chat settings (in case other player needs to appear offline etc)
             PacketHandler.SendPacket(player, contactType == ContactType.Friends
                 ? new SendAddFriend(username, other != null && other.LoggedIn ? WorldHandler.World.Details.Id : ContactOfflineId)
                 : new SendAddIgnore(username));
@@ -115,11 +115,11 @@ namespace RSPS.Game.Comms.Messaging
         /// <param name="username">The username as long value</param>
         public static void RemoveContact(Player player, ContactType contactType, long username)
         {
-            Contacts contacts = contactType == ContactType.Friends ? player.Friends : player.Ignores;
+            Contacts contacts = contactType == ContactType.Friends ? player.Comms.Friends : player.Comms.Ignores;
 
             if (!contacts.HasContact(username))
             {
-                PacketHandler.SendPacket(player, new SendMessage("This player is not in your list."));
+                PacketHandler.SendPacket(player, new SendMessage("This player is not in your " + contactType.ToString().ToLower() + " list."));
                 return;
             }
             contacts.Remove(username);

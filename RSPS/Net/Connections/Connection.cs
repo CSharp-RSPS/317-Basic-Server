@@ -1,6 +1,6 @@
 ﻿using RSPS.Entities.Mobiles.Players;
 using RSPS.Net.Authentication;
-using RSPS.Net.Ciphers;
+using RSPS.Net.Security.Ciphers;
 using RSPS.Net.Codec;
 using RSPS.Net.GamePackets;
 using RSPS.Worlds;

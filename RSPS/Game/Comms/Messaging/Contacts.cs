@@ -96,7 +96,7 @@ namespace RSPS.Game.Comms.Messaging
                 return false;
             }
             usernames.Add(username);
-            return false;
+            return true;
         }
 
         /// <summary>

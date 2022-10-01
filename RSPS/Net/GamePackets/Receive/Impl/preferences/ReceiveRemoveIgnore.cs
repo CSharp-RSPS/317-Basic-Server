@@ -1,4 +1,5 @@
 ﻿using RSPS.Entities.Mobiles.Players;
+using RSPS.Game.Comms.Messaging;
 using RSPS.Net.GamePackets.Send.Impl;
 using RSPS.Util.Attributes;
 using System;
@@ -20,7 +21,13 @@ namespace RSPS.Net.GamePackets.Receive.Impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            long playerId = reader.ReadLong();
+            long usernameAsLong = reader.ReadLong();
+
+            if (usernameAsLong <= 0)
+            {
+                return;
+            }
+            ContactsHandler.RemoveIgnore(player, usernameAsLong);
         }
 
     }

@@ -107,8 +107,12 @@ namespace RSPS.Net.GamePackets
         public static void HandlePacket(Player player, PacketReader packetReader)
         {
             if (!ReceivablePackets.ContainsKey(packetReader.Opcode)) {
+                if (packetReader.Opcode == 77 || packetReader.Opcode == 165
+                    || packetReader.Opcode == 226 || packetReader.Opcode == 246)
+                { // Ignore old security related packets without purpose, that are not useful anymore
+                    return;
+                }
                 Console.Error.WriteLine("Unknown packet {0} (Length: {1})", packetReader.Opcode, packetReader.PayloadSize);
-                //packetReader.ReadBytes(packetReader.PayloadSize);
                 return;
             }
             IReceivePacket receivePacket = ReceivablePackets[packetReader.Opcode];
@@ -236,7 +240,7 @@ namespace RSPS.Net.GamePackets
             // Dispatch the packet to the client
             connection.Send(packetWriter.Buffer, packetWriter.Pointer);
 
-            if (packetInfo.Opcode != 81)
+            if (packetInfo.Opcode != 81 && packetInfo.Opcode != 65)
             {
                 Debug.WriteLine("Packet ({0}) [Opcode: {1}][Size: {2}] dispatched to client",
                 Enum.GetName(typeof(PacketDefinition), packetDef), packetInfo.Opcode, packetSize);

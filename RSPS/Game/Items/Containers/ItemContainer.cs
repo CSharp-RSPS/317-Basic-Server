@@ -143,7 +143,7 @@ namespace RSPS.Game.Items.Containers
                 }
             }
             else if (!CanAddItemToSlot(item, slot.Value))
-            {
+            { //TODO: we should check for stackable first before trying to force to the slot
                 return null;
             }
             ItemDef? def = ItemManager.GetItemDefById(item.Id);
@@ -156,9 +156,20 @@ namespace RSPS.Game.Items.Containers
             {
                 Item? itemAtSlot = GetItemBySlot(slot.Value);
 
-                if (itemAtSlot != null)
+                if (itemAtSlot != null && itemAtSlot.Id == item.Id)
                 {
                     return ModifyItemAmount(itemAtSlot, slot.Value, item.Amount);
+                }
+                Item? stack = GetItemById(item.Id);
+
+                if (stack != null)
+                {
+                    int? stackSlot = GetItemSlot(stack);
+
+                    if (stackSlot != null)
+                    {
+                        return ModifyItemAmount(stack, stackSlot.Value, item.Amount);
+                    }
                 }
             }
             Items[slot.Value] = item;

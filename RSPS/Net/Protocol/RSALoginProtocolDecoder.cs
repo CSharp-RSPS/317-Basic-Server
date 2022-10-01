@@ -1,5 +1,5 @@
 ﻿using RSPS.Entities.Mobiles.Players;
-using RSPS.Net.Ciphers;
+using RSPS.Net.Security.Ciphers;
 using RSPS.Net.Connections;
 using RSPS.Net.GamePackets;
 using System;

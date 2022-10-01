@@ -18,7 +18,7 @@ namespace RSPS.Worlds
         /// <summary>
         /// The identifier for the main development world
         /// </summary>
-        public static readonly int DevevelopmentWorldId = 1337;
+        public static readonly int DevevelopmentWorldId = 999;
 
         /// <summary>
         /// The development world

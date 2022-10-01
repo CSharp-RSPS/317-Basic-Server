@@ -3,6 +3,7 @@ using RSPS.Net.GamePackets.Send.Impl;
 using RSPS.Util.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,9 @@ namespace RSPS.Net.GamePackets.Receive.Impl
             int publicChatOptions = reader.ReadByte(false);
             int privateChatOptions = reader.ReadByte(false);
             int tradeOptions = reader.ReadByte(false);
+
+            Debug.WriteLine("public: " + publicChatOptions + ", private: " + privateChatOptions + ", trade: " + tradeOptions);
+            Debug.WriteLine("");
         }
 
     }

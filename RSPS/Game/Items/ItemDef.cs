@@ -20,7 +20,7 @@ namespace RSPS.Game.Items
 
         public int ReverseIdentity { get; set; }
 
-        public double Weight { get; set; }
+        public short Weight { get; set; }
 
         public bool Noted { get; set; }
 

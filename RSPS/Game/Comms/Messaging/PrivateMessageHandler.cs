@@ -82,9 +82,5 @@ namespace RSPS.Game.Comms.Messaging
             }
         }
 
-
-        //Contacts
-        
-
     }
 }

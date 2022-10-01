@@ -14,6 +14,7 @@ using RSPS.Entities.Updating.flag;
 using RSPS.Entities.Mobiles.Players.Skills;
 using System.Diagnostics;
 using RSPS.Game.Comms.Messaging;
+using RSPS.Game.Items.Equipment;
 
 namespace RSPS.Entities.Mobiles.Players
 {
@@ -122,12 +123,13 @@ namespace RSPS.Entities.Mobiles.Players
                 player.Skills.Add(skill);
                 PacketHandler.SendPacket(player, new SendSkill(skill));
             }
-            /*      PacketHandler.SendPacket(player, new SendPlayerOption(1, "null"));
-                  PacketHandler.SendPacket(player, new SendPlayerOption(2, "null"));
-                  PacketHandler.SendPacket(player, new SendPlayerOption(3, "Follow"));
-                  PacketHandler.SendPacket(player, new SendPlayerOption(4, "Trade with"));*/
+            PacketHandler.SendPacket(player, new SendPlayerOption(1, "null"));
+            PacketHandler.SendPacket(player, new SendPlayerOption(2, "null"));
+            PacketHandler.SendPacket(player, new SendPlayerOption(3, "Follow"));
+            PacketHandler.SendPacket(player, new SendPlayerOption(4, "Trade with"));
 
             //TODO: Refresh inventory, equipment, configurations
+            EquipmentHandler.UpdateWeight(player);
             //TODO: weapon interface update
 
             PrivateMessageHandler.Register(player);

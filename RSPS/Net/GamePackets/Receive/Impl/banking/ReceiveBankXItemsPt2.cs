@@ -1,4 +1,7 @@
 ﻿using RSPS.Entities.Mobiles.Players;
+using RSPS.Entities.Mobiles.Players.Events;
+using RSPS.Entities.Mobiles.Players.Events.Impl;
+using RSPS.Game.Items;
 using RSPS.Net.GamePackets.Send.Impl;
 using RSPS.Util.Attributes;
 using System;
@@ -21,27 +24,13 @@ namespace RSPS.Net.GamePackets.Receive.Impl
         public void ReceivePacket(Player player, PacketReader reader)
         {
             int amount = reader.ReadInt();
-            int interfaceId = 0; //TODO
 
-            switch (interfaceId)
+            ItemAmountInputEvent? evt = player.PlayerEvents.FindActive<ItemAmountInputEvent>(PlayerEventType.ItemAmountInput);
+
+            if (evt != null)
             {
-                case 5064: // Add to bank
-                    break;
-
-                case 5382: // Remove from bank
-                    break;
-
-                case 3900: // Buy from shop
-                    break;
-
-                case 3823: // Sell to shop
-                    break;
-
-                case 3322: // Offer in trade
-                    break;
-
-                case 3415: // Remove from trade
-                    break;
+                evt.SetAmount(amount);
+                player.PlayerEvents.NextStage(player, evt);
             }
         }
 
