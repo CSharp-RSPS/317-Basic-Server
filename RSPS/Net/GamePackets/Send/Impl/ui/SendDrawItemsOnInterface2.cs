@@ -1,7 +1,9 @@
-﻿using RSPS.Util.Attributes;
+﻿using RSPS.Game.Items;
+using RSPS.Util.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,44 +22,43 @@ namespace RSPS.Net.GamePackets.Send.Impl
         public int InterfaceId { get; private set; }
 
         /// <summary>
-        /// The amount of items
+        /// The container items
         /// </summary>
-        public int ItemCount { get; private set; }
+        public Dictionary<int, Item?> Items { get; private set; }
 
 
         /// <summary>
         /// Creates a new draw items on interface packet payload builder
         /// </summary>
         /// <param name="interfaceId">The interface ID</param>
-        /// <param name="itemCount">The amount of items</param>
-        public SendDrawItemsOnInterface2(int interfaceId, int itemCount)
+        /// <param name="items">The container items</param>
+        public SendDrawItemsOnInterface2(int interfaceId, Dictionary<int, Item?> items)
         {
             InterfaceId = interfaceId;
-            ItemCount = itemCount;
+            Items = items;
         }
 
         public int GetPayloadSize()
         {
-            throw new NotImplementedException();
+            // 4 initial bytes (2 shorts) + (3-7 * item count) so to be easy we take the max.
+            return 4 + Items.Count * 7;
         }
 
         public void WritePayload(PacketWriter writer)
         {
             writer.WriteShort(InterfaceId);
-            writer.WriteShort(ItemCount);
-            //TODO
-            for (int i = 0; i < ItemCount; i++)
-            {
-                int itemQty = 1;
-                writer.WriteByte(itemQty);
+            writer.WriteShort(Items.Count);
 
-                if (itemQty == 255)
+            foreach (KeyValuePair<int, Item?> kvp in Items)
+            {
+                int amount = kvp.Value == null ? 0 : kvp.Value.Amount;
+                writer.WriteByte(amount >= 255 ? 255 : amount);
+
+                if (amount >= 255)
                 {
-                    itemQty = 1000;
-                    writer.WriteIntMiddleEndian(itemQty);
+                    writer.WriteInt(amount);
                 }
-                int itemId = 0;
-                writer.WriteShortAdditionalLittleEndian(itemId);
+                writer.WriteShortAdditionalLittleEndian(kvp.Value == null ? 0 : (kvp.Value.Id + 1));
             }
         }
 

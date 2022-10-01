@@ -1,4 +1,7 @@
-﻿using System;
+﻿using RSPS.Entities.Mobiles.Players;
+using RSPS.Net.GamePackets;
+using RSPS.Net.GamePackets.Send.Impl;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -12,6 +15,11 @@ namespace RSPS.Game.Items.Containers
     /// </summary>
     public class ItemContainer
     {
+
+        /// <summary>
+        /// The interface ID of the container
+        /// </summary>
+        public int InterfaceId { get; private set; }
 
         /// <summary>
         /// The capacity of the container
@@ -40,8 +48,9 @@ namespace RSPS.Game.Items.Containers
         /// <param name="capacity">The capacity</param>
         /// <param name="member">Whether the container is for a member</param>
         /// <param name="alwaysStack">Whether to always stack items with the same identifier</param>
-        public ItemContainer(int capacity, bool member, bool alwaysStack)
+        public ItemContainer(int interfaceId, int capacity, bool member, bool alwaysStack)
         {
+            InterfaceId = interfaceId;
             Capacity = capacity;
             Member = member;
             AlwaysStack = alwaysStack;
@@ -51,6 +60,24 @@ namespace RSPS.Game.Items.Containers
             { // Initialize the container
                 Items.Add(i, null);
             }
+        }
+
+        /// <summary>
+        /// Moves an item to another slot
+        /// </summary>
+        /// <param name="sourceSlot">The source slot</param>
+        /// <param name="targetSlot">The target slot</param>
+        public void Move(int sourceSlot, int targetSlot)
+        {
+            Item? sourceItem = GetItemBySlot(sourceSlot);
+
+            if (sourceItem == null)
+            { // No source item to move
+                return;
+            }
+            Item? targetItem = GetItemBySlot(targetSlot);
+            Items[targetSlot] = sourceItem;
+            Items[sourceSlot] = targetItem;
         }
 
         /// <summary>
@@ -390,6 +417,17 @@ namespace RSPS.Game.Items.Containers
                 }
             }
             return freeSlots;
+        }
+
+        /// <summary>
+        /// Refreshes the UI for a player with the items within this container
+        /// </summary>
+        /// <param name="player">The player</param>
+        /// <returns>The container</returns>
+        public ItemContainer RefreshUI(Player player)
+        {
+            PacketHandler.SendPacket(player, new SendDrawItemsOnInterface2(InterfaceId, Items));
+            return this;
         }
 
     }

@@ -14,6 +14,7 @@ using RSPS.Net.GamePackets.Send.Impl;
 using RSPS.Schedule;
 using RSPS.Schedule.Impl;
 using System.Diagnostics;
+using System.Diagnostics.Metrics;
 
 namespace RSPS.Entities.Mobiles.Players
 {
@@ -42,6 +43,11 @@ namespace RSPS.Entities.Mobiles.Players
         /// The administrative rights of the player
         /// </summary>
         public PlayerRights Rights { get; set; }
+
+        /// <summary>
+        /// Whether the player is a member
+        /// </summary>
+        public bool Member { get; set; }
 
         /// <summary>
         /// Whether the player is flagged
@@ -102,9 +108,14 @@ namespace RSPS.Entities.Mobiles.Players
                   new PlayerMovement())
         {
             Credentials = credentials;
+            Member = true;
+            Rights = PlayerRights.Administrator;
+
             PlayerConnection = playerConnection;
-            Inventory = new ItemContainer(28, true, false);
-            Bank = new ItemContainer(256, true, true);
+
+            Inventory = new ItemContainer(3214, 28, Member, false);
+            Bank = new ItemContainer(5382, Member ? 352 : 68, Member, true);
+            Equipment = new ItemContainer(1688, 14, Member, false);
 
             Friends = new(ContactType.Friends);
             Ignores = new(ContactType.Ignores);
