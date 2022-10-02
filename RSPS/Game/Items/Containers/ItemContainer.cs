@@ -130,8 +130,9 @@ namespace RSPS.Game.Items.Containers
         /// </summary>
         /// <param name="item">The item</param>
         /// <param name="slot">The slot</param>
+        /// <param name="allowOtherSlot">Whether using another slot is allowed in case the defined slot can not be used</param>
         /// <returns>The added item</returns>
-        public Item? AddItem(Item item, int? slot = null)
+        public Item? AddItem(Item item, int? slot = null, bool allowOtherSlot = false)
         {
             if (slot == null)
             {
@@ -143,8 +144,8 @@ namespace RSPS.Game.Items.Containers
                 }
             }
             else if (!CanAddItemToSlot(item, slot.Value))
-            { //TODO: we should check for stackable first before trying to force to the slot
-                return null;
+            {
+                return allowOtherSlot ? AddItem(item, null, false) : null;
             }
             ItemDef? def = ItemManager.GetItemDefById(item.Id);
 
@@ -227,7 +228,7 @@ namespace RSPS.Game.Items.Containers
             Item? itemInSlot = GetItemBySlot(slot);
 
             return itemInSlot == null
-                || itemInSlot.Id == item.Id && (def.Stackable || AlwaysStack);
+                || (itemInSlot.Id == item.Id && (def.Stackable || AlwaysStack));
         }
 
         /// <summary>

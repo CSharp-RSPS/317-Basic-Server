@@ -1,0 +1,5319 @@
+[
+  {
+    "Id": 35,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 466,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 667,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 9,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 746,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 451,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 747,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 767,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 5,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 772,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 800,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 21,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 801,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 21,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 802,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 21,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 803,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 21,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 804,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 21,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 805,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 21,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 806,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 807,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 808,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 809,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 810,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 811,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 812,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 813,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 814,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 815,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 816,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 817,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 818,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 825,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 826,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 827,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 828,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 829,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 830,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 831,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 832,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 833,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 834,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 835,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 836,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 837,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 5,
+    "Animations": {
+      "Stand": 2074,
+      "Walk": 2076,
+      "Run": 2077,
+      "Hit": 427,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 839,
+    "Speed": 3600,
+    "Distance": 8,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 841,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 6,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 843,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 6,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 845,
+    "Speed": 3000,
+    "Distance": 8,
+    "WeaponType": 7,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 847,
+    "Speed": 3000,
+    "Distance": 8,
+    "WeaponType": 7,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 849,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 6,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 851,
+    "Speed": 3000,
+    "Distance": 8,
+    "WeaponType": 7,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 853,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 6,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 855,
+    "Speed": 3000,
+    "Distance": 8,
+    "WeaponType": 7,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 857,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 6,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 859,
+    "Speed": 3000,
+    "Distance": 8,
+    "WeaponType": 7,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 426,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 861,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 6,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 426,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 863,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 864,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 865,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 866,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 867,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 868,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 385,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 869,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 870,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 871,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 872,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 873,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 874,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 875,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 876,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1203,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1205,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1207,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1209,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1211,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1213,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1215,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 402,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1217,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1219,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1221,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1223,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1225,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1227,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1229,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1231,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 402,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1233,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1235,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1237,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 14,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1239,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 14,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1241,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 14,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1243,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 14,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1245,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 14,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1247,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 14,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1249,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 14,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1251,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1253,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1255,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1257,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1259,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1261,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1263,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1265,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 16,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1267,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 16,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1269,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 16,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1271,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 16,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1273,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 16,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1275,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 16,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1277,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 9,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1279,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 9,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1281,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 9,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1283,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 9,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1285,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 9,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1287,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 9,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1289,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 9,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1291,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 11,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1293,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 11,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1295,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 11,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1297,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 11,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1299,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 11,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1301,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 11,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1303,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 11,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1305,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 11,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 451,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1307,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 15,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 407,
+      "Block": 410
+    }
+  },
+  {
+    "Id": 1309,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 15,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 407,
+      "Block": 410
+    }
+  },
+  {
+    "Id": 1311,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 15,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 407,
+      "Block": 410
+    }
+  },
+  {
+    "Id": 1313,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 15,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 407,
+      "Block": 410
+    }
+  },
+  {
+    "Id": 1315,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 15,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 407,
+      "Block": 410
+    }
+  },
+  {
+    "Id": 1317,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 15,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 407,
+      "Block": 410
+    }
+  },
+  {
+    "Id": 1319,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 15,
+    "Animations": {
+      "Stand": 2065,
+      "Walk": 2064,
+      "Run": 824,
+      "Hit": 407,
+      "Block": 410
+    }
+  },
+  {
+    "Id": 1321,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 10,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 451,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1323,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 10,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 451,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1325,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 10,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 451,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1327,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 10,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 451,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1329,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 10,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 451,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1331,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 10,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1333,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 10,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 451,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1335,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 1,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1337,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 1,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1339,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 1,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1341,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 1,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1343,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 1,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1345,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 1,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1347,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 1,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1349,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1351,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1353,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1355,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1357,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1359,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1361,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1363,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1365,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1367,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1369,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1371,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1373,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 1833,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1375,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1377,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 1833,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1379,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1381,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1383,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1385,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1387,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1389,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1391,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1393,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1395,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1397,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1399,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1401,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1403,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1405,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1407,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1409,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1419,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 2,
+    "Animations": {
+      "Stand": 1662,
+      "Walk": 1663,
+      "Run": 1664,
+      "Hit": 408,
+      "Block": 1666
+    }
+  },
+  {
+    "Id": 1420,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 12,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1422,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 12,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1424,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 12,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1426,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 12,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1428,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 12,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1430,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 12,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1432,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 12,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 1434,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 12,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 1833,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2402,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2415,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2416,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2417,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2425,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2460,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2462,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2464,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2466,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2468,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2470,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2472,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2474,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2476,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2883,
+    "Speed": 3000,
+    "Distance": 8,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2952,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2961,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2963,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 2997,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3053,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3054,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3093,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3094,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3095,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 17,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3096,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 17,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3097,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 17,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3098,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 17,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3099,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 17,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3100,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 17,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3101,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 17,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 451,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3170,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3171,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3172,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3173,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3174,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3175,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3176,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3190,
+    "Speed": 3000,
+    "Distance": 2,
+    "WeaponType": 18,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3192,
+    "Speed": 3000,
+    "Distance": 2,
+    "WeaponType": 18,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3194,
+    "Speed": 3000,
+    "Distance": 2,
+    "WeaponType": 18,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3196,
+    "Speed": 3000,
+    "Distance": 2,
+    "WeaponType": 18,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3198,
+    "Speed": 3000,
+    "Distance": 2,
+    "WeaponType": 18,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3200,
+    "Speed": 3000,
+    "Distance": 2,
+    "WeaponType": 18,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3202,
+    "Speed": 3000,
+    "Distance": 2,
+    "WeaponType": 18,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 440,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3204,
+    "Speed": 3000,
+    "Distance": 2,
+    "WeaponType": 18,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 440,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 3899,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4037,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4039,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4068,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 9,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4151,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 20,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 1661,
+      "Run": 1661,
+      "Hit": 1658,
+      "Block": 1659
+    }
+  },
+  {
+    "Id": 4153,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 1,
+    "Animations": {
+      "Stand": 1662,
+      "Walk": 1663,
+      "Run": 1664,
+      "Hit": 1665,
+      "Block": 1666
+    }
+  },
+  {
+    "Id": 4158,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 14,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4159,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4170,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4178,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 20,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4212,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 6,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4214,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 6,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 426,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4215,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 6,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4216,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 6,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4217,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 6,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4218,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 6,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4219,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 6,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4220,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 6,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4221,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 6,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4222,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 6,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4223,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 6,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4236,
+    "Speed": 3000,
+    "Distance": 8,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4503,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 9,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4508,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 9,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4580,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 14,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4582,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4584,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4587,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 10,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 451,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4675,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4710,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4718,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 2065,
+      "Walk": 2064,
+      "Run": 824,
+      "Hit": 2067,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4726,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 14,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 2080,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4734,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 5,
+    "Animations": {
+      "Stand": 2074,
+      "Walk": 2076,
+      "Run": 2077,
+      "Hit": 2075,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4747,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 1,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 2068,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4755,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 20,
+    "Animations": {
+      "Stand": 2061,
+      "Walk": 2060,
+      "Run": 824,
+      "Hit": 2062,
+      "Block": 2063
+    }
+  },
+  {
+    "Id": 4827,
+    "Speed": 3000,
+    "Distance": 9,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4862,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4863,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4864,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4865,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4886,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4887,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4888,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4889,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4910,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4911,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4912,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4913,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4934,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4935,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4936,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4937,
+    "Speed": 3000,
+    "Distance": 7,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4958,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4959,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4960,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4961,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4982,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4983,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4984,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 4985,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5016,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 14,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5056,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5057,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5058,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5059,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5628,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5629,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5630,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5631,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5632,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5633,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5634,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5635,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5636,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5637,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5638,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5639,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5640,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5641,
+    "Speed": 3000,
+    "Distance": 4,
+    "WeaponType": 22,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5642,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5643,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5644,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5645,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5646,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5647,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5648,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5649,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5650,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5651,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5652,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5653,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 23,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5654,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5655,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5656,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5657,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5658,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5659,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5660,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5661,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5662,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5663,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5664,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5665,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5666,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5667,
+    "Speed": 3000,
+    "Distance": 5,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5668,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5670,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5672,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5674,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5676,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5678,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5680,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 402,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5682,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5684,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5686,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5688,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5690,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5692,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5694,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5696,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5698,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 402,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5700,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5702,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5704,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5706,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5708,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5710,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5712,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5714,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5716,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5718,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5720,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5722,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5724,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5726,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5728,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5730,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 2080,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5734,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 5736,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6082,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6522,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6523,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6525,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6526,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6527,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 2927,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6528,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 1,
+    "Animations": {
+      "Stand": 2065,
+      "Walk": 2064,
+      "Run": 824,
+      "Hit": 2661,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6562,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6563,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 809,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6587,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 17,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6589,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6591,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6593,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6595,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6597,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 8,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6599,
+    "Speed": 3000,
+    "Distance": 2,
+    "WeaponType": 18,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6601,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 12,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6603,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 0,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6605,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 9,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6607,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 11,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6609,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 15,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 407,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6611,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 10,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6613,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 1,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6724,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 426,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6739,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 451,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6745,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6746,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6760,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6762,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6764,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6818,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 744,
+      "Hit": 440,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6897,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 11,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6908,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6910,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6912,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 6914,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 1146,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 7158,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 15,
+    "Animations": {
+      "Stand": 2065,
+      "Walk": 2064,
+      "Run": 824,
+      "Hit": 407,
+      "Block": 410
+    }
+  },
+  {
+    "Id": 7447,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 13,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 7668,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 7671,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 7673,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 7675,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 9,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 7804,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 19,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 7806,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 9,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 7807,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 4,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 7808,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 12,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  },
+  {
+    "Id": 7809,
+    "Speed": 3000,
+    "Distance": 1,
+    "WeaponType": 14,
+    "Animations": {
+      "Stand": 808,
+      "Walk": 819,
+      "Run": 824,
+      "Hit": 806,
+      "Block": 404
+    }
+  }
+]

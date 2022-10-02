@@ -11,16 +11,16 @@ namespace RSPS.Entities.Mobiles.Players.Skills
 
         public static int CalculateCombatLevel(Player player)
         {
-            int defence = player.GetSkill(SkillType.DEFENCE).CurrentLevel;
-            int hitpoints = player.GetSkill(SkillType.HITPOINTS).CurrentLevel;
-            int prayer = player.GetSkill(SkillType.PRAYER).CurrentLevel;
+            int defence = player.GetSkill(SkillType.Defence).CurrentLevel;
+            int hitpoints = player.GetSkill(SkillType.Hitpoints).CurrentLevel;
+            int prayer = player.GetSkill(SkillType.Prayer).CurrentLevel;
             double baseCombatLevel = 0.25 * (defence + hitpoints + (prayer * 0.5));
 
             int meleeCombatLevel = (int)Math.Floor(baseCombatLevel + 0.325 * 
-                (player.GetSkill(SkillType.ATTACK).CurrentLevel + player.GetSkill(SkillType.STRENGTH).CurrentLevel));
+                (player.GetSkill(SkillType.Attack).CurrentLevel + player.GetSkill(SkillType.Strength).CurrentLevel));
 
-            int rangeCombatLevel = (int)Math.Floor(baseCombatLevel + 0.325 * (player.GetSkill(SkillType.RANGED).CurrentLevel * 1.5));
-            int magicCombatLevel = (int)Math.Floor(baseCombatLevel + 0.325 * (player.GetSkill(SkillType.MAGIC).CurrentLevel * 1.5));
+            int rangeCombatLevel = (int)Math.Floor(baseCombatLevel + 0.325 * (player.GetSkill(SkillType.Ranged).CurrentLevel * 1.5));
+            int magicCombatLevel = (int)Math.Floor(baseCombatLevel + 0.325 * (player.GetSkill(SkillType.Magic).CurrentLevel * 1.5));
 
             int combatLevel = Math.Max(meleeCombatLevel, Math.Max(rangeCombatLevel, magicCombatLevel));
             return combatLevel > 3 ? combatLevel : 3;

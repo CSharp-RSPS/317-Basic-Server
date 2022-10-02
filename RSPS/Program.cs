@@ -1,5 +1,6 @@
 ﻿using RSPS.Entities;
 using RSPS.Entities.Mobiles.Players;
+using RSPS.Game.Items.Equipment;
 using RSPS.Net;
 using RSPS.Net.Connections;
 using RSPS.Net.GamePackets;
@@ -24,6 +25,8 @@ namespace RSPS
         /// </summary>
         public static void Main()
         {
+            EquipmentHandler.Temp();
+
             if (!WorldHandler.ValidateWorlds())
             {
                 Console.Error.WriteLine("Worlds collection invalid");

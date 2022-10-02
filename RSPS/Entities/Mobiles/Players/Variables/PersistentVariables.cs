@@ -27,5 +27,10 @@ namespace RSPS.Entities.Mobiles.Players.Variables
         /// </summary>
         public bool Flagged { get; set; }
 
+        /// <summary>
+        /// The current energy level for special attacks
+        /// </summary>
+        public int SpecialEnergy { get; set; }
+
     }
 }

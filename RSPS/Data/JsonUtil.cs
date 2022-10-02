@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace RSPS.Data
 {
@@ -88,6 +89,60 @@ namespace RSPS.Data
                 throw new InvalidDataException(nameof(elements));
             }
             handle(elements);
+        }
+
+        /// <summary>
+        /// Serializes an element to a json string
+        /// </summary>
+        /// <typeparam name="T">The element type</typeparam>
+        /// <param name="element">The element</param>
+        /// <param name="indented">Whether to use indented (pretty) formatting</param>
+        /// <returns>The json string</returns>
+        public static string Serialize<T>(T element, bool indented = true) where T : class
+        {
+            return JsonSerializer.Serialize(element, new JsonSerializerOptions
+            {
+                WriteIndented = indented
+            });
+        }
+
+        /// <summary>
+        /// Serializes an list of elements to a json string
+        /// </summary>
+        /// <typeparam name="T">The element type</typeparam>
+        /// <param name="elements">The elements</param>
+        /// <param name="indented">Whether to use indented (pretty) formatting</param>
+        /// <returns>The json string</returns>
+        public static string SerializeList<T>(List<T> elements, bool indented = true) where T : class
+        {
+            return JsonSerializer.Serialize(elements, new JsonSerializerOptions
+            {
+                WriteIndented = indented
+            });
+        }
+
+        /// <summary>
+        /// Serializes an element to a file
+        /// </summary>
+        /// <typeparam name="T">The element type</typeparam>
+        /// <param name="filePath">The file path</param>
+        /// <param name="element">the element</param>
+        /// <param name="indented">Whether to use indented (pretty) formatting</param>
+        public static void SerializeToFile<T>(string filePath, T element, bool indented = true) where T : class
+        {
+            File.WriteAllText(filePath, Serialize(element, indented));
+        }
+
+        /// <summary>
+        /// Serializes a list of elements to a file
+        /// </summary>
+        /// <typeparam name="T">The element type</typeparam>
+        /// <param name="filePath">The file path</param>
+        /// <param name="elements">the elements</param>
+        /// <param name="indented">Whether to use indented (pretty) formatting</param>
+        public static void SerializeListToFile<T>(string filePath, List<T> elements, bool indented = true) where T : class
+        {
+            File.WriteAllText(filePath, SerializeList(elements, indented));
         }
 
     }

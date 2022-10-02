@@ -1,0 +1,788 @@
+[
+  {
+    "WeaponType": 0,
+    "InterfaceId": 328,
+    "NameLineId": 331,
+    "SpecialBarId": -1,
+    "SpecialMeterId": -1,
+    "Widgets": [
+      {
+        "ButtonId": 336,
+        "FightType": 0,
+        "FightStyle": 0,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 335,
+        "FightType": 1,
+        "FightStyle": 0,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 334,
+        "FightType": 2,
+        "FightStyle": 0,
+        "ConfigValue": 2
+      }
+    ],
+    "IsRanged": false,
+    "IsMagic": true,
+    "IsMelee": false
+  },
+  {
+    "WeaponType": 1,
+    "InterfaceId": 425,
+    "NameLineId": 428,
+    "SpecialBarId": 7474,
+    "SpecialMeterId": 7486,
+    "Widgets": [
+      {
+        "ButtonId": 433,
+        "FightType": 0,
+        "FightStyle": 0,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 432,
+        "FightType": 1,
+        "FightStyle": 0,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 431,
+        "FightType": 2,
+        "FightStyle": 0,
+        "ConfigValue": 2
+      }
+    ],
+    "IsRanged": false,
+    "IsMagic": false,
+    "IsMelee": true
+  },
+  {
+    "WeaponType": 2,
+    "InterfaceId": 776,
+    "NameLineId": 779,
+    "SpecialBarId": -1,
+    "SpecialMeterId": -1,
+    "Widgets": [
+      {
+        "ButtonId": 782,
+        "FightType": 0,
+        "FightStyle": 1,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 785,
+        "FightType": 1,
+        "FightStyle": 0,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 784,
+        "FightType": 1,
+        "FightStyle": 2,
+        "ConfigValue": 2
+      },
+      {
+        "ButtonId": 783,
+        "FightType": 2,
+        "FightStyle": 1,
+        "ConfigValue": 3
+      }
+    ],
+    "IsRanged": false,
+    "IsMagic": false,
+    "IsMelee": true
+  },
+  {
+    "WeaponType": 3,
+    "InterfaceId": 1698,
+    "NameLineId": 1701,
+    "SpecialBarId": 7499,
+    "SpecialMeterId": 7511,
+    "Widgets": [
+      {
+        "ButtonId": 1704,
+        "FightType": 0,
+        "FightStyle": 1,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 1706,
+        "FightType": 1,
+        "FightStyle": 1,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 1707,
+        "FightType": 1,
+        "FightStyle": 0,
+        "ConfigValue": 2
+      },
+      {
+        "ButtonId": 1705,
+        "FightType": 2,
+        "FightStyle": 1,
+        "ConfigValue": 3
+      }
+    ],
+    "IsRanged": false,
+    "IsMagic": false,
+    "IsMelee": true
+  },
+  {
+    "WeaponType": 4,
+    "InterfaceId": 1698,
+    "NameLineId": 1701,
+    "SpecialBarId": 7499,
+    "SpecialMeterId": 7511,
+    "Widgets": [
+      {
+        "ButtonId": 1704,
+        "FightType": 0,
+        "FightStyle": 1,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 1706,
+        "FightType": 1,
+        "FightStyle": 1,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 1707,
+        "FightType": 1,
+        "FightStyle": 0,
+        "ConfigValue": 2
+      },
+      {
+        "ButtonId": 1705,
+        "FightType": 2,
+        "FightStyle": 1,
+        "ConfigValue": 3
+      }
+    ],
+    "IsRanged": false,
+    "IsMagic": false,
+    "IsMelee": true
+  },
+  {
+    "WeaponType": 5,
+    "InterfaceId": 1749,
+    "NameLineId": 1752,
+    "SpecialBarId": 7524,
+    "SpecialMeterId": 7536,
+    "Widgets": [
+      {
+        "ButtonId": 1757,
+        "FightType": 0,
+        "FightStyle": 3,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 1756,
+        "FightType": 1,
+        "FightStyle": 4,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 1755,
+        "FightType": 2,
+        "FightStyle": 5,
+        "ConfigValue": 2
+      }
+    ],
+    "IsRanged": true,
+    "IsMagic": false,
+    "IsMelee": false
+  },
+  {
+    "WeaponType": 6,
+    "InterfaceId": 1764,
+    "NameLineId": 1767,
+    "SpecialBarId": 7549,
+    "SpecialMeterId": 7561,
+    "Widgets": [
+      {
+        "ButtonId": 1772,
+        "FightType": 0,
+        "FightStyle": 3,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 1771,
+        "FightType": 1,
+        "FightStyle": 4,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 1770,
+        "FightType": 2,
+        "FightStyle": 5,
+        "ConfigValue": 2
+      }
+    ],
+    "IsRanged": true,
+    "IsMagic": false,
+    "IsMelee": false
+  },
+  {
+    "WeaponType": 7,
+    "InterfaceId": 1764,
+    "NameLineId": 1767,
+    "SpecialBarId": 7549,
+    "SpecialMeterId": 7561,
+    "Widgets": [
+      {
+        "ButtonId": 1772,
+        "FightType": 0,
+        "FightStyle": 3,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 1771,
+        "FightType": 1,
+        "FightStyle": 4,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 1770,
+        "FightType": 2,
+        "FightStyle": 5,
+        "ConfigValue": 2
+      }
+    ],
+    "IsRanged": true,
+    "IsMagic": false,
+    "IsMelee": false
+  },
+  {
+    "WeaponType": 8,
+    "InterfaceId": 2276,
+    "NameLineId": 2279,
+    "SpecialBarId": 7574,
+    "SpecialMeterId": 7586,
+    "Widgets": [
+      {
+        "ButtonId": 2282,
+        "FightType": 0,
+        "FightStyle": 2,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 2285,
+        "FightType": 1,
+        "FightStyle": 2,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 2284,
+        "FightType": 1,
+        "FightStyle": 1,
+        "ConfigValue": 2
+      },
+      {
+        "ButtonId": 2283,
+        "FightType": 2,
+        "FightStyle": 2,
+        "ConfigValue": 3
+      }
+    ],
+    "IsRanged": false,
+    "IsMagic": false,
+    "IsMelee": true
+  },
+  {
+    "WeaponType": 9,
+    "InterfaceId": 2276,
+    "NameLineId": 2279,
+    "SpecialBarId": 7574,
+    "SpecialMeterId": 7586,
+    "Widgets": [
+      {
+        "ButtonId": 2282,
+        "FightType": 0,
+        "FightStyle": 2,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 2285,
+        "FightType": 1,
+        "FightStyle": 2,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 2284,
+        "FightType": 1,
+        "FightStyle": 1,
+        "ConfigValue": 2
+      },
+      {
+        "ButtonId": 2283,
+        "FightType": 2,
+        "FightStyle": 2,
+        "ConfigValue": 3
+      }
+    ],
+    "IsRanged": false,
+    "IsMagic": false,
+    "IsMelee": true
+  },
+  {
+    "WeaponType": 10,
+    "InterfaceId": 2423,
+    "NameLineId": 2426,
+    "SpecialBarId": 7599,
+    "SpecialMeterId": 7611,
+    "Widgets": [
+      {
+        "ButtonId": 2429,
+        "FightType": 0,
+        "FightStyle": 1,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 2432,
+        "FightType": 1,
+        "FightStyle": 1,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 2431,
+        "FightType": 3,
+        "FightStyle": 2,
+        "ConfigValue": 2
+      },
+      {
+        "ButtonId": 2430,
+        "FightType": 2,
+        "FightStyle": 1,
+        "ConfigValue": 3
+      }
+    ],
+    "IsRanged": false,
+    "IsMagic": false,
+    "IsMelee": true
+  },
+  {
+    "WeaponType": 11,
+    "InterfaceId": 2423,
+    "NameLineId": 2426,
+    "SpecialBarId": 7599,
+    "SpecialMeterId": 7611,
+    "Widgets": [
+      {
+        "ButtonId": 2429,
+        "FightType": 0,
+        "FightStyle": 1,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 2432,
+        "FightType": 1,
+        "FightStyle": 1,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 2431,
+        "FightType": 3,
+        "FightStyle": 2,
+        "ConfigValue": 2
+      },
+      {
+        "ButtonId": 2430,
+        "FightType": 2,
+        "FightStyle": 1,
+        "ConfigValue": 3
+      }
+    ],
+    "IsRanged": false,
+    "IsMagic": false,
+    "IsMelee": true
+  },
+  {
+    "WeaponType": 12,
+    "InterfaceId": 3796,
+    "NameLineId": 3799,
+    "SpecialBarId": 7624,
+    "SpecialMeterId": 7636,
+    "Widgets": [
+      {
+        "ButtonId": 3802,
+        "FightType": 0,
+        "FightStyle": 0,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 3805,
+        "FightType": 1,
+        "FightStyle": 0,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 3804,
+        "FightType": 3,
+        "FightStyle": 2,
+        "ConfigValue": 2
+      },
+      {
+        "ButtonId": 3803,
+        "FightType": 2,
+        "FightStyle": 0,
+        "ConfigValue": 3
+      }
+    ],
+    "IsRanged": false,
+    "IsMagic": false,
+    "IsMelee": true
+  },
+  {
+    "WeaponType": 13,
+    "InterfaceId": 4446,
+    "NameLineId": 4449,
+    "SpecialBarId": 7649,
+    "SpecialMeterId": 7661,
+    "Widgets": [
+      {
+        "ButtonId": 4446,
+        "FightType": 0,
+        "FightStyle": 3,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 4453,
+        "FightType": 1,
+        "FightStyle": 4,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 4452,
+        "FightType": 2,
+        "FightStyle": 5,
+        "ConfigValue": 2
+      }
+    ],
+    "IsRanged": true,
+    "IsMagic": false,
+    "IsMelee": false
+  },
+  {
+    "WeaponType": 14,
+    "InterfaceId": 4679,
+    "NameLineId": 4682,
+    "SpecialBarId": 7674,
+    "SpecialMeterId": 7686,
+    "Widgets": [
+      {
+        "ButtonId": 4685,
+        "FightType": 3,
+        "FightStyle": 2,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 4688,
+        "FightType": 3,
+        "FightStyle": 1,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 4687,
+        "FightType": 3,
+        "FightStyle": 0,
+        "ConfigValue": 2
+      }
+    ],
+    "IsRanged": false,
+    "IsMagic": false,
+    "IsMelee": true
+  },
+  {
+    "WeaponType": 15,
+    "InterfaceId": 4705,
+    "NameLineId": 4708,
+    "SpecialBarId": 7699,
+    "SpecialMeterId": 7711,
+    "Widgets": [
+      {
+        "ButtonId": 4711,
+        "FightType": 0,
+        "FightStyle": 1,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 4714,
+        "FightType": 1,
+        "FightStyle": 1,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 4713,
+        "FightType": 1,
+        "FightStyle": 0,
+        "ConfigValue": 2
+      },
+      {
+        "ButtonId": 4712,
+        "FightType": 2,
+        "FightStyle": 1,
+        "ConfigValue": 3
+      }
+    ],
+    "IsRanged": false,
+    "IsMagic": false,
+    "IsMelee": true
+  },
+  {
+    "WeaponType": 16,
+    "InterfaceId": 5570,
+    "NameLineId": 5573,
+    "SpecialBarId": 7724,
+    "SpecialMeterId": 7736,
+    "Widgets": [
+      {
+        "ButtonId": 5576,
+        "FightType": 0,
+        "FightStyle": 2,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 5579,
+        "FightType": 1,
+        "FightStyle": 2,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 5578,
+        "FightType": 1,
+        "FightStyle": 0,
+        "ConfigValue": 2
+      },
+      {
+        "ButtonId": 5577,
+        "FightType": 2,
+        "FightStyle": 2,
+        "ConfigValue": 3
+      }
+    ],
+    "IsRanged": false,
+    "IsMagic": false,
+    "IsMelee": true
+  },
+  {
+    "WeaponType": 17,
+    "InterfaceId": 7762,
+    "NameLineId": 7765,
+    "SpecialBarId": 7800,
+    "SpecialMeterId": 7812,
+    "Widgets": [
+      {
+        "ButtonId": 7768,
+        "FightType": 0,
+        "FightStyle": 1,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 7771,
+        "FightType": 1,
+        "FightStyle": 1,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 7770,
+        "FightType": 1,
+        "FightStyle": 2,
+        "ConfigValue": 2
+      },
+      {
+        "ButtonId": 7769,
+        "FightType": 2,
+        "FightStyle": 1,
+        "ConfigValue": 3
+      }
+    ],
+    "IsRanged": false,
+    "IsMagic": false,
+    "IsMelee": true
+  },
+  {
+    "WeaponType": 18,
+    "InterfaceId": 8460,
+    "NameLineId": 8463,
+    "SpecialBarId": 8493,
+    "SpecialMeterId": 8505,
+    "Widgets": [
+      {
+        "ButtonId": 8466,
+        "FightType": 3,
+        "FightStyle": 2,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 8486,
+        "FightType": 1,
+        "FightStyle": 1,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 8467,
+        "FightType": 2,
+        "FightStyle": 2,
+        "ConfigValue": 2
+      }
+    ],
+    "IsRanged": false,
+    "IsMagic": false,
+    "IsMelee": true
+  },
+  {
+    "WeaponType": 19,
+    "InterfaceId": 5855,
+    "NameLineId": 5857,
+    "SpecialBarId": -1,
+    "SpecialMeterId": -1,
+    "Widgets": [
+      {
+        "ButtonId": 5860,
+        "FightType": 0,
+        "FightStyle": 0,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 5862,
+        "FightType": 1,
+        "FightStyle": 0,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 5861,
+        "FightType": 2,
+        "FightStyle": 0,
+        "ConfigValue": 2
+      }
+    ],
+    "IsRanged": false,
+    "IsMagic": false,
+    "IsMelee": true
+  },
+  {
+    "WeaponType": 20,
+    "InterfaceId": 12290,
+    "NameLineId": 12293,
+    "SpecialBarId": 12323,
+    "SpecialMeterId": 12335,
+    "Widgets": [
+      {
+        "ButtonId": 12298,
+        "FightType": 0,
+        "FightStyle": 1,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 12297,
+        "FightType": 3,
+        "FightStyle": 1,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 12296,
+        "FightType": 2,
+        "FightStyle": 1,
+        "ConfigValue": 2
+      }
+    ],
+    "IsRanged": false,
+    "IsMagic": false,
+    "IsMelee": true
+  },
+  {
+    "WeaponType": 21,
+    "InterfaceId": 4446,
+    "NameLineId": 4449,
+    "SpecialBarId": 7649,
+    "SpecialMeterId": 7661,
+    "Widgets": [
+      {
+        "ButtonId": 4454,
+        "FightType": 0,
+        "FightStyle": 3,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 4453,
+        "FightType": 1,
+        "FightStyle": 4,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 4452,
+        "FightType": 2,
+        "FightStyle": 5,
+        "ConfigValue": 2
+      }
+    ],
+    "IsRanged": true,
+    "IsMagic": false,
+    "IsMelee": false
+  },
+  {
+    "WeaponType": 22,
+    "InterfaceId": 4446,
+    "NameLineId": 4449,
+    "SpecialBarId": 7649,
+    "SpecialMeterId": 7661,
+    "Widgets": [
+      {
+        "ButtonId": 4454,
+        "FightType": 0,
+        "FightStyle": 3,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 4453,
+        "FightType": 1,
+        "FightStyle": 4,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 4452,
+        "FightType": 2,
+        "FightStyle": 5,
+        "ConfigValue": 2
+      }
+    ],
+    "IsRanged": true,
+    "IsMagic": false,
+    "IsMelee": false
+  },
+  {
+    "WeaponType": 23,
+    "InterfaceId": 4446,
+    "NameLineId": 4449,
+    "SpecialBarId": 7649,
+    "SpecialMeterId": 7661,
+    "Widgets": [
+      {
+        "ButtonId": 4454,
+        "FightType": 0,
+        "FightStyle": 3,
+        "ConfigValue": 0
+      },
+      {
+        "ButtonId": 4453,
+        "FightType": 1,
+        "FightStyle": 4,
+        "ConfigValue": 1
+      },
+      {
+        "ButtonId": 4452,
+        "FightType": 2,
+        "FightStyle": 5,
+        "ConfigValue": 2
+      }
+    ],
+    "IsRanged": true,
+    "IsMagic": false,
+    "IsMelee": false
+  }
+]

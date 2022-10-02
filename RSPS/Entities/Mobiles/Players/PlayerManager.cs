@@ -119,7 +119,7 @@ namespace RSPS.Entities.Mobiles.Players
             // Send the skills in the skill tab
             foreach (SkillType skillType in Enum.GetValues(typeof(SkillType)))
             { // TODO skills from player
-                Skill skill = skillType != SkillType.HITPOINTS ? new Skill(skillType) : new Skill(skillType, 10, 1300);
+                Skill skill = skillType != SkillType.Hitpoints ? new Skill(skillType) : new Skill(skillType, 10, 1300);
                 player.Skills.Add(skill);
                 PacketHandler.SendPacket(player, new SendSkill(skill));
             }

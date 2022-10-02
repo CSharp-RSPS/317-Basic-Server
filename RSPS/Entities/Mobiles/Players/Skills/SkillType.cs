@@ -6,28 +6,31 @@ using System.Threading.Tasks;
 
 namespace RSPS.Entities.Mobiles.Players.Skills
 {
+    /// <summary>
+    /// The possible skill types
+    /// </summary>
     public enum SkillType
     {
-        ATTACK = 0,
-        DEFENCE = 1,
-        STRENGTH = 2,
-        HITPOINTS = 3,
-        RANGED = 4,
-        PRAYER = 5,
-        MAGIC = 6,
-        COOKING = 7,
-        WOODCUTTING = 8,
-        FLETCHING = 9,
-        FISHING = 10,
-        FIREMAKING = 11,
-        CRAFTING = 12,
-        SMITHING = 13,
-        MINING = 14,
-        HERBLORE = 15,
-        AGILITY = 16,
-        THIEVING = 17,
-        SLAYER = 18,
-        FARMING = 19,
-        RUNECRAFTING = 20
+        Attack = 0,
+        Defence = 1,
+        Strength = 2,
+        Hitpoints = 3,
+        Ranged = 4,
+        Prayer = 5,
+        Magic = 6,
+        Cooking = 7,
+        Woodcutting = 8,
+        Fletching = 9,
+        Fishing = 10,
+        Firemaking = 11,
+        Crafting = 12,
+        Smithing = 13,
+        Mining = 14,
+        Herblore = 15,
+        Agility = 16,
+        Thieving = 17,
+        Slayer = 18,
+        Farming = 19,
+        Runecrafting = 20
     }
 }

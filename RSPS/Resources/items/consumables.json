@@ -1,0 +1,915 @@
+[
+  {
+    "Id": 315,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 3,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2140,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 3,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2162,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 325,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 3,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2142,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 3,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2309,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 5,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 347,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 5,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 355,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 6,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 333,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 7,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 351,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 8,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 329,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 9,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 361,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 10,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 379,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 12,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 365,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 13,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 373,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 14,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 7946,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 16,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 385,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 20,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 391,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 22,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 7060,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 22,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 3228,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 5,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 7223,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 7,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 7232,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 7,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 7518,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 10,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 3151,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 3,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 319,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 1,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 3144,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 18,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2149,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 11,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 397,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 21,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 1973,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 3,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 3177,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 3162,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 4016,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 11,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 7572,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 5,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 7574,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 5,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 1963,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2108,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2110,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2113,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2102,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2104,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2106,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2114,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2116,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2118,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2120,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2122,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2124,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2126,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2128,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 6883,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 8,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 5984,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 1982,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 2,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2277,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 11,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2259,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 11,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2255,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 11,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2253,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 11,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2243,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 7,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2241,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 7,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2239,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 7,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2237,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 7,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2229,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 15,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 4016,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 7,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2325,
+    "NextId": 2333,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 5,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2333,
+    "NextId": 2313,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 5,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2327,
+    "NextId": 2331,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 6,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2331,
+    "NextId": 2313,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 6,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2323,
+    "NextId": 2335,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 7,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2335,
+    "NextId": 2313,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 7,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2289,
+    "NextId": 2291,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 7,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2291,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 7,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2293,
+    "NextId": 2295,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 8,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2295,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 8,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2297,
+    "NextId": 2299,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 9,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2299,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 9,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2301,
+    "NextId": 2303,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 11,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 2303,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 11,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 7530,
+    "NextId": -1,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 11,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 1891,
+    "NextId": 1893,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 4,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 1893,
+    "NextId": 1895,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 4,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 1895,
+    "NextId": 1887,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 4,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 1897,
+    "NextId": 1899,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 5,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 1899,
+    "NextId": 1901,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 5,
+        "CanExceedLevel": false
+      }
+    ]
+  },
+  {
+    "Id": 1901,
+    "NextId": 1887,
+    "Boosts": [
+      {
+        "SkillType": 3,
+        "Boost": 5,
+        "CanExceedLevel": false
+      }
+    ]
+  }
+]

@@ -1,4 +1,5 @@
 ﻿using RSPS.Data;
+using RSPS.Game.Items.Consumables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,27 @@ namespace RSPS.Game.Items
         /// </summary>
         public static readonly Dictionary<int, ItemDef> Definitions = new();
 
-        
+        /// <summary>
+        /// Holds item pricing information
+        /// </summary>
+        public static readonly Dictionary<int, ItemPrizes> Prizes = new();
+
+        /// <summary>
+        /// Holds consumable items
+        /// </summary>
+        public static readonly Dictionary<int, Consumable> Consumables = new();
+
+
         static ItemManager()
         {
-            JsonUtil.DataImport<ItemDef>("./Resources/items/item_information.json", 
-                (elements) => elements.ForEach(def => Definitions.Add(def.Identity, def)));
+            JsonUtil.DataImport<ItemDef>("./Resources/items/item_definitions.json", 
+                (elements) => elements.ForEach(def => Definitions.Add(def.Id, def)));
+
+            JsonUtil.DataImport<ItemPrizes>("./Resources/items/item_prizes.json",
+               (elements) => elements.ForEach(def => Prizes.Add(def.Id, def)));
+
+            JsonUtil.DataImport<Consumable>("./Resources/items/consumables.json",
+               (elements) => elements.ForEach(def => Consumables.Add(def.Id, def)));
         }
 
         /// <summary>
@@ -33,6 +50,16 @@ namespace RSPS.Game.Items
         public static ItemDef? GetItemDefById(int id)
         {
             return Definitions.ContainsKey(id) ? Definitions[id] : null;
+        }
+
+        /// <summary>
+        /// Retrieves price information for an item identifier
+        /// </summary>
+        /// <param name="id">The identifier</param>
+        /// <returns>The item prizes</returns>
+        public static ItemPrizes? GetItemPrizesById(int id)
+        {
+            return Prizes.ContainsKey(id) ? Prizes[id] : null;
         }
 
         /// <summary>
