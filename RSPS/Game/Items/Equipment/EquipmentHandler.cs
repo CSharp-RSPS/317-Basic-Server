@@ -1,10 +1,10 @@
 ﻿using RSPS.Data;
 using RSPS.Entities.Mobiles.Players;
-using RSPS.Entities.Mobiles.Players.Skills;
 using RSPS.Game.Combat;
 using RSPS.Game.Items.Consumables;
 using RSPS.Game.Items.Equipment.Definitions;
 using RSPS.Game.Skills;
+using RSPS.Game.UI;
 using RSPS.Net.GamePackets;
 using RSPS.Net.GamePackets.Send.Impl;
 using RSPS.Util;
@@ -152,31 +152,6 @@ namespace RSPS.Game.Items.Equipment
             if (true)
                 return;
 
-            List<Legacy_ItemFood> foods = JsonUtil.DeserializeListFromFile<Legacy_ItemFood>("./Resources/items/food.json");
-            List<Legacy_BakeryFood> bakeries = JsonUtil.DeserializeListFromFile<Legacy_BakeryFood>("./Resources/items/bakery_food.json");
-            List<Consumable> consumables = new();
-
-            foreach (Legacy_ItemFood food in foods)
-            {
-                consumables.Add(new Consumable() { 
-                    Id = food.identity,
-                    NextId = -1,
-                    Boosts = new SkillBoost[1] { new SkillBoost() { SkillType = SkillType.Hitpoints, Boost = food.heal, CanExceedLevel = false } }
-                });
-            }
-            foreach (Legacy_BakeryFood food in bakeries)
-            {
-                consumables.Add(new Consumable()
-                {
-                    Id = food.identity,
-                    NextId = food.next_identity,
-                    Boosts = new SkillBoost[1] { new SkillBoost() { SkillType = SkillType.Hitpoints, Boost = food.health, CanExceedLevel = false } }
-                });
-            }
-            JsonUtil.SerializeListToFile("./Resources/export/consumables.json", consumables);
-
-
-            
             List<Legacy_AnimationDef> anims = JsonUtil.DeserializeListFromFile<Legacy_AnimationDef>("./Resources/items/item_animations.json");
             List<Legacy_ItemBonus> bonuses = JsonUtil.DeserializeListFromFile<Legacy_ItemBonus>("./Resources/items/item_bonuses.json");
             List<Legacy_ItemDistance> distances = JsonUtil.DeserializeListFromFile<Legacy_ItemDistance>("./Resources/items/item_distances.json");
@@ -185,6 +160,8 @@ namespace RSPS.Game.Items.Equipment
             List<Legacy_ItemInterface> interfaces = JsonUtil.DeserializeListFromFile<Legacy_ItemInterface>("./Resources/items/item_interfaces.json");
             List<Legacy_ItemPrizes> prizes = JsonUtil.DeserializeListFromFile<Legacy_ItemPrizes>("./Resources/items/item_prizes.json");
             List<Legacy_ItemReq> reqs = JsonUtil.DeserializeListFromFile<Legacy_ItemReq>("./Resources/items/item_requirements.json");
+            List<Legacy_ItemFood> foods = JsonUtil.DeserializeListFromFile<Legacy_ItemFood>("./Resources/items/food.json");
+            List<Legacy_BakeryFood> bakeries = JsonUtil.DeserializeListFromFile<Legacy_BakeryFood>("./Resources/items/bakery_food.json");
 
             // Defs/Properties
             List<ItemDef> itemDefs = new();
@@ -235,7 +212,9 @@ namespace RSPS.Game.Items.Equipment
                         RangedDefenceBonus = bonus == null ? 0 : bonus.defenceRanged,
                         SlashDefenceBonus = bonus == null ? 0 : bonus.defenceSlash,
                         StabDefenceBonus = bonus == null ? 0 : bonus.defenceStab,
-                        CrushDefenceBonus = bonus == null ? 0 : bonus.defenceCrush
+                        CrushDefenceBonus = bonus == null ? 0 : bonus.defenceCrush,
+                        PrayerBonus = bonus == null ? 0 : bonus.prayer
+                        
                     };
                     SkillRequirement[] skillReqs = Array.Empty<SkillRequirement>();
 
@@ -287,10 +266,10 @@ namespace RSPS.Game.Items.Equipment
                     }
                 }
             });
-            /*JsonUtil.SerializeListToFile("./Resources/export/weapon_interfaces.json", WeaponInterfaceDefs);
-            JsonUtil.SerializeListToFile("./Resources/export/item_definitions.json", itemDefs);
+            //JsonUtil.SerializeListToFile("./Resources/export/weapon_interfaces.json", WeaponInterfaceDefs);
+            //JsonUtil.SerializeListToFile("./Resources/export/item_definitions.json", itemDefs);
             JsonUtil.SerializeListToFile("./Resources/export/equip_definitions.json", equipDefs);
-            JsonUtil.SerializeListToFile("./Resources/export/weapon_definitions.json", wepDefs);*/
+            //JsonUtil.SerializeListToFile("./Resources/export/weapon_definitions.json", wepDefs);*/
 
             Debug.WriteLine("Done");
         }
@@ -309,13 +288,20 @@ namespace RSPS.Game.Items.Equipment
             {
                 return;
             }
-            EquipType equipType = GetEquipType(itemId);
+            EquipDef? def = GetEquipDef(itemId);
 
-            if (equipType == EquipType.None)
+            if (def == null || def.EquipType == EquipType.None)
             { // Can not be equipped
                 return;
             }
-            int equipmentSlot = equipType.GetAttributeOfType<EquipmentSlotAttribute>().Slot;
+            if (def.HasSkillRequirements
+                && !SkillHandler.PassesSkillRequirements(player, def.SkillRequirements, out SkillRequirement? unpassedSkillReq))
+            { // Skill requirements not met
+                PacketHandler.SendPacket(player, new SendMessage("You need a " + unpassedSkillReq?.SkillType.ToString()
+                        + " level of at least " + unpassedSkillReq?.Level + " to wear this item."));
+                return;
+            }
+            int equipmentSlot = def.EquipType.GetAttributeOfType<EquipmentSlotAttribute>().Slot;
             Item? itemAtSlot = player.Equipment.GetItemBySlot(equipmentSlot);
 
             if (itemAtSlot != null)
@@ -326,24 +312,20 @@ namespace RSPS.Game.Items.Equipment
                     // TODO if not stackable => swap
                 }
                 // TODO If 2-handed and also has shield - check if enough inventory space - if so, add item (not to slot)
+                //def.TwoHanded
 
-                player.Inventory.RemoveItemFromSlot(inventoryItem, slot);
-            }
-            
-            player.Equipment.AddItem(inventoryItem, equipmentSlot);
-
-            if (itemAtSlot != null)
-            {
                 //TODO if stackable and in inventory, add to stack, not the slot
-                player.Inventory.AddItem(itemAtSlot, slot);
             }
-            player.Inventory.RefreshUI(player);
-            player.Equipment.RefreshUI(player);
+            player.Equipment.AddItem(inventoryItem, equipmentSlot);
+            player.Inventory.RemoveItemFromSlot(inventoryItem, slot);
+
+            ItemManager.RefreshInterfaceItems(player, player.Inventory.Items, Interfaces.Inventory);
+            ItemManager.RefreshInterfaceItems(player, player.Equipment.Items, Interfaces.Equipment);
 
             UpdateEquipmentBonuses(player);
             UpdateWeight(player);
 
-            if (equipType == EquipType.Weapon)
+            if (def.EquipType == EquipType.Weapon)
             { 
                 WriteWeaponInterface(player, inventoryItem);
             }
@@ -373,8 +355,8 @@ namespace RSPS.Game.Items.Equipment
             player.Equipment.RemoveItemFromSlot(item, slot);
             player.Inventory.AddItem(item);
 
-            player.Inventory.RefreshUI(player);
-            player.Equipment.RefreshUI(player);
+            ItemManager.RefreshInterfaceItems(player, player.Inventory.Items, Interfaces.Inventory);
+            ItemManager.RefreshInterfaceItems(player, player.Equipment.Items, Interfaces.Equipment);
 
             UpdateEquipmentBonuses(player);
             UpdateWeight(player);
@@ -488,7 +470,7 @@ namespace RSPS.Game.Items.Equipment
         /// <param name="player">The player</param>
         public static void UpdateEquipmentBonuses(Player player)
         {
-            int[] bonuses = new int[player.Equipment.Capacity];
+            int[] bonuses = new int[12];
 
             for (int i = 0; i < player.Equipment.Capacity; i++)
             {

@@ -27,5 +27,7 @@ namespace RSPS.Game.Items.Equipment.Definitions
 
         public SkillRequirement[] SkillRequirements { get; set; } = Array.Empty<SkillRequirement>();
 
+        public bool HasSkillRequirements => SkillRequirements != null && SkillRequirements.Length > 0;
+
     }
 }

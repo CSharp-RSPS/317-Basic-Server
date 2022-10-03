@@ -1,5 +1,5 @@
 ﻿using RSPS.Entities.Mobiles.Players;
-using RSPS.Entities.Mobiles.Players.Skills;
+using RSPS.Game.Skills;
 using RSPS.Util.Attributes;
 using System;
 using System.Collections.Generic;

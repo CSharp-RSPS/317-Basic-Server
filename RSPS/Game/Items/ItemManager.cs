@@ -1,5 +1,9 @@
 ﻿using RSPS.Data;
+using RSPS.Entities.Mobiles.Players;
 using RSPS.Game.Items.Consumables;
+using RSPS.Game.UI;
+using RSPS.Net.GamePackets.Send.Impl;
+using RSPS.Net.GamePackets;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,6 +11,8 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using RSPS.Game.Items.Containers;
+using System.ComponentModel;
 
 namespace RSPS.Game.Items
 {
@@ -49,6 +55,28 @@ namespace RSPS.Game.Items
                    }
                    Consumables.Add(def.Id, def);
                }));
+        }
+
+        /// <summary>
+        /// Refreshes the interface for an item container
+        /// </summary>
+        /// <param name="player">The player</param>
+        /// <param name="container">The item container</param>
+        /// <param name="containerInterfaceId">The container interface ID</param>
+        public static void RefreshItemContainer(Player player, ItemContainer container, int containerInterfaceId)
+        {
+            RefreshInterfaceItems(player, container.Items, containerInterfaceId);
+        }
+
+        /// <summary>
+        /// Refreshes the items on an interface
+        /// </summary>
+        /// <param name="player">The player</param>
+        /// <param name="items">The items</param>
+        /// <param name="containerInterfaceId">The container interface ID</param>
+        public static void RefreshInterfaceItems(Player player, Dictionary<int, Item?> items, int containerInterfaceId)
+        {
+            PacketHandler.SendPacket(player, new SendDrawItemsOnInterface2(containerInterfaceId, items));
         }
 
         /// <summary>

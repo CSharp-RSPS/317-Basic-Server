@@ -12029,7 +12029,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 5
     },
     "SkillRequirements": []
   },
@@ -12073,7 +12073,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 4
     },
     "SkillRequirements": []
   },
@@ -19147,7 +19147,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 4
     },
     "SkillRequirements": []
   },
@@ -19169,7 +19169,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 3
     },
     "SkillRequirements": []
   },
@@ -19191,7 +19191,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 7
     },
     "SkillRequirements": [
       {
@@ -19219,7 +19219,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 10
     },
     "SkillRequirements": [
       {
@@ -19247,7 +19247,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 14
     },
     "SkillRequirements": [
       {
@@ -19275,7 +19275,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 24
     },
     "SkillRequirements": [
       {
@@ -19303,7 +19303,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 8
     },
     "SkillRequirements": [
       {
@@ -19331,7 +19331,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 3
     },
     "SkillRequirements": []
   },
@@ -19353,7 +19353,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 4
     },
     "SkillRequirements": []
   },
@@ -19375,7 +19375,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 7
     },
     "SkillRequirements": [
       {
@@ -19403,7 +19403,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 10
     },
     "SkillRequirements": [
       {
@@ -19431,7 +19431,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 8
     },
     "SkillRequirements": [
       {
@@ -19459,7 +19459,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 14
     },
     "SkillRequirements": [
       {
@@ -19487,7 +19487,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 24
     },
     "SkillRequirements": [
       {
@@ -19625,7 +19625,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 7
     },
     "SkillRequirements": []
   },
@@ -19647,7 +19647,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 7
     },
     "SkillRequirements": []
   },
@@ -19669,7 +19669,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 10
     },
     "SkillRequirements": []
   },
@@ -19691,7 +19691,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 10
     },
     "SkillRequirements": []
   },
@@ -19713,7 +19713,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 16
     },
     "SkillRequirements": []
   },
@@ -19735,7 +19735,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 16
     },
     "SkillRequirements": []
   },
@@ -19757,7 +19757,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 22
     },
     "SkillRequirements": []
   },
@@ -19779,7 +19779,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 22
     },
     "SkillRequirements": []
   },
@@ -19801,7 +19801,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 31
     },
     "SkillRequirements": []
   },
@@ -19823,7 +19823,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 31
     },
     "SkillRequirements": []
   },
@@ -19845,7 +19845,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 49
     },
     "SkillRequirements": []
   },
@@ -19867,7 +19867,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 49
     },
     "SkillRequirements": []
   },
@@ -38515,7 +38515,7 @@
       "RangedDefenceBonus": 3,
       "MagicDefenceBonus": 3,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 3
     },
     "SkillRequirements": []
   },
@@ -38559,7 +38559,7 @@
       "RangedDefenceBonus": 3,
       "MagicDefenceBonus": 3,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 3
     },
     "SkillRequirements": []
   },
@@ -38603,7 +38603,7 @@
       "RangedDefenceBonus": 3,
       "MagicDefenceBonus": 3,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 3
     },
     "SkillRequirements": []
   },
@@ -54113,7 +54113,7 @@
       "RangedDefenceBonus": 6,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 20
     },
     "SkillRequirements": [
       {
@@ -54141,7 +54141,7 @@
       "RangedDefenceBonus": 6,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 20
     },
     "SkillRequirements": [
       {
@@ -54169,7 +54169,7 @@
       "RangedDefenceBonus": 6,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 20
     },
     "SkillRequirements": [
       {
@@ -64153,7 +64153,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 22
     },
     "SkillRequirements": []
   },
@@ -66287,7 +66287,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 5
     },
     "SkillRequirements": []
   },
@@ -70966,7 +70966,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 18
     },
     "SkillRequirements": []
   },
@@ -85768,7 +85768,7 @@
       "RangedDefenceBonus": 8,
       "MagicDefenceBonus": 8,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 5
     },
     "SkillRequirements": []
   },
@@ -85790,7 +85790,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 5
     },
     "SkillRequirements": []
   },
@@ -85812,7 +85812,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 5
     },
     "SkillRequirements": []
   },
@@ -85834,7 +85834,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 5
     },
     "SkillRequirements": []
   },
@@ -85856,7 +85856,7 @@
       "RangedDefenceBonus": 4,
       "MagicDefenceBonus": 4,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 5
     },
     "SkillRequirements": []
   },
@@ -94152,7 +94152,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 70
     },
     "SkillRequirements": []
   },
@@ -105933,7 +105933,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 5
     },
     "SkillRequirements": []
   },
@@ -106822,7 +106822,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 13
     },
     "SkillRequirements": []
   },
@@ -106932,7 +106932,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 19
     },
     "SkillRequirements": []
   },
@@ -107042,7 +107042,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 22
     },
     "SkillRequirements": []
   },
@@ -107152,7 +107152,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 34
     },
     "SkillRequirements": []
   },
@@ -107372,7 +107372,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 60
     },
     "SkillRequirements": []
   },
@@ -125994,7 +125994,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 7
     },
     "SkillRequirements": []
   },
@@ -126016,7 +126016,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 10
     },
     "SkillRequirements": []
   },
@@ -126038,7 +126038,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 16
     },
     "SkillRequirements": []
   },
@@ -126060,7 +126060,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 22
     },
     "SkillRequirements": []
   },
@@ -126082,7 +126082,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 31
     },
     "SkillRequirements": []
   },
@@ -126104,7 +126104,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 49
     },
     "SkillRequirements": []
   },
@@ -126126,7 +126126,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 7
     },
     "SkillRequirements": []
   },
@@ -126148,7 +126148,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 10
     },
     "SkillRequirements": []
   },
@@ -126170,7 +126170,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 16
     },
     "SkillRequirements": []
   },
@@ -126192,7 +126192,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 22
     },
     "SkillRequirements": []
   },
@@ -126236,7 +126236,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 49
     },
     "SkillRequirements": []
   },
@@ -126776,7 +126776,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 6
     },
     "SkillRequirements": []
   },
@@ -126926,7 +126926,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 3
     },
     "SkillRequirements": []
   },
@@ -126948,7 +126948,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 4
     },
     "SkillRequirements": []
   },
@@ -126970,7 +126970,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 7
     },
     "SkillRequirements": [
       {
@@ -126998,7 +126998,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 10
     },
     "SkillRequirements": [
       {
@@ -127026,7 +127026,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 8
     },
     "SkillRequirements": [
       {
@@ -127054,7 +127054,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 14
     },
     "SkillRequirements": [
       {
@@ -127082,7 +127082,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 24
     },
     "SkillRequirements": [
       {
@@ -127110,7 +127110,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 3
     },
     "SkillRequirements": []
   },
@@ -127132,7 +127132,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 4
     },
     "SkillRequirements": []
   },
@@ -127154,7 +127154,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 7
     },
     "SkillRequirements": [
       {
@@ -127182,7 +127182,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 10
     },
     "SkillRequirements": [
       {
@@ -127210,7 +127210,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 8
     },
     "SkillRequirements": [
       {
@@ -127238,7 +127238,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 14
     },
     "SkillRequirements": []
   },
@@ -127260,7 +127260,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 24
     },
     "SkillRequirements": [
       {
@@ -146136,7 +146136,7 @@
       "RangedDefenceBonus": 0,
       "MagicDefenceBonus": 0,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 49
     },
     "SkillRequirements": []
   },
@@ -147209,7 +147209,7 @@
       "RangedDefenceBonus": 11,
       "MagicDefenceBonus": 11,
       "StrengthBonus": 0,
-      "PrayerBonus": 0
+      "PrayerBonus": 2
     },
     "SkillRequirements": []
   },

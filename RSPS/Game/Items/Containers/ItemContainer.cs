@@ -4,6 +4,7 @@ using RSPS.Net.GamePackets.Send.Impl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -436,6 +437,7 @@ namespace RSPS.Game.Items.Containers
         /// </summary>
         /// <param name="player">The player</param>
         /// <returns>The container</returns>
+        [Obsolete("Use ItemManager.RefreshItemContainer", true)]
         public ItemContainer RefreshUI(Player player)
         {
             PacketHandler.SendPacket(player, new SendDrawItemsOnInterface2(InterfaceId, Items));

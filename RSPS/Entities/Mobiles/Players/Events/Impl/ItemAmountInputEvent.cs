@@ -70,10 +70,10 @@ namespace RSPS.Entities.Mobiles.Players.Events.Impl
                     itemContainer = player.Inventory;
                     break;
 
-                case Interfaces.Bank: // Bank
+                case Interfaces.BankItemsOverlay: // Bank
                     break;
 
-                case Interfaces.Shop: // Shop
+                case Interfaces.ShopItemsOverlay: // Shop
                     break;
 
                 case Interfaces.InventoryOverlayShop: // Shop inventory overlay
@@ -84,7 +84,7 @@ namespace RSPS.Entities.Mobiles.Players.Events.Impl
                     itemContainer = player.Inventory;
                     break;
 
-                case Interfaces.Trade: // Trade
+                case Interfaces.TradeItemsOverlay: // Trade
                     break;
             }
             if (itemContainer == null)

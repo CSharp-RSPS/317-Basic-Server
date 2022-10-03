@@ -1,6 +1,6 @@
 ﻿using RSPS.Entities.Mobiles.Players;
-using RSPS.Entities.Mobiles.Players.Skills;
 using RSPS.Entities.movement.Locations;
+using RSPS.Game.Skills;
 using RSPS.Net.Connections;
 using RSPS.Util.Attributes;
 using RSPS.Worlds;

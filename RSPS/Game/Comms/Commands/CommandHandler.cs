@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using RSPS.Net.GamePackets.Send.Impl;
 using RSPS.Game.Items;
+using RSPS.Game.UI;
+using RSPS.Game.Banking;
 
 namespace RSPS.Game.Comms.Commands
 {
@@ -33,9 +35,18 @@ namespace RSPS.Game.Comms.Commands
             }
             switch (command)
             {
+                case "interface":
+                    Interfaces.OpenInterface(player, int.Parse(arguments[1]));
+                    break;
+
+                case "bank":
+                    BankingHandler.OpenBank(player);
+                    break;
+
                 case "item":
                     player.Inventory.AddItem(new Item(int.Parse(arguments[1]), 1));
-                    player.Inventory.RefreshUI(player);
+                    ItemManager.RefreshInterfaceItems(player, player.Inventory.Items, Interfaces.Inventory);
+                    //TODO refresh the right interface, could be banking as example so inventory interface is different when banking
                     break;
 
                 case "resetanim":

@@ -11,10 +11,12 @@ using System.Threading.Tasks;
 using RSPS.Net.Connections;
 using RSPS.Net.GamePackets.Send;
 using RSPS.Entities.Updating.flag;
-using RSPS.Entities.Mobiles.Players.Skills;
 using System.Diagnostics;
 using RSPS.Game.Comms.Messaging;
 using RSPS.Game.Items.Equipment;
+using RSPS.Game.Items;
+using RSPS.Game.UI;
+using RSPS.Game.Skills;
 
 namespace RSPS.Entities.Mobiles.Players
 {
@@ -123,12 +125,17 @@ namespace RSPS.Entities.Mobiles.Players
                 player.Skills.Add(skill);
                 PacketHandler.SendPacket(player, new SendSkill(skill));
             }
+            // Set the options other players have TODO: Different when in wildy etc...
             PacketHandler.SendPacket(player, new SendPlayerOption(1, "null"));
-            PacketHandler.SendPacket(player, new SendPlayerOption(2, "null"));
+            PacketHandler.SendPacket(player, new SendPlayerOption(2, "Worship"));
             PacketHandler.SendPacket(player, new SendPlayerOption(3, "Follow"));
             PacketHandler.SendPacket(player, new SendPlayerOption(4, "Trade with"));
+            // Draw the inventory items to the inventory interface
+            ItemManager.RefreshInterfaceItems(player, player.Inventory.Items, Interfaces.Inventory);
+            // Draw the equipment items to the equipment interface
+            ItemManager.RefreshInterfaceItems(player, player.Equipment.Items, Interfaces.Equipment);
 
-            //TODO: Refresh inventory, equipment, configurations
+            //TODO: configurations
             EquipmentHandler.UpdateWeight(player);
             //TODO: weapon interface update
 

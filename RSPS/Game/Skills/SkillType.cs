@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSPS.Entities.Mobiles.Players.Skills
+namespace RSPS.Game.Skills
 {
     /// <summary>
     /// The possible skill types

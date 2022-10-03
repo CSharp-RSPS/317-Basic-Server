@@ -31,10 +31,10 @@ namespace RSPS.Net.GamePackets.Receive.Impl
                 case Interfaces.InventoryOverlayBank: // Add all to bank
                     break;
 
-                case Interfaces.Bank: // Remove all from bank
+                case Interfaces.BankItemsOverlay: // Remove all from bank
                     break;
 
-                case Interfaces.Shop: // Purchase 10 from shop
+                case Interfaces.ShopItemsOverlay: // Purchase 10 from shop
                     break;
 
                 case Interfaces.InventoryOverlayShop: // Sell 10 to shop
@@ -43,7 +43,7 @@ namespace RSPS.Net.GamePackets.Receive.Impl
                 case Interfaces.InventoryOverlayTrade: // Offer all in trade
                     break;
 
-                case Interfaces.Trade: // Remove all from trade
+                case Interfaces.TradeItemsOverlay: // Remove all from trade
                     break;
             }
         }

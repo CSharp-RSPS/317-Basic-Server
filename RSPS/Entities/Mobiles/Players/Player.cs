@@ -2,13 +2,13 @@
 using RSPS.Entities.Mobiles;
 using RSPS.Entities.Mobiles.Npcs;
 using RSPS.Entities.Mobiles.Players.Events;
-using RSPS.Entities.Mobiles.Players.Skills;
 using RSPS.Entities.Mobiles.Players.Variables;
 using RSPS.Entities.movement;
 using RSPS.Entities.movement.Locations;
 using RSPS.Game.Comms.Chatting;
 using RSPS.Game.Comms.Messaging;
 using RSPS.Game.Items.Containers;
+using RSPS.Game.Skills;
 using RSPS.Game.UI;
 using RSPS.Net.Codec;
 using RSPS.Net.Connections;
@@ -110,7 +110,7 @@ namespace RSPS.Entities.Mobiles.Players
             PlayerConnection = playerConnection;
 
             Inventory = new ItemContainer(Interfaces.Inventory, 28, PersistentVars.Member, false);
-            Bank = new ItemContainer(Interfaces.Bank, PersistentVars.Member ? 352 : 68, PersistentVars.Member, true);
+            Bank = new ItemContainer(Interfaces.BankItemsOverlay, PersistentVars.Member ? 352 : 68, PersistentVars.Member, true);
             Equipment = new ItemContainer(Interfaces.Equipment, 14, PersistentVars.Member, false);
 
             Comms = new Communication();

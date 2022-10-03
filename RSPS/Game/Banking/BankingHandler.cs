@@ -1,4 +1,6 @@
 ﻿using RSPS.Entities.Mobiles.Players;
+using RSPS.Game.Items;
+using RSPS.Game.UI;
 using RSPS.Net.GamePackets;
 using RSPS.Net.GamePackets.Send.Impl;
 using System;
@@ -29,10 +31,15 @@ namespace RSPS.Game.Banking
         /// <param name="player">The player</param>
         public static void OpenBank(Player player)
         {
-            PacketHandler.SendPacket(player, new SendInventoryOverlay(5292, 5063));
-            player.Bank.RefreshUI(player);
-            PacketHandler.SendPacket(player, new SendDrawItemsOnInterface2(5064, player.Bank.Items));
-            PacketHandler.SendPacket(player, new SendDrawItemsOnInterface2(5064, player.Inventory.Items));
+            player.Inventory.AddItem(new Item(1333));
+            player.Bank.AddItem(new Item(1331));
+
+            // Open the banking interface
+            PacketHandler.SendPacket(player, new SendInventoryOverlay(Interfaces.Bank, 5063)); //5063 = hidden bank interface?
+            // Draw the inventory items onto the banking inventory overlay
+            ItemManager.RefreshInterfaceItems(player, player.Inventory.Items, Interfaces.InventoryOverlayBank);
+            // Draw the bank items onto the banking interface
+            ItemManager.RefreshInterfaceItems(player, player.Bank.Items, Interfaces.BankItemsOverlay);
         }
 
     }
