@@ -12,12 +12,14 @@ namespace RSPS.Entities.Updating
     {
         public T? Entity;
         public PacketWriter writer;
+        public PacketWriter maskPayload;
 
         private static Dictionary<int, IUpdateProtocol<T>> UpdateTunnel = new Dictionary<int, IUpdateProtocol<T>>();
 
-        public EntityUpdate(T t, PacketWriter writer) {
+        public EntityUpdate(T t, PacketWriter payload, PacketWriter maskBlock) {
             Entity = t;
-            this.writer = writer;
+            this.writer = payload;
+            this.maskPayload = maskBlock;
         }
 
         public void ExecuteUpdates()

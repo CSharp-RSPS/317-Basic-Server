@@ -10,7 +10,7 @@ namespace RSPS.Entities.Updating
     public interface IUpdateProtocol<E> where E : Entity
     {
 
-        public void Process(E entity, PacketWriter writer, PacketWriter stateBlock);
+        public void Process(E entity, PacketWriter payload, PacketWriter block);
 
     }
 }

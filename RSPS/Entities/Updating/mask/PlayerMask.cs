@@ -21,7 +21,7 @@ namespace RSPS.Entities.Updating.block
             NoPublicChat = noPublicChat;
         }
 
-        public void Process(Player player, PacketWriter writer, PacketWriter stateBlock)
+        public void Process(Player player, PacketWriter stateBlock, PacketWriter writer)
         {
             if (!player.UpdateRequired && !ForceAppearance)
             {
