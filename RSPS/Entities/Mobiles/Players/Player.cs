@@ -9,6 +9,7 @@ using RSPS.Entities.movement.Locations;
 using RSPS.Game.Comms.Chatting;
 using RSPS.Game.Comms.Messaging;
 using RSPS.Game.Items.Containers;
+using RSPS.Game.UI;
 using RSPS.Net.Codec;
 using RSPS.Net.Connections;
 using RSPS.Net.GamePackets;
@@ -108,9 +109,9 @@ namespace RSPS.Entities.Mobiles.Players
 
             PlayerConnection = playerConnection;
 
-            Inventory = new ItemContainer(3214, 28, PersistentVars.Member, false);
-            Bank = new ItemContainer(5382, PersistentVars.Member ? 352 : 68, PersistentVars.Member, true);
-            Equipment = new ItemContainer(1688, 14, PersistentVars.Member, false);
+            Inventory = new ItemContainer(Interfaces.Inventory, 28, PersistentVars.Member, false);
+            Bank = new ItemContainer(Interfaces.Bank, PersistentVars.Member ? 352 : 68, PersistentVars.Member, true);
+            Equipment = new ItemContainer(Interfaces.Equipment, 14, PersistentVars.Member, false);
 
             Comms = new Communication();
             PlayerEvents = new PlayerEventController();

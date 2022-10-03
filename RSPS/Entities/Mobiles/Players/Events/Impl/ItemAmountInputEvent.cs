@@ -1,5 +1,6 @@
 ﻿using RSPS.Game.Items;
 using RSPS.Game.Items.Containers;
+using RSPS.Game.UI;
 using RSPS.Net.GamePackets;
 using RSPS.Net.GamePackets.Send;
 using System;
@@ -65,25 +66,25 @@ namespace RSPS.Entities.Mobiles.Players.Events.Impl
 
             switch (InterfaceId)
             {
-                case 5064: // Bank inventory overlay
+                case Interfaces.InventoryOverlayBank: // Bank inventory overlay
                     itemContainer = player.Inventory;
                     break;
 
-                case 5382: // Bank
+                case Interfaces.Bank: // Bank
                     break;
 
-                case 3900: // Shop
+                case Interfaces.Shop: // Shop
                     break;
 
-                case 3823: // Shop inventory overlay
+                case Interfaces.InventoryOverlayShop: // Shop inventory overlay
                     itemContainer = player.Inventory;
                     break;
 
-                case 3322: // Trade inventory overlay
+                case Interfaces.InventoryOverlayTrade: // Trade inventory overlay
                     itemContainer = player.Inventory;
                     break;
 
-                case 3415: // Trade
+                case Interfaces.Trade: // Trade
                     break;
             }
             if (itemContainer == null)

@@ -2,7 +2,9 @@
 using RSPS.Game.Items.Consumables;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,7 +41,14 @@ namespace RSPS.Game.Items
                (elements) => elements.ForEach(def => Prizes.Add(def.Id, def)));
 
             JsonUtil.DataImport<Consumable>("./Resources/items/consumables.json",
-               (elements) => elements.ForEach(def => Consumables.Add(def.Id, def)));
+               (elements) => elements.ForEach(def => {
+                   if (Consumables.ContainsKey(def.Id))
+                   {
+                       Debug.WriteLine("Duplicate consumable " + def.Id);
+                       return;
+                   }
+                   Consumables.Add(def.Id, def);
+               }));
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using RSPS.Entities.Mobiles.Players;
+using RSPS.Game.UI;
 using RSPS.Net.GamePackets.Send.Impl;
 using RSPS.Util.Attributes;
 using RSPS.Worlds;
@@ -34,7 +35,7 @@ namespace RSPS.Net.GamePackets.Receive.Impl
             }
             switch (interfaceId)
             {
-                case 3214: // Inventory
+                case Interfaces.Inventory: // Inventory
                     break;
             }
             PacketHandler.SendPacket(player, new SendMessage("Nothing interesting happens."));

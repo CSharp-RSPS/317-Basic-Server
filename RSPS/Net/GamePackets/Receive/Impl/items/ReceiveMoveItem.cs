@@ -1,4 +1,5 @@
 ﻿using RSPS.Entities.Mobiles.Players;
+using RSPS.Game.UI;
 using RSPS.Net.GamePackets.Send.Impl;
 using RSPS.Util.Attributes;
 using System;
@@ -27,11 +28,11 @@ namespace RSPS.Net.GamePackets.Receive.Impl
 
             switch (interfaceId)
             {
-                case 3214: //Inventory
-                case 5064: //Inventory
+                case Interfaces.Inventory: //Inventory
+                case Interfaces.InventoryOverlayBank: //Inventory
                     break;
 
-                case 5382: // Bank
+                case Interfaces.Bank: // Bank
                     break;
             }
         }

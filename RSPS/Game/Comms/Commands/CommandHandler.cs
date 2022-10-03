@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using RSPS.Net.GamePackets.Send.Impl;
+using RSPS.Game.Items;
 
 namespace RSPS.Game.Comms.Commands
 {
@@ -32,6 +33,11 @@ namespace RSPS.Game.Comms.Commands
             }
             switch (command)
             {
+                case "item":
+                    player.Inventory.AddItem(new Item(int.Parse(arguments[1]), 1));
+                    player.Inventory.RefreshUI(player);
+                    break;
+
                 case "resetanim":
                 case "resetanimation":
                 case "resetanimations":

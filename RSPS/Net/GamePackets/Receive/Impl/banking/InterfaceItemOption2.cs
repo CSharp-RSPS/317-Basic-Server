@@ -1,4 +1,5 @@
 ﻿using RSPS.Entities.Mobiles.Players;
+using RSPS.Game.UI;
 using RSPS.Net.GamePackets.Send.Impl;
 using RSPS.Util.Attributes;
 using System;
@@ -27,22 +28,22 @@ namespace RSPS.Net.GamePackets.Receive.Impl
 
             switch (interfaceId)
             {
-                case 5064: // Add 5 to bank
+                case Interfaces.InventoryOverlayBank: // Add 5 to bank
                     break;
 
-                case 5382: // Remove 5 from bank
+                case Interfaces.Bank: // Remove 5 from bank
                     break;
 
-                case 3900: // Purchase 1 from shop
+                case Interfaces.Shop: // Purchase 1 from shop
                     break;
 
-                case 3823: // Sell 1 to shop
+                case Interfaces.InventoryOverlayShop: // Sell 1 to shop
                     break;
 
-                case 3322: // Offer 5 in trade
+                case Interfaces.InventoryOverlayTrade: // Offer 5 in trade
                     break;
 
-                case 3415: // Remove 5 from trade
+                case Interfaces.Trade: // Remove 5 from trade
                     break;
             }
         }
