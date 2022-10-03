@@ -22,5 +22,10 @@ namespace RSPS.Entities.Mobiles.Players.Variables
         /// </summary>
         public bool HasOpenInterface => OpenInterfaceId != -1;
 
+        /// <summary>
+        /// Whether to withdraw items from the bank noted
+        /// </summary>
+        public bool NotedBanking { get; set; }
+
     }
 }

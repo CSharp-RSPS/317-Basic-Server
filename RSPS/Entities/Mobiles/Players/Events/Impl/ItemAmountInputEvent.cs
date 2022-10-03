@@ -71,6 +71,7 @@ namespace RSPS.Entities.Mobiles.Players.Events.Impl
                     break;
 
                 case Interfaces.BankItemsOverlay: // Bank
+                    itemContainer = player.Bank;
                     break;
 
                 case Interfaces.ShopItemsOverlay: // Shop

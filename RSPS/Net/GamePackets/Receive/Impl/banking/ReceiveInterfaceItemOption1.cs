@@ -1,4 +1,5 @@
 ﻿using RSPS.Entities.Mobiles.Players;
+using RSPS.Game.Banking;
 using RSPS.Game.Items.Equipment;
 using RSPS.Game.UI;
 using RSPS.Net.GamePackets.Send.Impl;
@@ -23,23 +24,25 @@ namespace RSPS.Net.GamePackets.Receive.Impl
         public void ReceivePacket(Player player, PacketReader reader)
         {
             int interfaceId = reader.ReadShortAdditional();
-            int itemSlot = reader.ReadShortAdditional();
+            int slotId = reader.ReadShortAdditional();
             int itemId = reader.ReadShortAdditional();
 
-            if (interfaceId < 0 || itemSlot < 0 || itemId < 0)
+            if (interfaceId < 0 || slotId < 0 || itemId < 0)
             {
                 return;
             }
             switch (interfaceId)
             {
                 case Interfaces.Equipment: // Remove from equipment
-                    EquipmentHandler.Unequip(player, itemId, itemSlot);
+                    EquipmentHandler.Unequip(player, itemId, slotId);
                     break;
 
                 case Interfaces.InventoryOverlayBank: // Add to bank
+                    BankingHandler.Deposit(player, itemId, slotId, 1);
                     break;
 
                 case Interfaces.BankItemsOverlay: // Remove from bank
+                    BankingHandler.Withdraw(player, itemId, slotId, 1);
                     break;
 
                 case Interfaces.ShopItemsOverlay: // Shop price check

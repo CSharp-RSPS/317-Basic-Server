@@ -26,6 +26,10 @@ namespace RSPS.Net.GamePackets.Receive.Impl
             int interfaceId = reader.ReadShortAdditional();
             int itemId = reader.ReadShortLittleEndian();
 
+            if (interfaceId < 0 || itemId < 0 || slotId < 0)
+            {
+                return;
+            }
             player.PlayerEvents.Start(player, new ItemAmountInputEvent(slotId, interfaceId, itemId));
         }
 

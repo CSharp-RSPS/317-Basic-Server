@@ -5,6 +5,7 @@ using RSPS.Net.GamePackets.Send.Impl;
 using RSPS.Util.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,8 +44,24 @@ namespace RSPS.Net.GamePackets.Receive.Impl
                     Console.WriteLine("Is player run toggled? " + player.PlayerMovement.Running);
                     break;
 
+                case 5386:
+                    player.NonPersistentVars.NotedBanking = true;
+                    break;
+
+                case 5387:
+                    player.NonPersistentVars.NotedBanking = false;
+                    break;
+
+                case 8130:
+                    // Bank rearrange mode: swap
+                    break;
+
+                case 8131:
+                    // Bank rearrange mode: insert
+                    break;
+
                 default:
-                    Console.WriteLine("Unhandled button Id: " + buttonId);
+                    Debug.WriteLine("Unhandled button Id: " + buttonId);
                     break;
             }
         }
