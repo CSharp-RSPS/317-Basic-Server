@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -288,49 +289,92 @@ namespace RSPS.Game.Items.Equipment
             {
                 return;
             }
-            EquipDef? def = GetEquipDef(itemId);
+            EquipDef? equipDef = GetEquipDef(itemId);
 
-            if (def == null || def.EquipType == EquipType.None)
+            if (equipDef == null || equipDef.EquipType == EquipType.None)
             { // Can not be equipped
                 return;
             }
-            if (def.HasSkillRequirements
-                && !SkillHandler.PassesSkillRequirements(player, def.SkillRequirements, out SkillRequirement? unpassedSkillReq))
+            if (equipDef.HasSkillRequirements
+                && !SkillHandler.PassesSkillRequirements(player, equipDef.SkillRequirements, out SkillRequirement? unpassedSkillReq))
             { // Skill requirements not met
                 PacketHandler.SendPacket(player, new SendMessage("You need a " + unpassedSkillReq?.SkillType.ToString()
                         + " level of at least " + unpassedSkillReq?.Level + " to wear this item."));
                 return;
             }
-            int equipmentSlot = def.EquipType.GetAttributeOfType<EquipmentSlotAttribute>().Slot;
+            int equipmentSlot = equipDef.EquipType.GetAttributeOfType<EquipmentSlotAttribute>().Slot;
             Item? itemAtSlot = player.Equipment.GetItemBySlot(equipmentSlot);
 
             if (itemAtSlot != null)
-            {
-                if (itemAtSlot.Id == inventoryItem.Id)
-                { // Swap
-                    // TODO if stackable - change decrease inv. amount, add equip amount
-                    // TODO if not stackable => swap
+            { // There is already an item in the equipment slot
+                ItemDef? itemAtSlotDef = ItemManager.GetItemDefById(itemAtSlot.Id);
+                
+                if (itemAtSlotDef == null)
+                {
+                    return;
                 }
-                // TODO If 2-handed and also has shield - check if enough inventory space - if so, add item (not to slot)
-                //def.TwoHanded
-
-                //TODO if stackable and in inventory, add to stack, not the slot
+                if (itemAtSlot.Id == inventoryItem.Id)
+                {
+                    if (!itemAtSlotDef.Stackable)
+                    { // Swap the inventory and equipment item since it's the same ID
+                        player.Equipment.Items[equipmentSlot] = inventoryItem;
+                        player.Inventory.Items[slot] = itemAtSlot;
+                        // Update the equipment, we don't need to take a possible weapon into account since it's the same item so the widget will not change
+                        EquipmentUpdate(player);
+                        return;
+                    }
+                    // Since the item is stackable, modify the amount of the current worn item
+                    player.Equipment.ModifyItemAmount(itemAtSlot, equipmentSlot, inventoryItem.Amount);
+                    // Remove the item (stack) from the inventory
+                    player.Inventory.RemoveItemFromSlot(inventoryItem, slot);
+                    // Update the equipment, use the current item in case of a weapon since only the quantity changed
+                    EquipmentUpdate(player, equipDef.EquipType == EquipType.Weapon, itemAtSlot);
+                    return;
+                }
             }
-            player.Equipment.AddItem(inventoryItem, equipmentSlot);
+            if (equipDef.TwoHanded)
+            { // Make sure we can remove the shield if one is wielded
+                int shieldSlot = EquipType.Shield.GetAttributeOfType<EquipmentSlotAttribute>().Slot;
+                Item? shieldItem = player.Equipment.GetItemBySlot(shieldSlot);
+
+                if (shieldItem != null)
+                { // Is wearing an item in the shield slot
+                    if (!player.Inventory.CanAddItem(shieldItem))
+                    { // Unable to unequip item from shield slot
+                        PacketHandler.SendPacket(player, new SendMessage("You don't have enough space in your inventory."));
+                        return;
+                    }
+                    player.Equipment.RemoveItemFromSlot(shieldItem, shieldSlot);
+                    player.Inventory.AddItem(shieldItem);
+                }
+            }
+            if (itemAtSlot != null)
+            { // Remove the equiped item from it's slot
+                player.Equipment.RemoveItemFromSlot(itemAtSlot, equipmentSlot);
+            }
             player.Inventory.RemoveItemFromSlot(inventoryItem, slot);
+            player.Equipment.AddItem(inventoryItem, equipmentSlot);
 
-            ItemManager.RefreshInterfaceItems(player, player.Inventory.Items, Interfaces.Inventory);
-            ItemManager.RefreshInterfaceItems(player, player.Equipment.Items, Interfaces.Equipment);
+            if (equipDef.EquipType == EquipType.Shield)
+            { // We're equipping a shield
+                int weaponSlot = EquipType.Weapon.GetAttributeOfType<EquipmentSlotAttribute>().Slot;
+                Item? weaponItem = player.Equipment.GetItemBySlot(weaponSlot);
 
-            UpdateEquipmentBonuses(player);
-            UpdateWeight(player);
+                if (weaponItem != null)
+                {
+                    EquipDef? wepDef = GetEquipDef(weaponItem.Id);
 
-            if (def.EquipType == EquipType.Weapon)
-            { 
-                WriteWeaponInterface(player, inventoryItem);
+                    if (wepDef != null && wepDef.TwoHanded)
+                    { // We're wearing a 2-handed item so we have to remove it in order to wield the shield
+                        player.Equipment.RemoveItemFromSlot(weaponItem, weaponSlot);
+                        player.Inventory.AddItem(weaponItem);
+                        // Update the equipment indicating the weapon changed in order to update the combat widgets
+                        EquipmentUpdate(player, true, weaponItem);
+                        return;
+                    }
+                }
             }
-            player.AppearanceUpdateRequired = true;
-            player.UpdateRequired = true;
+            EquipmentUpdate(player, equipDef.EquipType == EquipType.Weapon, inventoryItem);
         }
 
         /// <summary>
@@ -355,15 +399,26 @@ namespace RSPS.Game.Items.Equipment
             player.Equipment.RemoveItemFromSlot(item, slot);
             player.Inventory.AddItem(item);
 
+            EquipmentUpdate(player, GetEquipType(itemId) == EquipType.Weapon, null);
+        }
+
+        /// <summary>
+        /// Indicates equipment updated for a player
+        /// </summary>
+        /// <param name="player">The player</param>
+        /// <param name="weapon">Whether the weapon got updated</param>
+        /// <param name="item">The updated weapon item</param>
+        private static void EquipmentUpdate(Player player, bool weapon = false, Item? item = null)
+        {
             ItemManager.RefreshInterfaceItems(player, player.Inventory.Items, Interfaces.Inventory);
             ItemManager.RefreshInterfaceItems(player, player.Equipment.Items, Interfaces.Equipment);
 
             UpdateEquipmentBonuses(player);
             UpdateWeight(player);
 
-            if (GetEquipType(itemId) == EquipType.Weapon)
+            if (weapon)
             {
-                WriteWeaponInterface(player, null);
+                WriteWeaponInterface(player, item);
             }
             player.AppearanceUpdateRequired = true;
             player.UpdateRequired = true;
@@ -507,7 +562,7 @@ namespace RSPS.Game.Items.Equipment
                 string interfaceText = BonusNames[i] + ": " + (bonus >= 0 ? "+" : "-") + Math.Abs(bonus);
 
                 PacketHandler.SendPacket(player, new SendSetInterfaceText(interfaceId, interfaceText));
-            }
+            } //TODO: prayer bonus always seems 120
         }
 
         /// <summary>
