@@ -2,6 +2,7 @@
 using RSPS.Game.Items;
 using RSPS.Game.UI;
 using RSPS.Net.GamePackets;
+using RSPS.Net.GamePackets.Send;
 using RSPS.Net.GamePackets.Send.Impl;
 using System;
 using System.Collections.Generic;
@@ -53,6 +54,16 @@ namespace RSPS.Game.Banking
         }
 
         /// <summary>
+        /// Closes the bank for a player
+        /// </summary>
+        /// <param name="player">The player</param>
+        public static void CloseBank(Player player)
+        {
+            Interfaces.CloseInterfaces(player);
+            ItemManager.RefreshInterfaceItems(player, player.Inventory.Items, Interfaces.Inventory);
+        }
+
+        /// <summary>
         /// Attempts to deposit items into a player' bank
         /// </summary>
         /// <param name="itemId">The item identifier</param>
@@ -64,24 +75,7 @@ namespace RSPS.Game.Banking
             {
                 return;
             }
-            Item? inventoryItem = player.Inventory.GetItemBySlot(slot);
-
-            if (inventoryItem == null || inventoryItem.Id != itemId)
-            {
-                return;
-            }
-            if (inventoryItem.Amount < quantity)
-            {
-                quantity = inventoryItem.Amount;
-            }
-            if (!player.Bank.CanAddItem(inventoryItem))
-            {
-                PacketHandler.SendPacket(player, new SendMessage("Your bank is full."));
-                return;
-            }
-            player.Inventory.ModifyItemAmount(inventoryItem, slot, -quantity);
-            player.Bank.AddItem(new Item(inventoryItem.Id, quantity));
-            RefreshBanking(player);
+            ItemManager.TransferContainerItems(player, itemId, slot, quantity, player.Inventory, player.Bank, () => RefreshBanking(player));
         }
 
         /// <summary>
@@ -93,47 +87,11 @@ namespace RSPS.Game.Banking
         /// <param name="quantity">The item quantity</param>
         public static void Withdraw(Player player, int itemId, int slot, int quantity)
         {
-            if (!IsBanking(player) || quantity <= 0)
+            if (!IsBanking(player))
             {
                 return;
             }
-            Item? itemAtSlot = player.Bank.GetItemBySlot(slot);
-
-            if (itemAtSlot == null || itemAtSlot.Id != itemId)
-            {
-                return;
-            }
-            if (itemAtSlot.Amount > quantity)
-            {
-                quantity = itemAtSlot.Amount;
-            }
-            Item itemToWithdraw = new(itemAtSlot.Id, quantity);
-
-            if (player.NonPersistentVars.NotedBanking)
-            {
-                ItemDef? itemDef = ItemManager.GetItemDefById(itemId);
-
-                if (itemDef == null)
-                {
-                    return;
-                }
-                if (itemDef.ReverseIdentity != -1)
-                {
-                    itemToWithdraw = new(itemDef.ReverseIdentity, quantity);
-                }
-                else
-                {
-                    PacketHandler.SendPacket(player, new SendMessage("This item can not be withdrawn as a note."));
-                }
-            }
-            if (!player.Inventory.CanAddItem(itemToWithdraw))
-            {
-                PacketHandler.SendPacket(player, new SendMessage("Your inventory is full."));
-                return;
-            }
-            player.Bank.ModifyItemAmount(itemAtSlot, slot, -quantity);
-            player.Inventory.AddItem(itemToWithdraw);
-            RefreshBanking(player);
+            ItemManager.TransferContainerItems(player, itemId, slot, quantity, player.Bank, player.Inventory, () => RefreshBanking(player));
         }
 
         /// <summary>

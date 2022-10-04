@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RSPS.Game.Items.Containers;
+using RSPS.Game.Trading;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +28,26 @@ namespace RSPS.Entities.Mobiles.Players.Variables
         /// Whether to withdraw items from the bank noted
         /// </summary>
         public bool NotedBanking { get; set; }
+
+        /// <summary>
+        /// The active trade container
+        /// </summary>
+        public ItemContainer? TradeContainer { get; set; }
+
+        /// <summary>
+        /// The current trade partner if any
+        /// </summary>
+        public Player? TradePartner { get; set; }
+
+        /// <summary>
+        /// The trade stage we're in
+        /// </summary>
+        public TradeStage? TradeStage { get; set; }
+
+        /// <summary>
+        /// Retrieves whether we're trading at the moment
+        /// </summary>
+        public bool IsTrading => TradeContainer != null && TradePartner != null && TradeStage != null;
 
     }
 }

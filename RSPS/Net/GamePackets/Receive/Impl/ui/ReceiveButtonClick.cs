@@ -1,4 +1,5 @@
 ﻿using RSPS.Entities.Mobiles.Players;
+using RSPS.Game.UI.Buttons;
 using RSPS.Net.Connections;
 using RSPS.Net.GamePackets.Send;
 using RSPS.Net.GamePackets.Send.Impl;
@@ -28,42 +29,7 @@ namespace RSPS.Net.GamePackets.Receive.Impl
             {
                 return;
             }
-            switch (buttonId)
-            {
-                case 9154:
-                    PlayerManager.Logout(player);
-                    break;
-
-                case 52053:
-                    Console.WriteLine("Head Banging");
-                    break;
-
-                case 152:
-                    player.PlayerMovement.Running = !player.PlayerMovement.Running;
-                    PacketHandler.SendPacket(player, new SendConfiguration(173, player.PlayerMovement.Running));
-                    Console.WriteLine("Is player run toggled? " + player.PlayerMovement.Running);
-                    break;
-
-                case 5386:
-                    player.NonPersistentVars.NotedBanking = true;
-                    break;
-
-                case 5387:
-                    player.NonPersistentVars.NotedBanking = false;
-                    break;
-
-                case 8130:
-                    // Bank rearrange mode: swap
-                    break;
-
-                case 8131:
-                    // Bank rearrange mode: insert
-                    break;
-
-                default:
-                    Debug.WriteLine("Unhandled button Id: " + buttonId);
-                    break;
-            }
+            ButtonHandler.HandleButtonClick(player, buttonId);
         }
     }
 }

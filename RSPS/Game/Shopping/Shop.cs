@@ -18,7 +18,7 @@ namespace RSPS.Game.Shopping
 
         public Shop()
         {
-            Inventory = new ItemContainer(3900, 36, true, false);
+            Inventory = new ItemContainer(ItemContainerType.Shop, true);
         }
 
     }

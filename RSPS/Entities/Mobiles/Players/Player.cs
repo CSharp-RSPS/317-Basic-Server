@@ -109,9 +109,9 @@ namespace RSPS.Entities.Mobiles.Players
 
             PlayerConnection = playerConnection;
 
-            Inventory = new ItemContainer(Interfaces.Inventory, 28, PersistentVars.Member, false);
-            Bank = new ItemContainer(Interfaces.BankItemsOverlay, PersistentVars.Member ? 352 : 68, PersistentVars.Member, true);
-            Equipment = new ItemContainer(Interfaces.Equipment, 14, PersistentVars.Member, false);
+            Inventory = new ItemContainer(ItemContainerType.Inventory, PersistentVars.Member);
+            Bank = new ItemContainer(ItemContainerType.Bank, PersistentVars.Member);
+            Equipment = new ItemContainer(ItemContainerType.Equipment, PersistentVars.Member);
 
             Comms = new Communication();
             PlayerEvents = new PlayerEventController();

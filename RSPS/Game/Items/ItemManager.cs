@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RSPS.Game.Items.Containers;
 using System.ComponentModel;
+using System.Numerics;
 
 namespace RSPS.Game.Items
 {
@@ -77,6 +78,39 @@ namespace RSPS.Game.Items
         public static void RefreshInterfaceItems(Player player, Dictionary<int, Item?> items, int containerInterfaceId)
         {
             PacketHandler.SendPacket(player, new SendDrawItemsOnInterface2(containerInterfaceId, items));
+        }
+
+        /// <summary>
+        /// Transfers items here from another container for a player
+        /// </summary>
+        /// <param name="player">The player</param>
+        /// <param name="itemId">The item identifier</param>
+        /// <param name="slot">The item slot</param>
+        /// <param name="quantity">The quantity</param>
+        /// <param name="sourceContainer">The source container</param>
+        /// <param name="targetContainer">The target container</param>
+        /// <param name="refreshContainers">The refresh containers action</param>
+        public static void TransferContainerItems(Player player, int itemId, int slot, int quantity, 
+            ItemContainer sourceContainer, ItemContainer targetContainer, Action refreshContainers)
+        {
+            Item? inventoryItem = sourceContainer.GetItemBySlot(slot);
+
+            if (inventoryItem == null || inventoryItem.Id != itemId)
+            {
+                return;
+            }
+            if (inventoryItem.Amount < quantity)
+            {
+                quantity = inventoryItem.Amount;
+            }
+            if (!targetContainer.HasRoomForItems(itemId, quantity))
+            {
+                PacketHandler.SendPacket(player, new SendMessage("You don't have enough space in your " + targetContainer.Type.ToString().ToLower() +"."));
+                return;
+            }
+            sourceContainer.RemoveItems(itemId, -quantity);
+            targetContainer.AddItem(itemId, quantity);
+            refreshContainers();
         }
 
         /// <summary>

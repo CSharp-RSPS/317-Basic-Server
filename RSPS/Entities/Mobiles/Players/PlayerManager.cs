@@ -129,16 +129,25 @@ namespace RSPS.Entities.Mobiles.Players
             PacketHandler.SendPacket(player, new SendPlayerOption(2, "Worship"));
             PacketHandler.SendPacket(player, new SendPlayerOption(3, "Follow"));
             PacketHandler.SendPacket(player, new SendPlayerOption(4, "Trade with"));
+
+            // Validate the item containers of the player
+            player.Inventory.ValidateContainer();
+            player.Equipment.ValidateContainer();
+            player.Bank.ValidateContainer();
+
+            // Refresh the equipment such as combat widgets, stats, weight, ...
+            EquipmentHandler.RefreshEquipment(player);
+
             // Draw the inventory items to the inventory interface
             ItemManager.RefreshInterfaceItems(player, player.Inventory.Items, Interfaces.Inventory);
             // Draw the equipment items to the equipment interface
             ItemManager.RefreshInterfaceItems(player, player.Equipment.Items, Interfaces.Equipment);
 
-            //TODO: configurations
-            EquipmentHandler.UpdateWeight(player);
-            //TODO: weapon interface update
-
+            // Register the player to the private message handler
             PrivateMessageHandler.Register(player);
+
+            //TODO: configurations
+
 
             //TODO: refresh quest tab
 
@@ -164,6 +173,7 @@ namespace RSPS.Entities.Mobiles.Players
             PacketHandler.SendPacket(player, new SendMessage(string.Format("Welcome to {0}.", WorldHandler.World.Details.Name)));
             PacketHandler.SendPacket(player, new SendMessage(string.Format("Global notice: {0}.", "blablabla")));
             // if muted etc send msg
+            // Handle starter etc
 
             player.LoggedIn = true;
         }

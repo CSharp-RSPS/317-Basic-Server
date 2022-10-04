@@ -16,16 +16,27 @@ namespace RSPS.Game.UI
     public static class Interfaces
     {
 
-        public const int Inventory = 3214;
-        public const int InventoryOverlayBank = 5064;
-        public const int InventoryOverlayShop = 3823;
-        public const int InventoryOverlayTrade = 3322;
+        public const int Inventory = 3214; // The inventory interface items overlay
 
-        public const int Bank = 5292;
-        public const int BankItemsOverlay = 5382;
-        public const int ShopItemsOverlay = 3900;
-        public const int TradeItemsOverlay = 3415;
-        public const int Equipment = 1688;
+        public const int Equipment = 1688; // The equipment interface items overlay
+
+        public const int Bank = 5292; // The bank interface
+        public const int BankItemsOverlay = 5382; // The bank interface items overlay
+        public const int InventoryOverlayBank = 5064; // The inventory overlay while banking
+
+        public const int Shop = 3824; // The shop interface
+        public const int ShopItemsOverlay = 3900; // The shop interface items overlay
+        public const int InventoryOverlayShop = 3823; // The inventory overlay while shopping
+        public const int ShopName = 3901; // The shop name text interface
+
+        public const int Trade = 3323; // The trading interface
+        public const int TradeItemsOverlay = 3415; // The trade interface items overlay
+        public const int TradePartnerItemsOverlay = 3416; // The trade interface items overlay for the trade partner items
+        public const int InventoryOverlayTrade = 3322; // The inventory overlay while trading
+        public const int TradeAcceptOverlay = 3443; // The accept screen for a trade
+        public const int TradeAcceptItemsOverlay = 3557; // The items overlay on the trade accept screen
+        public const int TradeAcceptPartnerItemsOverlay = 3558; // The items overlay for the trade partner on the trade accept screen
+
 
 
         /// <summary>

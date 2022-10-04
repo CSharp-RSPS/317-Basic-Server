@@ -15,6 +15,10 @@ namespace RSPS.Game.Shopping
     {
 
 
+        public static bool IsShopping(Player player)
+        {
+            return player.NonPersistentVars.OpenInterfaceId == Interfaces.Shop;
+        }
 
     }
 }

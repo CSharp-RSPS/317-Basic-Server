@@ -324,9 +324,9 @@ namespace RSPS.Game.Items.Equipment
                         return;
                     }
                     // Since the item is stackable, modify the amount of the current worn item
-                    player.Equipment.ModifyItemAmount(itemAtSlot, equipmentSlot, inventoryItem.Amount);
-                    // Remove the item (stack) from the inventory
-                    player.Inventory.RemoveItemFromSlot(inventoryItem, slot);
+                    int added = player.Equipment.AddItemToSlot(itemAtSlot.Id, equipmentSlot, inventoryItem.Amount);
+                    // Remove the items (stack) from the inventory
+                    player.Inventory.RemoveItems(itemAtSlot.Id, added);
                     // Update the equipment, use the current item in case of a weapon since only the quantity changed
                     EquipmentUpdate(player, equipDef.EquipType == EquipType.Weapon, itemAtSlot);
                     return;
@@ -339,7 +339,7 @@ namespace RSPS.Game.Items.Equipment
 
                 if (shieldItem != null)
                 { // Is wearing an item in the shield slot
-                    if (!player.Inventory.CanAddItem(shieldItem))
+                    if (!player.Inventory.HasRoomForItem(shieldItem))
                     { // Unable to unequip item from shield slot
                         PacketHandler.SendPacket(player, new SendMessage("You don't have enough space in your inventory."));
                         return;
@@ -391,7 +391,7 @@ namespace RSPS.Game.Items.Equipment
             {
                 return;
             }
-            if (!player.Inventory.CanAddItem(item))
+            if (!player.Inventory.HasRoomForItem(item))
             {
                 PacketHandler.SendPacket(player, new SendMessage("You don't have enough space in your inventory."));
                 return;
@@ -422,6 +422,23 @@ namespace RSPS.Game.Items.Equipment
             }
             player.AppearanceUpdateRequired = true;
             player.UpdateRequired = true;
+        }
+
+        /// <summary>
+        /// Refreshes the equipment for a player
+        /// </summary>
+        /// <param name="player">The player</param>
+        public static void RefreshEquipment(Player player)
+        {
+            Item? weapon = player.Equipment.GetItemBySlot(EquipType.Weapon.GetAttributeOfType<EquipmentSlotAttribute>().Slot);
+
+            UpdateEquipmentBonuses(player);
+            UpdateWeight(player);
+
+            if (weapon != null)
+            {
+                WriteWeaponInterface(player, weapon);
+            }
         }
 
         /// <summary>
