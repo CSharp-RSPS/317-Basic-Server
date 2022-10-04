@@ -1,7 +1,6 @@
 ﻿using RSPS.Entities.Mobiles.Npcs;
 using RSPS.Entities.movement;
 using RSPS.Entities.movement.Locations;
-using RSPS.Entities.Updating.flag;
 using RSPS.Net.GamePackets;
 using System;
 using System.Collections.Generic;
@@ -61,8 +60,6 @@ namespace RSPS.Entities.Mobiles
         public dynamic? WalkToEvent { get; private set; }
 
         public Position CurrentRegion = new Position(0, 0, 0);
-
-        public EntityFlags Flags = new();
 
         public bool UpdateRequired { get; set; } = false;
 

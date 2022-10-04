@@ -1,7 +1,6 @@
 ﻿using RSPS.Entities.Mobiles;
 using RSPS.Entities.movement.Locations;
 using RSPS.Entities.Mobiles.Players;
-using RSPS.Entities.Updating.flag;
 using System;
 using System.Collections.Generic;
 using System.Linq;

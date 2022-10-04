@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace RSPS.Entities.Updating.Local
 {
-    internal class ProcessLocalPlayer : IUpdateProtocol<Player>
+    public class ProcessLocalPlayer : IUpdateProtocol<Player>
     {
-        public void Process(Player player, PacketWriter payload, PacketWriter block)
+        public void Process(Player player, PacketWriter packet, PacketWriter updateBlock)
         {
-            payload.WriteBits(8, player.LocalPlayers.Count);
+            packet.WriteBits(8, player.LocalPlayers.Count);
 
             // ====== Processes all player changes in the region ========
             foreach (Player other in player.LocalPlayers.ToArray())
@@ -24,17 +24,17 @@ namespace RSPS.Entities.Updating.Local
                     && other.PlayerConnection.ConnectionState == ConnectionState.Authenticated
                     && !other.Movement.Teleported)
                 {
-                    player.Movement.Update(other, payload);
+                    player.Movement.Update(other, packet);
 
                     if (other.UpdateRequired)
                     {
-                        new PlayerMask(false, false).Process(other, block, payload);
+                        new PlayerMask().Process(other, updateBlock);
                     }
                 }
                 else
                 {
-                    payload.WriteBits(1, 1);
-                    payload.WriteBits(2, 3);
+                    packet.WriteBits(1, 1);
+                    packet.WriteBits(2, 3);
                     player.LocalPlayers.Remove(other);
                 }
             }

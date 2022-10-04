@@ -10,7 +10,7 @@ namespace RSPS.Entities.Updating.block
     public interface IUpdateMask<T> where T : class
     {
 
-        public void ProcessBlock(T t, PacketWriter writer);
+        public void AppendBlock(T t, PacketWriter updateBlock);
 
     }
 }

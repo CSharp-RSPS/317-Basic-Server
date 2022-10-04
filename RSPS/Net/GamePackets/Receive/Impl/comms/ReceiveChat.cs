@@ -1,5 +1,4 @@
 ﻿using RSPS.Entities.Mobiles.Players;
-using RSPS.Entities.Updating.flag;
 using RSPS.Game.Comms.Chatting;
 using RSPS.Net.Connections;
 using RSPS.Util.Attributes;

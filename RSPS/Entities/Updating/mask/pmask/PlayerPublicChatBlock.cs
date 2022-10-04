@@ -10,7 +10,7 @@ namespace RSPS.Entities.Updating.block.pblock
 {
     public class PlayerPublicChatBlock : IUpdateMask<Player>
     {
-        public void ProcessBlock(Player player, PacketWriter writer)
+        public void AppendBlock(Player player, PacketWriter writer)
         {
             if (player.Comms.ChatMessage == null)
             {
@@ -21,7 +21,7 @@ namespace RSPS.Entities.Updating.block.pblock
             writer.WriteByteNegated(player.Comms.ChatMessage.Text.Length);
             writer.WriteBytesReverse(player.Comms.ChatMessage.Text);
 
-            player.Comms.ChatMessage = null; // Reset the pending chat message
+            //player.Comms.ChatMessage = null; // Reset the pending chat message
         }
     }
 }

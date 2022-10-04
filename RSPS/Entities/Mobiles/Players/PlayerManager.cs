@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using RSPS.Net.Connections;
 using RSPS.Net.GamePackets.Send;
-using RSPS.Entities.Updating.flag;
 using System.Diagnostics;
 using RSPS.Game.Comms.Messaging;
 using RSPS.Game.Items.Equipment;
@@ -146,9 +145,6 @@ namespace RSPS.Entities.Mobiles.Players
 
             // Send the run energy
             //PacketHandler.SendPacket(player, new SendRunEnergy(((PlayerMovement)player.Movement).Energy));
-
-            //player.NeedsPlacement = true; - already sent from MapRegion packet
-            player.Flags.UpdateFlag(FlagType.Appearance, true);
             player.AppearanceUpdateRequired = true;
             player.RequestUpdate();
         }

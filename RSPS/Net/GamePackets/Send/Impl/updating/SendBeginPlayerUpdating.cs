@@ -1,5 +1,6 @@
 ﻿using RSPS.Entities.Mobiles.Players;
 using RSPS.Entities.movement.Locations;
+using RSPS.Entities.Updating;
 using RSPS.Game.Skills;
 using RSPS.Net.Connections;
 using RSPS.Util.Attributes;
@@ -47,8 +48,10 @@ namespace RSPS.Net.GamePackets.Send.Impl
             PacketWriter stateBlock = new(1024); //768
 
             writer.SetAccessType(Packet.AccessType.BitAccess);
+            new PlayerUpdate(Player, writer, stateBlock).Process();
 
-            Player.PlayerMovement.UpdatePersonal(Player, writer);
+
+            /*Player.PlayerMovement.UpdatePersonal(Player, writer);
 
             if (Player.UpdateRequired)
             {
@@ -60,8 +63,8 @@ namespace RSPS.Net.GamePackets.Send.Impl
             // ====== Processes all player changes in the region ========
             foreach (Player other in Player.LocalPlayers.ToArray())
             {
-                if (other.Position.IsWithinDistance(Player.Position) 
-                    && other.PlayerConnection.ConnectionState == ConnectionState.Authenticated 
+                if (other.Position.IsWithinDistance(Player.Position)
+                    && other.PlayerConnection.ConnectionState == ConnectionState.Authenticated
                     && !other.Movement.Teleported)
                 {
                     Player.Movement.Update(other, writer);
@@ -90,7 +93,6 @@ namespace RSPS.Net.GamePackets.Send.Impl
                 if (other == null || other == Player || Player.LocalPlayers.Contains(other)
                     || other.PlayerConnection.ConnectionState != ConnectionState.Authenticated)
                 {
-                    //Console.WriteLine("Getting stopped here?");
                     continue;
                 }
                 if (other.Position.IsWithinDistance(Player.Position))
@@ -108,7 +110,10 @@ namespace RSPS.Net.GamePackets.Send.Impl
 
                     UpdateState(other, stateBlock, true, false);
                 }
-            }
+            }*/
+
+
+
             // Append the attributes block to the main packet.
             if (stateBlock.Pointer > 0)
             {

@@ -15,7 +15,7 @@ namespace RSPS.Entities.Updating.block.pblock
 
         private static readonly int MAX_APPEARANCE_BUFFER_SIZE = 58;
 
-        public void ProcessBlock(Player player, PacketWriter writer)
+        public void AppendBlock(Player player, PacketWriter writer)
         {
             try
             {

@@ -1,5 +1,4 @@
 ﻿using RSPS.Entities.Mobiles.Players;
-using RSPS.Entities.Updating.flag;
 using RSPS.Net.GamePackets.Send;
 using RSPS.Net.GamePackets.Send.Impl;
 using RSPS.Util.Attributes;
