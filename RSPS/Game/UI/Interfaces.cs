@@ -1,4 +1,7 @@
 ﻿using RSPS.Entities.Mobiles.Players;
+using RSPS.Game.Banking;
+using RSPS.Game.Shopping;
+using RSPS.Game.Trading;
 using RSPS.Net.GamePackets;
 using RSPS.Net.GamePackets.Send;
 using RSPS.Net.GamePackets.Send.Impl;
@@ -38,6 +41,29 @@ namespace RSPS.Game.UI
         public const int TradeAcceptPartnerItemsOverlay = 3558; // The items overlay for the trade partner on the trade accept screen
 
 
+        /// <summary>
+        /// Retrieves the interface ID of the current inventory overlay
+        /// </summary>
+        /// <param name="player">The player</param>
+        /// <returns>The result</returns>
+        public static int GetInventoryRefreshInterface(Player player)
+        {
+            if (BankingHandler.IsBanking(player))
+            {
+                return InventoryOverlayBank;
+            }
+            if (ShopHandler.IsShopping(player))
+            {
+                return InventoryOverlayShop;
+            }
+            if (player.NonPersistentVars.IsTrading)
+            {
+                return player.NonPersistentVars.TradeStage != null && player.NonPersistentVars.TradeStage == TradeStage.AcceptedRequest
+                    ? InventoryOverlayTrade : Inventory;
+            }
+            return Inventory;
+
+        }
 
         /// <summary>
         /// Attempts to open an interface for a player

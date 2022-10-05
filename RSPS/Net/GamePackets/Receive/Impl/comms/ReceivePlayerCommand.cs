@@ -22,21 +22,13 @@ namespace RSPS.Net.GamePackets.Receive.Impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            string input = reader.ReadRS2String().Trim().ToLower();
+            string command = reader.ReadRS2String().Trim();
 
-            if (string.IsNullOrEmpty(input))
+            if (string.IsNullOrEmpty(command))
             {
                 return;
             }
-            string[] arguments = input.Split(" ");
-
-            if (arguments.Length <= 0)
-            {
-                return;
-            }
-            Console.WriteLine("Command: " + input);
-
-            CommandHandler.HandleCommand(player, arguments[0], arguments);
+            CommandHandler.HandleCommand(player, command);
         }
 
     }
