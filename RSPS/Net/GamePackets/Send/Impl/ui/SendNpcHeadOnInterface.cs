@@ -20,26 +20,26 @@ namespace RSPS.Net.GamePackets.Send.Impl
         public int NpcId { get; private set; }
 
         /// <summary>
-        /// The 'slot' ID for where you wish to place the head
+        /// The 'widget' ID for where you wish to place the head on the interface
         /// </summary>
-        public int Slot { get; private set; }
+        public int WidgetId { get; private set; }
 
 
         /// <summary>
         /// Creates a new NPC head on interface packet payload builder
         /// </summary>
         /// <param name="npcId">The NPC ID</param>
-        /// <param name="slot">The 'slot' ID for where you wish to place the head</param>
-        public SendNpcHeadOnInterface(int npcId, int slot)
+        /// <param name="widgetId">The 'widget' ID for where you wish to place the head on the interface</param>
+        public SendNpcHeadOnInterface(int npcId, int widgetId)
         {
             NpcId = npcId;
-            Slot = slot;
+            WidgetId = widgetId;
         }
 
         public void WritePayload(PacketWriter writer)
         {
             writer.WriteShortAdditionalLittleEndian(NpcId);
-            writer.WriteShortAdditionalLittleEndian(Slot);
+            writer.WriteShortAdditionalLittleEndian(WidgetId);
         }
 
     }

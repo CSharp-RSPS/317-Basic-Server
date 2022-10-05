@@ -1,4 +1,5 @@
-﻿using RSPS.Game.Items.Containers;
+﻿using RSPS.Game.Comms.Dialogues;
+using RSPS.Game.Items.Containers;
 using RSPS.Game.Trading;
 using System;
 using System.Collections.Generic;
@@ -48,6 +49,11 @@ namespace RSPS.Entities.Mobiles.Players.Variables
         /// Retrieves whether we're trading at the moment
         /// </summary>
         public bool IsTrading => TradeContainer != null && TradePartner != null && TradeStage != null;
+
+        /// <summary>
+        /// The current dialogue the player is in
+        /// </summary>
+        public Dialogue? CurrentDialogue { get; set; }
 
     }
 }

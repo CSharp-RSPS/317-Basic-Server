@@ -27,6 +27,8 @@
   <ItemGroup>
     <Folder Include="Entities\Mobiles\Players\Items\" />
     <Folder Include="Entities\Mobiles\Players\Actions\" />
+    <Folder Include="Game\Comms\Commands\Impl\" />
+    <Folder Include="Game\Comms\Dialogues\Impl\" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
