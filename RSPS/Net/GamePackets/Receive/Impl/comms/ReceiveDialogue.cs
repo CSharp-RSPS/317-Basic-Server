@@ -1,9 +1,11 @@
 ﻿using RSPS.Entities.Mobiles.Players;
+using RSPS.Game.Comms.Dialogues;
 using RSPS.Net.GamePackets.Send;
 using RSPS.Net.GamePackets.Send.Impl;
 using RSPS.Util.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,9 +29,8 @@ namespace RSPS.Net.GamePackets.Receive.Impl
             {
                 return;
             }
-            PacketHandler.SendPacket(player, PacketDefinition.ClearScreen);
-
-            // TODO
+            Debug.WriteLine("[Packet: 40, ReceiveDialogue] => FrameId: " + frameId);
+            DialogueHandler.ContinueDialogue(player);
         }
 
     }

@@ -18,7 +18,7 @@ namespace RSPS.Net.GamePackets.Receive.Impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-
+            int playerIndex = reader.ReadShort(false);
         }
 
     }

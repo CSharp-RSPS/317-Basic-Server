@@ -14,10 +14,24 @@ namespace RSPS.Net.GamePackets.Send.Impl
     public sealed class SendShowInventoryInterface : IPacketPayloadBuilder
     {
 
+        /// <summary>
+        /// The interface identifier
+        /// </summary>
+        public int InterfaceId { get; private set; }
+
+
+        /// <summary>
+        /// Shows an inventory interface
+        /// </summary>
+        /// <param name="interfaceId">The interface identifier</param>
+        public SendShowInventoryInterface(int interfaceId)
+        {
+            InterfaceId = interfaceId;
+        }
 
         public void WritePayload(PacketWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteShortLittleEndian(InterfaceId);
         }
 
     }

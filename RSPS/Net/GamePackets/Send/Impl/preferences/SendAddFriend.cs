@@ -40,7 +40,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
         public void WritePayload(PacketWriter writer)
         {
             writer.WriteLong(PlayerName);
-            writer.WriteByte(WorldStatus);
+            writer.WriteByte(WorldStatus + 1); // >= 2 = logged in, <= 1 = logged out
         }
 
     }

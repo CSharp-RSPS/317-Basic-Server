@@ -60,11 +60,11 @@ namespace RSPS.Net.GamePackets.Send.Impl
             writer.WriteByte(SecondXOffset);
             writer.WriteByte(SecondYOffet);
             writer.WriteShort(Target);
-            writer.WriteShortLittleEndian(GraphicId);
+            writer.WriteShort(GraphicId);
             writer.WriteByte(StartingHeight);
             writer.WriteByte(EndingHeight);
-            writer.WriteShortLittleEndian(StartingTime);
-            writer.WriteShortLittleEndian(Speed);
+            writer.WriteShort(StartingTime);
+            writer.WriteShort(Speed);
             writer.WriteByte(InitialSlope);
             writer.WriteByte(InitialDistanceFromSource);
         }

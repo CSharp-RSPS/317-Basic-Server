@@ -19,35 +19,31 @@ namespace RSPS.Net.GamePackets.Send.Impl
     {
 
         /// <summary>
-        /// The player name as long block
+        /// The usernames as long values
         /// </summary>
-        public long PlayerNameBlock { get; private set; }
+        public ICollection<long> UsernamesAsLong { get; private set; }
 
 
         /// <summary>
         /// Creates a new add ignore packet payload builder
         /// </summary>
-        /// <param name="playerNameBlock">The player name as long block</param>
-        public SendAddIgnore(long playerNameBlock)
+        /// <param name="usernamesAsLong">The usernames as long values</param>
+        public SendAddIgnore(ICollection<long> usernamesAsLong)
         {
-            PlayerNameBlock = playerNameBlock;
+            UsernamesAsLong = usernamesAsLong;
         }
 
         public int GetPayloadSize()
         {
-            throw new NotImplementedException();
+            return UsernamesAsLong.Count * 8;
         }
 
         public void WritePayload(PacketWriter writer)
         {
-            /*
-            int entries = packetSize / 8;
-
-            for (int i = 0; i < entries; i++)
+            foreach (long username in UsernamesAsLong)
             {
-                ignoreList[i] = stream.readLong();
-            }*/
-            writer.WriteLong(PlayerNameBlock);
+                writer.WriteLong(username);
+            }
         }
 
     }

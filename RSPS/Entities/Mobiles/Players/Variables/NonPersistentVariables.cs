@@ -1,4 +1,5 @@
 ﻿using RSPS.Game.Comms.Dialogues;
+using RSPS.Game.Items;
 using RSPS.Game.Items.Containers;
 using RSPS.Game.Trading;
 using System;
@@ -54,6 +55,16 @@ namespace RSPS.Entities.Mobiles.Players.Variables
         /// The current dialogue the player is in
         /// </summary>
         public Dialogue? CurrentDialogue { get; set; }
+
+        /// <summary>
+        /// The item the player wants to destroy
+        /// </summary>
+        public Item? DestroyItem { get; set; }
+
+        /// <summary>
+        /// Whether the game has focus from the player
+        /// </summary>
+        public bool HasFocus { get; set; }
 
     }
 }

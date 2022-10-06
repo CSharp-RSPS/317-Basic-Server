@@ -2,6 +2,7 @@
 using RSPS.Entities.Mobiles.Npcs;
 using RSPS.Entities.Mobiles.Npcs.Definitions;
 using RSPS.Entities.Mobiles.Players;
+using RSPS.Game.Items;
 using RSPS.Game.UI;
 using RSPS.Net.GamePackets;
 using RSPS.Net.GamePackets.Send;
@@ -157,6 +158,30 @@ namespace RSPS.Game.Comms.Dialogues
             {
                 PacketHandler.SendPacket(player, new SendSetInterfaceText(++interfaceId, dia.Lines[i]));
             }
+        }
+
+        /// <summary>
+        /// Sends a destroy dialogue to a player for an item
+        /// </summary>
+        /// <param name="player">The player</param>
+        /// <param name="item">The item</param>
+        public static void SendDestroyDialogue(Player player, Item item)
+        {
+            ItemDef? itemDef = ItemManager.GetItemDefById(item.Id);
+
+            if (itemDef == null)
+            {
+                return;
+            }
+            player.NonPersistentVars.DestroyItem = item;
+
+            PacketHandler.SendPacket(player, new SendChatInterface(14170));
+            PacketHandler.SendPacket(player, new SendItemOnInterface(14171, item.Id, item.Amount));
+            PacketHandler.SendPacket(player, new SendSetInterfaceText(14182,
+                "Are you sure you want to destroy this item?"));
+            PacketHandler.SendPacket(player, new SendSetInterfaceText(14183, ""));
+            PacketHandler.SendPacket(player, new SendSetInterfaceText(14184,
+                !player.PersistentVars.Member ? "@red@Member's item" : itemDef.Name));
         }
 
     }

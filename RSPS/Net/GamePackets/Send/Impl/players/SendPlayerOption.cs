@@ -38,6 +38,10 @@ namespace RSPS.Net.GamePackets.Send.Impl
         /// <param name="flag">TODO: No clue yet</param>
         public SendPlayerOption(int optionIndex, string actionText, bool flag = false)
         {
+            if (optionIndex < 1 || optionIndex > 5)
+            {
+                throw new Exception("Invalid option index");
+            }
             OptionIndex = optionIndex;
             Flag = flag;
             ActionText = actionText;

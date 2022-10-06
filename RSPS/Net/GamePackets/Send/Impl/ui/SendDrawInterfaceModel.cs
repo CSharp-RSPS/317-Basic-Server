@@ -14,10 +14,32 @@ namespace RSPS.Net.GamePackets.Send.Impl
     public sealed class SendDrawInterfaceModel : IPacketPayloadBuilder
     {
 
+        /// <summary>
+        /// The interface identifier
+        /// </summary>
+        public int InterfaceId { get; private set; }
+
+        /// <summary>
+        /// The model identifier
+        /// </summary>
+        public int ModelId { get; private set; }
+
+
+        /// <summary>
+        /// Draws a model onto an interface
+        /// </summary>
+        /// <param name="interfaceId">The interface identifier</param>
+        /// <param name="modelId">The model identifier</param>
+        public SendDrawInterfaceModel(int interfaceId, int modelId)
+        {
+            InterfaceId = interfaceId;
+            ModelId = modelId;
+        }
 
         public void WritePayload(PacketWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteShortAdditionalLittleEndian(InterfaceId);
+            writer.WriteShort(ModelId);
         }
 
     }

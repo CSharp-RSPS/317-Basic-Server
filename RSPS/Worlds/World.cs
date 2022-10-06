@@ -18,6 +18,7 @@ using System.Net;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using RSPS.Entities.Items.GroundItems;
 
 namespace RSPS.Worlds
 {
@@ -78,6 +79,11 @@ namespace RSPS.Worlds
         public readonly PlayerManager Players;
 
         /// <summary>
+        /// Manages ground-items
+        /// </summary>
+        public readonly GroundItemManager GroundItems;
+
+        /// <summary>
         /// Manages regions in the world
         /// </summary>
         public readonly RegionManager RegionManager;
@@ -114,6 +120,7 @@ namespace RSPS.Worlds
 
             Npcs = new();
             Players = new();
+            GroundItems = new();
             RegionManager = new();
             RegionManager.RegionLoaded += OnRegionLoaded;
 
@@ -128,7 +135,7 @@ namespace RSPS.Worlds
         private void OnRegionLoaded(Region region)
         {
             Npcs.LoadRegionalNpcs(region);
-            //TODO: GroundItemManager.getSingleton().loadRegionalsGroundItems(r);
+            GroundItems.LoadRegionGroundItems(region);
         }
 
         /// <summary>
@@ -246,6 +253,8 @@ namespace RSPS.Worlds
                         player.PlayerConnection.Dispose();
                         Players.Remove(player);
                     });
+                    // Prepare the ground-items for the game tick
+                    Parallel.ForEach(GroundItems.Entities, mainParallelOptions, gi => GroundItems.PrepareTick(gi));
                     // Prepare the NPC's for the game tick
                     Parallel.ForEach(Npcs.Entities, mainParallelOptions, npc => Npcs.PrepareTick(npc));
                     // Prepare the players for the game tick
@@ -254,6 +263,8 @@ namespace RSPS.Worlds
                     // Update the player for the game tick
                     Parallel.ForEach(Players.Entities, mainParallelOptions, player => Players.OnTick(player));
 
+                    // Finish the game tick for the ground-items
+                    Parallel.ForEach(GroundItems.Entities, mainParallelOptions, gi => GroundItems.FinishTick(gi));
                     // Finish the game tick for the NPC's
                     Parallel.ForEach(Npcs.Entities, mainParallelOptions, npc => Npcs.FinishTick(npc));
                     // Finish the game tick for the players

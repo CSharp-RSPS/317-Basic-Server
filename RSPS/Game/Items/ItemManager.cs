@@ -77,7 +77,7 @@ namespace RSPS.Game.Items
         /// <param name="containerInterfaceId">The container interface ID</param>
         public static void RefreshInterfaceItems(Player player, Dictionary<int, Item?> items, int containerInterfaceId)
         {
-            PacketHandler.SendPacket(player, new SendDrawItemsOnInterface2(containerInterfaceId, items));
+            PacketHandler.SendPacket(player, new SendDrawItemsOnInterface(containerInterfaceId, items));
         }
 
         /// <summary>

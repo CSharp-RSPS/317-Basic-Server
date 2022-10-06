@@ -19,7 +19,7 @@ namespace RSPS.Net.GamePackets.Receive.Impl
         public void ReceivePacket(Player player, PacketReader reader)
         {
             int cameraY = reader.ReadShort();
-            int cameraX = reader.ReadShortAdditional();
+            int cameraX = reader.ReadShortAdditional(); // minimapint1 in client?
         }
 
     }

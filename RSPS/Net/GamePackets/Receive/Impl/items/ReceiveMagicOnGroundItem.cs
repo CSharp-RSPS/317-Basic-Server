@@ -18,7 +18,10 @@ namespace RSPS.Net.GamePackets.Receive.Impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-
+            int y = reader.ReadShortLittleEndian();
+            int itemId = reader.ReadShort(false);
+            int x = reader.ReadShortLittleEndian();
+            int spellId = reader.ReadShortAdditional();
         }
 
     }

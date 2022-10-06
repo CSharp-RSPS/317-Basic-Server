@@ -22,7 +22,13 @@ namespace RSPS.Net.GamePackets.Send.Impl
 
         public void WritePayload(PacketWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteByte(0); // ?
+            writer.WriteByteNegated(0); // ?
+
+            for (int i = 0; i < 5; i++) // while inStream.currentOffset < pktSize
+            {
+                writer.WriteByte(0); // ?
+            }
         }
 
     }

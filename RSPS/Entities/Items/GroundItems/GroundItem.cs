@@ -1,4 +1,6 @@
-﻿using RSPS.Entities.movement.Locations;
+﻿using RSPS.Entities.Mobiles;
+using RSPS.Entities.Mobiles.Players;
+using RSPS.Entities.movement.Locations;
 using RSPS.Game.Items;
 using System;
 using System.Collections.Generic;
@@ -15,33 +17,50 @@ namespace RSPS.Entities.Items.GroundItems
     {
 
         /// <summary>
-        /// The item on the ground
+        /// The ground item spawn definition in case of a spawned item
         /// </summary>
-        public Item Item { get; private set; }
+        public GroundItemSpawn? Spawn { get; private set; }
 
         /// <summary>
-        /// Whether the ground item can respawn
+        /// The item identifier
         /// </summary>
-        public bool Respawnable { get; private set; }
+        public int ItemId { get; private set; }
 
         /// <summary>
-        /// The amount of game ticks the ground item stays available
+        /// The quantity of the item
         /// </summary>
-        public int LifeTime { get; private set; }
+        public int Quantity { get; set; }
 
+        /// <summary>
+        /// The lifetime of the ground item
+        /// </summary>
+        public int Lifetime { get; set; }
+
+
+        /// <summary>
+        /// Creates a new ground item based on a spawn
+        /// </summary>
+        /// <param name="spawn">The spawn</param>
+        public GroundItem(GroundItemSpawn spawn)
+            : this(spawn.Position, spawn.Item.Id, spawn.Item.Amount, spawn.Lifetime) {
+            Spawn = spawn;
+        }
 
         /// <summary>
         /// Creates a new ground item
         /// </summary>
-        /// <param name="item">The item on the ground</param>
-        /// <param name="respawnable">Whether the ground item can respawn</param>
-        /// <param name="lifetime">The amount of game ticks the ground item stays available</param>
-        public GroundItem(Item item, bool respawnable, int lifetime)
-            : base(new Position(0, 0)) //TODO
+        /// <param name="position">The position of the item in the game world</param>
+        /// <param name="itemId">The item identifier</param>
+        /// <param name="quantity">The item quantity</param>
+        /// <param name="lifetime">The amount of game ticks the ground item stays available or takes to respawn</param>
+        /// <param name="owner">The owner of the item when applicable</param>
+        public GroundItem(Position position, int itemId, int quantity, int lifetime, Mobile? owner = null)
+            : base(position)
         {
-            Item = item;
-            Respawnable = respawnable;
-            LifeTime = lifetime;
+            ItemId = itemId;
+            Quantity = quantity;
+            Lifetime = lifetime;
+            Owner = owner;
         }
 
     }

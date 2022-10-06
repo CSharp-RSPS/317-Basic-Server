@@ -57,5 +57,10 @@ namespace RSPS.Game.Items
             return new Item(Id, Amount);
         }
 
+        public override string ToString()
+        {
+            return "Item (" + Id + ", " + Amount + ")";
+        }
+
     }
 }

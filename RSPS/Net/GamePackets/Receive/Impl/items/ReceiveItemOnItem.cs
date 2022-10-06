@@ -22,6 +22,10 @@ namespace RSPS.Net.GamePackets.Receive.Impl
         {
             int itemTargetSlot = reader.ReadShort();
             int itemBeingUsedSlot = reader.ReadShortAdditional();
+            int floorItemId = reader.ReadShortAdditionalLittleEndian(); // ?
+            int inventoryInterfaceId = reader.ReadShort();
+            int itemId = reader.ReadShortLittleEndian();
+            int inventoryInterfaceId2 = reader.ReadShort();
         }
 
     }

@@ -36,7 +36,12 @@ namespace RSPS.Net.GamePackets.Send.Impl
 
         public void WritePayload(PacketWriter writer)
         {
-            writer.WriteByte(IconType);
+            writer.WriteByte(IconType); // Values supported = 1, 2, 3, 4, 5, 6
+
+            if (IconType == 1)
+            {
+                writer.WriteShort(IconType); // Not sure
+            }
         }
 
     }

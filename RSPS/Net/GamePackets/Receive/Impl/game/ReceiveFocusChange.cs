@@ -19,8 +19,7 @@ namespace RSPS.Net.GamePackets.Receive.Impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            bool lostFocus = reader.ReadByte() == 0;
-            Console.WriteLine("WE lost focus? " + lostFocus);
+            player.NonPersistentVars.HasFocus = reader.ReadByte() == 1;
         }
 
     }

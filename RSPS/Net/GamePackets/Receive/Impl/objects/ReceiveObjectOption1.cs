@@ -22,8 +22,8 @@ namespace RSPS.Net.GamePackets.Receive.Impl
         public void ReceivePacket(Player player, PacketReader reader)
         {
             int objectX = reader.ReadShortAdditionalLittleEndian();
-            int objectId = reader.ReadShort();
-            int objectY = reader.ReadShortAdditional(true);
+            int objectId = reader.ReadShort(false);
+            int objectY = reader.ReadShortAdditional();
             int rotation = reader.ReadShortAdditionalLittleEndian();
 
             Console.WriteLine(objectId + " " + objectX + " " + objectY + " " + rotation);

@@ -37,9 +37,9 @@ namespace RSPS.Net.GamePackets.Send.Impl
         }
 
         public void WritePayload(PacketWriter writer)
-        { //TODO: Not correct yet I think
+        {
             writer.WriteByte(ObjectType << 2 + ObjectRotation & 3);
-            writer.WriteByte(0);
+            writer.WriteByte(0); // not sure
         }
 
     }

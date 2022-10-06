@@ -47,7 +47,7 @@ namespace RSPS.Net.GamePackets.Send
         /// Draw a collection of items on an interface.
         /// </summary>
         [PacketInfo(34, PacketHeaderType.VariableShort)]
-        DrawItemsOnInterface = 34,
+        ItemOnInterface = 34,
 
         /// <summary>
         /// Causes the camera to shake.
@@ -77,7 +77,7 @@ namespace RSPS.Net.GamePackets.Send
         /// Draw a collection of items on an interface.
         /// </summary>
         [PacketInfo(53, PacketHeaderType.VariableShort)]
-        DrawItemsOnInterface2 = 53,
+        DrawItemsOnInterface = 53,
 
         /// <summary>
         /// Begin processing position related packets.

@@ -69,7 +69,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
         public void WritePayload(PacketWriter writer)
         {
             writer.WriteLong(Receiver);
-            writer.WriteIntAdditionalInverseMiddleEndian(Comms.LastPrivateMessageId);
+            writer.WriteShort(Comms.LastPrivateMessageId);
             writer.WriteByte((int)Rights);
             writer.WriteBytes(Message, Size); //packet.getBuffer().writeBytes(message, 0, size);
         }

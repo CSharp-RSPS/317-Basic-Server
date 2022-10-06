@@ -33,7 +33,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
 
         public void WritePayload(PacketWriter writer)
         {
-            writer.WriteShortLittleEndian(TimeUntilUpdate);
+            writer.WriteShortLittleEndian(TimeUntilUpdate / 30); // Client does * 30 for some reason
         }
 
     }

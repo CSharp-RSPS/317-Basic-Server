@@ -1,6 +1,7 @@
 ﻿using RSPS.Entities.Mobiles.Players;
 using RSPS.Net.GamePackets.Send.Impl;
 using RSPS.Util.Attributes;
+using RSPS.Worlds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace RSPS.Net.GamePackets.Receive.Impl
             {
                 return;
             }
-            //TODO: drop item
+            WorldHandler.World.GroundItems.DropItem(player, itemId, slotId, true);
         }
 
     }

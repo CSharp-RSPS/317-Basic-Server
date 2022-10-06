@@ -1,4 +1,5 @@
 ﻿using RSPS.Entities.Mobiles.Players;
+using RSPS.Game.UI;
 using RSPS.Net.GamePackets.Send.Impl;
 using RSPS.Util.Attributes;
 using System;
@@ -20,12 +21,13 @@ namespace RSPS.Net.GamePackets.Receive.Impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            int interfaceId = reader.ReadShortLittleEndian();
+            int interfaceId = reader.ReadShortLittleEndian(); // inventory, ...
             int itemBeingUsedId = reader.ReadShortAdditional(false);
             int floorItemsId = reader.ReadShort();
             int floorItemY = reader.ReadShortAdditional(false);
             int itemBeingUsedSlot = reader.ReadShortAdditionalLittleEndian(false);
             int floorItemX = reader.ReadShort();
+
         }
 
     }

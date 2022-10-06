@@ -17,7 +17,16 @@ namespace RSPS.Net.GamePackets.Send.Impl
 
         public void WritePayload(PacketWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteByteSubtrahend(0); // position offset?
+            writer.WriteShort(0); // ?
+            writer.WriteByteSubtrahend(0); // ?
+            writer.WriteShortLittleEndian(0); // player index
+            writer.WriteByteNegated(0); // ?
+            writer.WriteShort(0); // ?
+            writer.WriteByteSubtrahend(0); // ?
+            writer.WriteByte(0);
+            writer.WriteShort(0); // object id
+            writer.WriteByteNegated(0);
         }
 
     }

@@ -125,10 +125,11 @@ namespace RSPS.Entities.Mobiles.Players
                 PacketHandler.SendPacket(player, new SendSkill(skill));
             }
             // Set the options other players have TODO: Different when in wildy etc...
-            PacketHandler.SendPacket(player, new SendPlayerOption(1, "null"));
+            PacketHandler.SendPacket(player, new SendPlayerOption(1, "Spy on"));
             PacketHandler.SendPacket(player, new SendPlayerOption(2, "Worship"));
             PacketHandler.SendPacket(player, new SendPlayerOption(3, "Follow"));
             PacketHandler.SendPacket(player, new SendPlayerOption(4, "Trade with"));
+            PacketHandler.SendPacket(player, new SendPlayerOption(5, "Talk to beautiful person"));
 
             // Validate the item containers of the player
             player.Inventory.ValidateContainer();

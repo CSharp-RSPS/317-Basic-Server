@@ -255,6 +255,11 @@ namespace RSPS.Game.Comms.Commands
         /// </summary>
         private static void AddDefaultCommands()
         {
+            Commands.Add(new Command(PlayerRights.Default, new string[] { "test" }, new int[] { 1 })
+            {
+                Execute = (player, args) => PacketHandler.SendPacket(player, new SendDisplayHintIcon(int.Parse(args[0])))
+            });
+
             Commands.Add(new Command(PlayerRights.Default, new string[] { "commands", "cmds" })
             {
                 Execute = (player, args) => {

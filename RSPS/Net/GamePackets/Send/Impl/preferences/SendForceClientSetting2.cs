@@ -17,7 +17,8 @@ namespace RSPS.Net.GamePackets.Send.Impl
 
         public void WritePayload(PacketWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteShortLittleEndian(0); // config id
+            writer.WriteIntInverseMiddleEndian(0); // the value
         }
 
     }

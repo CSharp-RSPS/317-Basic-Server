@@ -84,7 +84,7 @@ namespace RSPS.Game.Comms.Messaging
             // TODO chat settings (in case other player needs to appear offline etc)
             PacketHandler.SendPacket(player, contactType == ContactType.Friends
                 ? new SendAddFriend(username, other != null && other.LoggedIn ? WorldHandler.World.Details.Id : ContactOfflineId)
-                : new SendAddIgnore(username));
+                : new SendAddIgnore(player.Comms.Ignores.Usernames));
         }
 
         /// <summary>

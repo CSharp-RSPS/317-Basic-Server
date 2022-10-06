@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace RSPS.Net.GamePackets.Send.Impl
 {
     /// <summary>
-    /// This packet requests the client to spawn an object.
+    /// Shows an interface in the chat box??????
     /// </summary>
-    [PacketDef(PacketDefinition.ObjectSpawn)]
-    public sealed class SendObjectSpawn : IPacketPayloadBuilder
+    [PacketDef(PacketDefinition.SpawnAnimatedObject)]
+    public sealed class SendSpawnAnimatedObject : IPacketPayloadBuilder
     {
 
         /// <summary>
@@ -29,6 +29,11 @@ namespace RSPS.Net.GamePackets.Send.Impl
         /// </summary>
         public int ObjectRotation { get; private set; }
 
+        /// <summary>
+        /// The animation identifier
+        /// </summary>
+        public int AnimationId { get; private set; }
+
 
         /// <summary>
         /// Creates a new object spawn packet payload builder
@@ -36,18 +41,21 @@ namespace RSPS.Net.GamePackets.Send.Impl
         /// <param name="objectId">The object ID</param>
         /// <param name="objectType">The type of object</param>
         /// <param name="objectRotation">The rotation of the object</param>
-        public SendObjectSpawn(int objectId, int objectType, int objectRotation)
+        /// <param name="animationId">The animation identifier</param>
+        public SendSpawnAnimatedObject(int objectId, int objectType, int objectRotation, int animationId)
         {
             ObjectId = objectId;
             ObjectType = objectType;
             ObjectRotation = objectRotation;
+            AnimationId = animationId;
         }
+
 
         public void WritePayload(PacketWriter writer)
         {
-            writer.WriteByteAdditional(0); // ? position offset
-            writer.WriteShortLittleEndian(ObjectId);
+            writer.WriteByteSubtrahend(0); // ? postiion offset
             writer.WriteByteSubtrahend(ObjectType << 2 + ObjectRotation & 3);
+            writer.WriteShortAdditional(AnimationId); // Not sure
         }
 
     }

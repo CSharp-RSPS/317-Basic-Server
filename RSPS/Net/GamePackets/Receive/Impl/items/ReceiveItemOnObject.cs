@@ -24,11 +24,11 @@ namespace RSPS.Net.GamePackets.Receive.Impl
         {
             int interfaceId = reader.ReadShortAdditional();
             int objectId = reader.ReadShortLittleEndian();
-            int objectY = reader.ReadShortAdditional();
-            int itemSlotId = reader.ReadShort();
-            int objectX = reader.ReadShortAdditional();
+            int objectY = reader.ReadShortAdditionalLittleEndian();
+            int itemSlotId = reader.ReadShortLittleEndian();
+            int objectX = reader.ReadShortAdditionalLittleEndian();
             int itemId = reader.ReadShort();
-            int rotation = reader.ReadShortLittleEndian();
+            int rotation = reader.ReadShortAdditionalLittleEndian();
 
             switch (interfaceId)
             {
