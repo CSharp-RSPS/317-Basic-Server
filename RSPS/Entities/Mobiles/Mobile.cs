@@ -1,4 +1,5 @@
-﻿using RSPS.Entities.Mobiles.Npcs;
+﻿using RSPS.Entities.Mobiles.Attributes;
+using RSPS.Entities.Mobiles.Npcs;
 using RSPS.Entities.movement;
 using RSPS.Entities.movement.Locations;
 using RSPS.Net.GamePackets;
@@ -19,6 +20,8 @@ namespace RSPS.Entities.Mobiles
         public bool NeedsPlacement = false;
 
         public bool ResetMovementQueue = false;
+
+        public AttributeMap attributeMap = new AttributeMap();
 
         public int WorldIndex { get; set; } = -1;
 
@@ -75,6 +78,8 @@ namespace RSPS.Entities.Mobiles
             LastPosition = position;
             Movement = movement;
             LocalNpcs = new();
+
+            //attributeMap.Define(AttributeName.RunEnergy, new BooleanAttribute(true));
         }
 
         public dynamic SubmitWalkToEvent(dynamic walkToEvent)
