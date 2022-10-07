@@ -175,6 +175,7 @@ namespace RSPS.Entities.Mobiles.Players
             // if muted etc send msg
             // Handle starter etc
 
+            PacketHandler.SendPacket(player, new SendOpenWelcomeScreen(player.PersistentVars.Member, 14, 1, 12345678, 15));
             player.LoggedIn = true;
         }
 

@@ -63,7 +63,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
             writer.WriteByteNegated(DaysSinceLastRecoveryChange);
             writer.WriteShortAdditional(UnreadMessageCount);
             writer.WriteByte(Member);
-            writer.WriteIntMiddleEndian(LastLoggedIp); // middle endian reverse?
+            writer.WriteIntInverseMiddleEndian(LastLoggedIp);
             writer.WriteShort(LastSuccessfulLogin);
         }
 

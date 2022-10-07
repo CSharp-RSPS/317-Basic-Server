@@ -18,7 +18,7 @@ namespace RSPS.Net.GamePackets.Receive.Impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            int value = reader.ReadInt();
+           // int value = reader.ReadInt();
         }
 
     }
