@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RSPS.Entities.Mobiles.Attributes
 {
-    public enum AttributePersistance
+    public enum AttributePersistence
     {
 
         Persistent,
