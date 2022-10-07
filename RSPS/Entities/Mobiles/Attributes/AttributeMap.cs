@@ -6,7 +6,7 @@
     //FIX GENERIC using sealed type
     public class AttributeMap
     {
-        private readonly Dictionary<AttributeName, Attribute<ValueType>> attributeMap = new Dictionary<AttributeName, Attribute<ValueType>>();
+        private readonly Dictionary<AttributeName, Attribute<ValueType>> attributeMap = new Dictionary<AttributeName, Attribute<ValueType>>(Enum.GetNames(typeof(AttributeName)).Length);
 
         //Can't use generic here because all data types are sealed?
         //Defines the attribute
