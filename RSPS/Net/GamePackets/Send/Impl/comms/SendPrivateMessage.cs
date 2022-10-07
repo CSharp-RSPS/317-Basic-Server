@@ -14,7 +14,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Sends a private message to another player.
     /// </summary>
-    [PacketDef(PacketDefinition.SendPrivateMessage)]
+    [PacketDef(SendPacketDefinition.SendPrivateMessage)]
     public sealed class SendPrivateMessage : IPacketVariablePayloadBuilder
     {
 

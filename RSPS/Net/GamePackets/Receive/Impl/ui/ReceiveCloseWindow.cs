@@ -21,7 +21,7 @@ namespace RSPS.Net.GamePackets.Receive.Impl
 
         public void ReceivePacket(Player player, PacketReader reader)
         {
-            PacketHandler.SendPacket(player, PacketDefinition.ClearScreen);
+            PacketHandler.SendPacket(player, SendPacketDefinition.ClearScreen);
         }
 
     }

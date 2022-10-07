@@ -11,7 +11,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// Sends friend data to the client
     /// Attempts to update player node, if player isn't in the friends list and there is space, the player is added to the friend list.
     /// </summary>
-    [PacketDef(PacketDefinition.SendAddFriend)]
+    [PacketDef(SendPacketDefinition.SendAddFriend)]
     public sealed class SendAddFriend : IPacketPayloadBuilder
     {
 

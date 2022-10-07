@@ -13,7 +13,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// Opcode 87 (length 6) is extremely similar in structure, but the new value is received as an Middle Endian Small Int. 
     /// This suggests its for use with bigger setting values.
     /// </summary>
-    [PacketDef(PacketDefinition.ForceClientSetting)]
+    [PacketDef(SendPacketDefinition.ForceClientSetting)]
     public sealed class SendConfiguration : IPacketPayloadBuilder
     {
 

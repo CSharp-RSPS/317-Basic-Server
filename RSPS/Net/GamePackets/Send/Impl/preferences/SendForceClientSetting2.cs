@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Forcefully changes a client's setting's value. Also changes the default value for that setting.
     /// </summary>
-    [PacketDef(PacketDefinition.ForceClientSetting2)]
+    [PacketDef(SendPacketDefinition.ForceClientSetting2)]
     public sealed class SendForceClientSetting2 : IPacketPayloadBuilder
     {
 

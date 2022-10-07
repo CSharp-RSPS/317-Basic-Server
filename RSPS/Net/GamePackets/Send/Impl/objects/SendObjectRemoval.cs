@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// This packet requests the client to remove an object.
     /// </summary>
-    [PacketDef(PacketDefinition.ObjectRemoval)]
+    [PacketDef(SendPacketDefinition.ObjectRemoval)]
     public sealed class SendObjectRemoval : IPacketPayloadBuilder
     {
 

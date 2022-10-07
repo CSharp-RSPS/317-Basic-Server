@@ -102,7 +102,7 @@ namespace RSPS.Entities.Mobiles.Players.Events.Impl
             {
                 case 0:
                     player.NonPersistentVars.OpenInterfaceId = InterfaceId;
-                    PacketHandler.SendPacket(player, PacketDefinition.InputAmount);
+                    PacketHandler.SendPacket(player, SendPacketDefinition.InputAmount);
                     return false;
 
                 case 1:

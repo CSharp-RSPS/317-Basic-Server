@@ -12,7 +12,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Updates the items in a given interface component.
     /// </summary>
-    [PacketDef(PacketDefinition.DrawItemsOnInterface)]
+    [PacketDef(SendPacketDefinition.DrawItemsOnInterface)]
     public sealed class SendDrawItemsOnInterface : IPacketVariablePayloadBuilder
     {
 

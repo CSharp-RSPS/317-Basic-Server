@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Sending this packet to the client will cause the client to start playing a song.
     /// </summary>
-    [PacketDef(PacketDefinition.PlaySong)]
+    [PacketDef(SendPacketDefinition.PlaySong)]
     public sealed class SendPlaySong : IPacketPayloadBuilder
     {
 

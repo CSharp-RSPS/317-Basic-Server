@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// This packet displays the welcome screen.
     /// </summary>
-    [PacketDef(PacketDefinition.OpenWelcomeScreen)]
+    [PacketDef(SendPacketDefinition.OpenWelcomeScreen)]
     public sealed class SendOpenWelcomeScreen : IPacketPayloadBuilder
     {
 

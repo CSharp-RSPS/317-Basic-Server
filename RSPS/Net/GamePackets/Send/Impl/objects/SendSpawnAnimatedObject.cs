@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Shows an interface in the chat box??????
     /// </summary>
-    [PacketDef(PacketDefinition.SpawnAnimatedObject)]
+    [PacketDef(SendPacketDefinition.SpawnAnimatedObject)]
     public sealed class SendSpawnAnimatedObject : IPacketPayloadBuilder
     {
 

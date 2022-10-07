@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// This packet sends a players head to an interface
     /// </summary>
-    [PacketDef(PacketDefinition.PlayerHeadToInterface)]
+    [PacketDef(SendPacketDefinition.PlayerHeadToInterface)]
     public sealed class SendPlayerHeadToInterface : IPacketPayloadBuilder
     {
 

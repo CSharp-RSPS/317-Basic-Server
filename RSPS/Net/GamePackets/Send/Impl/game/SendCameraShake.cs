@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Causes the camera to shake.
     /// </summary>
-    [PacketDef(PacketDefinition.CameraShake)]
+    [PacketDef(SendPacketDefinition.CameraShake)]
     public sealed class SendCameraShake : IPacketPayloadBuilder
     {
 

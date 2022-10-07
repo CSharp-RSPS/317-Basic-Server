@@ -12,7 +12,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// The format for sending such requests is: [player name][request type]. Where [request type] is one of :duelreq:, :chalreq:, or :tradereq:
     /// Example: Trading a player called 'mopar': mopar:tradereq:
     /// </summary>
-    [PacketDef(PacketDefinition.SendMessage)]
+    [PacketDef(SendPacketDefinition.SendMessage)]
     public sealed class SendMessage : IPacketVariablePayloadBuilder
     {
 

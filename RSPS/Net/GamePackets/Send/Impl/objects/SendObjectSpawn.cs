@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// This packet requests the client to spawn an object.
     /// </summary>
-    [PacketDef(PacketDefinition.ObjectSpawn)]
+    [PacketDef(SendPacketDefinition.ObjectSpawn)]
     public sealed class SendObjectSpawn : IPacketPayloadBuilder
     {
 

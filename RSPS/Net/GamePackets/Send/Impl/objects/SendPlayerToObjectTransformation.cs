@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Player to object transformation
     /// </summary>
-    [PacketDef(PacketDefinition.PlayerToObjectTransformation)]
+    [PacketDef(SendPacketDefinition.PlayerToObjectTransformation)]
     public sealed class SendPlayerToObjectTransformation : IPacketPayloadBuilder
     {
 

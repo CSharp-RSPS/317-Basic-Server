@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Sends the chat privacy settings.
     /// </summary>
-    [PacketDef(PacketDefinition.ChatSettings)]
+    [PacketDef(SendPacketDefinition.ChatSettings)]
     public sealed class SendChatSettings : IPacketPayloadBuilder
     {
 

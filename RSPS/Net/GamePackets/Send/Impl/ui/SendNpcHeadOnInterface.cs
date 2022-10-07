@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Place the head of an NPC on an interface
     /// </summary>
-    [PacketDef(PacketDefinition.NPCHeadOnInterface)]
+    [PacketDef(SendPacketDefinition.NPCHeadOnInterface)]
     public sealed class SendNpcHeadOnInterface : IPacketPayloadBuilder
     {
 

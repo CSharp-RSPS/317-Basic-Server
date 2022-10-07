@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Play sound in location.
     /// </summary>
-    [PacketDef(PacketDefinition.PlaySoundInLocation)]
+    [PacketDef(SendPacketDefinition.PlaySoundInLocation)]
     public sealed class SendPlaySoundInLocation : IPacketPayloadBuilder
     {
 

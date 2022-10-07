@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Draw a given model on a given interface.
     /// </summary>
-    [PacketDef(PacketDefinition.SetInterfaceModel)]
+    [PacketDef(SendPacketDefinition.SetInterfaceModel)]
     public sealed class SendDrawInterfaceModel : IPacketPayloadBuilder
     {
 

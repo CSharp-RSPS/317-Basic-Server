@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Begin processing position related packets.
     /// </summary>
-    [PacketDef(PacketDefinition.BeginProcessingPositionRelatedPackets)]
+    [PacketDef(SendPacketDefinition.BeginProcessingPositionRelatedPackets)]
     public sealed class SendBeginProcessingPositionRelatedPackets : IPacketVariablePayloadBuilder
     {
 

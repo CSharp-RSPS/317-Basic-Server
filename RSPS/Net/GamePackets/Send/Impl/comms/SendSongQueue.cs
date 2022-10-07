@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// This packet queue's a song to be played next. The client then proceeds to request the queued song using the on-demand protocol.
     /// </summary>
-    [PacketDef(PacketDefinition.SongQueue)]
+    [PacketDef(SendPacketDefinition.SongQueue)]
     public sealed class SendSongQueue : IPacketPayloadBuilder
     {
 

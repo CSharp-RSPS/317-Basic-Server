@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Constructs a dynamic map region using a palette of 8*8 tiles.
     /// </summary>
-    [PacketDef(PacketDefinition.ConstructMapRegion)]
+    [PacketDef(SendPacketDefinition.ConstructMapRegion)]
     public sealed class SendConstructMapRegion : IPacketVariablePayloadBuilder
     {
 

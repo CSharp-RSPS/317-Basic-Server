@@ -12,7 +12,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// This packet sends a specific skill.
     /// </summary>
-    [PacketDef(PacketDefinition.SkillLevel)]
+    [PacketDef(SendPacketDefinition.SkillLevel)]
     public sealed class SendSkill : IPacketPayloadBuilder
     {
 

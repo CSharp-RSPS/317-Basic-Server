@@ -41,7 +41,7 @@ namespace RSPS.Net.GamePackets.Receive.Impl
             player.AppearanceUpdateRequired = true;
             player.UpdateRequired = true;
 
-            PacketHandler.SendPacket(player, PacketDefinition.ClearScreen);
+            PacketHandler.SendPacket(player, SendPacketDefinition.ClearScreen);
         }
 
     }

@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Edit ground item amount
     /// </summary>
-    [PacketDef(PacketDefinition.EditGroundItemAmount)]
+    [PacketDef(SendPacketDefinition.EditGroundItemAmount)]
     public sealed class SendEditGroundItemAmount : IPacketPayloadBuilder
     {
 

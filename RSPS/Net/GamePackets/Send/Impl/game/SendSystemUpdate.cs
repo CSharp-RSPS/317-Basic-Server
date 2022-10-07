@@ -12,7 +12,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     ///After the timer reaches 0 all players are disconnected and are unable to log in again until server is restarted. 
     ///Players connecting will receive a message stating, "The server is being updated. Please wait 1 minute and try again." (unless stated otherwise).
     /// </summary>
-    [PacketDef(PacketDefinition.SystemUpdate)]
+    [PacketDef(SendPacketDefinition.SystemUpdate)]
     public sealed class SendSystemUpdate : IPacketPayloadBuilder
     {
 

@@ -64,7 +64,7 @@ namespace RSPS.Game.Comms.Dialogues
                 || player.NonPersistentVars.CurrentDialogue.NextId == -1)
             {
                 player.NonPersistentVars.CurrentDialogue = null;
-                PacketHandler.SendPacket(player, PacketDefinition.ClearScreen);
+                PacketHandler.SendPacket(player, SendPacketDefinition.ClearScreen);
                 return;
             }
             // TODO: Different dia or executes based on option
@@ -82,7 +82,7 @@ namespace RSPS.Game.Comms.Dialogues
         /// <param name="player">The player</param>
         public static void ContinueDialogue(Player player)
         {
-            PacketHandler.SendPacket(player, PacketDefinition.ClearScreen);
+            PacketHandler.SendPacket(player, SendPacketDefinition.ClearScreen);
 
             if (player.NonPersistentVars.CurrentDialogue == null)
             {

@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Sets an interface to be hidden until hovered over.
     /// </summary>
-    [PacketDef(PacketDefinition.HiddenInterface)]
+    [PacketDef(SendPacketDefinition.HiddenInterface)]
     public sealed class SendHiddenInterface : IPacketPayloadBuilder
     {
 

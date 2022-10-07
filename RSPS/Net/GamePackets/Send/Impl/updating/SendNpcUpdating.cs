@@ -15,7 +15,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// NPC updating
     /// </summary>
-    [PacketDef(PacketDefinition.NPCUpdating)]
+    [PacketDef(SendPacketDefinition.NPCUpdating)]
     public sealed class SendNpcUpdating : IPacketVariablePayloadBuilder
     {
 

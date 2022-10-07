@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Sends how much run energy the player currently has.
     /// </summary>
-    [PacketDef(PacketDefinition.RunEnergy)]
+    [PacketDef(SendPacketDefinition.RunEnergy)]
     public sealed class SendRunEnergy : IPacketPayloadBuilder
     {
 

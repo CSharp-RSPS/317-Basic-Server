@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Changes the zoom and rotation of the interface id's media given.
     /// </summary>
-    [PacketDef(PacketDefinition.InterfaceModelRotation)]
+    [PacketDef(SendPacketDefinition.InterfaceModelRotation)]
     public sealed class SendInterfaceModelRotation : IPacketPayloadBuilder
     {
 

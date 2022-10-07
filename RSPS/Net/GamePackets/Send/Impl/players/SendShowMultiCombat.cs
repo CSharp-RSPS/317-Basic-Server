@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Sending this packet to the client will make the client show the player if they are in a multi-combat zone.
     /// </summary>
-    [PacketDef(PacketDefinition.ShowMultiCombat)]
+    [PacketDef(SendPacketDefinition.ShowMultiCombat)]
     public sealed class SendShowMultiCombat : IPacketPayloadBuilder
     {
 

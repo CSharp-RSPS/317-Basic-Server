@@ -1,5 +1,4 @@
 ﻿using RSPS.Entities.Mobiles.Players;
-using RSPS.Net.GamePackets.Send;
 using RSPS.Net.GamePackets;
 using System;
 using System.Collections.Generic;
@@ -14,6 +13,7 @@ using RSPS.Game.Banking;
 using System.Numerics;
 using RSPS.Entities.movement;
 using RSPS.Worlds;
+using RSPS.Net.GamePackets.Send;
 
 namespace RSPS.Game.Comms.Commands
 {
@@ -234,7 +234,7 @@ namespace RSPS.Game.Comms.Commands
         {
             Commands.Add(new Command(PlayerRights.Moderator, new string[] { "animreset", "resetanim", "resetanims", "resetanimation", "resetanimations" })
             {
-                Execute = (player, args) => PacketHandler.SendPacket(player, PacketDefinition.AnimationReset)
+                Execute = (player, args) => PacketHandler.SendPacket(player, SendPacketDefinition.AnimationReset)
             });
             Commands.Add(new Command(PlayerRights.Moderator, new string[] { "pos", "position", "mypos", "location" })
             {

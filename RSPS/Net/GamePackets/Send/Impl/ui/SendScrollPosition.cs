@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// This packet sets the scrollbar position of an interface.
     /// </summary>
-    [PacketDef(PacketDefinition.ScrollPosition)]
+    [PacketDef(SendPacketDefinition.ScrollPosition)]
     public sealed class SendScrollPosition : IPacketPayloadBuilder
     {
 

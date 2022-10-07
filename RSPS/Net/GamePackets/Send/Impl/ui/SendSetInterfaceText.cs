@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Sets the text for the specific interface.
     /// </summary>
-    [PacketDef(PacketDefinition.SetInterfaceText)]
+    [PacketDef(SendPacketDefinition.SetInterfaceText)]
     public sealed class SendSetInterfaceText : IPacketVariablePayloadBuilder
     {
 

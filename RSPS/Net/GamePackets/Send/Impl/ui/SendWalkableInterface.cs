@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Displays an interface in walkable mode.
     /// </summary>
-    [PacketDef(PacketDefinition.WalkableInterface)]
+    [PacketDef(SendPacketDefinition.WalkableInterface)]
     public sealed class SendWalkableInterface : IPacketPayloadBuilder
     {
 

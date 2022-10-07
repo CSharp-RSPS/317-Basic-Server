@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Sends how much weight of equipment the player is wearing (e.g. Rune plate-body is 9.04kg).
     /// </summary>
-    [PacketDef(PacketDefinition.Weight)]
+    [PacketDef(SendPacketDefinition.Weight)]
     public sealed class SendWeight : IPacketPayloadBuilder
     {
 

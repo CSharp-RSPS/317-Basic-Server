@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Draw a graphic at a given x/y position after a delay.
     /// </summary>
-    [PacketDef(PacketDefinition.DrawGraphicAtPosition)]
+    [PacketDef(SendPacketDefinition.DrawGraphicAtPosition)]
     public sealed class SendDrawGraphic : IPacketPayloadBuilder
     {
 

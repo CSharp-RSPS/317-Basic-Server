@@ -137,7 +137,7 @@ namespace RSPS.Net.GamePackets
         /// </summary>
         /// <param name="player">The player</param>
         /// <param name="packetDef">The packet definition</param>
-        public static void SendPacket(Player player, PacketDefinition packetDef)
+        public static void SendPacket(Player player, SendPacketDefinition packetDef)
         {
             if (player.PlayerConnection == null)
             {
@@ -183,7 +183,7 @@ namespace RSPS.Net.GamePackets
         /// <param name="connection">The client connection</param>
         /// <param name="packetDef">The packet definition</param>
         /// <param name="packetPayloadBuilder">The packet payload builder</param>
-        private static void SendPacket(Connection connection, PacketDefinition packetDef, IPacketPayloadBuilder? packetPayloadBuilder = null)
+        private static void SendPacket(Connection connection, SendPacketDefinition packetDef, IPacketPayloadBuilder? packetPayloadBuilder = null)
         {
             if (connection.NetworkEncryptor == null)
             {
@@ -243,7 +243,7 @@ namespace RSPS.Net.GamePackets
             if (packetInfo.Opcode != 81 && packetInfo.Opcode != 65)
             {
                 Debug.WriteLine("Packet ({0}) [Opcode: {1}][Size: {2}] dispatched to client",
-                Enum.GetName(typeof(PacketDefinition), packetDef), packetInfo.Opcode, packetSize);
+                Enum.GetName(typeof(SendPacketDefinition), packetDef), packetInfo.Opcode, packetSize);
             }
         }
 
@@ -252,7 +252,7 @@ namespace RSPS.Net.GamePackets
         /// </summary>
         /// <param name="packetDef">The packet definition value</param>
         /// <returns>The packet info attribute</returns>
-        public static PacketInfoAttribute? GetPacketInfo(this PacketDefinition packetDef)
+        public static PacketInfoAttribute? GetPacketInfo(this SendPacketDefinition packetDef)
         {
             FieldInfo? fieldInfo = packetDef.GetType().GetField(packetDef.ToString());
             return fieldInfo == null 

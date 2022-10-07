@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Displays a hint icon.
     /// </summary>
-    [PacketDef(PacketDefinition.DisplayHintIcon)]
+    [PacketDef(SendPacketDefinition.DisplayHintIcon)]
     public sealed class SendDisplayHintIcon : IPacketVariablePayloadBuilder
     {
 

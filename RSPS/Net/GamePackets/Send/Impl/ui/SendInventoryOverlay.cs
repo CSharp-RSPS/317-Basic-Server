@@ -11,7 +11,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// This packet overlays an interface in the inventory area. This is used in trading and staking.
     /// </summary>
-    [PacketDef(PacketDefinition.InventoryOverlay)]
+    [PacketDef(SendPacketDefinition.InventoryOverlay)]
     public sealed class SendInventoryOverlay : IPacketPayloadBuilder
     {
 

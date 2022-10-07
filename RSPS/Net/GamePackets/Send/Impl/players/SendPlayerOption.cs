@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Adds an option to a player's right click context menu.
     /// </summary>
-    [PacketDef(PacketDefinition.PlayerOption)]
+    [PacketDef(SendPacketDefinition.PlayerOption)]
     public sealed class SendPlayerOption : IPacketVariablePayloadBuilder
     {
 

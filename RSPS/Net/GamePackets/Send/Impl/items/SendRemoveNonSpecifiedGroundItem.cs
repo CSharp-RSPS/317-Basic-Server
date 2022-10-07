@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Remove non-specified ground items
     /// </summary>
-    [PacketDef(PacketDefinition.RemoveNonSpecifiedGroundItems)]
+    [PacketDef(SendPacketDefinition.RemoveNonSpecifiedGroundItems)]
     public sealed class SendRemoveNonSpecifiedGroundItem : IPacketPayloadBuilder
     {
 

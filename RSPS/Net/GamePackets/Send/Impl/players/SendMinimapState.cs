@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Sets the mini map's state.
     /// </summary>
-    [PacketDef(PacketDefinition.MinimapState)]
+    [PacketDef(SendPacketDefinition.MinimapState)]
     public sealed class SendMinimapState : IPacketPayloadBuilder
     {
 

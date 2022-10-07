@@ -20,7 +20,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     //RING: 12
     //ARROWS: 13
 
-    [PacketDef(PacketDefinition.ItemOnInterface)]
+    [PacketDef(SendPacketDefinition.ItemOnInterface)]
     public sealed class SendEquipment : IPacketPayloadBuilder
     {
 

@@ -12,7 +12,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Begins the player update procedure
     /// </summary>
-    [PacketDef(PacketDefinition.BeginPlayerUpdating)]
+    [PacketDef(SendPacketDefinition.BeginPlayerUpdating)]
     public sealed class SendBeginPlayerUpdating : IPacketVariablePayloadBuilder
     {
 

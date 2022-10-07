@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// This packet changes the color of an interface that is text.
     /// </summary>
-    [PacketDef(PacketDefinition.InterfaceColor)]
+    [PacketDef(SendPacketDefinition.InterfaceColor)]
     public sealed class SendInterfaceColor : IPacketPayloadBuilder
     {
 

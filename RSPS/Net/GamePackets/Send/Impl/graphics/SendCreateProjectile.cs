@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Creates a projectile.
     /// </summary>
-    [PacketDef(PacketDefinition.CreateProjectile)]
+    [PacketDef(SendPacketDefinition.CreateProjectile)]
     public sealed class SendCreateProjectile : IPacketPayloadBuilder
     {
 

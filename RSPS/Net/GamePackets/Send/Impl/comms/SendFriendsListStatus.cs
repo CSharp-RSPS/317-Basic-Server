@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// This packet sends the first list load status.
     /// </summary>
-    [PacketDef(PacketDefinition.FriendsListStatus)]
+    [PacketDef(SendPacketDefinition.FriendsListStatus)]
     public sealed class SendFriendsListStatus : IPacketPayloadBuilder
     {
 

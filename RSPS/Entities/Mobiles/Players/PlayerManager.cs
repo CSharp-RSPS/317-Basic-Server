@@ -1,5 +1,4 @@
 ﻿using RSPS.Entities.movement;
-using RSPS.Net;
 using RSPS.Net.GamePackets.Send.Impl;
 using RSPS.Net.GamePackets;
 using RSPS.Worlds;
@@ -9,13 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RSPS.Net.Connections;
-using RSPS.Net.GamePackets.Send;
 using System.Diagnostics;
 using RSPS.Game.Comms.Messaging;
 using RSPS.Game.Items.Equipment;
 using RSPS.Game.Items;
 using RSPS.Game.UI;
 using RSPS.Game.Skills;
+using RSPS.Net.GamePackets.Send;
 
 namespace RSPS.Entities.Mobiles.Players
 {
@@ -109,7 +108,7 @@ namespace RSPS.Entities.Mobiles.Players
         public static void InitializeSession(Player player)
         {
             PacketHandler.SendPacket(player, new SendInitializePlayer(true, player.WorldIndex));
-            PacketHandler.SendPacket(player, PacketDefinition.ResetCamera);
+            PacketHandler.SendPacket(player, SendPacketDefinition.ResetCamera);
             PacketHandler.SendPacket(player, new SendChatSettings(0, 0, 0));
 
             // Send the side bars

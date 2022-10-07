@@ -3,7 +3,6 @@ using RSPS.Entities.movement.Locations;
 using RSPS.Entities.movement.Locations.Regions;
 using RSPS.Entities.Mobiles.Players;
 using RSPS.Net.GamePackets;
-using RSPS.Net.GamePackets.Send;
 using RSPS.Net.GamePackets.Send.Impl;
 using RSPS.Worlds;
 using System;
@@ -12,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RSPS.Util.Maths;
+using RSPS.Net.GamePackets.Send;
 
 namespace RSPS.Entities.movement
 {
@@ -98,7 +98,7 @@ namespace RSPS.Entities.movement
                 }
                 if (deltaX < 16 || deltaX >= 88 || deltaY < 16 || deltaY > 88)
                 {
-                    PacketHandler.SendPacket(player, PacketDefinition.LoadMapRegion);
+                    PacketHandler.SendPacket(player, SendPacketDefinition.LoadMapRegion);
                 }
             }
         }

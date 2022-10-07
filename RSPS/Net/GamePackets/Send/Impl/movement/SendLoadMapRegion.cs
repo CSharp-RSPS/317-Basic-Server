@@ -16,7 +16,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// 8 x 8	Load blocks to speed up loading NPCs, Items and Objects
     /// 13 x 13	Number of load blocks to load
     /// </summary>
-    [PacketDef(PacketDefinition.LoadMapRegion)]
+    [PacketDef(SendPacketDefinition.LoadMapRegion)]
     public sealed class SendLoadMapRegion : IPacketPayloadBuilder
     {
 

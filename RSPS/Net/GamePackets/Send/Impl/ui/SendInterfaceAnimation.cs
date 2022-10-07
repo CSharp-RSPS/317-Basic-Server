@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Sets an interface's model animation.
     /// </summary>
-    [PacketDef(PacketDefinition.InterfaceAnimation)]
+    [PacketDef(SendPacketDefinition.InterfaceAnimation)]
     public sealed class SendInterfaceAnimation : IPacketPayloadBuilder
     {
 

@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Sending this packet to the client will cause the client to open an interface over the chatbox.
     /// </summary>
-    [PacketDef(PacketDefinition.OpenChatboxInterface)]
+    [PacketDef(SendPacketDefinition.OpenChatboxInterface)]
     public sealed class SendOpenChatboxInterface : IPacketPayloadBuilder
     {
 

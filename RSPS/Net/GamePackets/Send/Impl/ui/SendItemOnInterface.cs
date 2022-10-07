@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Draw an item onto an interface.
     /// </summary>
-    [PacketDef(PacketDefinition.ItemOnInterface)]
+    [PacketDef(SendPacketDefinition.ItemOnInterface)]
     public sealed class SendItemOnInterface : IPacketVariablePayloadBuilder
     {
 

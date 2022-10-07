@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// This packet assigns an interface to one of the tabs in the game sidebar.
     /// </summary>
-    [PacketDef(PacketDefinition.SendSidebarInterface)]
+    [PacketDef(SendPacketDefinition.SendSidebarInterface)]
     public sealed class SendSidebarInterface : IPacketPayloadBuilder
     {
 

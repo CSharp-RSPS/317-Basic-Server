@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Spawn ground item for all except specified player
     /// </summary>
-    [PacketDef(PacketDefinition.SpawnGroundItemForAllExceptSpecifiedPlayer)]
+    [PacketDef(SendPacketDefinition.SpawnGroundItemForAllExceptSpecifiedPlayer)]
     public sealed class SendSpawnGroundItemForAllExceptPlayer : IPacketPayloadBuilder
     {
 

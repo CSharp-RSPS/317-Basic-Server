@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Spin camera
     /// </summary>
-    [PacketDef(PacketDefinition.SpinCamera)]
+    [PacketDef(SendPacketDefinition.SpinCamera)]
     public sealed class SendSpinCamera : IPacketPayloadBuilder
     {
 

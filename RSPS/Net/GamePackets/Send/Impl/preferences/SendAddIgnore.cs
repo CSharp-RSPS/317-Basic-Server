@@ -14,7 +14,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// there doesn't seem to be a way to change the list dynamically. 
     /// It seems as though that whenever the player decides to add or remove a player from their list, it must send all the values again.
     /// </summary>
-    [PacketDef(PacketDefinition.SendAddIgnore)]
+    [PacketDef(SendPacketDefinition.SendAddIgnore)]
     public sealed class SendAddIgnore : IPacketVariablePayloadBuilder
     {
 

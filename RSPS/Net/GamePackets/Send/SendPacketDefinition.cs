@@ -1,4 +1,5 @@
-﻿using RSPS.Util.Attributes;
+﻿using RSPS.Net.GamePackets;
+using RSPS.Util.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace RSPS.Net.GamePackets.Send
     /// <summary>
     /// Holds the definitions for the packets that can be sent to clients
     /// </summary>
-    public enum PacketDefinition
+    public enum SendPacketDefinition
     {
 
         /// <summary>
@@ -136,7 +137,7 @@ namespace RSPS.Net.GamePackets.Send
         /// <summary>
         /// Starts playing a song.
         /// </summary>
-        [PacketInfo(74, 4)]
+        [PacketInfo(74, 2)]
         PlaySong = 74,
 
         /// <summary>
@@ -178,7 +179,7 @@ namespace RSPS.Net.GamePackets.Send
         /// <summary>
         /// Forcefully changes a client's setting's value. Also changes the default value for that setting.
         /// </summary>
-        [PacketInfo(87, 7)]
+        [PacketInfo(87, 6)]
         ForceClientSetting2 = 87,
 
         /// <summary>
@@ -196,7 +197,7 @@ namespace RSPS.Net.GamePackets.Send
         /// <summary>
         /// Sends an object removal request to the client.
         /// </summary>
-        [PacketInfo(101, 3)]
+        [PacketInfo(101, 2)]
         ObjectRemoval = 101,
 
         /// <summary>
@@ -352,7 +353,7 @@ namespace RSPS.Net.GamePackets.Send
         /// <summary>
         /// Sends a private message to another player.
         /// </summary>
-        [PacketInfo(196, PacketHeaderType.VariableShort)]
+        [PacketInfo(196, PacketHeaderType.VariableByte)]
         SendPrivateMessage = 196,
 
         /// <summary>
@@ -384,6 +385,12 @@ namespace RSPS.Net.GamePackets.Send
         /// </summary>
         [PacketInfo(215, 7)]
         SpawnGroundItemForAllExceptSpecifiedPlayer = 215,
+
+        /// <summary>
+        /// Sends a clan-chat message
+        /// </summary>
+        [PacketInfo(217, PacketHeaderType.VariableShort)]
+        ClanChatMessage = 217,
 
         /// <summary>
         /// Opens an interface over the chatbox.
@@ -448,7 +455,7 @@ namespace RSPS.Net.GamePackets.Send
         /// <summary>
         /// Displays a hint icon.
         /// </summary>
-        [PacketInfo(254, PacketHeaderType.VariableByte)]
+        [PacketInfo(254, 6)]
         DisplayHintIcon = 254
 
     }

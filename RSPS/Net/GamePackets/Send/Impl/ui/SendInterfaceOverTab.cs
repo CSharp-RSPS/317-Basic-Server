@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// This packet draws an interface over the tab area.
     /// </summary>
-    [PacketDef(PacketDefinition.InterfaceOverTab)]
+    [PacketDef(SendPacketDefinition.InterfaceOverTab)]
     public sealed class SendInterfaceOverTab : IPacketPayloadBuilder
     {
 

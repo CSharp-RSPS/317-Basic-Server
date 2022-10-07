@@ -88,7 +88,7 @@ namespace RSPS.Game.UI
         public static void CloseInterfaces(Player player)
         {
             player.NonPersistentVars.OpenInterfaceId = -1;
-            PacketHandler.SendPacket(player, PacketDefinition.ClearScreen);
+            PacketHandler.SendPacket(player, SendPacketDefinition.ClearScreen);
         }
 
     }

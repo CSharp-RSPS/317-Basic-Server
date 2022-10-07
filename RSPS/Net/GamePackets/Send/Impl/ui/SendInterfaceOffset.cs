@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Sets the offset for drawing of an interface.
     /// </summary>
-    [PacketDef(PacketDefinition.InterfaceOffset)]
+    [PacketDef(SendPacketDefinition.InterfaceOffset)]
     public sealed class SendInterfaceOffset : IPacketPayloadBuilder
     {
 

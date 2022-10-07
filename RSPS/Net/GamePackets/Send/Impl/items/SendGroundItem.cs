@@ -11,7 +11,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Place an item stack on the ground.
     /// </summary>
-    [PacketDef(PacketDefinition.SendGroundItem)]
+    [PacketDef(SendPacketDefinition.SendGroundItem)]
     public sealed class SendGroundItem : IPacketPayloadBuilder
     {
 

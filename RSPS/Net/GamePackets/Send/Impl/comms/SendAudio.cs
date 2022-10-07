@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl.comms
     /// <summary>
     /// Sets what audio/sound is to play at a certain moment.
     /// </summary>
-    [PacketDef(PacketDefinition.Audio)]
+    [PacketDef(SendPacketDefinition.Audio)]
     public sealed class SendAudio : IPacketPayloadBuilder
     {
 

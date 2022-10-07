@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Displays an item model inside an interface.
     /// </summary>
-    [PacketDef(PacketDefinition.InterfaceItem)]
+    [PacketDef(SendPacketDefinition.InterfaceItem)]
     public sealed class SendInterfaceItem : IPacketPayloadBuilder
     {
 

@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Clears an interface's inventory.
     /// </summary>
-    [PacketDef(PacketDefinition.ClearInventory)]
+    [PacketDef(SendPacketDefinition.ClearInventory)]
     public sealed class SendClearInventory : IPacketPayloadBuilder
     {
 

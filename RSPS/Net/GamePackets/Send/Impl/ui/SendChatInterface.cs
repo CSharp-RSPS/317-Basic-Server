@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Shows an interface in the chat box.
     /// </summary>
-    [PacketDef(PacketDefinition.ChatInterface)]
+    [PacketDef(SendPacketDefinition.ChatInterface)]
     public sealed class SendChatInterface : IPacketPayloadBuilder
     {
 

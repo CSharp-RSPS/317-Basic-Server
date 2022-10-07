@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Set cutscene camera
     /// </summary>
-    [PacketDef(PacketDefinition.SetCutsceneCamera)]
+    [PacketDef(SendPacketDefinition.SetCutsceneCamera)]
     public sealed class SendSetCutsceneCamera : IPacketPayloadBuilder
     {
 

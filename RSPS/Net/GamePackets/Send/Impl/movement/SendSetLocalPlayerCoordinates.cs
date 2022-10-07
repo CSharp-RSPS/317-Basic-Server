@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Set local player coordinates
     /// </summary>
-    [PacketDef(PacketDefinition.SetLocalPlayerCoordinates)]
+    [PacketDef(SendPacketDefinition.SetLocalPlayerCoordinates)]
     public sealed class SendSetLocalPlayerCoordinates : IPacketPayloadBuilder
     {
 

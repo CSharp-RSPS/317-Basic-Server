@@ -17,14 +17,14 @@ namespace RSPS.Util.Attributes
         /// <summary>
         /// The packet definition
         /// </summary>
-        public PacketDefinition PacketDef { get; private set; }
+        public SendPacketDefinition PacketDef { get; private set; }
 
 
         /// <summary>
         /// Creates a new packet definition attribute
         /// </summary>
         /// <param name="packetDef">The packet definition attribute</param>
-        public PacketDefAttribute(PacketDefinition packetDef)
+        public PacketDefAttribute(SendPacketDefinition packetDef)
         {
             PacketDef = packetDef;
         }

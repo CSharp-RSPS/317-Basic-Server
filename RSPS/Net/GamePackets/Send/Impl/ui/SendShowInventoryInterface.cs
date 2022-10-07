@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Show inventory interface
     /// </summary>
-    [PacketDef(PacketDefinition.ShowInventoryInterface)]
+    [PacketDef(SendPacketDefinition.ShowInventoryInterface)]
     public sealed class SendShowInventoryInterface : IPacketPayloadBuilder
     {
 

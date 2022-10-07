@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Causes a sidebar icon to start flashing.
     /// </summary>
-    [PacketDef(PacketDefinition.FlashSidebar)]
+    [PacketDef(SendPacketDefinition.FlashSidebar)]
     public sealed class SendFlashSidebar : IPacketPayloadBuilder
     {
 

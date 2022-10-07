@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Delete ground item.
     /// </summary>
-    [PacketDef(PacketDefinition.DeleteGroundItem)]
+    [PacketDef(SendPacketDefinition.DeleteGroundItem)]
     public sealed class SendDeleteGroundItem : IPacketPayloadBuilder
     {
 

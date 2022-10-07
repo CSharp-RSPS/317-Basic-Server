@@ -10,7 +10,7 @@ namespace RSPS.Net.GamePackets.Send.Impl
     /// <summary>
     /// Sends the player membership flag and player list index.
     /// </summary>
-    [PacketDef(PacketDefinition.InitializePlayer)]
+    [PacketDef(SendPacketDefinition.InitializePlayer)]
     public sealed class SendInitializePlayer : IPacketPayloadBuilder
     {
 
