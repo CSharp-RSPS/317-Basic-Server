@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace RSPS.Entities.Mobiles.Attributes
 {
-    public abstract class Attribute<T>
+
+    public abstract class Attribute
+    {
+        internal Attribute<ValueType>? getValue;
+    }
+
+    public abstract class Attribute<T> : Attribute
     {
         protected T Value;
         private AttributeType Type;

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Attribute = RSPS.Entities.Mobiles.Attributes.Attribute;
 
 namespace RSPS.Entities.Mobiles
 {
@@ -78,8 +79,10 @@ namespace RSPS.Entities.Mobiles
             LastPosition = position;
             Movement = movement;
             LocalNpcs = new();
-
+            //Console.WriteLine("Trying to run!");
             //attributeMap.Define(AttributeName.RunEnergy, new BooleanAttribute(true));
+            //var RunEnergy = attributeMap.GetAttribute(AttributeName.RunEnergy);
+            //Console.WriteLine("RunEnergy: " + RunEnergy.GetValue());
         }
 
         public dynamic SubmitWalkToEvent(dynamic walkToEvent)
